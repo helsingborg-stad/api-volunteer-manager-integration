@@ -1,0 +1,33 @@
+{
+  "name": "helsingborg-stad/api-volunteer-manager-integration",
+  "description": "Frontend integration for api-volunteer-manager.",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "scripts": {
+    "test": "./vendor/bin/phpunit --testdox",
+    "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox",
+    "minimal": "./vendor/bin/phpunit"
+  },
+  "authors": [
+    {
+      "name": "Nikolas Ramstedt",
+      "email": "nikolas.ramstedt@helsingborg.se"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "APIVolunteerManagerIntegration\\": "source/php/"
+    }
+  },
+  "minimum-stability": "stable",
+  "require": {},
+  "require-dev": {
+    "brain/monkey": "^2.6",
+    "codedungeon/phpunit-result-printer": "^0.31.0",
+    "phpunit/phpunit": "^9.5",
+    "spatie/phpunit-watcher": "^1.23",
+    "vimeo/psalm": "^5.7",
+    "szepeviktor/phpstan-wordpress": "^1.1",
+    "php-stubs/acf-pro-stubs": "^6.0"
+  }
+}
