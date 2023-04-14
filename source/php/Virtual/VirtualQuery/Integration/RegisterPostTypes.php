@@ -39,7 +39,7 @@ class RegisterPostTypes extends AbstractPluggable implements VQPluggable, VQPlug
 				'public'      => true,
 				'label'       => $args['label'],
 				'has_archive' => true,
-				'show_ui'     => true,
+				'show_ui'     => false,
 			]
 		], $postTypes );
 	}
