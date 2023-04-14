@@ -8,6 +8,7 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Compose\AsArchive;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Compose\QueryComposer;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Compose\WithPostCount;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Compose\WithPostsAsPostType;
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Compose\WithReset;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Dispatch\VQDispatchHandler;
 use WP_Query;
 
@@ -25,6 +26,7 @@ class ArchiveQuery implements VQDispatchHandler {
 
 	function compose( WP_Query $wpQuery ): WP_Query {
 		return QueryComposer::compose( [
+			new WithReset(),
 			new AsArchive(),
 			new WithPostsAsPostType(
 				$this->source->getPosts(),
