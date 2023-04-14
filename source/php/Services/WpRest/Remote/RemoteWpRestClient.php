@@ -2,7 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\Services\WpRest\Remote;
 
-use APIVolunteerManagerIntegration\Helper\PsrHttpClient\HttpClientFactory;
+use APIVolunteerManagerIntegration\Helper\HttpClient\HttpClientFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClient;
 use Http\Factory\Diactoros\RequestFactory;
 use JsonException;

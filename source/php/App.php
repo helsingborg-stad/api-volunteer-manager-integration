@@ -3,7 +3,7 @@
 namespace APIVolunteerManagerIntegration;
 
 
-use APIVolunteerManagerIntegration\Helper\PsrHttpClient\CurlClientFactory;
+use APIVolunteerManagerIntegration\Helper\HttpClient\CurlClientFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\Local\LocalWpRestClient;
 use APIVolunteerManagerIntegration\Services\WpRest\Remote\RemoteWpRestClient;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClient;
@@ -12,7 +12,6 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Context\GlobalCont
 
 class App {
 	public function __construct() {
-
 		$virtualQuery = new Routes( $this->createWpRestClient() );
 		$virtualQuery->init( new GlobalContextFactory() );
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace APIVolunteerManagerIntegration\Helper\PsrHttpClient;
+namespace APIVolunteerManagerIntegration\Helper\HttpClient;
 
 use Http\Client\Curl\Client;
 use Psr\Http\Client\ClientInterface;
