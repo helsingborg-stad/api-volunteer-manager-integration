@@ -21,16 +21,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "ext-json": "*"
-  },
-  "require-dev": {
-    "brain/monkey": "^2.6",
-    "codedungeon/phpunit-result-printer": "^0.31.0",
-    "phpunit/phpunit": "^9.5",
-    "spatie/phpunit-watcher": "^1.23",
-    "vimeo/psalm": "^5.7",
-    "szepeviktor/phpstan-wordpress": "^1.1",
-    "php-stubs/acf-pro-stubs": "^6.0",
+    "ext-json": "*",
     "psr/http-client": "^1.0",
     "psr/http-factory": "^1.0",
     "psr/log": "^1.1",
@@ -42,7 +33,17 @@
     "php-http/mock-client": "^1.5",
     "php-http/curl-client": "^2.2",
     "http-interop/http-factory-diactoros": "^1.0",
-    "apix/log": "^1.2"
+    "apix/log": "^1.2",
+    "symfony/http-client": "^5.4"
+  },
+  "require-dev": {
+    "brain/monkey": "^2.6",
+    "codedungeon/phpunit-result-printer": "^0.31.0",
+    "phpunit/phpunit": "^9.5",
+    "spatie/phpunit-watcher": "^1.23",
+    "vimeo/psalm": "^5.7",
+    "szepeviktor/phpstan-wordpress": "^1.1",
+    "php-stubs/acf-pro-stubs": "^6.0"
   },
   "config": {
     "allow-plugins": {

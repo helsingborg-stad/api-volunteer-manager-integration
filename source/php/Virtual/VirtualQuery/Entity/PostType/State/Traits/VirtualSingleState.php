@@ -9,7 +9,7 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\IsSingle;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\Reducer\StateReducer;
 
 trait VirtualSingleState {
-	private string $postType = '';
+	private string $postType;
 
 	private VQPosts $source;
 
