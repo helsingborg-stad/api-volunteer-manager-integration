@@ -12,7 +12,7 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQControllable;
 
 class ViewControllers extends AbstractPluggable implements VQPluggable, VQPluggableFilter {
 	/**
-	 * @var list<VQComposableView>
+	 * @var array<int, VQComposableView>
 	 */
 	private array $controllers;
 	private VQContextFactory $contextFactory;

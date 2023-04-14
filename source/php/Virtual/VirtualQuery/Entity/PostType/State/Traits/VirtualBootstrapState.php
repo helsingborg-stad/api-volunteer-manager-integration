@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PsalmGlobal */
 
 namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\State\Traits;
 

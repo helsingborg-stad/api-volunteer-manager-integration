@@ -10,7 +10,7 @@ abstract class VQArchiveController implements VQComposableView, VQArchive {
 	use VirtualArchiveState;
 
 	/**
-	 * @use VirtualBootstrapState
+	 * @uses VirtualBootstrapState
 	 */
 	use VirtualBootstrapState;
 

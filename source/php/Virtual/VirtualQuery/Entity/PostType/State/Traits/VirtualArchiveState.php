@@ -7,7 +7,7 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\IsArchive;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\Reducer\StateReducer;
 
 trait VirtualArchiveState {
-	private string $postType;
+	private string $postType = '';
 
 	function match( VQContext $context ): bool {
 		return StateReducer::match( $context, [

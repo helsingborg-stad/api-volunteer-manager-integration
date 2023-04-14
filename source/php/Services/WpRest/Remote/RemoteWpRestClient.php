@@ -32,7 +32,7 @@ class RemoteWpRestClient implements WpRestClient {
 		try {
 			$queryArgs = http_build_query( $args ?? [] );
 			$request   = ( new RequestFactory() )
-				->createRequest( 'GET', "{$this->apiUrl}/wp/v2/{$postType}?{$queryArgs}" )
+				->createRequest( 'GET', "$this->apiUrl/wp/v2/$postType?$queryArgs" )
 				->withHeader( 'Accept', 'application/json' )
 				->withHeader( 'Content-Type', 'application/json' );
 

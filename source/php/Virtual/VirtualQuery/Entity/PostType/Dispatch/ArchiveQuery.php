@@ -15,7 +15,6 @@ class ArchiveQuery implements VQDispatchHandler {
 	use VirtualArchiveState;
 
 	private string $postType;
-	private string $postTypeSlug;
 
 	private VQPosts $source;
 
