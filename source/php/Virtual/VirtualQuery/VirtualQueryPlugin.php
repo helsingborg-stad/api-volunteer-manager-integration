@@ -28,7 +28,7 @@ abstract class VirtualQueryPlugin implements VQPlugin {
 						$params[0],
 						$params[1],
 						$params[2] ?? 10,
-						$params[3] ?? 1
+						$params[3] ?? 1,
 					];
 
 					switch ( $type ) {
@@ -47,7 +47,7 @@ abstract class VirtualQueryPlugin implements VQPlugin {
 	}
 
 	/**
-	 * @param VQ $vq
+	 * @param VQ               $vq
 	 * @param VQContextFactory $contextFactory
 	 *
 	 * @return array<int, VQPluggable>
@@ -56,7 +56,7 @@ abstract class VirtualQueryPlugin implements VQPlugin {
 		return [
 			new RegisterPostTypes( $vq ),
 			new DispatchWpQuery( $vq, $contextFactory ),
-			new ViewControllers( $vq, $contextFactory )
+			new ViewControllers( $vq, $contextFactory ),
 		];
 	}
 
@@ -68,7 +68,7 @@ abstract class VirtualQueryPlugin implements VQPlugin {
 	}
 
 	/**
-	 *  Defines virtual entities used for creating virtual post types, taxonomies etc
+	 *  Virtual entities used for creating virtual post types, taxonomies etc.
 	 *
 	 * @return array<int, VQEntity>
 	 */

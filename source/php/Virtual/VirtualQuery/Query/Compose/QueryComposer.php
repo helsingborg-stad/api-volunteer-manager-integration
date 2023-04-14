@@ -8,7 +8,7 @@ use WP_Query;
 class QueryComposer {
 	/**
 	 * @param VQComposableQuery[] $composers
-	 * @param WP_Query $wpQuery
+	 * @param WP_Query            $wpQuery
 	 *
 	 * @return WP_Query
 	 */

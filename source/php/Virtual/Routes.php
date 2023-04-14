@@ -17,7 +17,7 @@ class Routes extends VirtualQueryPlugin {
 
 	function entities(): array {
 		return [
-			new Assignment()
+			new Assignment(),
 		];
 	}
 

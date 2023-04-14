@@ -4,7 +4,7 @@ namespace APIVolunteerManagerIntegration\Services\WpRest;
 
 interface WpRestClient {
 	/**
-	 * @param string $postType
+	 * @param string     $postType
 	 * @param array|null $args
 	 *
 	 * @return array
@@ -12,7 +12,7 @@ interface WpRestClient {
 	public function getPosts( string $postType, ?array $args = null ): array;
 
 	/**
-	 * @param string $taxonomy
+	 * @param string     $taxonomy
 	 * @param array|null $args
 	 *
 	 * @return array

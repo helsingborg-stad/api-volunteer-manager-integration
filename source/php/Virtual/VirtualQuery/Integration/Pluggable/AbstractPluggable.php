@@ -28,14 +28,14 @@ abstract class AbstractPluggable implements VQPluggable {
 			$params[0],
 			$params[1],
 			$params[2] ?? 10,
-			$params[3] ?? 1
+			$params[3] ?? 1,
 		];
 
 		return [
 			$handle,
 			[ $this, $method ],
 			$priority,
-			$acceptedArgs
+			$acceptedArgs,
 		];
 	}
 }

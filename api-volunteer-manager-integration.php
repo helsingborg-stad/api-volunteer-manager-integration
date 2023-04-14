@@ -1,5 +1,4 @@
-<?php
-
+<?php /** @noinspection PhpDefineCanBeReplacedWithConstInspection */
 /**
  * Plugin Name:       API Volunteer VirtualQuery Integration
  * Plugin URI:        https://github.com/helsingborg-stad/api-volunteer-manager-integration
@@ -13,7 +12,6 @@
  * Domain Path:       /languages
  */
 
-
 // Protect against direct file access
 use APIVolunteerManagerIntegration\App;
 
@@ -23,10 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'API_VOLUNTEER_MANAGER_INTEGRATION_PATH', plugin_dir_path( __FILE__ ) );
 define( 'API_VOLUNTEER_MANAGER_INTEGRATION_URL', plugins_url( '', __FILE__ ) );
-define(
-	'API_VOLUNTEER_MANAGER_INTEGRATION_TEMPLATE_PATH',
-	API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'templates/'
-);
+define( 'API_VOLUNTEER_MANAGER_INTEGRATION_TEMPLATE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'templates/' );
 define( 'API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN', 'api-volunteer-manager-integration' );
 
 load_plugin_textdomain(
@@ -50,7 +45,6 @@ add_action( 'acf/init', function () {
 		);
 		$acfExportManager->autoExport( [
 			'api-volunteer-manager-integration-settings' => 'group_61ea7a87e8aaa',
-			//Update with acf id here, settings view
 		] );
 		$acfExportManager->import();
 	}

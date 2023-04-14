@@ -71,7 +71,7 @@ class VirtualPostType implements VQArrayable, VQDispatchable, VQControllable, VQ
 		return [
 			'postType' => $this->postType,
 			'slug'     => $this->slug,
-			'label'    => $this->label
+			'label'    => $this->label,
 		];
 	}
 

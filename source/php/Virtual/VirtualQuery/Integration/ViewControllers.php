@@ -27,7 +27,7 @@ class ViewControllers extends AbstractPluggable implements VQPluggable, VQPlugga
 
 	static function addFilters(): array {
 		return [
-			[ 'Municipio/viewData', 'controller', 10, 1 ]
+			[ 'Municipio/viewData', 'controller', 10, 1 ],
 		];
 	}
 

@@ -15,7 +15,7 @@ class WithPosts implements VQComposableQuery {
 	private array $posts;
 
 	/**
-	 * @param array $posts
+	 * @param array                         $posts
 	 * @param Closure(WP_Post):WP_Post|null $callable
 	 */
 	public function __construct( array $posts, ?Closure $callable = null ) {

@@ -6,11 +6,11 @@ class CacheBust {
 	/**
 	 * Returns the revved/cache-busted file name of an asset.
 	 *
-	 * @param string $name Asset name (array key) from rev-mainfest.json
+	 * @param string $name Asset name (array key) from rev-manifest.json
 	 *
 	 * @return string filename of the asset (including directory above)
 	 */
-	public function name( $name ) {
+	public function name( $name ): string {
 		$jsonPath = API_VOLUNTEER_MANAGER_INTEGRATION_PATH . apply_filters(
 				'APIVolunteerManagerIntegration/Helper/CacheBust/RevManifestPath',
 				'dist/manifest.json'
@@ -33,7 +33,7 @@ class CacheBust {
 	/**
 	 * Check if debug mode, Remove constant dependency in tests.
 	 */
-	public function isDebug() {
+	public function isDebug(): bool {
 		return defined( 'WP_DEBUG' ) && WP_DEBUG;
 	}
 }

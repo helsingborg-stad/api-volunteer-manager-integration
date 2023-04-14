@@ -23,7 +23,7 @@ class RemoteWpRestClient implements WpRestClient {
 	}
 
 	/**
-	 * @param string $postType
+	 * @param string     $postType
 	 * @param array|null $args
 	 *
 	 * @return array

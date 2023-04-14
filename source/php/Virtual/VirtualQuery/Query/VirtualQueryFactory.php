@@ -8,7 +8,7 @@ class VirtualQueryFactory {
 
 	/**
 	 * @param array<int, VQEntity> $entities
-	 * @param array $sources
+	 * @param array                $sources
 	 *
 	 * @return VQ
 	 */

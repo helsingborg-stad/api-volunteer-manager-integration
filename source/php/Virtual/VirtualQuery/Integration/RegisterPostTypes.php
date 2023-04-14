@@ -16,7 +16,7 @@ class RegisterPostTypes extends AbstractPluggable implements VQPluggable, VQPlug
 
 	public static function addActions(): array {
 		return [
-			[ 'init', 'registerPostTypes', 10, 1 ]
+			[ 'init', 'registerPostTypes', 10, 1 ],
 		];
 	}
 
@@ -43,8 +43,8 @@ class RegisterPostTypes extends AbstractPluggable implements VQPluggable, VQPlug
 				'rewrite'     => [
 					'slug'       => $args['slug'] ?? $args['postType'],
 					'with_front' => false,
-				]
-			]
+				],
+			],
 		], $postTypes );
 	}
 }

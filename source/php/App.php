@@ -2,7 +2,6 @@
 
 namespace APIVolunteerManagerIntegration;
 
-
 use APIVolunteerManagerIntegration\Helper\HttpClient\CurlClientFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\Local\LocalWpRestClient;
 use APIVolunteerManagerIntegration\Services\WpRest\Remote\RemoteWpRestClient;

@@ -11,7 +11,7 @@ trait VirtualArchiveState {
 
 	function match( VQContext $context ): bool {
 		return StateReducer::match( $context, [
-			new IsArchive( $this->postType )
+			new IsArchive( $this->postType ),
 		] );
 	}
 }

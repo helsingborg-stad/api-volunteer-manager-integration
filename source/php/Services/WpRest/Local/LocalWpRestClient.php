@@ -62,7 +62,7 @@ class LocalWpRestClient implements WpRestClient {
 
 		return array_filter( $this->posts, $compositeFilterFn( [
 			'slug'     => fn( array $post ): bool => ! isset( $args['slug'] ) || $post['slug'] === $args['slug'],
-			'postType' => fn( array $post ): bool => ! empty( $post['type'] ) && $post['type'] === $postType
+			'postType' => fn( array $post ): bool => ! empty( $post['type'] ) && $post['type'] === $postType,
 		] ) );
 	}
 

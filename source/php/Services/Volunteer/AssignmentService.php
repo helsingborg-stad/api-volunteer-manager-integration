@@ -33,7 +33,7 @@ class AssignmentService extends PostsAdapter implements VQPosts {
 			'post_modified_gmt' => $data['modified_gmt'] ?? current_time( 'mysql', 1 ),
 			'post_author'       => is_user_logged_in() ? get_current_user_id() : 0,
 			'is_virtual'        => true,
-			'filter'            => 'raw'
+			'filter'            => 'raw',
 		] );
 	}
 }

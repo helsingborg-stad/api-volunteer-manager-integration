@@ -52,7 +52,7 @@ class VirtualQuery implements VQ {
 	/**
 	 * @template T of VQPosts
 	 *
-	 * @param string $sourceId
+	 * @param string          $sourceId
 	 * @param class-string<T> $class
 	 *
 	 * @return T|null
@@ -67,7 +67,7 @@ class VirtualQuery implements VQ {
 			if ( $dispatchable instanceof VQDispatchable ) {
 				$handlers = [
 					...$handlers,
-					...array_values( $dispatchable->toDispatchHandlers() )
+					...array_values( $dispatchable->toDispatchHandlers() ),
 				];
 			}
 		}
@@ -81,7 +81,7 @@ class VirtualQuery implements VQ {
 			if ( $dispatchable instanceof VQControllable ) {
 				$controllers = [
 					...$controllers,
-					...array_values( $dispatchable->toViewControllers() )
+					...array_values( $dispatchable->toViewControllers() ),
 				];
 			}
 		}

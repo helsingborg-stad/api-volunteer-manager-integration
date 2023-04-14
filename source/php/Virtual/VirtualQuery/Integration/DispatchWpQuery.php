@@ -20,7 +20,7 @@ class DispatchWpQuery extends AbstractPluggable implements VQPluggable, VQPlugga
 
 	public static function addActions(): array {
 		return [
-			[ 'wp', 'dispatch', 10, 1, ]
+			[ 'wp', 'dispatch', 10, 1, ],
 		];
 	}
 

@@ -10,7 +10,6 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\Reducer\Stat
 
 trait VirtualSingleState {
 	private string $postType;
-
 	private VQPosts $source;
 
 	function match( VQContext $context ): bool {
@@ -18,7 +17,7 @@ trait VirtualSingleState {
 			new IsSingle( $this->postType ),
 			new VirtualPostExists(
 				fn() => ! empty( $this->source->getPostsByName( $context->getQuery()->query_vars['name'] ) )
-			)
+			),
 		] );
 	}
 }
