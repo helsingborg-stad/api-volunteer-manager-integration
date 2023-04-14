@@ -56,9 +56,9 @@ add_action( 'acf/init', function () {
 	}
 } );
 
-$json = file_get_contents(
-	API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'local.json'
-) ?: apiVolunteerManagerIntegrationFakeJsonString();
+$json = file_exists( API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'local.json' )
+	? file_get_contents( API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'local.json' )
+	: apiVolunteerManagerIntegrationFakeJsonString();
 
 
 // Start application
