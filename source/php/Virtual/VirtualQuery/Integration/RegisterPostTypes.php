@@ -36,10 +36,14 @@ class RegisterPostTypes extends AbstractPluggable implements VQPluggable, VQPlug
 		return array_map( fn( $args ) => [
 			$args['postType'],
 			[
-				'public'      => true,
-				'label'       => $args['label'],
-				'has_archive' => true,
-				'show_ui'     => false,
+				'public'      => $args['public'] ?? true,
+				'label'       => $args['label'] ?? $args['postType'],
+				'has_archive' => $args['hasArchive'] ?? true,
+				'show_ui'     => $args['showUi'] ?? false,
+				'rewrite'     => [
+					'slug'       => $args['slug'] ?? $args['postType'],
+					'with_front' => false,
+				]
 			]
 		], $postTypes );
 	}
