@@ -7,13 +7,11 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\State\Tr
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\State\Traits\VirtualSingleState;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQComposableView;
 
+/**
+ * @uses VirtualSingleState, VirtualBootstrapState
+ */
 abstract class VQSingleController implements VQComposableView, VQSingle {
-	use VirtualSingleState;
-
-	/**
-	 * @use VirtualBootstrapState
-	 */
-	use VirtualBootstrapState;
+	use VirtualSingleState, VirtualBootstrapState;
 
 	function compose( array $data ): array {
 		return $this->single( $data );
