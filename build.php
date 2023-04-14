@@ -1,84 +1,85 @@
 #!/bin/php
 <?php
 // Only allow run from cli.
-if (php_sapi_name() !== 'cli') {
-    exit(0);
+if ( php_sapi_name() !== 'cli' ) {
+	exit( 0 );
 }
 
 // Any command needed to run and build plugin assets when newly cheched out of repo.
 $buildCommands = [
-    'npm ci --no-progress',
-    'npx browserslist@latest --update-db',
-    'npm run build',
-    'composer install --prefer-dist --no-progress --no-dev',
-    'composer dump-autoload --no-dev --classmap-authoritative'
+	'yarn --frozen-lockfile',
+	'npx browserslist@latest --update-db',
+	'yarn build',
+	'composer install --prefer-dist --no-progress --no-dev',
+	'composer dump-autoload --no-dev --classmap-authoritative',
 ];
 
 // Files and directories not suitable for prod to be removed.
 $removables = [
-    '.git',
-    '.gitignore',
-    '.github',
-    'build.php',
-    'composer.json',
-    'composer.lock',
-    'webpack.config.js',
-    'node_modules',
-    'package-lock.json',
-    'package.json',
-    'patchwork.json',
-    'phpunit.xml',
-    'source/tests'
+	'.git',
+	'.gitignore',
+	'.github',
+	'build.php',
+	'composer.json',
+	'composer.lock',
+	'webpack.config.js',
+	'node_modules',
+	'package-lock.json',
+	'package.json',
+	'patchwork.json',
+	'phpunit.xml',
+	'source/tests'
 ];
 
-$dirName = basename(dirname(__FILE__));
+$dirName = basename( dirname( __FILE__ ) );
 
 // Run all build commands.
-$output = '';
+$output   = '';
 $exitCode = 0;
-foreach ($buildCommands as $buildCommand) {
-    print "---- Running build command '$buildCommand' for $dirName. ----\n";
-    $exitCode = executeCommand($buildCommand);
-    print "---- Done build command '$buildCommand' for $dirName. ----\n";
-    if ($exitCode > 0) {
-        exit($exitCode);
-    }
+foreach ( $buildCommands as $buildCommand ) {
+	print "---- Running build command '$buildCommand' for $dirName. ----\n";
+	$exitCode = executeCommand( $buildCommand );
+	print "---- Done build command '$buildCommand' for $dirName. ----\n";
+	if ( $exitCode > 0 ) {
+		exit( $exitCode );
+	}
 }
 
 // Remove files and directories if '--cleanup' argument is supplied to save local developers from disasters.
-if (isset($argv[1]) && $argv[1] === '--cleanup') {
-    foreach ($removables as $removable) {
-        if (file_exists($removable)) {
-            print "Removing $removable from $dirName\n";
-            shell_exec("rm -rf $removable");
-        }
-    }
+if ( isset( $argv[1] ) && $argv[1] === '--cleanup' ) {
+	foreach ( $removables as $removable ) {
+		if ( file_exists( $removable ) ) {
+			print "Removing $removable from $dirName\n";
+			shell_exec( "rm -rf $removable" );
+		}
+	}
 }
 
 /**
  * Better shell script execution with live output to STDOUT and status code return.
- * @param  string $command Command to execute in shell.
+ *
+ * @param string $command Command to execute in shell.
+ *
  * @return int             Exit code.
  */
-function executeCommand($command)
-{
-    $proc = popen("$command 2>&1 ; echo Exit status : $?", 'r');
+function executeCommand( $command ) {
+	$proc = popen( "$command 2>&1 ; echo Exit status : $?", 'r' );
 
-    $liveOutput     = '';
-    $completeOutput = '';
+	$liveOutput     = '';
+	$completeOutput = '';
 
-    while (!feof($proc)) {
-        $liveOutput     = fread($proc, 4096);
-        $completeOutput = $completeOutput . $liveOutput;
-        print $liveOutput;
-        @ flush();
-    }
+	while ( ! feof( $proc ) ) {
+		$liveOutput     = fread( $proc, 4096 );
+		$completeOutput = $completeOutput . $liveOutput;
+		print $liveOutput;
+		@ flush();
+	}
 
-    pclose($proc);
+	pclose( $proc );
 
-    // Get exit status.
-    preg_match('/[0-9]+$/', $completeOutput, $matches);
+	// Get exit status.
+	preg_match( '/[0-9]+$/', $completeOutput, $matches );
 
-    // Return exit status.
-    return intval($matches[0]);
+	// Return exit status.
+	return intval( $matches[0] );
 }
