@@ -17,5 +17,6 @@
         <file name="vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"/>
         <file name="vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php"/>
         <file name="api-volunteer-manager-integration.php"/>
+        <file name="Public.php"/>
     </stubs>
 </psalm>
