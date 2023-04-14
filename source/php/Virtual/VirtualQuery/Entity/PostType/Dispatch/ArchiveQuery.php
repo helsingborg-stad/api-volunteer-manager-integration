@@ -19,10 +19,9 @@ class ArchiveQuery implements VQDispatchHandler {
 
 	private VQPosts $source;
 
-	public function __construct( VQPosts $source, string $postType, string $postTypeSlug ) {
-		$this->source       = $source;
-		$this->postType     = $postType;
-		$this->postTypeSlug = $postTypeSlug;
+	public function __construct( VQPosts $source, string $postType ) {
+		$this->source   = $source;
+		$this->postType = $postType;
 	}
 
 	function compose( WP_Query $wpQuery ): WP_Query {

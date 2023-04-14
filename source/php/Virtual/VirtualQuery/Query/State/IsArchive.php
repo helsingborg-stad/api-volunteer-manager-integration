@@ -2,29 +2,19 @@
 
 namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State;
 
-use APIVolunteerManagerIntegration\Helper\Path;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Context\VQContext;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQState;
 
 class IsArchive implements VQState {
-	private string $postTypeSlug;
+	private string $postType;
 
-	public function __construct( string $postTypeSlug ) {
+	public function __construct( string $postType ) {
 
-		$this->postTypeSlug = $postTypeSlug;
+		$this->postType = $postType;
 	}
 
 	public function match( VQContext $context ): bool {
-		$includesPostTypeSlug =
-			fn( string $path, string $slug ): bool => strpos( $path, $slug ) !== false;
-		$sameLastPath         =
-			fn( string $path, string $slug ): bool => PATH::getLastPathItem( $path ) === Path::getLastPathItem( $slug );
-		$sameLength           =
-			fn( string $path, string $slug ): bool => count( explode( '/', $path ) ) === count( explode( '/', $slug ) );
-
-		return
-			$includesPostTypeSlug( $context->getPath(), $this->postTypeSlug )
-			&& $sameLastPath( $context->getPath(), $this->postTypeSlug )
-			&& $sameLength( $context->getPath(), $this->postTypeSlug );
+		return ( $context->getQuery()->query_vars['post_type'] ?? false ) === $this->postType
+		       && empty( $context->getQuery()->query_vars['name'] );
 	}
 }

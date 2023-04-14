@@ -49,14 +49,14 @@ class VirtualPostType implements VQArrayable, VQDispatchable, VQControllable, VQ
 
 	function toDispatchHandlers(): array {
 		return [
-			new SingleQuery( $this->source, $this->postType, $this->slug ),
-			new ArchiveQuery( $this->source, $this->postType, $this->slug ),
+			new SingleQuery( $this->source, $this->postType ),
+			new ArchiveQuery( $this->source, $this->postType ),
 		];
 	}
 
 	public function withController( VQComposableView $controller ): VQPostType {
 		if ( $controller instanceof VQSingleController || $controller instanceof VQArchiveController ) {
-			$controller->bootstrap( $this->slug, $this->source );
+			$controller->bootstrap( $this->source, $this->postType );
 		}
 		$this->controllers[] = $controller;
 

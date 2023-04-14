@@ -7,11 +7,11 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\IsArchive;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\State\Reducer\StateReducer;
 
 trait VirtualArchiveState {
-	private string $postTypeSlug;
+	private string $postType;
 
 	function match( VQContext $context ): bool {
 		return StateReducer::match( $context, [
-			new IsArchive( $this->postTypeSlug )
+			new IsArchive( $this->postType )
 		] );
 	}
 }

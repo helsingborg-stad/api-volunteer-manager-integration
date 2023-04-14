@@ -20,15 +20,13 @@ class SingleQuery implements VQDispatchHandler {
 	}
 
 	private string $postType;
-	private string $postTypeSlug;
 	private string $postName;
 
 	private VQPosts $source;
 
-	public function __construct( VQPosts $source, string $postType, string $postTypeSlug ) {
-		$this->source       = $source;
-		$this->postType     = $postType;
-		$this->postTypeSlug = $postTypeSlug;
+	public function __construct( VQPosts $source, string $postType ) {
+		$this->source   = $source;
+		$this->postType = $postType;
 	}
 
 	public function match( VQContext $context ): bool {
@@ -42,7 +40,7 @@ class SingleQuery implements VQDispatchHandler {
 			new WithReset(),
 			new AsSingle(),
 			new WithPostsAsPostType(
-				$this->source->getPostsByName( $this->postName ),
+				$this->source->getPostsByName( $wpQuery->query_vars['name'] ),
 				$this->postType
 			),
 			new WithPostCount( 1 ),

@@ -5,12 +5,12 @@ namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\St
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Source\VQPosts;
 
 trait VirtualBootstrapState {
-	private string $postTypeSlug;
+	private string $postType;
 
 	private VQPosts $source;
 
-	public function bootstrap( string $postTypeSlug, VQPosts $source ): void {
-		$this->postTypeSlug = $postTypeSlug;
-		$this->source       = $source;
+	public function bootstrap( VQPosts $source, string $postType ): void {
+		$this->postType = $postType;
+		$this->source   = $source;
 	}
 }
