@@ -13,10 +13,10 @@
  * Domain Path:       /languages
  */
 
-use APIVolunteerManagerIntegration\App;
-use APIVolunteerManagerIntegration\Services\WpRest\Local\LocalWpRestClient;
 
 // Protect against direct file access
+use APIVolunteerManagerIntegration\App;
+
 if ( ! defined( 'WPINC' ) ) {
 	die();
 }
@@ -56,10 +56,4 @@ add_action( 'acf/init', function () {
 	}
 } );
 
-$json = file_exists( API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'local.json' )
-	? file_get_contents( API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'local.json' )
-	: apiVolunteerManagerIntegrationFakeJsonString();
-
-
-// Start application
-new App( LocalWpRestClient::createFromJson( $json ) );
+new App();
