@@ -56,3 +56,4 @@ dist/.temp
 !.editorconfig
 !.github
 local.json
+/dist/
