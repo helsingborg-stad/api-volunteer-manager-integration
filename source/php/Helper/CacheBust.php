@@ -10,7 +10,7 @@ class CacheBust {
 	 *
 	 * @return string filename of the asset (including directory above)
 	 */
-	public function name( $name ): string {
+	public function name( string $name ): string {
 		$jsonPath = API_VOLUNTEER_MANAGER_INTEGRATION_PATH . apply_filters(
 				'APIVolunteerManagerIntegration/Helper/CacheBust/RevManifestPath',
 				'dist/manifest.json'
@@ -24,7 +24,7 @@ class CacheBust {
 		}
 
 		if ( ! isset( $revManifest[ $name ] ) ) {
-			return;
+			return $name;
 		}
 
 		return $revManifest[ $name ];
