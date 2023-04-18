@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\Model;
 
+use APIVolunteerManagerIntegration\Model\Generic\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employee;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\SignUp;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Spots;
@@ -17,6 +18,7 @@ final class VolunteerAssignment
     public string $qualifications;
     public string $schedule;
     public string $benefits;
+    public ?Image $featuredImage;
 
     public function __construct(
         SignUp $signUp,
@@ -26,7 +28,8 @@ final class VolunteerAssignment
         string $description,
         string $qualifications,
         string $schedule,
-        string $benefits
+        string $benefits,
+        ?Image $featuredImage = null
     ) {
         $this->internal       = $internal;
         $this->signUp         = $signUp;
@@ -36,5 +39,6 @@ final class VolunteerAssignment
         $this->qualifications = $qualifications;
         $this->schedule       = $schedule;
         $this->benefits       = $benefits;
+        $this->featuredImage  = $featuredImage;
     }
 }

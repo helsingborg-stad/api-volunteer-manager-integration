@@ -3,6 +3,7 @@
 namespace APIVolunteerManagerIntegration\Services\Volunteer;
 
 use APIVolunteerManagerIntegration\Model\Generic\Collection;
+use APIVolunteerManagerIntegration\Model\Generic\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Services\Volunteer\WpRestAdapter\PostsAdapter;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
@@ -31,17 +32,17 @@ class AssignmentService extends PostsAdapter implements VQPosts
             'content'  => $meta['description'] ?? '',
             'created'  => $created,
             'modified' => $modified,
-            'model'    => $this->createModel($meta),
+            'model'    => $this->createModel($meta, $_embedded ?? []),
         ]);
     }
 
-
     /**
      * @param  array  $meta
+     * @param  array  $embedded
      *
      * @return VolunteerAssignment
      */
-    public function createModel(array $meta): VolunteerAssignment
+    public function createModel(array $meta, array $embedded): VolunteerAssignment
     {
         return new VolunteerAssignment(
             new VolunteerAssignment\SignUp(
@@ -63,7 +64,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
             $meta['qualifications'] ?? '',
             $meta['schedule'] ?? '',
             $meta['benefits'] ?? '',
-
+            $this->getFeaturedMediaFromEmbedded($embedded)
         );
     }
 
@@ -88,6 +89,28 @@ class AssignmentService extends PostsAdapter implements VQPosts
                 $contact['phone']
             ),
             $contacts
+        );
+    }
+
+    function getFeaturedMediaFromEmbedded(array $embedded): ?Image
+    {
+        if ( ! empty($embedded) && ! empty($embedded['wp:featuredmedia'][0])) {
+            return $this->createImageFromMedia($embedded['wp:featuredmedia'][0], 'full');
+        }
+
+        return null;
+    }
+
+    function createImageFromMedia(array $media, string $size = 'full'): Image
+    {
+        return new Image(
+            $media['id'],
+            $media['media_details']['sizes'][$size]['mime_type'] ?? '',
+            $media['media_details']['sizes'][$size]['file'] ?? '',
+            $media['media_details']['sizes'][$size]['source_url'],
+            $media['alt_text'] ?? '',
+            $media['media_details']['sizes'][$size]['width'],
+            $media['media_details']['sizes'][$size]['height'],
         );
     }
 }
