@@ -3,7 +3,7 @@
 namespace APIVolunteerManagerIntegration\Services\Volunteer;
 
 use APIVolunteerManagerIntegration\Model\Generic\Collection;
-use APIVolunteerManagerIntegration\Model\Generic\Image;
+use APIVolunteerManagerIntegration\Model\Resource\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Services\Volunteer\WpRestAdapter\PostsAdapter;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;

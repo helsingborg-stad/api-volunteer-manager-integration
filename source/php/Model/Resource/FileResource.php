@@ -1,8 +1,8 @@
 <?php
 
-namespace APIVolunteerManagerIntegration\Model\Generic;
+namespace APIVolunteerManagerIntegration\Model\Resource;
 
-class Resource
+class FileResource
 {
     public int $id = 0;
     public string $mimeType = '';

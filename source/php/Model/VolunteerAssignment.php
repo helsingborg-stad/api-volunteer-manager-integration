@@ -2,7 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\Model;
 
-use APIVolunteerManagerIntegration\Model\Generic\Image;
+use APIVolunteerManagerIntegration\Model\Resource\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employee;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\SignUp;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Spots;

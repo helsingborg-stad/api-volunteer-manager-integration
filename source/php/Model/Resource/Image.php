@@ -1,8 +1,8 @@
 <?php
 
-namespace APIVolunteerManagerIntegration\Model\Generic;
+namespace APIVolunteerManagerIntegration\Model\Resource;
 
-class Image extends Resource
+class Image extends FileResource
 {
     public string $altText;
     public int $width;
