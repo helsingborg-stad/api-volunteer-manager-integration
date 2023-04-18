@@ -19,7 +19,7 @@ class Archive extends VQArchiveController
     function mapThumbnails(object $post): object
     {
         $model = $this->getModelFromPost($post);
-        if ($model->featuredImage) {
+        if ($model && $model->featuredImage) {
             $post->thumbnail = [
                 'src'   => $model->featuredImage->source,
                 'alt'   => $model->featuredImage->altText,
