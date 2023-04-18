@@ -59,11 +59,11 @@ class AssignmentService extends PostsAdapter implements VQPosts
                 $meta['employer_website'] ?? '',
                 new Collection($this->parseEmployeeContacts($meta['employer_contacts']))
             ),
-            $meta['internal_assignment'] ?? false,
-            $meta['description'] ?? '',
-            $meta['qualifications'] ?? '',
-            $meta['schedule'] ?? '',
-            $meta['benefits'] ?? '',
+            $meta['internal_assignment'] ?? null,
+            $meta['description'] ?? null,
+            $meta['qualifications'] ?? null,
+            $meta['schedule'] ?? null,
+            $meta['benefits'] ?? null,
             $this->getFeaturedMediaFromEmbedded($embedded)
         );
     }

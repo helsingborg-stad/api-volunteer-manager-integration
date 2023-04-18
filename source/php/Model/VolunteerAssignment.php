@@ -14,24 +14,24 @@ final class VolunteerAssignment
     public Employee $employee;
     public Spots $spots;
 
-    public string $description;
-    public string $qualifications;
-    public string $schedule;
-    public string $benefits;
-    public ?Image $featuredImage;
+    public ?string $description = null;
+    public ?string $qualifications = null;
+    public ?string $schedule = null;
+    public ?string $benefits = null;
+    public ?Image $featuredImage = null;
 
     public function __construct(
         SignUp $signUp,
         Spots $spots,
         Employee $employee,
-        bool $internal,
-        string $description,
-        string $qualifications,
-        string $schedule,
-        string $benefits,
+        ?bool $internal = null,
+        ?string $description = null,
+        ?string $qualifications = null,
+        ?string $schedule = null,
+        ?string $benefits = null,
         ?Image $featuredImage = null
     ) {
-        $this->internal       = $internal;
+        $this->internal       = $internal ?? false;
         $this->signUp         = $signUp;
         $this->spots          = $spots;
         $this->employee       = $employee;
