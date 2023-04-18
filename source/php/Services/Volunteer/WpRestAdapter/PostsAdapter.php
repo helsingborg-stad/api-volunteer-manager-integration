@@ -25,7 +25,8 @@ abstract class PostsAdapter implements VQPosts
         return array_values(
             array_map(
                 [$this, 'toPost'],
-                $this->wpRestClient->getPosts($this->postType, ['slug' => $name, 'acf_format' => 'standard'])
+                $this->wpRestClient->getPosts($this->postType,
+                    ['slug' => $name, 'acf_format' => 'standard', '_embed' => true])
             )
         );
     }
@@ -35,7 +36,7 @@ abstract class PostsAdapter implements VQPosts
         return array_values(
             array_map(
                 [$this, 'toPost'],
-                $this->wpRestClient->getPosts($this->postType, ['acf_format' => 'standard'])
+                $this->wpRestClient->getPosts($this->postType, ['acf_format' => 'standard', '_embed' => true])
             )
         );
     }
