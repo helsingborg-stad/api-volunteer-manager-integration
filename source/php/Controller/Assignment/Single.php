@@ -23,6 +23,7 @@ class Single extends VQSingleController
 
         $data['rightColumnSize']     = 4;
         $data['featuredImage']       = $this->featuredImage($model);
+        $data['breadcrumbItems']     = $this->breadcrumbs($data['wpQuery'] ?? null);
         $data['volunteerAssignment'] = $model;
 
         return $data;
@@ -45,5 +46,29 @@ class Single extends VQSingleController
             'alt'   => $model->featuredImage->altText ?? '',
             'title' => $model->featuredImage->fileName ?? '',
         ];
+    }
+
+    private function breadcrumbs(?WP_Query $wpQuery = null): array
+    {
+        return $wpQuery ? [
+            [
+                'label'   => __('Home', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'href'    => home_url(),
+                'current' => false,
+                'icon'    => 'home',
+            ],
+            [
+                'label'   => get_post_type_object($wpQuery->get('post_type'))->label ?? '',
+                'href'    => get_post_type_archive_link($wpQuery->get('post_type')),
+                'current' => false,
+                'icon'    => 'chevron_right',
+            ],
+            [
+                'label'   => $wpQuery->post->post_title,
+                'href'    => get_post_type_archive_link($wpQuery->get('post_type')).$wpQuery->get('name').'/',
+                'current' => true,
+                'icon'    => 'chevron_right',
+            ],
+        ] : [];
     }
 }
