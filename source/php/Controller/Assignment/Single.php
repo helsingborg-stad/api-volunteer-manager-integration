@@ -21,9 +21,9 @@ class Single extends VQSingleController
             return $data;
         }
 
-        $data['volunteerAssignment'] = $model;
         $data['rightColumnSize']     = 4;
-
+        $data['featuredImage']       = $this->featuredImage($model);
+        $data['volunteerAssignment'] = $model;
 
         return $data;
     }
@@ -33,5 +33,17 @@ class Single extends VQSingleController
         return $wpQuery && isset($wpQuery->post->model) && $wpQuery->post->model instanceof VolunteerAssignment
             ? $wpQuery->post->model
             : null;
+    }
+
+    function featuredImage(VolunteerAssignment $model): object
+    {
+        return (object) [
+            'id'    => $model->featuredImage->id ?? 0,
+            'src'   => ! empty($model->featuredImage->source) ? [
+                $model->featuredImage->source,
+            ] : [],
+            'alt'   => $model->featuredImage->altText ?? '',
+            'title' => $model->featuredImage->fileName ?? '',
+        ];
     }
 }
