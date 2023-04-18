@@ -2,8 +2,9 @@
 
 namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query;
 
-use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\Context\VQContext;
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\VQContext;
 
-interface VQState {
-	public function match( VQContext $context ): bool;
+interface VQState
+{
+    public function match(VQContext $context): bool;
 }

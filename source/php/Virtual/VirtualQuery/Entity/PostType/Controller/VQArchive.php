@@ -4,6 +4,7 @@ namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Co
 
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQComposableView;
 
-interface VQArchive extends VQComposableView {
-	function archive( array $data ): array;
+interface VQArchive extends VQComposableView
+{
+    function archive(array $data): array;
 }

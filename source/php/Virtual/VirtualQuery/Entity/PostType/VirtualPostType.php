@@ -14,69 +14,78 @@ use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQComposableView;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQControllable;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQDispatchable;
 
-class VirtualPostType implements VQArrayable, VQDispatchable, VQControllable, VQPostType, VQFromSource {
-	private string $postType;
-	private string $slug;
-	private string $label;
+class VirtualPostType implements VQArrayable, VQDispatchable, VQControllable, VQPostType, VQFromSource
+{
+    private string $postType;
+    private string $slug;
+    private string $label;
 
-	private VQPosts $source;
-	private VQFromSource $sourceFactory;
-	/**
-	 * @var array<int, VQComposableView>
-	 */
-	private array $controllers;
+    private VQPosts $source;
+    private VQFromSource $sourceFactory;
+    /**
+     * @var array<int, VQComposableView>
+     */
+    private array $controllers;
 
-	public function __construct( string $postType, VQPosts $source, VQFromSource $sourceFactory ) {
-		$this->postType      = $postType;
-		$this->label         = $postType;
-		$this->slug          = $postType;
-		$this->source        = $source;
-		$this->sourceFactory = $sourceFactory;
-		$this->controllers   = [];
-	}
+    public function __construct(string $postType, VQPosts $source, VQFromSource $sourceFactory)
+    {
+        $this->postType      = $postType;
+        $this->label         = $postType;
+        $this->slug          = $postType;
+        $this->source        = $source;
+        $this->sourceFactory = $sourceFactory;
+        $this->controllers   = [];
+    }
 
-	public function withSlug( string $slug ): VQPostType {
-		$this->slug = $slug;
+    public function withSlug(string $slug): VQPostType
+    {
+        $this->slug = $slug;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withLabel( string $label ): VQPostType {
-		$this->label = $label;
+    public function withLabel(string $label): VQPostType
+    {
+        $this->label = $label;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	function toDispatchHandlers(): array {
-		return [
-			new SingleQuery( $this->source, $this->postType ),
-			new ArchiveQuery( $this->source, $this->postType ),
-		];
-	}
+    function toDispatchHandlers(): array
+    {
+        return [
+            new SingleQuery($this->source, $this->postType),
+            new ArchiveQuery($this->source, $this->postType),
+        ];
+    }
 
-	public function withController( VQComposableView $controller ): VQPostType {
-		if ( $controller instanceof VQSingleController || $controller instanceof VQArchiveController ) {
-			$controller->bootstrap( $this->source, $this->postType );
-		}
-		$this->controllers[] = $controller;
+    public function withController(VQComposableView $controller): VQPostType
+    {
+        if ($controller instanceof VQSingleController || $controller instanceof VQArchiveController) {
+            $controller->bootstrap($this->source, $this->postType);
+        }
+        $this->controllers[] = $controller;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	function toViewControllers(): array {
-		return $this->controllers;
-	}
+    function toViewControllers(): array
+    {
+        return $this->controllers;
+    }
 
-	function toArray(): array {
-		return [
-			'postType' => $this->postType,
-			'slug'     => $this->slug,
-			'label'    => $this->label,
-		];
-	}
+    function toArray(): array
+    {
+        return [
+            'postType' => $this->postType,
+            'slug'     => $this->slug,
+            'label'    => $this->label,
+        ];
+    }
 
-	public function fromSource( string $sourceId ): VQEntityFactory {
-		return $this->sourceFactory->fromSource( $sourceId );
-	}
+    public function fromSource(string $sourceId): VQEntityFactory
+    {
+        return $this->sourceFactory->fromSource($sourceId);
+    }
 
 }

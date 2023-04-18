@@ -6,24 +6,28 @@ namespace APIVolunteerManagerIntegration\Virtual;
 use APIVolunteerManagerIntegration\Services\Volunteer\VolunteerServiceFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClient;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
-use APIVolunteerManagerIntegration\Virtual\VirtualQuery\VirtualQueryPlugin;
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\VirtualQueryApp;
 
-class Routes extends VirtualQueryPlugin {
-	private WpRestClient $repository;
+class Routes extends VirtualQueryApp
+{
+    private WpRestClient $wpRestClient;
 
-	public function __construct( WpRestClient $repository ) {
-		$this->repository = $repository;
-	}
+    public function __construct(WpRestClient $wpRestClient)
+    {
+        $this->wpRestClient = $wpRestClient;
+    }
 
-	function entities(): array {
-		return [
-			new Assignment(),
-		];
-	}
+    function entities(): array
+    {
+        return [
+            new Assignment(),
+        ];
+    }
 
-	function source(): array {
-		return VolunteerServiceFactory
-			::createFromWpRepository( $this->repository )
-			->toArray();
-	}
+    function source(): array
+    {
+        return VolunteerServiceFactory
+            ::createFromWpRestClient($this->wpRestClient)
+            ->toArray();
+    }
 }

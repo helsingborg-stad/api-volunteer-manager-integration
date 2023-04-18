@@ -4,6 +4,7 @@ namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Co
 
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query\VQComposableView;
 
-interface VQSingle extends VQComposableView {
-	function single( array $data ): array;
+interface VQSingle extends VQComposableView
+{
+    function single(array $data): array;
 }

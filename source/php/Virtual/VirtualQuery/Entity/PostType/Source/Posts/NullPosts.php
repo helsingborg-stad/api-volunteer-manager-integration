@@ -4,13 +4,16 @@ namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\So
 
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Source\VQPosts;
 
-class NullPosts implements VQPosts {
+class NullPosts implements VQPosts
+{
 
-	function getPostsByName( string $name ): array {
-		return [];
-	}
+    function getPostsByName(string $name): array
+    {
+        return [];
+    }
 
-	function getPosts(): array {
-		return [];
-	}
+    function getPosts(): array
+    {
+        return [];
+    }
 }

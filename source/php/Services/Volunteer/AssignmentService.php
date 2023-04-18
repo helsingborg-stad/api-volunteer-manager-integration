@@ -2,38 +2,92 @@
 
 namespace APIVolunteerManagerIntegration\Services\Volunteer;
 
+use APIVolunteerManagerIntegration\Model\Generic\Collection;
+use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Services\Volunteer\WpRestAdapter\PostsAdapter;
+use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Source\VQPosts;
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\VirtualPostFactory;
 use WP_Post;
 
-class AssignmentService extends PostsAdapter implements VQPosts {
-	public const TYPE = 'assignment';
+class AssignmentService extends PostsAdapter implements VQPosts
+{
+    public const TYPE = 'assignment';
 
-	public function toPost( array $data ): WP_Post {
-		return new WP_Post( (object) [
-			'ID'                => $data['id'],
-			'post_title'        => $data['title'],
-			'post_name'         => $data['slug'],
-			'post_content'      => $data['content']['rendered'] ?? $data['content'] ?? '',
-			'post_excerpt'      => $data['content']['rendered'] ?? $data['content'] ?? '',
-			'post_parent'       => 0,
-			'menu_order'        => 0,
-			'post_type'         => $data['type'],
-			'post_status'       => 'publish',
-			'comment_status'    => 'closed',
-			'ping_status'       => 'closed',
-			'comment_count'     => 0,
-			'post_password'     => '',
-			'to_ping'           => '',
-			'pinged'            => '',
-			'guid'              => '',
-			'post_date'         => $data['date'] ?? current_time( 'mysql' ),
-			'post_date_gmt'     => $data['date_gmt'] ?? current_time( 'mysql', 1 ),
-			'post_modified'     => $data['modified'] ?? current_time( 'mysql' ),
-			'post_modified_gmt' => $data['modified_gmt'] ?? current_time( 'mysql', 1 ),
-			'post_author'       => is_user_logged_in() ? get_current_user_id() : 0,
-			'is_virtual'        => true,
-			'filter'            => 'raw',
-		] );
-	}
+    /**
+     * @param  array  $data
+     *
+     * @return WP_Post
+     */
+    public function toPost(array $data): WP_Post
+    {
+        extract($data);
+
+        return VirtualPostFactory::create([
+            'id'       => $id,
+            'title'    => $title,
+            'slug'     => $slug,
+            'type'     => Assignment::POST_TYPE,
+            'content'  => $meta['description'] ?? '',
+            'created'  => $created,
+            'modified' => $modified,
+            'model'    => $this->createModel($meta),
+        ]);
+    }
+
+
+    /**
+     * @param  array  $meta
+     *
+     * @return VolunteerAssignment
+     */
+    public function createModel(array $meta): VolunteerAssignment
+    {
+        return new VolunteerAssignment(
+            new VolunteerAssignment\SignUp(
+                $meta['signup_methods'] ?? [],
+                $meta['signup_email'] ?? '',
+                $meta['signup_link'] ?? '',
+                $meta['signup_phone'] ?? '',
+            ),
+            new VolunteerAssignment\Spots(
+                (int) ($meta['number_of_available_spots'] ?? 0)
+            ),
+            new VolunteerAssignment\Employee(
+                $meta['employer_name'] ?? '',
+                $meta['employer_website'] ?? '',
+                new Collection($this->parseEmployeeContacts($meta['employer_contacts']))
+            ),
+            $meta['internal_assignment'] ?? false,
+            $meta['description'] ?? '',
+            $meta['qualifications'] ?? '',
+            $meta['schedule'] ?? '',
+            $meta['benefits'] ?? '',
+
+        );
+    }
+
+    /**
+     * @param  array  $data
+     *
+     * @return VolunteerAssignment\Employee\Contact[]
+     */
+    public function parseEmployeeContacts(array $data): array
+    {
+        $contacts = array_values(
+            array_filter(
+                $data,
+                fn(array $item) => ! empty($item['name']) && ! empty($item['phone']) && ! empty($item['email'])
+            )
+        );
+
+        return array_map(
+            fn(array $contact) => new VolunteerAssignment\Employee\Contact(
+                $contact['name'],
+                $contact['email'],
+                $contact['phone']
+            ),
+            $contacts
+        );
+    }
 }

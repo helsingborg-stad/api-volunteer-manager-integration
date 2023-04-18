@@ -4,24 +4,29 @@ namespace APIVolunteerManagerIntegration\Services\Volunteer;
 
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClient;
 
-class VolunteerServiceFactory {
-	static function createFromWpRepository( WpRestClient $repository ): VolunteerService {
-		return new class( $repository ) implements VolunteerService {
-			private WpRestClient $repository;
+class VolunteerServiceFactory
+{
+    static function createFromWpRestClient(WpRestClient $wpRestClient): VolunteerService
+    {
+        return new class($wpRestClient) implements VolunteerService {
+            private WpRestClient $wpRestClient;
 
-			public function __construct( WpRestClient $repository ) {
-				$this->repository = $repository;
-			}
+            public function __construct(WpRestClient $wpRestClient)
+            {
+                $this->wpRestClient = $wpRestClient;
+            }
 
-			function assignments(): AssignmentService {
-				return new AssignmentService( $this->repository, AssignmentService::TYPE );
-			}
+            function assignments(): AssignmentService
+            {
+                return new AssignmentService($this->wpRestClient, AssignmentService::TYPE);
+            }
 
-			function toArray(): array {
-				return [
-					AssignmentService::class => $this->assignments(),
-				];
-			}
-		};
-	}
+            function toArray(): array
+            {
+                return [
+                    AssignmentService::class => $this->assignments(),
+                ];
+            }
+        };
+    }
 }

@@ -2,5 +2,8 @@
 
 namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query;
 
-interface VQ extends VQClient, VQInternal {
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\VQFromSource;
+
+interface VQ extends VQArrayable, VQFromSource, VQDispatchable, VQControllable
+{
 }

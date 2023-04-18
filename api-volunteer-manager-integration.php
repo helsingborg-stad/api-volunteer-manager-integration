@@ -15,39 +15,39 @@
 // Protect against direct file access
 use APIVolunteerManagerIntegration\App;
 
-if ( ! defined( 'WPINC' ) ) {
-	die();
+if ( ! defined('WPINC')) {
+    die();
 }
 
-define( 'API_VOLUNTEER_MANAGER_INTEGRATION_PATH', plugin_dir_path( __FILE__ ) );
-define( 'API_VOLUNTEER_MANAGER_INTEGRATION_URL', plugins_url( '', __FILE__ ) );
-define( 'API_VOLUNTEER_MANAGER_INTEGRATION_TEMPLATE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'templates/' );
-define( 'API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN', 'api-volunteer-manager-integration' );
+define('API_VOLUNTEER_MANAGER_INTEGRATION_PATH', plugin_dir_path(__FILE__));
+define('API_VOLUNTEER_MANAGER_INTEGRATION_URL', plugins_url('', __FILE__));
+define('API_VOLUNTEER_MANAGER_INTEGRATION_TEMPLATE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'templates/');
+define('API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN', 'api-volunteer-manager-integration');
 
 load_plugin_textdomain(
-	API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN,
-	false,
-	API_VOLUNTEER_MANAGER_INTEGRATION_PATH . '/languages'
+    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN,
+    false,
+    API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'/languages'
 );
 
-require_once API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'Public.php';
+require_once API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'Public.php';
 
 // Register the autoloader
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 // Acf auto import and export
-add_action( 'acf/init', function () {
-	if ( class_exists( 'AcfExportManager' ) ) {
-		$acfExportManager = new AcfExportManager();
-		$acfExportManager->setTextdomain( 'api-volunteer-manager-integration' );
-		$acfExportManager->setExportFolder(
-			API_VOLUNTEER_MANAGER_INTEGRATION_PATH . 'source/php/AcfFields/'
-		);
-		$acfExportManager->autoExport( [
-			'api-volunteer-manager-integration-settings' => 'group_61ea7a87e8aaa',
-		] );
-		$acfExportManager->import();
-	}
-} );
+add_action('acf/init', function () {
+    if (class_exists('AcfExportManager')) {
+        $acfExportManager = new AcfExportManager();
+        $acfExportManager->setTextdomain('api-volunteer-manager-integration');
+        $acfExportManager->setExportFolder(
+            API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'source/php/AcfFields/'
+        );
+        $acfExportManager->autoExport([
+            'api-volunteer-manager-integration-settings' => 'group_61ea7a87e8aaa',
+        ]);
+        $acfExportManager->import();
+    }
+});
 
-new App();
+(new App())->init();
