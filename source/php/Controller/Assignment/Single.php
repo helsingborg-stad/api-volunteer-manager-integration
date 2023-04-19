@@ -64,7 +64,7 @@ class Single extends VQSingleController
                 'icon'    => 'chevron_right',
             ],
             [
-                'label'   => $wpQuery->post->post_title,
+                'label'   => $wpQuery->post->post_title ?? $wpQuery->get('name'),
                 'href'    => get_post_type_archive_link($wpQuery->get('post_type')).$wpQuery->get('name').'/',
                 'current' => true,
                 'icon'    => 'chevron_right',
