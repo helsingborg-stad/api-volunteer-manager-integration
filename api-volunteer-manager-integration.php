@@ -1,19 +1,17 @@
-<?php /** @noinspection PhpDefineCanBeReplacedWithConstInspection */
+<?php
 /**
- * Plugin Name:       API Volunteer VirtualQuery Integration
- * Plugin URI:        https://github.com/helsingborg-stad/api-volunteer-manager-integration
- * Description:       Frontend integration for api-volunteer-manager.
- * Version:           1.0.0
- * Author:            Nikolas Ramstedt
- * Author URI:        https://github.com/helsingborg-stad
- * License:           MIT
- * License URI:       https://opensource.org/licenses/MIT
- * Text Domain:       api-volunteer-manager-integration
- * Domain Path:       /languages
+ * Plugin Name: API Volunteer Manager Integration
+ * Plugin URI: https://github.com/helsingborg-stad/api-volunteer-manager-integration
+ * Description: Frontend integration for api-volunteer-manager.
+ * Version: 1.0.0
+ * Author: Nikolas Ramstedt
+ * Author URI: https://github.com/helsingborg-stad
+ * License: MIT
+ * License URI: https://opensource.org/licenses/MIT
+ * Text Domain: api-volunteer-manager-integration
+ * Domain Path: /languages
  */
 
-// Protect against direct file access
-use APIVolunteerManagerIntegration\App;
 
 if ( ! defined('WPINC')) {
     die();
@@ -24,16 +22,17 @@ define('API_VOLUNTEER_MANAGER_INTEGRATION_URL', plugins_url('', __FILE__));
 define('API_VOLUNTEER_MANAGER_INTEGRATION_TEMPLATE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'templates/');
 define('API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN', 'api-volunteer-manager-integration');
 
-load_plugin_textdomain(
-    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN,
-    false,
-    API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'/languages'
-);
 
 require_once API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'Public.php';
 
 // Register the autoloader
 require __DIR__.'/vendor/autoload.php';
+
+load_plugin_textdomain(
+    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN,
+    false,
+    plugin_basename(dirname(__FILE__)).'/languages/'
+);
 
 // Acf auto import and export
 add_action('acf/init', function () {
@@ -50,4 +49,5 @@ add_action('acf/init', function () {
     }
 });
 
-(new App())->init();
+
+(new APIVolunteerManagerIntegration\App())->init();

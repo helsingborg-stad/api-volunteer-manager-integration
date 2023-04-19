@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: API Volunteer Manager Integration\n"
-"POT-Creation-Date: 2022-03-28 16:14+0200\n"
-"PO-Revision-Date: 2022-03-28 16:14+0200\n"
+"Project-Id-Version: Mod My Pages\n"
+"POT-Creation-Date: 2023-04-19 10:24+0200\n"
+"PO-Revision-Date: 2023-04-19 10:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-WPHeader: boilerplate.php\n"
+"X-Poedit-WPHeader: api-volunteer-manager-integration.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -19,6 +19,16 @@ msgstr ""
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: api-volunteer-manager-integration.php:55
+#: source/php/Virtual/PostType/Assignment.php:22
+msgid "Volunteer Assignment"
+msgstr "Volontäruppdrag"
+
+#: source/php/Controller/Assignment/Archive.php:26
+#: source/php/Controller/Assignment/Single.php:55
+msgid "Home"
+msgstr "Hem"
 
 #. Plugin Name of the plugin/theme
 msgid "API Volunteer Manager Integration"
@@ -39,3 +49,111 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/helsingborg-stad"
 msgstr ""
+
+#~ msgid "My Apps Module"
+#~ msgstr "Mina Appar modul"
+
+#~ msgid "My Pages Apps"
+#~ msgstr "Mina Sidor appar"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Link"
+#~ msgstr "Länk"
+
+#~ msgid "Description"
+#~ msgstr "Beskrivning"
+
+#~ msgid "Display"
+#~ msgstr "Visa"
+
+#~ msgid "Show"
+#~ msgstr "Visa"
+
+#~ msgid "Disabled"
+#~ msgstr "Inaktiv"
+
+#~ msgid "Hide"
+#~ msgstr "Dölj"
+
+#~ msgid "My Pages Settings"
+#~ msgstr "Inställningar för Mina sidor"
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiv"
+
+#~ msgid "My Pages"
+#~ msgstr "Mina Sidor"
+
+#~ msgid "Login Prompt"
+#~ msgstr "Inloggningsformulär"
+
+#~ msgid "Content"
+#~ msgstr "Innehåll"
+
+#~ msgid "Login button label"
+#~ msgstr "Etikett för inloggningsknapp"
+
+#~ msgid "Login"
+#~ msgstr "Logga in"
+
+#~ msgid "Home button label"
+#~ msgstr "Etikett på hemknapp"
+
+#~ msgid "Back to homepage"
+#~ msgstr "Tillbaka till startsidan"
+
+#~ msgid "My Pages settings"
+#~ msgstr "Inställningar för Mina sidor"
+
+#~ msgid "Logout"
+#~ msgstr "Logga ut"
+
+#~ msgid "My Pages Primary Menu (for logged in users)"
+#~ msgstr "Primär meny för Mina Sidor (för inloggade)"
+
+#~ msgid "My Pages Secondary Menu (for logged in users)"
+#~ msgstr "Sekundär meny för Mina Sidor (för inloggade)"
+
+#~ msgid "My Apps"
+#~ msgstr "Mina appar"
+
+#~ msgid "Module for listing My Apps"
+#~ msgstr "Modul som listar appar för Mina Sidor"
+
+#~ msgid "You have been automatically logged out."
+#~ msgstr "Du har loggats ut automatiskt."
+
+#~ msgid "Close"
+#~ msgstr "Stäng"
+
+#~ msgid "Log in to view the content"
+#~ msgstr "Logga in för att se innehållet"
+
+#~ msgid "My Pages Protected Page"
+#~ msgstr "Mina sidor: Skyddad sida"
+
+#~ msgid "Protected Page"
+#~ msgstr "Skyddad sida"
+
+#~ msgid "Session Length"
+#~ msgstr "Sessionslängd"
+
+#~ msgid "eg. 600 = 10 minutes"
+#~ msgstr "t.ex. 600 = 10 minuter"
+
+#~ msgid "Seconds"
+#~ msgstr "Sekunder"
+
+#~ msgid "My Pages Home URL"
+#~ msgstr "Hemadress för Mina sidor"
+
+#~ msgid "My Pages Menu"
+#~ msgstr "Mina sidor meny"
+
+#~ msgid "My Pages: My Account"
+#~ msgstr "Mina sidor: Mitt konto"
+
+#~ msgid "Displays account details for authenticated user"
+#~ msgstr "Visar kontodetaljer för autentiserade användare"
