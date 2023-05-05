@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace APIVolunteerManagerIntegration\Controller\Assignment;
+namespace APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment;
 
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Controller\VQSingleController;

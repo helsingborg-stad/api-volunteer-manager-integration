@@ -3,9 +3,9 @@
 namespace APIVolunteerManagerIntegration\Virtual\PostType;
 
 
-use APIVolunteerManagerIntegration\Controller\Assignment\Archive;
-use APIVolunteerManagerIntegration\Controller\Assignment\Single;
 use APIVolunteerManagerIntegration\Services\Volunteer\AssignmentService;
+use APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment\Archive;
+use APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment\Single;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\VQEntity;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\VQFromSource;
 
