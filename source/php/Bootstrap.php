@@ -21,17 +21,17 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     public static function addFilters(): array
     {
         return [
-            ['Municipio/blade/view_paths', 'setBladeTemplatePaths', 10, 0],
+            ['Municipio/blade/view_paths', 'setBladeTemplatePaths', 5],
             ['/Modularity/externalViewPath', 'registerViewPaths', 1, 3],
         ];
     }
 
-    public static function addActions()
+    public static function addActions(): array
     {
         return [['plugins_loaded', 'registerModules', 1]];
     }
 
-    public function setBladeTemplatePaths(?array $paths = []): array
+    public function setBladeTemplatePaths(array $paths): array
     {
         array_unshift($paths, API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'source/views/');
 
