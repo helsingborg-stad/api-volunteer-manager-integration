@@ -13,6 +13,9 @@
  */
 
 
+use APIVolunteerManagerIntegration\Helper\DIContainer\DIContainerFactory;
+use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
+
 if ( ! defined('WPINC')) {
     die();
 }
@@ -21,7 +24,7 @@ define('API_VOLUNTEER_MANAGER_INTEGRATION_PATH', plugin_dir_path(__FILE__));
 define('API_VOLUNTEER_MANAGER_INTEGRATION_URL', plugins_url('', __FILE__));
 define('API_VOLUNTEER_MANAGER_INTEGRATION_TEMPLATE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'templates/');
 define('API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN', 'api-volunteer-manager-integration');
-
+define('API_VOLUNTEER_MANAGER_MODULE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'source/php/Modularity/');
 
 require_once API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'Public.php';
 
@@ -50,4 +53,4 @@ add_action('acf/init', function () {
 });
 
 
-(new APIVolunteerManagerIntegration\App())->init();
+(new APIVolunteerManagerIntegration\App())->init(DIContainerFactory::create(), new PluginManager());

@@ -2,7 +2,9 @@
 
 namespace APIVolunteerManagerIntegration;
 
+use APIVolunteerManagerIntegration\Helper\DIContainer\DIContainer;
 use APIVolunteerManagerIntegration\Helper\HttpClient\HttpClientFactory;
+use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
 use APIVolunteerManagerIntegration\Services\WpRest\ClientClientFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClientFactory;
 use APIVolunteerManagerIntegration\Virtual\Routes;
@@ -23,20 +25,19 @@ class App
         $this->wpRestClientFactory = $wpRestClientFactory ?? new ClientClientFactory($httpClientFactory);
     }
 
-    public function init()
+    public function init(DIContainer $DI, PluginManager $plugin)
     {
-        $this->bootstrap();
-        $this->vq();
+        (new Bootstrap())
+            ->bootstrap($DI, $plugin);
+
+        $plugin->register($this->vq());
     }
 
-    public function bootstrap()
-    {
-        (new Bootstrap())->bootstrap();
-    }
-
-    public function vq()
+    public function vq(): Routes
     {
         $virtualQuery = new Routes($this->wpRestClientFactory->createClient());
         $virtualQuery->init($this->contextFactory);
+
+        return $virtualQuery;
     }
 }
