@@ -82,8 +82,8 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     {
         // Register modules here
         return [
-            'volunteer-assignment-form' => AssignmentForm::class,
-            'volunteer-form'            => VolunteerForm::class,
+            'mod-volunteer-assignment-form' => AssignmentForm::class,
+            'mod-volunteer-form'            => VolunteerForm::class,
         ];
     }
 
@@ -109,7 +109,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     {
         foreach (self::modules() as $slug => $class) {
             $name         = $this->getClassNameWithoutNamespace($class);
-            $paths[$slug] = API_VOLUNTEER_MANAGER_MODULE_PATH.$name.'/'.'views';
+            $paths[$slug] = API_VOLUNTEER_MANAGER_MODULE_PATH.$name.'/views';
         }
 
         return $paths;

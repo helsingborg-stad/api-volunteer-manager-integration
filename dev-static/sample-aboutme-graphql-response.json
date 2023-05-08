@@ -1,0 +1,79 @@
+{
+  "data": {
+    "me": {
+      "id": "19710101",
+      "invoices": [
+        {
+          "invoiceId": "invoices-0001",
+          "description": "Avgift för barnomsorg - Februari",
+          "label": "Avgift för barnomsorg - Februari",
+          "organization": "Skol - och fritidsförvaltningen",
+          "invoiceDate": "2023-03-01",
+          "dueDate": "2023-03-13",
+          "amount": "55000",
+          "ocrNumber": "123456789101112",
+          "autoGiro": "1234-1234",
+          "isPaid": true,
+          "actions": [
+            {
+              "label": "Gå till faktura",
+              "url": "https://www.example.com",
+              "typeHint": "link"
+            }
+          ],
+          "payments": [
+            {
+              "amount": "55000",
+              "date": "2021-03-03"
+            }
+          ]
+        },
+        {
+          "invoiceId": "invoices-0002",
+          "description": "Tomtköavgift - Februari",
+          "label": "Tomtköavgift - Februari",
+          "organization": "Stadsledningförvaltningen",
+          "invoiceDate": "2023-03-01",
+          "dueDate": "2023-03-30",
+          "amount": "23000",
+          "ocrNumber": "123456789101112",
+          "autoGiro": "1234-1234",
+          "isPaid": false,
+          "actions": [
+            {
+              "label": "Gå till faktura",
+              "url": "https://www.example.com",
+              "typeHint": "link"
+            }
+          ],
+          "payments": []
+        },
+        {
+          "invoiceId": "invoices-003",
+          "description": "Tomtköavgift - Januari",
+          "label": "Tomtköavgift - Januari",
+          "organization": "Stadsledningförvaltningen",
+          "invoiceDate": "2023-02-01",
+          "dueDate": "2023-02-30",
+          "amount": "23000",
+          "ocrNumber": "123456789101112",
+          "autoGiro": "1234-1234",
+          "isPaid": true,
+          "actions": [
+            {
+              "label": "Gå till faktura",
+              "url": "https://www.example.com",
+              "typeHint": "link"
+            }
+          ],
+          "payments": [
+            {
+              "amount": "23000",
+              "date": "2021-02-03"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
