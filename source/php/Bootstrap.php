@@ -82,8 +82,8 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     {
         // Register modules here
         return [
-            'mod-volunteer-assignment-form' => AssignmentForm::class,
-            'mod-volunteer-form'            => VolunteerForm::class,
+            'mod-volunteer-form' => VolunteerForm::class,
+            'mod-v-assign-form'  => AssignmentForm::class,
         ];
     }
 

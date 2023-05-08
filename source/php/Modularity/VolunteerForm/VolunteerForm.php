@@ -9,7 +9,7 @@ use Modularity\Module;
 
 class VolunteerForm extends Module
 {
-    public $slug = 'volunteer-form';
+    public $slug = 'mod-volunteer-form';
     public $supports = [];
 
     public function init()

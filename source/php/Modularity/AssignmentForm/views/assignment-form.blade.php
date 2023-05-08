@@ -1,1 +1,1 @@
-assignment form module
+<div class="js-assignment-form-app"></div>

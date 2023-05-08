@@ -13,25 +13,6 @@ const { ifProduction, ifDevelopment } = getIfUtils(process.env.NODE_ENV)
 dotenv.config()
 
 module.exports = {
-  devServer: {
-    onAfterSetupMiddleware: function (devServer) {
-      if (!devServer) {
-        throw new Error('webpack-dev-server is not defined')
-      }
-
-      /**
-       * We want to server static/fake content during development
-       * to minimize the need for real connected services
-       */
-      devServer.app.get('/dev-static/:id', function (req, res) {
-        res.sendFile(path.join(__dirname, './dev-static', req.params.id))
-      })
-      devServer.app.post('/dev-static/:id', function (req, res) {
-        res.sendFile(path.join(__dirname, './dev-static', req.params.id))
-      })
-    },
-  },
-
   mode: ifProduction('production', 'development'),
   /**
    * Add your entry files here
@@ -85,17 +66,8 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        exclude: /node_modules\/(?!(@helsingborg-stad\/municipio-react-ui\/src)\/).*/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', { targets: { node: 'current' } }],
-              '@babel/preset-typescript',
-              ['@babel/preset-react', { runtime: 'automatic' }],
-            ],
-          },
-        },
+        use: ['babel-loader', 'ts-loader'],
+        exclude: /node_modules/,
       },
     ],
   },
