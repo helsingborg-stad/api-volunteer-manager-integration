@@ -18,8 +18,8 @@ module.exports = {
    * Add your entry files here
    */
   entry: {
-    'js/volunteer-form': './source/js/VolunteerForm/index.tsx',
-    'js/assignment-form': './source/js/AssignmentForm/index.tsx',
+    'js/volunteer-form': './source/js/module/VolunteerForm/index.tsx',
+    'js/assignment-form': './source/js/module/AssignmentForm/index.tsx',
   },
 
   /**

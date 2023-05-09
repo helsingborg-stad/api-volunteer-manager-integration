@@ -21,8 +21,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "source/js/**/*",
-    "source/js/VolunteerForm/index.tsx",
-    "source/js/AssignmentForm/index.tsx"
+    "source/js/**/*"
   ]
 }
