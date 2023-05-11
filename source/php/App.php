@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration;
 
+use APIVolunteerManagerIntegration\Admin\OptionsPage;
 use APIVolunteerManagerIntegration\Helper\DIContainer\DIContainer;
 use APIVolunteerManagerIntegration\Helper\HttpClient\HttpClientFactory;
 use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
@@ -30,7 +31,9 @@ class App
         (new Bootstrap())
             ->bootstrap($DI, $plugin);
 
-        $plugin->register($this->vq());
+
+        $plugin->register($this->vq())
+               ->register($DI->make(OptionsPage::class));
     }
 
     public function vq(): Routes
