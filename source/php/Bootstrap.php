@@ -3,6 +3,8 @@
 namespace APIVolunteerManagerIntegration;
 
 use APIVolunteerManagerIntegration\Helper\DIContainer\DIContainer;
+use APIVolunteerManagerIntegration\Helper\HttpClient\CurlClientFactory;
+use APIVolunteerManagerIntegration\Helper\HttpClient\HttpClientFactory;
 use APIVolunteerManagerIntegration\Helper\PluginManager\ActionHookSubscriber;
 use APIVolunteerManagerIntegration\Helper\PluginManager\FilterHookSubscriber;
 use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
@@ -10,8 +12,12 @@ use APIVolunteerManagerIntegration\Modularity\AssignmentForm\AssignmentForm;
 use APIVolunteerManagerIntegration\Modularity\VolunteerForm\VolunteerForm;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFService;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFServiceFactory;
+use APIVolunteerManagerIntegration\Services\WpRest\WpRestClientFactory;
+use APIVolunteerManagerIntegration\Services\WpRest\WpRestFactory;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Services\WPService\WPServiceFactory;
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\GlobalContextFactory;
+use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\VQContextFactory;
 use ReflectionClass;
 use ReflectionException;
 
@@ -58,6 +64,11 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
 
         $DI->bind($withExtensions(WPService::class), WPServiceFactory::create());
         $DI->bind($withExtensions(ACFService::class), ACFServiceFactory::create());
+
+        $DI->bind(HttpClientFactory::class, new CurlClientFactory());
+        $DI->bind(WpRestClientFactory::class, $DI->make(WpRestFactory::class));
+
+        $DI->bind(VQContextFactory::class, new GlobalContextFactory());
 
 
         $plugin->register($this);

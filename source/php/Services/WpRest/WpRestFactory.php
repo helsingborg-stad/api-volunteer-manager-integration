@@ -4,16 +4,19 @@ namespace APIVolunteerManagerIntegration\Services\WpRest;
 
 use APIVolunteerManagerIntegration\Helper\HttpClient\CurlClientFactory;
 use APIVolunteerManagerIntegration\Helper\HttpClient\HttpClientFactory;
+use APIVolunteerManagerIntegration\Services\ACFService\ACFGetOption;
 use APIVolunteerManagerIntegration\Services\WpRest\Local\LocalWpRestClient;
 use APIVolunteerManagerIntegration\Services\WpRest\Remote\RemoteWpRestClient;
 
-class ClientClientFactory implements WpRestClientFactory
+class WpRestFactory implements WpRestClientFactory
 {
     private HttpClientFactory $httpClientFactory;
+    private ACFGetOption $acf;
 
-    public function __construct(?HttpClientFactory $httpClientFactory = null)
+    public function __construct(ACFGetOption $acf, ?HttpClientFactory $httpClientFactory = null)
     {
         $this->httpClientFactory = $httpClientFactory ?? new CurlClientFactory();
+        $this->acf               = $acf;
     }
 
     function createClient(): WpRestClient
@@ -25,7 +28,7 @@ class ClientClientFactory implements WpRestClientFactory
                 )
             )
             : fn(): WpRestClient => new RemoteWpRestClient(
-                'https://modul-test.helsingborg.io/volontar/json',
+                $this->acf->getOption('volunteer_manager_integration_api_uri') ?? '',
                 $this->httpClientFactory
             );
 
