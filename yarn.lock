@@ -1606,6 +1606,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.39.0.tgz#58b536bcc843f4cd1e02a7e6171da5c040f4d44b"
   integrity sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng==
 
+"@helsingborg-stad/municipio-react-ui@^0.3.0":
+  version "0.3.0"
+  resolved "https://npm.pkg.github.com/download/@helsingborg-stad/municipio-react-ui/0.3.0/3e6b9c4c974f099da5214543355dc3f2c42d2d49#3e6b9c4c974f099da5214543355dc3f2c42d2d49"
+  integrity sha512-rvSEZprijL9wiNevYe0/mlYBuq5bZal78+cZOX241lA+L0tticifDBqcFCvAWiOZptPPeCUPNBvBiVNLhn+p1g==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"

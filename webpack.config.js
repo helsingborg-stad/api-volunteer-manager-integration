@@ -65,9 +65,17 @@ module.exports = {
         ],
       },
       {
+        exclude: /node_modules\/(?!(@helsingborg-stad\/municipio-react-ui\/src)\/).*/,
         test: /\.tsx?$/,
-        use: ['babel-loader', 'ts-loader'],
-        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader',
+            options: { allowTsInNodeModules: true },
+          },
+        ],
       },
     ],
   },
@@ -134,15 +142,15 @@ module.exports = {
         },
       }),
     ),
-    /**
-     * HTML used by webpack dev server
-     */
-    ifDevelopment(
-      new HtmlWebpackPlugin({
-        template: './source/js/template.html.ejs',
-        env: process.env,
-      }),
-    ),
+    /*    /!**
+         * HTML used by webpack dev server
+         *!/
+        ifDevelopment(
+          new HtmlWebpackPlugin({
+            template: './source/js/template.html.ejs',
+            env: process.env,
+          }),
+        ),*/
   ]).filter(Boolean),
   devtool: 'source-map',
   stats: { children: false },
