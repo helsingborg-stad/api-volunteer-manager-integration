@@ -39,14 +39,15 @@ load_plugin_textdomain(
 
 // Acf auto import and export
 add_action('acf/init', function () {
-    if (class_exists('AcfExportManager')) {
-        $acfExportManager = new AcfExportManager();
-        $acfExportManager->setTextdomain('api-volunteer-manager-integration');
+    if (class_exists('\AcfExportManager\AcfExportManager')) {
+        /** @noinspection PhpFullyQualifiedNameUsageInspection */
+        $acfExportManager = new \AcfExportManager\AcfExportManager();
+        $acfExportManager->setTextdomain(API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $acfExportManager->setExportFolder(
             API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'source/php/AcfFields/'
         );
         $acfExportManager->autoExport([
-            'api-volunteer-manager-integration-settings' => 'group_61ea7a87e8aaa',
+            'api-volunteer-manager-integration-settings' => 'group_644ad1b3d7072',
         ]);
         $acfExportManager->import();
     }
