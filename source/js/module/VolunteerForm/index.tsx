@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () =>
   [...document.querySelectorAll('.js-volunteer-form')]
     .map((e) => ({
       root: ReactDOM.createRoot(e as HTMLElement),
-      /*      aboutMeApiUri: e.getAttribute('data-about-me-api-uri') ?? '',
-          labels: JSON.parse(e.getAttribute('data-labels') ?? '{}'),*/
+      volunteerApiUri: e.getAttribute('data-volunteer-api-uri') ?? '',
+      labels: JSON.parse(e.getAttribute('data-labels') ?? '{}'),
     }))
-    /*    .filter(({ aboutMeApiUri }) => aboutMeApiUri.length > 0)*/
-    .forEach(({ root }) => {
+    .filter(({ volunteerApiUri }) => volunteerApiUri.length > 0)
+    .forEach(({ root, volunteerApiUri, labels }) => {
       root.render(
         <React.StrictMode>
-          <App />
+          <App volunteerApiUri={volunteerApiUri} labels={labels} />
         </React.StrictMode>,
       )
     }),

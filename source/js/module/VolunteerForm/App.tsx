@@ -2,10 +2,15 @@ import { VolunteerServiceProvider } from '../../volunteer-service/rest/Volunteer
 import PhraseProvider from '../../phrase/PhraseProvider'
 import RegisterVolunteer from './components/RegisterVolunteer'
 
-function App(): JSX.Element {
+interface Props {
+  volunteerApiUri: string
+  labels?: Record<string, string>
+}
+
+function App({ volunteerApiUri, labels }: Props): JSX.Element {
   return (
-    <PhraseProvider phrases={{}}>
-      <VolunteerServiceProvider uri={'https://modul-test.helsingborg.io/volontar/wp-json/wp/v2/'}>
+    <PhraseProvider phrases={labels ?? {}}>
+      <VolunteerServiceProvider uri={volunteerApiUri}>
         <div className="volunteer-form-app">
           <RegisterVolunteer />
         </div>

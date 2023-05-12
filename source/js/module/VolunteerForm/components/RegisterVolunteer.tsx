@@ -12,14 +12,16 @@ function RegisterVolunteer(): JSX.Element {
   const { getVolunteer, registerVolunteer } = useContext(VolunteerServiceContext)
   const { phrase } = useContext(PhraseContext)
 
-  const inspect = useAsync<Volunteer, State>(getVolunteer)
+  const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
 
   return inspect({
     pending: (state) => <span>pending</span>,
-    resolved: (data, state, update) => (
+    resolved: (volunteer, state, update) => (
       <div>
-        <span>resolved</span>
-        <VolunteerForm />
+        <VolunteerForm
+          volunteer={volunteer}
+          onSubmit={(input) => update(registerVolunteer(input), 'saving')}
+        />
       </div>
     ),
     rejected: (err, state, update) => <span>rejected</span>,

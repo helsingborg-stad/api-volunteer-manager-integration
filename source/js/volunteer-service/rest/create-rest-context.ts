@@ -1,33 +1,6 @@
 import axios from 'axios'
 import { VolunteerServiceContextType } from '../VolunteerServiceContext'
 
-const options = {
-  method: 'POST',
-  url: 'https://modul-test.helsingborg.io/volontar/wp-json/wp/v2/employee',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization: 'BASIC dm9sdW50ZWVyZWRpdG9yYWNjb3VudDpUdkozIHVER20gYk9vYyBhUGtYIFBLU2QgZUw3dQ==',
-  },
-  data: {
-    title: 'employee from insomnia',
-    status: 'pending',
-    email: 'snygglars2@helsingborg.io',
-    national_identity_number: '901212-1164',
-    first_name: 'Snygg',
-    surname: 'Lars',
-    '': '',
-  },
-}
-
-axios
-  .request(options)
-  .then(function (response) {
-    console.log(response.data)
-  })
-  .catch(function (error) {
-    console.error(error)
-  })
-
 const post = (uri: string, data: object = {}, headers: object = {}) =>
   axios({
     method: 'post',
@@ -36,42 +9,91 @@ const post = (uri: string, data: object = {}, headers: object = {}) =>
     headers,
   })
 
-const tryGetAuthorizationHeaders = async () => {
-  const { token } = await window.gdiHost.getAccessToken()
-  return token
-    ? {
-        //Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization:
-          'BASIC dm9sdW50ZWVyZWRpdG9yYWNjb3VudDpUdkozIHVER20gYk9vYyBhUGtYIFBLU2QgZUw3dQ==',
-      }
-    : {}
-}
+const get = (uri: string, data: object = {}, headers: object = {}) =>
+  axios({
+    method: 'get',
+    url: `${uri}`,
+    data,
+    headers,
+  })
+
+const tryGetAccessToken = async () => window.gdiHost.getAccessToken()
+const getValidAccessToken = async () =>
+  tryGetAccessToken().then((r) => {
+    console.log(r)
+    if (!r?.token || r.token.length === 0) throw new Error('Invalid access token')
+    return r
+  })
+const createAuthorizationHeadersFromToken = (token: string) => ({
+  'Content-Type': 'application/x-www-form-urlencoded',
+  Authorization: `Bearer ${token}`,
+})
+
+const createAuthorizationHeadersFromBase64Secret = (base64Secret: string) => ({
+  'Content-Type': 'application/x-www-form-urlencoded',
+  Authorization: `BASIC ${base64Secret}`,
+})
 
 export const createRestContext = (uri: string): VolunteerServiceContextType =>
   <VolunteerServiceContextType>{
     getVolunteer: () =>
-      tryGetAuthorizationHeaders()
-        .then((headers) => post(uri, {}, headers))
-        .then((response) => response.data?.data?.me),
+      getValidAccessToken().then(async ({ token, decoded }) => {
+        try {
+          const { data } = await get(
+            `${uri}/employee`,
+            {},
+            createAuthorizationHeadersFromToken(token),
+          )
+
+          return {
+            id: data.meta.first_name,
+            firstName: data.meta.first_name,
+            lastName: data.meta.surname,
+            email: data.meta.email,
+            phone: data.meta.phone_number,
+            status: data.meta['employee-registration-status'],
+          }
+        } catch (e) {
+          console.log(e)
+          return {
+            id: decoded?.id ?? '',
+            firstName: decoded?.firstName,
+            lastName: decoded?.lastName,
+            email: '',
+            phone: '',
+            status: '',
+          }
+        }
+      }),
     registerVolunteer: (input) =>
-      tryGetAuthorizationHeaders()
-        .then((headers) =>
+      getValidAccessToken()
+        .then(({ token, decoded }) =>
           post(
-            `${uri}'/employee'`,
+            `${uri}/employee`,
             {
               title: 'employee from insomnia',
               status: 'pending',
-              email: 'snygglars2@helsingborg.io',
-              national_identity_number: '901212-1164',
-              first_name: 'Snygg',
-              surname: 'Lars',
-              '': '',
+              email: input.email,
+              national_identity_number: decoded?.id ?? '',
+              first_name: decoded?.firstName ?? '',
+              surname: decoded?.lastName ?? '',
+              ...(input?.phoneNumber && input?.phoneNumber.length > 0
+                ? {
+                    phone_number: input.phoneNumber,
+                  }
+                : {}),
             },
-            headers,
+            createAuthorizationHeadersFromToken(token),
           ),
         )
-        .then((response) => response.data?.data?.me),
+        .then((response) => ({
+          id: response.data.meta.first_name,
+          firstName: response.data.meta.first_name,
+          lastName: response.data.meta.surname,
+          email: response.data.meta.email,
+          phone: response.data.meta.phone_number,
+          status: response.data.meta['employee-registration-status'],
+        })),
     registerAssignment: (input) =>
       post(
         `${uri}'/assignment'`,
@@ -79,10 +101,6 @@ export const createRestContext = (uri: string): VolunteerServiceContextType =>
           title: input.title,
           status: 'draft',
         },
-        {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization:
-            'BASIC dm9sdW50ZWVyZWRpdG9yYWNjb3VudDpUdkozIHVER20gYk9vYyBhUGtYIFBLU2QgZUw3dQ==',
-        },
+        createAuthorizationHeadersFromBase64Secret(''),
       ).then((response) => response.data?.data?.me),
   }

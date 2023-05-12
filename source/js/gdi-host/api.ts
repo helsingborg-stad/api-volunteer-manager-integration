@@ -1,9 +1,10 @@
-export type AccessTokenResponse = {
+export type GetAccessTokenResponse = {
   token: string
   expires: number
+  decoded: Record<string, string>
 }
 
-export type GetAccessToken = () => Promise<AccessTokenResponse>
+export type GetAccessToken = () => Promise<GetAccessTokenResponse>
 
 export interface GdiHostInterface {
   getAccessToken: GetAccessToken

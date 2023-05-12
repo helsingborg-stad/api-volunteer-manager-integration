@@ -23,7 +23,10 @@ class VolunteerForm extends Module
 
     public function data(): array
     {
-        return [];
+        return [
+            'volunteerApiUri' => get_field('volunteer_manager_integration_api_uri', 'options'),
+            'labels'          => [],
+        ];
     }
 
     public function template(): string
@@ -36,7 +39,7 @@ class VolunteerForm extends Module
         wp_enqueue_script(
             'register-volunteer-form-js',
             API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/volunteer-form.js'),
-            null
+            ['gdi-host']
         );
         /*
                 wp_enqueue_style(

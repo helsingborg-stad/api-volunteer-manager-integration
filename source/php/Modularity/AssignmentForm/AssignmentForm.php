@@ -36,7 +36,7 @@ class AssignmentForm extends Module
         wp_enqueue_script(
             'register-volunteer-assignment-form-js',
             API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/assignment-form.js'),
-            null
+            ['gdi-host']
         );
         /*
                 wp_enqueue_style(
