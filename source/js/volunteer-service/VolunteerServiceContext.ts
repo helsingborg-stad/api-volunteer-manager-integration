@@ -33,7 +33,7 @@ export interface Location {
   city: string
 }
 
-enum SignUpTypes {
+export enum SignUpTypes {
   Website = 'website',
   Email = 'email',
   Phone = 'phone',
