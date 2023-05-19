@@ -23,7 +23,11 @@ class AssignmentForm extends Module
 
     public function data(): array
     {
-        return [];
+        return [
+            'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
+            'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
+            'labels'             => [],
+        ];
     }
 
     public function template(): string
