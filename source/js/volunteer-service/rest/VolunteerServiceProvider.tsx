@@ -4,14 +4,16 @@ import { createRestContext } from './create-rest-context'
 
 type VolunteerServiceProviderProps = {
   uri: string
+  appSecret?: string
   children: JSX.Element[] | JSX.Element
 }
 
 const VolunteerServiceProvider = ({
   uri,
+  appSecret,
   children,
 }: VolunteerServiceProviderProps): JSX.Element => {
-  const provider = useMemo(() => createRestContext(uri), [uri])
+  const provider = useMemo(() => createRestContext(uri, appSecret ?? ''), [uri])
 
   return (
     <VolunteerServiceContext.Provider value={provider}>{children}</VolunteerServiceContext.Provider>
