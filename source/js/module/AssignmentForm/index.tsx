@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () =>
       ({ volunteerApiUri, volunteerAppSecret }) =>
         volunteerApiUri.length > 0 && volunteerAppSecret.length > 0,
     )
-    .forEach(({ root }) => {
+    .forEach(({ root, volunteerApiUri, volunteerAppSecret }) => {
       root.render(
         <React.StrictMode>
-          <App />
+          <App volunteerApiUri={volunteerApiUri} volunteerAppSecret={volunteerAppSecret} />
         </React.StrictMode>,
       )
     }),
