@@ -14,12 +14,67 @@ export interface Volunteer {
   status?: string
 }
 
-export interface AssignmentInput {
-  title: string
+export interface Organisation {
+  name: string
+  website: string
+  contacts: [Contact, ...Contact[]]
+  location?: Location
 }
 
-export interface Assignment {
+export interface Contact {
+  name: string
+  email: string
+  phone?: string
+}
+
+export interface Location {
+  address: string
+  postal: string
+  city: string
+}
+
+enum SignUpTypes {
+  Website = 'website',
+  Email = 'email',
+  Phone = 'phone',
+}
+
+export type SignUpWithWebsite = {
+  type: SignUpTypes.Website
+  website: string
+}
+
+export type SignUpWithEmail = {
+  type: SignUpTypes.Email
+  email: string
+}
+
+export type SignUpWithPhone = {
+  type: SignUpTypes.Phone
+  phone: string
+}
+
+export interface AssignmentInput {
   title: string
+  description: string
+  organisation: Organisation
+  signUp: {
+    type: SignUpTypes
+    website?: string
+    phone?: string
+    email?: string
+  } & (SignUpWithWebsite | SignUpWithEmail | SignUpWithPhone)
+  qualifications?: string
+  schedule?: string
+  benefits?: string
+  totalSpots?: number
+  location?: Location
+}
+
+export interface Assignment extends AssignmentInput {
+  id: number
+  slug: string
+  status: string
 }
 
 export interface VolunteerServiceContextType {

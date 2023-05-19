@@ -34,7 +34,7 @@ const createAuthorizationHeadersFromBase64Secret = (base64Secret: string) => ({
   Authorization: `BASIC ${base64Secret}`,
 })
 
-export const createRestContext = (uri: string): VolunteerServiceContextType =>
+export const createRestContext = (uri: string, appSecret?: string): VolunteerServiceContextType =>
   <VolunteerServiceContextType>{
     getVolunteer: () =>
       getValidAccessToken().then(async ({ token, decoded }) => {
@@ -100,7 +100,54 @@ export const createRestContext = (uri: string): VolunteerServiceContextType =>
         {
           title: input.title,
           status: 'draft',
+          slug: '',
+          featured_media: 0,
+          'assignment-status': [],
+          'assignment-category': [],
+          'assignment-eligibility': [],
+          meta: {
+            description: input.description,
+            employer_name: input.organisation.name,
+            employer_contacts: input.organisation.contacts,
+            employer_website: input.organisation.website,
+            signup_methods: [input.signUp.type],
+            signup_email: input.signUp?.email ?? '',
+            signup_phone: input.signUp?.phone ?? '',
+            signup_link: input.signUp?.website ?? '',
+            qualifications: input?.qualifications ?? '',
+            schedule: input?.schedule ?? '',
+            benefits: input?.benefits ?? '',
+            number_of_available_spots: input.totalSpots ?? '',
+            street_address: input?.location?.address ?? '',
+            postal_code: input?.location?.postal ?? '',
+            city: input?.location?.city ?? '',
+            internal_assignment: false,
+            assignment_status: false,
+            assignment_eligibility: false,
+            assignment_category: false,
+          },
         },
-        createAuthorizationHeadersFromBase64Secret(''),
-      ).then((response) => response.data?.data?.me),
+        createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
+      ).then((response) => ({
+        id: response?.data?.id,
+        slug: response?.data?.slug,
+        status: response?.data?.status,
+        title: response?.data?.title,
+        description: response?.data?.meta?.description ?? '',
+        signUp: {
+          type: response?.data?.meta?.signup_methods[0],
+          website: response?.data?.meta?.signup_link ?? '',
+          phone: response?.data?.meta?.signup_phone ?? '',
+          email: response?.data?.meta?.signup_email ?? '',
+        },
+        qualifications: response?.data?.meta?.qualifications ?? null,
+        schedule: response?.data?.meta?.schedule ?? null,
+        benefits: response?.data?.meta?.benefits ?? null,
+        totalSpots: response?.data?.meta?.number_of_available_spots ?? null,
+        location: {
+          address: response?.data?.meta?.street_address ?? '',
+          postal: response?.data?.meta?.postal_code ?? '',
+          city: response?.data?.meta?.city ?? '',
+        },
+      })),
   }
