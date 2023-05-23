@@ -103,7 +103,15 @@ class AssignmentService extends PostsAdapter implements VQPosts
 
     function createImageFromMedia(array $media, string $size = 'full'): Image
     {
-        return new Image(
+        return empty($media['media_details']['sizes'][$size]) ? new Image(
+            $media['id'],
+            $media['media_details']['mime_type'] ?? '',
+            $media['media_details']['file'] ?? '',
+            $media['source_url'],
+            $media['alt_text'] ?? '',
+            $media['media_details']['width'],
+            $media['media_details']['height'],
+        ) : new Image(
             $media['id'],
             $media['media_details']['sizes'][$size]['mime_type'] ?? '',
             $media['media_details']['sizes'][$size]['file'] ?? '',
@@ -112,5 +120,6 @@ class AssignmentService extends PostsAdapter implements VQPosts
             $media['media_details']['sizes'][$size]['width'],
             $media['media_details']['sizes'][$size]['height'],
         );
+
     }
 }
