@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { VolunteerServiceContextType } from '../VolunteerServiceContext'
+import { SignUpTypes, VolunteerServiceContextType } from '../VolunteerServiceContext'
 
 const post = (uri: string, data: object = {}, headers: object = {}) =>
   axios({
@@ -71,12 +71,12 @@ export const createRestContext = (uri: string, appSecret?: string): VolunteerSer
           post(
             `${uri}/employee`,
             {
-              title: 'employee from insomnia',
-              status: 'pending',
+              //title: 'employee from insomnia',
+              //status: 'pending',
               email: input.email,
-              national_identity_number: decoded?.id ?? '',
-              first_name: decoded?.firstName ?? '',
-              surname: decoded?.lastName ?? '',
+              //national_identity_number: decoded?.id ?? '',
+              //first_name: decoded?.firstName ?? '',
+              //surname: decoded?.lastName ?? '',
               ...(input?.phoneNumber && input?.phoneNumber.length > 0
                 ? {
                     phone_number: input.phoneNumber,
@@ -107,13 +107,19 @@ export const createRestContext = (uri: string, appSecret?: string): VolunteerSer
           'assignment-eligibility': [],
           meta: {
             description: input.description,
-            employer_name: input.organisation.name,
-            employer_contacts: input.organisation.contacts,
-            employer_website: input.organisation.website,
-            signup_methods: [input.signUp.type],
-            signup_email: input.signUp?.email ?? '',
-            signup_phone: input.signUp?.phone ?? '',
-            signup_link: input.signUp?.website ?? '',
+            employer_name: input.employer.name,
+            employer_contacts: input.employer.contacts,
+            employer_website: input.employer.website,
+            signup_methods: input.signUp.type ? [input.signUp.type] : [],
+            signup_email:
+              input.signUp.type === (SignUpTypes.Email || SignUpTypes.Phone)
+                ? input.signUp.email
+                : null,
+            signup_phone:
+              input.signUp.type === (SignUpTypes.Email || SignUpTypes.Phone)
+                ? input.signUp.phone
+                : null,
+            signup_link: input.signUp.type === SignUpTypes.Link ? input.signUp.link : null,
             qualifications: input?.qualifications ?? '',
             schedule: input?.schedule ?? '',
             benefits: input?.benefits ?? '',

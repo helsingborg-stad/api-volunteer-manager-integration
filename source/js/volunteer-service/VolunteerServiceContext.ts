@@ -14,7 +14,7 @@ export interface Volunteer {
   status?: string
 }
 
-export interface Organisation {
+export interface Employer {
   name: string
   website: string
   contacts: [Contact, ...Contact[]]
@@ -23,7 +23,7 @@ export interface Organisation {
 
 export interface Contact {
   name: string
-  email: string
+  email?: string
   phone?: string
 }
 
@@ -34,36 +34,49 @@ export interface Location {
 }
 
 export enum SignUpTypes {
-  Website = 'website',
+  Link = 'link',
   Email = 'email',
   Phone = 'phone',
 }
 
 export type SignUpWithWebsite = {
-  type: SignUpTypes.Website
-  website: string
+  type: SignUpTypes.Link
+  link: string
+  hasDeadline?: string
+  deadline?: string
 }
 
 export type SignUpWithEmail = {
   type: SignUpTypes.Email
   email: string
+  phone?: string
+  hasDeadline?: string
+  deadline?: string
 }
 
 export type SignUpWithPhone = {
   type: SignUpTypes.Phone
   phone: string
+  email?: string
+  name?: string
+  hasDeadline?: string
+  deadline?: string
 }
 
 export interface AssignmentInput {
   title: string
   description: string
-  organisation: Organisation
-  signUp: {
-    type: SignUpTypes
-    website?: string
-    phone?: string
-    email?: string
-  } & (SignUpWithWebsite | SignUpWithEmail | SignUpWithPhone)
+  employer: Employer
+  signUp:
+    | {
+        type?: SignUpTypes
+        link?: string
+        phone?: string
+        email?: string
+        hasDeadline?: string
+        deadline?: string
+      }
+    | (SignUpWithWebsite | SignUpWithEmail | SignUpWithPhone)
   qualifications?: string
   schedule?: string
   benefits?: string
