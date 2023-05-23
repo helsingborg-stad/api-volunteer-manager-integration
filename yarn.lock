@@ -1484,7 +1484,7 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.41.0.tgz"
   integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
-"@helsingborg-stad/municipio-react-ui@^0.5.0":
+"@helsingborg-stad/municipio-react-ui@^0.5.2":
   version "0.5.2"
   resolved "https://npm.pkg.github.com/download/@helsingborg-stad/municipio-react-ui/0.5.2/f262f2cfc8f8c922455236dc41eed7fb4f0234f8#f262f2cfc8f8c922455236dc41eed7fb4f0234f8"
   integrity sha512-0y7XwXxUlNobXRC+IzA5WXt4BjiUfdJsHEefsPBjmhRKgxKIgXw0aQ4JDzObHjd75NHhOQLt+7z2yLXztKujFw==
