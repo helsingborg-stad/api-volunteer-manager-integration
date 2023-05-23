@@ -24,8 +24,9 @@ class VolunteerForm extends Module
     public function data(): array
     {
         return [
-            'volunteerApiUri' => get_field('volunteer_manager_integration_api_uri', 'options'),
-            'labels'          => [],
+            'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
+            'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
+            'labels'             => [],
         ];
     }
 
@@ -41,11 +42,10 @@ class VolunteerForm extends Module
             API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/volunteer-form.js'),
             ['gdi-host']
         );
-        /*
-                wp_enqueue_style(
-                    'gdi-modularity-about-me-css',
-                    API_VOLUNTEER_MANAGER_INTEGRATION_URL . '/dist/' . CacheBust::name('js/gdi-modularity-about-me.css'),
-                    null
-                );*/
+
+        wp_enqueue_style(
+            'register-volunteer-form-css',
+            API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/volunteer-form.css')
+        );
     }
 }
