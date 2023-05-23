@@ -9,7 +9,7 @@ function RegisterAssignment(): JSX.Element {
 
   return (
     <div>
-      <AssignmentForm onSubmit={(input) => console.log(input)} />
+      <AssignmentForm onSubmit={registerAssignment} />
     </div>
   )
 }
