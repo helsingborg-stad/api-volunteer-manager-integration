@@ -1,0 +1,34 @@
+name: test npm package
+
+on:
+  push:
+    branches: [ ci/fix-build ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    
+    - name: Inject access token in .npmrc.
+      run: | 
+        echo "@helsingborg-stad:registry=https://npm.pkg.github.com/helsingborg-stad" >> ~/.npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+    - name: test npm install
+      run: npm ci
+
+    - name: cleanup
+      run: rm -rf node_modules
+
+    - name: test yarn install
+      run: yarn --frozen-lockfile
+
+    - name: Cleanup .npmrc
+      run: rm ~/.npmrc
