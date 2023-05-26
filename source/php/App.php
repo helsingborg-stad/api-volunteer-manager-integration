@@ -9,7 +9,6 @@ use APIVolunteerManagerIntegration\Virtual\Routes;
 
 class App
 {
-
     public function init(DIContainer $DI, PluginManager $plugin)
     {
         (new Bootstrap())
