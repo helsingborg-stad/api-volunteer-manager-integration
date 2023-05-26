@@ -7,7 +7,7 @@ use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employee;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\SignUp;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Spots;
 
-final class VolunteerAssignment
+class VolunteerAssignment
 {
     public bool $internal;
     public SignUp $signUp;
