@@ -6,6 +6,7 @@ namespace APIVolunteerManagerIntegration\Virtual;
 use APIVolunteerManagerIntegration\Helper\PluginManager\ActionHookSubscriber;
 use APIVolunteerManagerIntegration\Services\Volunteer\VolunteerServiceFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClientFactory;
+use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\VQContextFactory;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\VirtualQueryApp;
@@ -14,11 +15,16 @@ class Routes extends VirtualQueryApp implements ActionHookSubscriber
 {
     private WpRestClientFactory $wpRestClientFactory;
     private VQContextFactory $contextFactory;
+    private WPService $wp;
 
-    public function __construct(WpRestClientFactory $wpRestClientFactory, VQContextFactory $contextFactory)
-    {
+    public function __construct(
+        WpRestClientFactory $wpRestClientFactory,
+        VQContextFactory $contextFactory,
+        WPService $wp
+    ) {
         $this->wpRestClientFactory = $wpRestClientFactory;
         $this->contextFactory      = $contextFactory;
+        $this->wp                  = $wp;
     }
 
     public static function addActions(): array
@@ -33,7 +39,7 @@ class Routes extends VirtualQueryApp implements ActionHookSubscriber
     function entities(): array
     {
         return [
-            new Assignment(),
+            new Assignment($this->wp),
         ];
     }
 

@@ -4,12 +4,28 @@ declare(strict_types=1);
 namespace APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment;
 
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
+use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeArchiveLink;
+use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeObject;
+use APIVolunteerManagerIntegration\Services\WPService\HomeUrl;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Controller\VQSingleController;
 use WP_Query;
 
 class Single extends VQSingleController
 {
     public string $postType = '';
+    private HomeUrl $homeUrl;
+    private GetPostTypeObject $getPostTypeObject;
+    private GetPostTypeArchiveLink $getPostTypeArchiveLink;
+
+    public function __construct(
+        HomeUrl $homeUrl,
+        GetPostTypeObject $getPostTypeObject,
+        GetPostTypeArchiveLink $getPostTypeArchiveLink
+    ) {
+        $this->homeUrl                = $homeUrl;
+        $this->getPostTypeObject      = $getPostTypeObject;
+        $this->getPostTypeArchiveLink = $getPostTypeArchiveLink;
+    }
 
     function single(array $data): array
     {
@@ -23,7 +39,7 @@ class Single extends VQSingleController
 
         $data['rightColumnSize']     = 4;
         $data['featuredImage']       = $this->featuredImage($model);
-        $data['breadcrumbItems']     = $this->breadcrumbs($data['wpQuery'] ?? null);
+        $data['breadcrumbItems']     = $this->breadcrumbs($data['wpQuery']);
         $data['volunteerAssignment'] = $model;
 
         return $data;
@@ -40,35 +56,33 @@ class Single extends VQSingleController
     {
         return (object) [
             'id'    => $model->featuredImage->id ?? 0,
-            'src'   => ! empty($model->featuredImage->source) ? [
-                $model->featuredImage->source,
-            ] : [],
+            'src'   => ! empty($model->featuredImage->source) ? $model->featuredImage->source : null,
             'alt'   => $model->featuredImage->altText ?? '',
             'title' => $model->featuredImage->fileName ?? '',
         ];
     }
 
-    private function breadcrumbs(?WP_Query $wpQuery = null): array
+    private function breadcrumbs(WP_Query $wpQuery): array
     {
-        return $wpQuery ? [
+        return [
             [
                 'label'   => __('Home', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'href'    => home_url(),
+                'href'    => $this->homeUrl->homeUrl(),
                 'current' => false,
                 'icon'    => 'home',
             ],
             [
-                'label'   => get_post_type_object($wpQuery->get('post_type'))->label ?? '',
-                'href'    => get_post_type_archive_link($wpQuery->get('post_type')),
+                'label'   => $this->getPostTypeObject->getPostTypeObject($wpQuery->get('post_type'))->label ?? '',
+                'href'    => $this->getPostTypeArchiveLink->getPostTypeArchiveLink($wpQuery->get('post_type')),
                 'current' => false,
                 'icon'    => 'chevron_right',
             ],
             [
                 'label'   => $wpQuery->post->post_title ?? $wpQuery->get('name'),
-                'href'    => get_post_type_archive_link($wpQuery->get('post_type')).$wpQuery->get('name').'/',
+                'href'    => $this->getPostTypeArchiveLink->getPostTypeArchiveLink($wpQuery->get('post_type')).$wpQuery->get('name').'/',
                 'current' => true,
                 'icon'    => 'chevron_right',
             ],
-        ] : [];
+        ];
     }
 }
