@@ -19,6 +19,11 @@
       "APIVolunteerManagerIntegration\\": "source/php/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "APIVolunteerManagerIntegration\\Tests\\": "source/tests/php"
+    }
+  },
   "minimum-stability": "stable",
   "require": {
     "ext-json": "*",

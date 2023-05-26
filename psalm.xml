@@ -9,11 +9,13 @@
 >
     <projectFiles>
         <directory name="source/php/"/>
+        <directory name="source/tests/php"/>
         <ignoreFiles>
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
     <stubs>
+        <file name="source/tests/php/bootstrap.php"/>
         <file name="vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"/>
         <file name="vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php"/>
         <file name="api-volunteer-manager-integration.php"/>
