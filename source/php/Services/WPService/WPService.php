@@ -13,6 +13,8 @@ interface WPService extends
     RegisterRestRoute,
     WPNavService,
     WpEnqueueStyle,
-    WpEnqueueScript
+    WpEnqueueScript,
+    GetPostTypeArchiveLink,
+    GetPostTypeObject
 {
 }

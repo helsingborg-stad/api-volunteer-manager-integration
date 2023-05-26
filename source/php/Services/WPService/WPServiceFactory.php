@@ -2,6 +2,8 @@
 
 namespace APIVolunteerManagerIntegration\Services\WPService;
 
+use WP_Post_Type;
+
 class WPServiceFactory
 {
     public static function create(): WPService
@@ -71,6 +73,17 @@ class WPServiceFactory
                     $ver ?? false,
                     $inFooter ?? false
                 );
+            }
+
+
+            public function getPostTypeObject(string $postType): ?WP_Post_Type
+            {
+                return get_post_type_object($postType);
+            }
+
+            public function getPostTypeArchiveLink(string $postType)
+            {
+                return get_post_type_archive_link($postType);
             }
         };
     }
