@@ -9,7 +9,7 @@ class WPServiceFactory
     public static function create(): WPService
     {
         return new class implements WPService {
-            public function wpGetNavMenuItems($menu, $args = []): ?array
+            public function wpGetNavMenuItems($menu, array $args = []): ?array
             {
                 return wp_get_nav_menu_items($menu, $args) ?: null;
             }
@@ -74,7 +74,6 @@ class WPServiceFactory
                     $inFooter ?? false
                 );
             }
-
 
             public function getPostTypeObject(string $postType): ?WP_Post_Type
             {

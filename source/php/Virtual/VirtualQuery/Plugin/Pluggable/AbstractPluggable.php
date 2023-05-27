@@ -8,12 +8,12 @@ abstract class AbstractPluggable implements VQPluggable
     {
         return [
             'actions' => array_values(
-                method_exists($this, 'addActions')
+                $this instanceof VQPluggableAction && method_exists($this, 'addActions')
                     ? array_map(fn(array $params) => $this->bindHook($params), $this::addActions())
                     : []
             ),
             'filters' => array_values(
-                method_exists($this, 'addFilters')
+                $this instanceof VQPluggableFilter && method_exists($this, 'addFilters')
                     ? array_map(fn(array $params) => $this->bindHook($params), $this::addFilters())
                     : []
             ),

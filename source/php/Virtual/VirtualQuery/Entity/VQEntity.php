@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity;
 
-interface VQEntity {
-	function registerEntity( VQFromSource $virtualQuery ): VQFromSource;
+interface VQEntity
+{
+    function registerEntity(VQFromSource $virtualQuery): VQFromSource;
 }

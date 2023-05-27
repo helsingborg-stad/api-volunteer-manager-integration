@@ -16,5 +16,5 @@ interface WpGetNavMenuItems
      *
      * @return array|null Array of menu items, or false if the menu doesn't exist or has no items.
      */
-    public function wpGetNavMenuItems($menu, $args = []): ?array;
+    public function wpGetNavMenuItems($menu, array $args = []): ?array;
 }

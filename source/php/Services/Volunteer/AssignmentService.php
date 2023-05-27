@@ -95,7 +95,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
     function getFeaturedMediaFromEmbedded(array $embedded): ?Image
     {
         if ( ! empty($embedded) && ! empty($embedded['wp:featuredmedia'][0])) {
-            return $this->createImageFromMedia($embedded['wp:featuredmedia'][0], 'full');
+            return $this->createImageFromMedia($embedded['wp:featuredmedia'][0]);
         }
 
         return null;

@@ -48,7 +48,9 @@
     "spatie/phpunit-watcher": "^1.23",
     "vimeo/psalm": "^5.7",
     "szepeviktor/phpstan-wordpress": "^1.1",
-    "php-stubs/acf-pro-stubs": "^6.0"
+    "php-stubs/acf-pro-stubs": "^6.0",
+    "phpspec/prophecy-phpunit": "^2.0",
+    "psalm/plugin-phpunit": "^0.18.4"
   },
   "config": {
     "allow-plugins": {

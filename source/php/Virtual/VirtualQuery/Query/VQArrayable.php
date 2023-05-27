@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\Virtual\VirtualQuery\Query;
 
-interface VQArrayable {
-	function toArray(): array;
+interface VQArrayable
+{
+    function toArray(): array;
 }

@@ -7,10 +7,15 @@ namespace APIVolunteerManagerIntegration\Modularity\AssignmentForm;
 use APIVolunteerManagerIntegration\Helper\CacheBust;
 use Modularity\Module;
 
+/**
+ * @property string $description
+ * @property string $namePlural
+ * @property string $nameSingular
+ */
 class AssignmentForm extends Module
 {
-    public $slug = 'mod-v-assign-form';
-    public $supports = [];
+    public string $slug = 'mod-v-assign-form';
+    public array $supports = [];
 
     public function init()
     {

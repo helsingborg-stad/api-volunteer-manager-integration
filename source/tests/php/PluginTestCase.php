@@ -2,25 +2,34 @@
 
 namespace APIVolunteerManagerIntegration\Tests;
 
+use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
+use APIVolunteerManagerIntegration\Helper\PluginManager\WordpressFunctions;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use Brain\Monkey;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Prophecy\ObjectProphecy;
 use WP_Post;
 use WP_Post_Type;
 use WP_Query;
 
 class PluginTestCase extends TestCase
 {
+    use ProphecyTrait;
     use MockeryPHPUnitIntegration;
 
     /**
-     * Setup which calls \WP_Mock setup
-     *
-     * @return void
+     * @var PluginManager
      */
+    public $pluginManager;
+    /**
+     * @var ObjectProphecy&WordpressFunctions $wordpressFunctions
+     */
+    public $wordpressFunctions;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -33,6 +42,9 @@ class PluginTestCase extends TestCase
             ->returnArg();
         Monkey\Functions\when('_n')
             ->returnArg();
+
+        $this->wordpressFunctions = $this->prophesize(WordpressFunctions::class);
+        $this->pluginManager      = new PluginManager($this->wordpressFunctions->reveal());
     }
 
     /**

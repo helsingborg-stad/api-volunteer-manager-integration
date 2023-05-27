@@ -8,10 +8,10 @@ namespace APIVolunteerManagerIntegration\Services\WPService;
 interface GetPostType
 {
     /**
-     * Gets the post type of a given post.
+     * Gets the post type of given post.
      * @link https://developer.wordpress.org/reference/functions/get_post_type/
      *
-     * @param  int  $postId  Optional. Post ID. Default is the current post.
+     * @param  int|null  $postId  Optional. Post ID. Default is the current post.
      *
      * @return string|null The post type of the given post or false if the post is not found.
      */

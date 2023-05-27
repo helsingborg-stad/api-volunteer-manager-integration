@@ -7,10 +7,15 @@ namespace APIVolunteerManagerIntegration\Modularity\VolunteerForm;
 use APIVolunteerManagerIntegration\Helper\CacheBust;
 use Modularity\Module;
 
+/**
+ * @property string $nameSingular
+ * @property string $namePlural
+ * @property string $description
+ */
 class VolunteerForm extends Module
 {
-    public $slug = 'mod-volunteer-form';
-    public $supports = [];
+    public string $slug = 'mod-volunteer-form';
+    public array $supports = [];
 
     public function init()
     {
