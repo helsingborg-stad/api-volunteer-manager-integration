@@ -1,21 +1,22 @@
-<?php /** @noinspection PhpUndefinedClassInspection */
-
+<?php
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+/** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUndefinedNamespaceInspection */
 
 namespace APIVolunteerManagerIntegration\Modularity\VolunteerForm;
 
 use APIVolunteerManagerIntegration\Helper\CacheBust;
-use Modularity\Module;
 
 /**
  * @property string $nameSingular
  * @property string $namePlural
  * @property string $description
  */
-class VolunteerForm extends Module
+class VolunteerForm extends \Modularity\Module
 {
-    public string $slug = 'mod-volunteer-form';
-    public array $supports = [];
+    public $slug = 'mod-volunteer-form';
+    public $supports = [];
 
     public function init()
     {

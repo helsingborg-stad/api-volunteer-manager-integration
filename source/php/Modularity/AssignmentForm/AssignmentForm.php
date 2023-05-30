@@ -1,21 +1,22 @@
-<?php /** @noinspection PhpUndefinedClassInspection */
-
+<?php
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+/** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUndefinedNamespaceInspection */
 
 namespace APIVolunteerManagerIntegration\Modularity\AssignmentForm;
 
 use APIVolunteerManagerIntegration\Helper\CacheBust;
-use Modularity\Module;
 
 /**
  * @property string $description
  * @property string $namePlural
  * @property string $nameSingular
  */
-class AssignmentForm extends Module
+class AssignmentForm extends \Modularity\Module
 {
-    public string $slug = 'mod-v-assign-form';
-    public array $supports = [];
+    public $slug = 'mod-v-assign-form';
+    public $supports = [];
 
     public function init()
     {
