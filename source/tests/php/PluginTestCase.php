@@ -3,7 +3,6 @@
 namespace APIVolunteerManagerIntegration\Tests;
 
 use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
-use APIVolunteerManagerIntegration\Helper\PluginManager\WordpressFunctions;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use Brain\Monkey;
@@ -25,10 +24,11 @@ class PluginTestCase extends TestCase
      * @var PluginManager
      */
     public $pluginManager;
+
     /**
-     * @var ObjectProphecy&WordpressFunctions $wordpressFunctions
+     * @var ObjectProphecy&WPService wp
      */
-    public $wordpressFunctions;
+    public $wp;
 
     public function setUp(): void
     {
@@ -43,8 +43,8 @@ class PluginTestCase extends TestCase
         Monkey\Functions\when('_n')
             ->returnArg();
 
-        $this->wordpressFunctions = $this->prophesize(WordpressFunctions::class);
-        $this->pluginManager      = new PluginManager($this->wordpressFunctions->reveal());
+        $this->wp            = $this->prophesize(WPService::class);
+        $this->pluginManager = new PluginManager($this->wp->reveal());
     }
 
     /**

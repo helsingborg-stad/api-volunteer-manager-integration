@@ -16,8 +16,8 @@ class OptionsPageTest extends PluginTestCase
         $optionsPage = new OptionsPage($acfMock);
 
 
-        $this->wordpressFunctions
-            ->add_action(
+        $this->wp
+            ->addAction(
                 'init',
                 [$optionsPage, 'registerOptionsPage'],
                 5,

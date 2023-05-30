@@ -31,17 +31,17 @@ class BootstrapTest extends PluginTestCase
 
     public function testRegisterFilters(): void
     {
-        $this->wordpressFunctions
-            ->add_action('plugins_loaded', [$this->bootstrap, 'registerModules'], 1, 1)
+        $this->wp
+            ->addAction('plugins_loaded', [$this->bootstrap, 'registerModules'], 1, 1)
             ->shouldBeCalled();
 
-        $this->wordpressFunctions
-            ->add_filter('Municipio/blade/view_paths', [$this->bootstrap, 'setBladeTemplatePaths'],
+        $this->wp
+            ->addFilter('Municipio/blade/view_paths', [$this->bootstrap, 'setBladeTemplatePaths'],
                 5, 1)
             ->shouldBeCalled();
 
-        $this->wordpressFunctions
-            ->add_filter('/Modularity/externalViewPath', [$this->bootstrap, 'registerViewPaths'],
+        $this->wp
+            ->addFilter('/Modularity/externalViewPath', [$this->bootstrap, 'registerViewPaths'],
                 1, 3)
             ->shouldBeCalled();
 

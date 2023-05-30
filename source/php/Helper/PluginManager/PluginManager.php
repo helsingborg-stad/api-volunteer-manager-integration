@@ -3,16 +3,18 @@
 namespace APIVolunteerManagerIntegration\Helper\PluginManager;
 
 
+use APIVolunteerManagerIntegration\Services\WPService\WPHookService;
+
 /**
  * The PluginManager class registers objects with WordPress Hooks API.
  */
 class PluginManager
 {
-    private WordpressFunctions $wordpressFunctions;
+    private WPHookService $wp;
 
-    public function __construct(WordpressFunctions $wordpressFunctions)
+    public function __construct(WPHookService $wp)
     {
-        $this->wordpressFunctions = $wordpressFunctions;
+        $this->wp = $wp;
     }
 
     /**
@@ -60,7 +62,7 @@ class PluginManager
      */
     private function registerAction(string $name, callable $callback, ?int $priority, ?int $args)
     {
-        $this->wordpressFunctions->add_action($name, $callback, $priority ?? 10, $args ?? 1);
+        $this->wp->addAction($name, $callback, $priority ?? 10, $args ?? 1);
     }
 
     /**
@@ -75,7 +77,6 @@ class PluginManager
      */
     private function registerFilter(string $name, callable $callback, ?int $priority, ?int $args)
     {
-        $this->wordpressFunctions->add_filter($name, $callback, $priority ?? 10, $args ?? 1);
+        $this->wp->addFilter($name, $callback, $priority ?? 10, $args ?? 1);
     }
-
 }

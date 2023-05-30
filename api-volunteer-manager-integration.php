@@ -14,7 +14,6 @@
 
 
 use APIVolunteerManagerIntegration\Helper\DIContainer\DIContainerFactory;
-use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
 
 if ( ! defined('WPINC')) {
     die();
@@ -54,4 +53,4 @@ add_action('acf/init', function () {
 });
 
 
-(new APIVolunteerManagerIntegration\App())->init(DIContainerFactory::create(), new PluginManager());
+(new APIVolunteerManagerIntegration\App())->init(DIContainerFactory::create());

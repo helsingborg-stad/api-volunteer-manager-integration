@@ -45,8 +45,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     }
 
     public function bootstrap(
-        DIContainer $DI,
-        PluginManager $plugin
+        DIContainer $DI
     ): void {
 
         /**
@@ -69,8 +68,9 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
         $DI->bind(WpRestClientFactory::class, $DI->make(WpRestFactory::class));
 
         $DI->bind(VQContextFactory::class, new GlobalContextFactory());
+        $DI->bind(PluginManager::class, $DI->make(PluginManager::class));
 
-
+        $plugin = $DI->resolve(PluginManager::class);
         $plugin->register($this);
     }
 
@@ -125,6 +125,4 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
 
         return $paths;
     }
-
-
 }
