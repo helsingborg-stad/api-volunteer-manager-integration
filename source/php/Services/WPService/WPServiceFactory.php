@@ -84,6 +84,16 @@ class WPServiceFactory
             {
                 return get_post_type_archive_link($postType);
             }
+
+            public function addAction(string $tag, callable $callback, int $priority = 10, int $accepted_args = 1): void
+            {
+                add_action($tag, $callback, $priority, $accepted_args);
+            }
+
+            public function addFilter(string $tag, callable $callback, int $priority = 10, int $accepted_args = 1): void
+            {
+                add_filter($tag, $callback, $priority, $accepted_args);
+            }
         };
     }
 }

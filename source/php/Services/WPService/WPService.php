@@ -15,6 +15,9 @@ interface WPService extends
     WpEnqueueStyle,
     WpEnqueueScript,
     GetPostTypeArchiveLink,
-    GetPostTypeObject
+    GetPostTypeObject,
+    AddAction,
+    AddFilter,
+    WPHookService
 {
 }
