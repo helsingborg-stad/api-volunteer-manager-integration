@@ -1,6 +1,6 @@
 <?php
 
-namespace APIVolunteerManagerIntegration\Tests;
+namespace APIVolunteerManagerIntegration\Tests\_TestUtils;
 
 use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
@@ -14,6 +14,7 @@ use Prophecy\Prophecy\ObjectProphecy;
 use WP_Post;
 use WP_Post_Type;
 use WP_Query;
+use function Brain\Monkey;
 
 class PluginTestCase extends TestCase
 {

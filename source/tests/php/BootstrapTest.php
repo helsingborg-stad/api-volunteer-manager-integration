@@ -3,10 +3,10 @@
 namespace APIVolunteerManagerIntegration\Tests;
 
 use APIVolunteerManagerIntegration\Bootstrap;
+use APIVolunteerManagerIntegration\Tests\_TestUtils\PluginTestCase;
 
 class BootstrapTest extends PluginTestCase
 {
-
     private Bootstrap $bootstrap;
 
     public function setUp(): void
@@ -63,23 +63,4 @@ class BootstrapTest extends PluginTestCase
 
         $this->assertEquals($paths, $result);
     }
-
-    /*    public function testRegisterModules(): void
-        {
-            // Assuming we're using PHPUnit's MockBuilder
-            // and the global function is under the same namespace with Bootstrap
-
-            $modules = Bootstrap::modules();
-
-            // expect the modularity_register_module to be called with right parameters
-            foreach ($modules as $slug => $class) {
-                $name = $this->bootstrap->getClassNameWithoutNamespace($class);
-
-                $this->bootstrap->expects($this->once())
-                                ->method('modularity_register_module')
-                                ->with(API_VOLUNTEER_MANAGER_MODULE_PATH.'/'.$name, $name);
-            }
-
-            $this->bootstrap->registerModules();
-        }*/
 }

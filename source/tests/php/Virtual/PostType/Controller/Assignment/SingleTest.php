@@ -4,7 +4,7 @@ namespace APIVolunteerManagerIntegration\Tests\Virtual\PostType\Controller\Assig
 
 use APIVolunteerManagerIntegration\Model\Resource\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
-use APIVolunteerManagerIntegration\Tests\PluginTestCase;
+use APIVolunteerManagerIntegration\Tests\_TestUtils\PluginTestCase;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment\Single;
 use Mockery;

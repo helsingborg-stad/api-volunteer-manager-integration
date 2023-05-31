@@ -4,7 +4,7 @@ namespace APIVolunteerManagerIntegration\Tests\Admin;
 
 use APIVolunteerManagerIntegration\Admin\OptionsPage;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFAddOptionsSubPage;
-use APIVolunteerManagerIntegration\Tests\PluginTestCase;
+use APIVolunteerManagerIntegration\Tests\_TestUtils\PluginTestCase;
 use function __;
 
 
