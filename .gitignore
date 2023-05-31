@@ -46,6 +46,12 @@ Thumbs.db
 # ignore dist temp folder
 dist/temp
 dist/.temp
+/dist/
+
+# Ignore test-related files
+/coverage.data
+/coverage/
+local.json
 
 # -------------------------
 # BEGIN Whitelisted Files
@@ -55,6 +61,5 @@ dist/.temp
 !.gitignore
 !.editorconfig
 !.github
-local.json
-/dist/
-coverage
+
+
