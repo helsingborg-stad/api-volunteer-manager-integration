@@ -82,6 +82,14 @@ export interface AssignmentInput {
   benefits?: string
   totalSpots?: number
   location?: Location
+  when?: string
+  where?: string
+  readMoreLink?: string
+  publicContact?: {
+    name?: string
+    phone?: string
+    email?: string
+  }
 }
 
 export interface Assignment extends AssignmentInput {

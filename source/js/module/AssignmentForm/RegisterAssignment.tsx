@@ -1,7 +1,7 @@
-import VolunteerServiceContext from '../../../volunteer-service/VolunteerServiceContext'
+import VolunteerServiceContext from '../../volunteer-service/VolunteerServiceContext'
 import { useContext } from 'react'
-import PhraseContext from '../../../phrase/PhraseContext'
-import AssignmentForm from './assignment/AssignmentForm'
+import PhraseContext from '../../phrase/PhraseContext'
+import AssignmentForm from './components/AssignmentForm'
 
 function RegisterAssignment(): JSX.Element {
   const { registerAssignment } = useContext(VolunteerServiceContext)
