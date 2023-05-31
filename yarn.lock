@@ -1485,8 +1485,8 @@
   integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
 "@helsingborg-stad/municipio-react-ui@https://github.com/helsingborg-stad/municipio-react-ui.git#develop":
-  version "0.5.2"
-  resolved "https://github.com/helsingborg-stad/municipio-react-ui.git#5f934880eb051f633cd00bb0e760724bfb0a489f"
+  version "0.5.4"
+  resolved "https://github.com/helsingborg-stad/municipio-react-ui.git#c5f297c2be02ac5fd2564a2e7bf1cc58a89f988c"
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
