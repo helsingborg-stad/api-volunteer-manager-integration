@@ -3,7 +3,6 @@
 namespace APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 
 use APIVolunteerManagerIntegration\Model\Generic\Collection;
-use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employee\Contact;
 
 class Employee
 {

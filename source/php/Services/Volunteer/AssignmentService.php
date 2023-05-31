@@ -5,6 +5,7 @@ namespace APIVolunteerManagerIntegration\Services\Volunteer;
 use APIVolunteerManagerIntegration\Model\Generic\Collection;
 use APIVolunteerManagerIntegration\Model\Resource\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
+use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Contact;
 use APIVolunteerManagerIntegration\Services\Volunteer\WpRestAdapter\PostsAdapter;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Source\VQPosts;
@@ -64,14 +65,18 @@ class AssignmentService extends PostsAdapter implements VQPosts
             $meta['qualifications'] ?? null,
             $meta['schedule'] ?? null,
             $meta['benefits'] ?? null,
-            $this->getFeaturedMediaFromEmbedded($embedded)
+            $this->getFeaturedMediaFromEmbedded($embedded),
+            parseEmployeeContacts($meta['public_contact'] ?? [])[0] ?? null,
+            $meta['where'] ?? null,
+            $meta['when'] ?? null,
+            $meta['read_more_link'] ?? null,
         );
     }
 
     /**
      * @param  array  $data
      *
-     * @return VolunteerAssignment\Employee\Contact[]
+     * @return Contact[]
      */
     public function parseEmployeeContacts(array $data): array
     {
@@ -83,7 +88,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
         );
 
         return array_map(
-            fn(array $contact) => new VolunteerAssignment\Employee\Contact(
+            fn(array $contact) => new Contact(
                 $contact['name'],
                 $contact['email'],
                 $contact['phone']

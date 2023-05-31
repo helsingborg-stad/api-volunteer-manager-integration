@@ -1,6 +1,6 @@
 <?php
 
-namespace APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employee;
+namespace APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 
 class Contact
 {
