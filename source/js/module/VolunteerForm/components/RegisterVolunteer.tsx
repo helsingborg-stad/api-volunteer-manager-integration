@@ -3,7 +3,7 @@ import VolunteerServiceContext, {
 } from '../../../volunteer-service/VolunteerServiceContext'
 import { useContext } from 'react'
 import PhraseContext from '../../../phrase/PhraseContext'
-import useAsync from '../../../util/UseAsync'
+import useAsync from '../../../hooks/UseAsync'
 import VolunteerForm from './volunteer/VolunteerForm'
 
 type State = 'loading' | 'saving'

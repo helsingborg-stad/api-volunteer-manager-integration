@@ -37,6 +37,7 @@ export enum SignUpTypes {
   Link = 'link',
   Email = 'email',
   Phone = 'phone',
+  Contact = 'contact',
 }
 
 export type SignUpWithWebsite = {
@@ -46,17 +47,9 @@ export type SignUpWithWebsite = {
   deadline?: string
 }
 
-export type SignUpWithEmail = {
-  type: SignUpTypes.Email
-  email: string
+export type SignUpWithContact = {
+  type: SignUpTypes.Contact
   phone?: string
-  hasDeadline?: string
-  deadline?: string
-}
-
-export type SignUpWithPhone = {
-  type: SignUpTypes.Phone
-  phone: string
   email?: string
   name?: string
   hasDeadline?: string
@@ -71,12 +64,13 @@ export interface AssignmentInput {
     | {
         type?: SignUpTypes
         link?: string
+        name?: string
         phone?: string
         email?: string
-        hasDeadline?: string
+        hasDeadline?: 'yes' | 'no' | ''
         deadline?: string
       }
-    | (SignUpWithWebsite | SignUpWithEmail | SignUpWithPhone)
+    | (SignUpWithWebsite | SignUpWithContact)
   qualifications?: string
   schedule?: string
   benefits?: string

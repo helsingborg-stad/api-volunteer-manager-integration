@@ -49,7 +49,6 @@ export const DetailsFields = ({
           rows={1}
         />
       </div>
-
       <div className="o-grid-12">
         <Textarea
           value={qualifications}
@@ -59,7 +58,6 @@ export const DetailsFields = ({
           rows={4}
         />
       </div>
-
       <div className="o-grid-12">
         <Field
           value={readMoreLink}
@@ -69,7 +67,6 @@ export const DetailsFields = ({
           onChange={handleInputChange('readMoreLink')}
         />
       </div>
-
       <div className="o-grid-12">
         <Textarea
           value={when}
@@ -79,7 +76,6 @@ export const DetailsFields = ({
           rows={4}
         />
       </div>
-
       <div className="o-grid-12">
         <Textarea
           value={where}
@@ -89,7 +85,6 @@ export const DetailsFields = ({
           rows={3}
         />
       </div>
-
       <div className="o-grid-12">
         <Field
           value={totalSpots?.toString() ?? ''}
@@ -97,6 +92,10 @@ export const DetailsFields = ({
           name="assignment_total_spots"
           type={'number'}
           onChange={handleInputChange('totalSpots')}
+          inputProps={{
+            min: 0,
+            onKeyPress: (e) => !/[0-9]/.test(e.key) && e.preventDefault(),
+          }}
         />
       </div>
     </FormSection>
