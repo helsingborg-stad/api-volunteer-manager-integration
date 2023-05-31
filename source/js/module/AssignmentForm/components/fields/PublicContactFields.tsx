@@ -1,12 +1,12 @@
 import FormSection from '../form/FormSection'
-import PhraseContext from '../../../../phrase/PhraseContext'
+import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
 import { AssignmentInput } from '../../../../volunteer-service/VolunteerServiceContext'
 
 interface Props {
   formState: AssignmentInput
-  handleInputChange: <T>(field: string) => any
+  handleInputChange: (field: string) => any
 }
 
 export const PublicContactFields = ({ formState: { publicContact }, handleInputChange }: Props) => {

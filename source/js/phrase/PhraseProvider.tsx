@@ -1,4 +1,4 @@
-import PhraseContext from './PhraseContext'
+import PhraseContext from './PhraseContextInterface'
 
 type PhraseProviderProps = {
   phrases?: Record<string, string>

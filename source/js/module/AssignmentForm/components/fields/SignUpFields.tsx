@@ -1,12 +1,12 @@
 import FormSection from '../form/FormSection'
-import PhraseContext from '../../../../phrase/PhraseContext'
+import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
 import { AssignmentInput, SignUpTypes } from '../../../../volunteer-service/VolunteerServiceContext'
 
 interface Props {
   formState: AssignmentInput
-  handleInputChange: <T>(field: string) => any
+  handleInputChange: (field: string) => any
 }
 
 export const SignUpFields = ({ formState, handleInputChange }: Props) => {

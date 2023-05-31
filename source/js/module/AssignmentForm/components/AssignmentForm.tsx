@@ -1,6 +1,6 @@
 import { Button, Card, CardBody } from '@helsingborg-stad/municipio-react-ui'
 import { AssignmentInput } from '../../../volunteer-service/VolunteerServiceContext'
-import PhraseContext from '../../../phrase/PhraseContext'
+import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import useForm from '../../../hooks/UseForm'
 import GeneralFields from './fields/GeneralFields'
@@ -15,7 +15,7 @@ interface AssignmentFormProps {
 function AssignmentForm({ onSubmit }: AssignmentFormProps): JSX.Element {
   const { phrase } = useContext(PhraseContext)
 
-  const { formState, handleInputChange, resetForm } = useForm<AssignmentInput>({
+  const { formState, handleInputChange } = useForm<AssignmentInput>({
     initialState: {
       title: '',
       description: '',

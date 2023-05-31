@@ -13,7 +13,7 @@ const VolunteerServiceProvider = ({
   appSecret,
   children,
 }: VolunteerServiceProviderProps): JSX.Element => {
-  const provider = useMemo(() => createRestContext(uri, appSecret ?? ''), [uri])
+  const provider = useMemo(() => createRestContext(uri, appSecret ?? ''), [uri, appSecret])
 
   return (
     <VolunteerServiceContext.Provider value={provider}>{children}</VolunteerServiceContext.Provider>

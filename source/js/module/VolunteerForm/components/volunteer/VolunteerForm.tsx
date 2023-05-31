@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Field } from '@helsingborg-stad/municipio-react-ui'
 import { Volunteer, VolunteerInput } from '../../../../volunteer-service/VolunteerServiceContext'
-import PhraseContext from '../../../../phrase/PhraseContext'
+import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext, useState } from 'react'
 
 interface VolunteerFormProps {
