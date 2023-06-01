@@ -4,11 +4,7 @@ import AssignmentForm from './components/AssignmentForm'
 
 function RegisterAssignment(): JSX.Element {
   const { registerAssignment } = useContext(VolunteerServiceContext)
-  return (
-    <div>
-      <AssignmentForm onSubmit={registerAssignment} />
-    </div>
-  )
+  return <AssignmentForm onSubmit={registerAssignment} />
 }
 
 export default RegisterAssignment
