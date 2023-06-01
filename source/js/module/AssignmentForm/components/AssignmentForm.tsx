@@ -47,7 +47,7 @@ function AssignmentForm({ onSubmit }: AssignmentFormProps): JSX.Element {
 
   return (
     <Card className="c-card--panel c-card--secondary">
-      <CardBody>
+      <CardBody className="u-padding--5">
         <form>
           <div className="o-grid">
             <div className="o-grid-12">

@@ -1,6 +1,7 @@
 import { VolunteerServiceProvider } from '../../volunteer-service/rest/VolunteerServiceProvider'
 import PhraseProvider from '../../phrase/PhraseProvider'
 import RegisterAssignment from './RegisterAssignment'
+import './App.scss'
 
 interface Props {
   volunteerApiUri: string
