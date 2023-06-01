@@ -66,7 +66,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
             $meta['schedule'] ?? null,
             $meta['benefits'] ?? null,
             $this->getFeaturedMediaFromEmbedded($embedded),
-            parseEmployeeContacts($meta['public_contact'] ?? [])[0] ?? null,
+            $this->parseEmployeeContacts($meta['public_contact'] ?? [])[0] ?? null,
             $meta['where'] ?? null,
             $meta['when'] ?? null,
             $meta['read_more_link'] ?? null,
