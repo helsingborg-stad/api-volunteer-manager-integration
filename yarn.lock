@@ -1598,19 +1598,9 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.41.0.tgz"
   integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
-"@helsingborg-stad/municipio-react-ui@https://github.com/helsingborg-stad/api-volunteer-manager-integration.git#develop":
-  version "1.0.0"
-  resolved "https://github.com/helsingborg-stad/api-volunteer-manager-integration.git#124c9e59c4fbac7b8e2109756e6625c6bff5ca27"
-  dependencies:
-    "@emotion/react" "^11.10.4"
-    "@emotion/styled" "^11.10.4"
-    "@mui/material" "^5.10.9"
-    axios "^1.1.2"
-    react "^18.2.0"
-    react-dom "^18.2.0"
-    react-scripts "5.0.1"
-    typescript "^4.8.4"
-    web-vitals "^2.1.4"
+"@helsingborg-stad/municipio-react-ui@https://github.com/helsingborg-stad/municipio-react-ui.git#develop":
+  version "0.5.5"
+  resolved "https://github.com/helsingborg-stad/municipio-react-ui.git#bcea08aa44f1b364b3dfdf842501e6f1f706294b"
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
