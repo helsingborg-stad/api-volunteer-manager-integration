@@ -1,7 +1,7 @@
 import { Button, Card, CardBody } from '@helsingborg-stad/municipio-react-ui'
 import { AssignmentInput } from '../../../volunteer-service/VolunteerServiceContext'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import useForm from '../../../hooks/UseForm'
 import GeneralFields from './fields/GeneralFields'
 import DetailsFields from './fields/DetailsFields'
@@ -14,7 +14,7 @@ interface AssignmentFormProps {
 
 function AssignmentForm({ onSubmit }: AssignmentFormProps): JSX.Element {
   const { phrase } = useContext(PhraseContext)
-
+  const formRef = useRef<HTMLFormElement>(null)
   const { formState, handleInputChange } = useForm<AssignmentInput>({
     initialState: {
       title: '',
@@ -48,7 +48,7 @@ function AssignmentForm({ onSubmit }: AssignmentFormProps): JSX.Element {
   return (
     <Card className="c-card--panel c-card--secondary">
       <CardBody className="u-padding--5">
-        <form>
+        <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
           <div className="o-grid">
             <div className="o-grid-12">
               <GeneralFields {...{ formState, handleInputChange }} />
@@ -59,11 +59,12 @@ function AssignmentForm({ onSubmit }: AssignmentFormProps): JSX.Element {
             <div className="o-grid-12 u-margin__top--2">
               <Button
                 color="primary"
-                onClick={() =>
-                  onSubmit({
-                    ...formState,
-                  })
-                }>
+                onClick={async () => {
+                  formRef.current?.reportValidity() &&
+                    onSubmit({
+                      ...formState,
+                    })
+                }}>
                 {phrase('submit', 'Submit')}
               </Button>
             </div>
