@@ -37,6 +37,7 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           name="contact_name"
           type="text"
           onChange={handleInputChange('employer.contacts.0.name')}
+          required
         />
       </div>
 
@@ -58,6 +59,7 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           name="contact_email"
           type="email"
           onChange={handleInputChange('employer.contacts.0.email')}
+          required
         />
       </div>
       <div className="o-grid-12 o-grid-6@md">
@@ -67,6 +69,7 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           name="contact_phone"
           type="tel"
           onChange={handleInputChange('employer.contacts.0.phone')}
+          required
         />
       </div>
     </FormSection>

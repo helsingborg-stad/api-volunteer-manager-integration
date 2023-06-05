@@ -1598,9 +1598,15 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.41.0.tgz"
   integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
-"@helsingborg-stad/municipio-react-ui@https://github.com/helsingborg-stad/municipio-react-ui.git#develop":
+"@helsingborg-stad/municipio-react-ui@^0.5.4":
   version "0.5.4"
-  resolved "https://github.com/helsingborg-stad/municipio-react-ui.git#c5f297c2be02ac5fd2564a2e7bf1cc58a89f988c"
+  resolved "https://npm.pkg.github.com/download/@helsingborg-stad/municipio-react-ui/0.5.4/4ba0b48eb43588da6c0c54d5a255c793417bc200#4ba0b48eb43588da6c0c54d5a255c793417bc200"
+  integrity sha512-fDwMR3BqKfP9ljnfzjgefxH/+O47pirLlDQwz0/eH/gvGZFIodQoHhEO7gwlFMIceVdGGkoV3CJMleRLU2225A==
+
+"@helsingborg-stad/municipio-react-ui@^0.5.5":
+  version "0.5.5"
+  resolved "https://npm.pkg.github.com/download/@helsingborg-stad/municipio-react-ui/0.5.5/6cec365b9b4d5f315feddc119107ec971b720cce#6cec365b9b4d5f315feddc119107ec971b720cce"
+  integrity sha512-KwaTmupTaVtkjyJqd7gyuxzcFopUOEe2yKjnyO6VuB1jcp+xO7P+BpJYYiG3J1BKISA/yNiJLjl0eM1XdfRlRQ==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"

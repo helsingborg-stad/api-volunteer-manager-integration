@@ -84,6 +84,7 @@ export interface AssignmentInput {
     phone?: string
     email?: string
   }
+  image?: File
 }
 
 export interface Assignment extends AssignmentInput {

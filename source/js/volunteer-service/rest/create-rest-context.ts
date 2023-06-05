@@ -109,6 +109,8 @@ export const createRestContext = (
         'assignment-eligibility': [],
         meta: {
           description: input.description,
+          when: input.when,
+          where: input.where,
           employer_name: input.employer.name,
           employer_contacts: input.employer.contacts,
           employer_website: input.employer.website,

@@ -13,7 +13,7 @@ class VirtualPostFactory
             'post_title'        => $args['title'] ?? '',
             'post_name'         => $args['slug'] ?? '',
             'post_content'      => $args['content'] ?? '',
-            'post_excerpt'      => $args['content'] ?? '',
+            'post_excerpt'      => $args['excerpt'] ?? $args['content'] ?? '',
             'post_parent'       => 0,
             'menu_order'        => 0,
             'post_type'         => $args['type'] ?? '',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment;
 
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
+use APIVolunteerManagerIntegration\Services\ACFService\ACFGetField;
 use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeArchiveLink;
 use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeObject;
 use APIVolunteerManagerIntegration\Services\WPService\HomeUrl;
@@ -16,6 +17,7 @@ class Single extends VQSingleController
     private HomeUrl $homeUrl;
     private GetPostTypeObject $getPostTypeObject;
     private GetPostTypeArchiveLink $getPostTypeArchiveLink;
+    private ACFGetField $acf;
 
     public function __construct(
         HomeUrl $homeUrl,
@@ -37,10 +39,43 @@ class Single extends VQSingleController
             return $data;
         }
 
-        $data['rightColumnSize']     = 4;
-        $data['featuredImage']       = $this->featuredImage($model);
-        $data['breadcrumbItems']     = $this->breadcrumbs($data['wpQuery']);
+        $data['rightColumnSize']   = 5;
+        $data['featuredThumbnail'] = $this->featuredImage($model);
+        $data['breadcrumbItems']   = $this->breadcrumbs($data['wpQuery']);
+
+        $data['volunteerAssignmentLabels'] = [
+            'about'          => __(
+                'Information about the assignment',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'benefits'       => __(
+                'Information about the assignment',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'requirements'   => __(
+                'Information about the assignment',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'where_and_when' => __(
+                'Information about the assignment',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'sign_up'        => __(
+                'Sign up',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'sign_up_c2a'    => __(
+                'Sign up',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'contact_us'     => __(
+                'Contact',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+        ];
+
         $data['volunteerAssignment'] = $model;
+
 
         return $data;
     }
@@ -56,7 +91,7 @@ class Single extends VQSingleController
     {
         return (object) [
             'id'    => $model->featuredImage->id ?? 0,
-            'src'   => ! empty($model->featuredImage->source) ? $model->featuredImage->source : null,
+            'src'   => ! empty($model->featuredImage->source) ? [$model->featuredImage->source] : [],
             'alt'   => $model->featuredImage->altText ?? '',
             'title' => $model->featuredImage->fileName ?? '',
         ];

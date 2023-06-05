@@ -30,11 +30,57 @@ class AssignmentService extends PostsAdapter implements VQPosts
             'title'    => $title,
             'slug'     => $slug,
             'type'     => Assignment::POST_TYPE,
-            'content'  => $meta['description'] ?? '',
+            'content'  => $this->createPostContent($meta ?? []),
+            'excerpt'  => $meta['description'] ?? '',
             'created'  => $created,
             'modified' => $modified,
             'model'    => $this->createModel($meta, $_embedded ?? []),
         ]);
+    }
+
+    public function createPostContent(array $data): string
+    {
+        $wrapInFn = fn(
+            string $tag,
+            string $str,
+            ?string $attributes = ''
+        ): string => "<$tag $attributes>".$str."</$tag>";
+
+        $contentPieces = [
+            'about'          => [
+                'title'   => $wrapInFn('h2', __(
+                    'About the assignment',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                ), 'class="u-margin__top--0"'),
+                'content' => $data['description'] ?? '',
+            ],
+            'requirements'   => [
+                'title'   => $wrapInFn('h3', __(
+                    'Requirements',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => $data['qualifications'] ?? '',
+            ],
+            'benefits'       => [
+                'title'   => $wrapInFn('h3', __(
+                    'Benefits',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => $data['benefits'] ?? '',
+            ],
+            'where_and_when' => [
+                'title'   => $wrapInFn('h3', __(
+                    'Where and when?',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => $data['schedule'] ?? '',
+            ],
+        ];
+
+        return array_reduce(
+            array_values($contentPieces),
+            fn($str, $i) => $str.$i['title'].$i['content']
+        );
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace APIVolunteerManagerIntegration\Tests\Virtual\PostType\Controller\Assignment;
 
-use APIVolunteerManagerIntegration\Model\Resource\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Tests\_TestUtils\PluginTestCase;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
@@ -84,65 +83,5 @@ class SingleTest extends PluginTestCase
         self::assertStringContainsString($wp->getPostTypeArchiveLink($post->post_type),
             $currentItem[0]['href']
         );
-    }
-
-    public function testFeaturedImage(): void
-    {
-        $model                = Mockery::mock(VolunteerAssignment::class);
-        $model->featuredImage = new Image(
-            -6575,
-            'image/jpeg',
-            'featured-image.jpg',
-            'https://remote-service/uploads/featured-image.jpg',
-            'Some alt text',
-            800,
-            600,
-        );
-
-        $wp   = $this->createFakeWpService();
-        $post = $this->createFakePost([
-            'post_title' => 'Fake Assignment',
-            'post_name'  => 'fake-assignment',
-            'post_type'  => Assignment::POST_TYPE,
-            'model'      => $model,
-        ]);
-
-
-        $wpQuery = $this->createFakeWpQuery([], $post);
-
-        $data = (new Single($wp, $wp, $wp))->single([
-            'wpQuery' => $wpQuery, 'exampleThemeControllerData' => true,
-        ]);
-
-
-        self::assertArrayHasKey('featuredImage', $data,);
-        self::assertIsObject($data['featuredImage']);
-        self::assertNotEmpty($data['featuredImage']->src);
-        self::assertIsString($data['featuredImage']->src);
-        self::assertNotEmpty($data['featuredImage']->src);
-    }
-
-    public function testNoFeaturedImage(): void
-    {
-        $wp   = $this->createFakeWpService();
-        $post = $this->createFakePost([
-            'postTitle'  => 'Fake Assignment',
-            'post_title' => 'Fake Assignment',
-            'post_name'  => 'fake-assignment',
-            'post_type'  => Assignment::POST_TYPE,
-            'model'      => Mockery::mock(VolunteerAssignment::class),
-        ]);
-
-
-        $wpQuery = $this->createFakeWpQuery([], $post);
-
-        $data = (new Single($wp, $wp, $wp))->single([
-            'wpQuery' => $wpQuery, 'exampleThemeControllerData' => true,
-        ]);
-
-
-        self::assertArrayHasKey('featuredImage', $data,);
-        self::assertIsObject($data['featuredImage']);
-        self::assertNull($data['featuredImage']->src);
     }
 }

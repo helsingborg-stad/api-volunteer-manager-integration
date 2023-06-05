@@ -38,6 +38,7 @@ export const DetailsFields = ({
           name="assignment_description"
           onChange={handleInputChange('description')}
           rows={10}
+          required
         />
       </div>
       <div className="o-grid-12">

@@ -20,6 +20,7 @@ module.exports = {
   entry: {
     'js/volunteer-form': './source/js/module/VolunteerForm/index.tsx',
     'js/assignment-form': './source/js/module/AssignmentForm/index.tsx',
+    'css/api-volunteer-manager-integration': './source/sass/api-volunteer-manager-integration.scss',
   },
 
   /**

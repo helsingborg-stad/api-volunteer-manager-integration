@@ -19,6 +19,7 @@ class App
     {
         $plugin
             ->register($DI->make(Routes::class))
-            ->register($DI->make(OptionsPage::class));
+            ->register($DI->make(OptionsPage::class))
+            ->register($DI->make(Scripts::class));
     }
 }

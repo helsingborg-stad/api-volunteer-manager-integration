@@ -39,7 +39,7 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
           <Field
             value={formState.signUp.link ?? ''}
             label={phrase('field_label_signup_link', 'Sign up link')}
-            name="signup_email"
+            name="signup_link"
             required
             type="url"
             onChange={handleInputChange('signUp.link')}
@@ -110,6 +110,7 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
             name="signup_due_date"
             type="date"
             onChange={handleInputChange('signUp.deadline')}
+            required
           />
         </div>
       ) : null}

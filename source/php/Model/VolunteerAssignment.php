@@ -20,10 +20,10 @@ class VolunteerAssignment
     public ?string $schedule = null;
     public ?string $benefits = null;
     public ?Image $featuredImage = null;
-    private ?Contact $publicContact;
-    private ?string $where;
-    private ?string $when;
-    private ?string $readMoreLink;
+    public ?Contact $publicContact;
+    public ?string $where;
+    public ?string $when;
+    public ?string $readMoreLink;
 
     public function __construct(
         SignUp $signUp,
