@@ -31,7 +31,7 @@ const createAuthorizationHeadersFromToken = (token: string) => ({
 
 const createAuthorizationHeadersFromBase64Secret = (base64Secret: string) => ({
   'Content-Type': 'application/x-www-form-urlencoded',
-  Authorization: `BASIC ${base64Secret}`,
+  Authorization: `${base64Secret}`,
 })
 
 export const createRestContext = (
@@ -98,73 +98,49 @@ export const createRestContext = (
       })),
   registerAssignment: (input) =>
     post(
-      `${uri}'/assignment'`,
+      `${uri}/assignment`,
       {
         title: input.title,
-        status: 'draft',
-        slug: '',
-        featured_media: 0,
-        'assignment-status': [],
-        'assignment-category': [],
-        'assignment-eligibility': [],
-        meta: {
-          description: input.description,
-          when: input.when,
-          where: input.where,
-          employer_name: input.employer.name,
-          employer_contacts: input.employer.contacts,
-          employer_website: input.employer.website,
-          signup_methods: input.signUp.type ? [input.signUp.type] : [],
-          signup_email: input.signUp.type === SignUpTypes.Contact ? input.signUp.email : null,
-          signup_phone: input.signUp.type === SignUpTypes.Contact ? input.signUp.phone : null,
-          signup_link: input.signUp.type === SignUpTypes.Link ? input.signUp.link : null,
-          qualifications: input?.qualifications ?? '',
-          schedule: input?.schedule ?? '',
-          benefits: input?.benefits ?? '',
-          number_of_available_spots: input.totalSpots ?? '',
-          street_address: input?.location?.address ?? '',
-          postal_code: input?.location?.postal ?? '',
-          city: input?.location?.city ?? '',
-          internal_assignment: false,
-          assignment_status: false,
-          assignment_eligibility: false,
-          assignment_category: false,
-        },
+        assignment_eligibility: '[]',
+        description: input.description,
+        qualifications: input.qualifications ?? null,
+        schedule: input.schedule ?? null,
+        benefits: input.benefits ?? null,
+        number_of_available_spots: input.totalSpots ?? null,
+        signup_methods: '["email"]',
+        ...(input.signUp.type === SignUpTypes.Link
+          ? {
+              internal_assignment: 'false',
+              signup_methods: ['link'],
+              signup_link: input.signUp.link,
+            }
+          : {}),
+        ...(input.signUp.type === SignUpTypes.Contact
+          ? {
+              internal_assignment: 'false',
+              signup_methods: [
+                ...(input.signUp.email && input.signUp.email.length > 0 ? ['email'] : []),
+                ...(input.signUp.phone && input.signUp.phone.length > 0 ? ['phone'] : []),
+              ],
+              ...{
+                ...(input.signUp.email && input.signUp.email.length > 0
+                  ? { signup_email: input.signUp.email }
+                  : {}),
+                ...(input.signUp.phone && input.signUp.phone.length > 0
+                  ? { signup_phone: input.signUp.phone }
+                  : {}),
+              },
+            }
+          : {}),
+        employer_name: input.employer.name,
+        employer_contacts: input.employer.contacts,
+        employer_website: input.employer.website ?? null,
       },
       createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
     ).then(
       (response): Assignment => ({
-        id: response?.data?.id,
-        slug: response?.data?.slug,
-        status: response?.data?.status,
-        title: response?.data?.title,
-        description: response?.data?.meta?.description ?? '',
-        employer: {
-          name: '',
-          website: '',
-          contacts: [
-            {
-              name: '',
-              email: '',
-              phone: '',
-            },
-          ],
-        },
-        signUp: {
-          type: response?.data?.meta?.signup_methods[0],
-          link: response?.data?.meta?.signup_link ?? '',
-          phone: response?.data?.meta?.signup_phone ?? '',
-          email: response?.data?.meta?.signup_email ?? '',
-        },
-        qualifications: response?.data?.meta?.qualifications ?? null,
-        schedule: response?.data?.meta?.schedule ?? null,
-        benefits: response?.data?.meta?.benefits ?? null,
-        totalSpots: response?.data?.meta?.number_of_available_spots ?? null,
-        location: {
-          address: response?.data?.meta?.street_address ?? '',
-          postal: response?.data?.meta?.postal_code ?? '',
-          city: response?.data?.meta?.city ?? '',
-        },
+        id: response?.data.assignment_id,
+        ...input,
       }),
     ),
 })

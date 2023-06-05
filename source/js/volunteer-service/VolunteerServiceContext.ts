@@ -89,8 +89,6 @@ export interface AssignmentInput {
 
 export interface Assignment extends AssignmentInput {
   id: number
-  slug: string
-  status: string
 }
 
 export interface VolunteerServiceContextType {
