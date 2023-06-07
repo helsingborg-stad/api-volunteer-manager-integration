@@ -104,10 +104,11 @@ export const createRestContext = (
         assignment_eligibility: '[]',
         description: input.description,
         qualifications: input.qualifications ?? null,
-        schedule: input.schedule ?? null,
+        schedule:
+          input.schedule ?? [input.when, input.where].filter((v) => v && v.length > 0).join('\n\n'),
         benefits: input.benefits ?? null,
         number_of_available_spots: input.totalSpots ?? null,
-        signup_methods: '["email"]',
+        signup_methods: [],
         ...(input.signUp.type === SignUpTypes.Link
           ? {
               internal_assignment: 'false',
