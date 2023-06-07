@@ -6,7 +6,6 @@ use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Tests\_TestUtils\PluginTestCase;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment\Single;
-use Mockery;
 
 
 class SingleTest extends PluginTestCase
@@ -38,7 +37,21 @@ class SingleTest extends PluginTestCase
             'post_title' => 'Fake Assignment',
             'post_name'  => 'fake-assignment',
             'post_type'  => Assignment::POST_TYPE,
-            'model'      => Mockery::mock(VolunteerAssignment::class),
+            'model'      => new VolunteerAssignment(
+                new VolunteerAssignment\SignUp([], '', '', ''),
+                $this->prophesize(VolunteerAssignment\Spots::class)->reveal(),
+                $this->prophesize(VolunteerAssignment\Employee::class)->reveal(),
+                null,
+                '',
+                '',
+                '',
+                '',
+                null,
+                null,
+                null,
+                null,
+                null,
+            ),
         ]);
 
         $wpQuery = $this->createFakeWpQuery([], $post);
@@ -60,7 +73,21 @@ class SingleTest extends PluginTestCase
             'post_title' => 'Fake Assignment',
             'post_name'  => 'fake-assignment',
             'post_type'  => Assignment::POST_TYPE,
-            'model'      => Mockery::mock(VolunteerAssignment::class),
+            'model'      => new VolunteerAssignment(
+                new VolunteerAssignment\SignUp([], '', '', ''),
+                $this->prophesize(VolunteerAssignment\Spots::class)->reveal(),
+                $this->prophesize(VolunteerAssignment\Employee::class)->reveal(),
+                null,
+                '',
+                '',
+                '',
+                '',
+                null,
+                null,
+                null,
+                null,
+                null,
+            ),
         ]);
 
         $wpQuery = $this->createFakeWpQuery([], $post);
