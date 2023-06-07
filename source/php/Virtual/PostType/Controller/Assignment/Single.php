@@ -9,6 +9,7 @@ use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeArchiveLink;
 use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeObject;
 use APIVolunteerManagerIntegration\Services\WPService\HomeUrl;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Controller\VQSingleController;
+use Closure;
 use WP_Query;
 
 class Single extends VQSingleController
@@ -44,31 +45,15 @@ class Single extends VQSingleController
         $data['breadcrumbItems']   = $this->breadcrumbs($data['wpQuery']);
 
         $data['volunteerAssignmentLabels'] = [
-            'about'          => __(
-                'Information about the assignment',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-            'benefits'       => __(
-                'Information about the assignment',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-            'requirements'   => __(
-                'Information about the assignment',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-            'where_and_when' => __(
-                'Information about the assignment',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-            'sign_up'        => __(
+            'sign_up'     => __(
                 'Sign up',
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
             ),
-            'sign_up_c2a'    => __(
+            'sign_up_c2a' => __(
                 'Sign up',
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
             ),
-            'contact_us'     => __(
+            'contact_us'  => __(
                 'Contact',
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
             ),
@@ -76,7 +61,10 @@ class Single extends VQSingleController
 
         $data['volunteerAssignment'] = $model;
 
-
+        $data['volunteerAssignmentViewModel'] = [
+            'signUp' => $this->extractSignUp($model),
+        ];
+        
         return $data;
     }
 
@@ -119,5 +107,76 @@ class Single extends VQSingleController
                 'icon'    => 'chevron_right',
             ],
         ];
+    }
+
+    function extractSignUp(VolunteerAssignment $assignment): array
+    {
+        $maybeWith =
+            fn(bool $condition, Closure $cb) => fn(array $arr): array => $condition
+                ? $cb($arr)
+                : $arr;
+
+        $withLink =
+            fn(array $arr): array => $maybeWith(
+                in_array('link', $assignment->signUp->methods) && empty($arr),
+                fn(array $arr) => array_merge($arr, [
+                    'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+                    'signUpUrl'    => [
+                        'url'   => $assignment->signUp->link,
+                        'label' => __(
+                            'Sign up',
+                            API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                        ),
+                    ],
+                ]))($arr);
+
+
+        $withContact = fn(array $arr): array => $maybeWith(
+            (in_array('email', $assignment->signUp->methods) || in_array('phone',
+                    $assignment->signUp->methods)) && empty($arr),
+            fn(array $arr) => array_merge($arr, [
+                'instructions'  => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+                'signUpContact' => array_filter([
+                    'person' => '',
+                    'email'  => $assignment->signUp->email,
+                    'phone'  => $assignment->signUp->phone,
+                ], fn($str) => ! empty($str)),
+            ])
+        )($arr);
+
+        $withInternalUrl = fn(array $arr): array => $maybeWith(
+            $assignment->internal === true && empty($arr),
+            fn(array $arr) => array_merge($arr, [
+                'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+                'signUpUrl'    => [
+                    'url'   => '#',
+                    'label' => __(
+                        'Sign up',
+                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                    ),
+                ],
+            ])
+        )($arr);
+
+        $createSignUpData = fn(array $arr): array => $maybeWith(
+            ! empty($arr),
+            fn(array $arr) => array_merge($arr, [
+                'title'   => __(
+                    'Sign up',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                ),
+                'dueDate' => '',
+            ])
+        )($arr);
+
+        return $createSignUpData(
+            $withContact(
+                $withLink(
+                    $withInternalUrl(
+                        []
+                    )
+                )
+            )
+        );
     }
 }

@@ -23,16 +23,23 @@
                 @endtypography
             @endif
         </div>
+
         @if (!empty($viewModel->signUpContact))
             <div>
-                <div class='c-highlight u-display--inline-block c-highlight--outline u-padding--2'>
-                    @foreach($viewModel->signUpContact as $label => $value)
-                        @typography(['variant' => 'p u-margin__top--0']){{$value}}
-                        @endtypography
-                    @endforeach
-                </div>
+
+                @collection([ 'unbox' => true, 'bordered' => true])
+                @foreach($viewModel->signUpContact as $icon => $value)
+                    @collection__item([
+                    'icon' => $icon
+                    ])
+                    @typography(){{$value}}@endtypography
+                    @endcollection__item
+                @endforeach
+                @endcollection
+
             </div>
         @endif
+
         @if (empty($viewModel->signUpContact) && !empty($viewModel->signUpUrl))
             <div>
                 @button([

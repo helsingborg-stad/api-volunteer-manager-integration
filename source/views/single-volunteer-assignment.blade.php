@@ -86,31 +86,19 @@
 @section('article.content.after')
 
     <div>
-        <div class='u-margin__top--5'>
-            @include('volunteer-assignment.sign-up', ['viewModel' => (object) [
-                'title' => $volunteerAssignmentLabels['sign_up'],
-                'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
-                'dueDate'    =>  '07-11-2023',
-                'signUpUrl' => [
-                    'url' => 'https://helsingborg.test',
-                    'label' => $volunteerAssignmentLabels['sign_up_c2a']
-                ],
-                'signUpContact2' => [
-                    'Name' => 'Nikolas Ramstedt',
-                    'Email' => 'nikolas.ramstedt@gmail.com',
-                    'Phone' => '0733261515'
-                ],
-            ]])
-
-        </div>
+        @if (!empty($volunteerAssignmentViewModel['signUp']))
+            <div class='u-margin__top--5'>
+                @include('volunteer-assignment.sign-up', ['viewModel' => (object) $volunteerAssignmentViewModel['signUp']])
+            </div>
+        @endif
         <div class='u-margin__top--5'>
             @include('volunteer-assignment.contact', ['viewModel' => (object) [
                 'title' => $volunteerAssignmentLabels['contact_us'],
                 //'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
                 'contact' => [
-                    'person' => 'Nikolas Ramstedt',
-                    'email' => 'nikolas.ramstedt@gmail.com',
-                    'phone' => '0733261515'
+                    'person' => 'Leif GW P',
+                    'email' => 'leffe@helsingborg.io',
+                    'phone' => '0700000000'
                 ],
             ]])
         </div>
