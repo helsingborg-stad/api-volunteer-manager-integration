@@ -54,9 +54,7 @@ function AssignmentForm({
           <div className="o-grid">
             <div className="o-grid-12">
               {isSubmitted || isLoading ? (
-                <div
-                  //className={'u-padding--3 u-border--1 '}
-                  style={{ opacity: isSubmitted ? 1 : 0.5, userSelect: 'none' }}>
+                <div style={{ opacity: isSubmitted ? 1 : 0.5, userSelect: 'none' }}>
                   {renderFields()}
                 </div>
               ) : (
