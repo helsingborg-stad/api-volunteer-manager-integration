@@ -148,21 +148,15 @@ export const createRestContext = (
           ? { [key]: '-' }
           : {}
 
-      return new Promise((res) =>
-        setTimeout(
-          () =>
-            res({
-              ...input,
-              id: response.data.assignment_id,
-              ...toNullString('benefits', input?.benefits),
-              ...toNullString('qualifications', input?.qualifications),
-              ...toNullString('readMoreLink', input?.readMoreLink),
-              ...toNullString('totalSpots', input?.totalSpots),
-              ...toNullString('when', input?.when),
-              ...toNullString('where', input?.where),
-            }),
-          5000,
-        ),
-      )
+      return {
+        ...input,
+        id: response.data.assignment_id,
+        ...toNullString('benefits', input?.benefits),
+        ...toNullString('qualifications', input?.qualifications),
+        ...toNullString('readMoreLink', input?.readMoreLink),
+        ...toNullString('totalSpots', input?.totalSpots),
+        ...toNullString('when', input?.when),
+        ...toNullString('where', input?.where),
+      }
     }),
 })
