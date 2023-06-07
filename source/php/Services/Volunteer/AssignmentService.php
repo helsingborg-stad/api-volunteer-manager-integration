@@ -104,7 +104,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
             new VolunteerAssignment\Employee(
                 $meta['employer_name'] ?? '',
                 $meta['employer_website'] ?? '',
-                new Collection($this->parseEmployeeContacts($meta['employer_contacts']))
+                new Collection($this->parseEmployeeContacts(($meta['employer_contacts'] ?? []) ? $meta['employer_contacts'] : []))
             ),
             $meta['internal_assignment'] ?? null,
             $meta['description'] ?? null,
