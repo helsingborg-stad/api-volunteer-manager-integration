@@ -2,23 +2,28 @@ import FormSection from '../form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
-import { AssignmentInput } from '../../../../volunteer-service/VolunteerServiceContext'
 
-interface Props {
-  formState: AssignmentInput
-  handleInputChange: (field: string) => any
-}
+import { FieldGroupProps } from './FieldGroupProps'
 
-export const PublicContactFields = ({ formState: { publicContact }, handleInputChange }: Props) => {
+export const PublicContactFields = ({
+  formState: { publicContact },
+  handleInputChange,
+  isLoading,
+  isSubmitted,
+}: FieldGroupProps) => {
   const { phrase } = useContext(PhraseContext)
 
   return (
     <FormSection
       sectionTitle={phrase('form_section_label_public_contact', 'Public Contact information')}
-      sectionDescription={phrase(
-        'form_section_description_public_contact',
-        'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-      )}
+      sectionDescription={
+        !isSubmitted
+          ? phrase(
+              'form_section_description_public_contact',
+              'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
+            )
+          : undefined
+      }
       isSubSection>
       <div className="o-grid-12 o-grid-12@md">
         <Field
@@ -27,6 +32,8 @@ export const PublicContactFields = ({ formState: { publicContact }, handleInputC
           name="assignment_public_contact_name"
           type="text"
           onChange={handleInputChange('publicContact.name')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -37,6 +44,8 @@ export const PublicContactFields = ({ formState: { publicContact }, handleInputC
           name="assignment_public_contact_email"
           type="email"
           onChange={handleInputChange('publicContact.email')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -47,6 +56,8 @@ export const PublicContactFields = ({ formState: { publicContact }, handleInputC
           name="assignment_public_contact_phone"
           type="tel"
           onChange={handleInputChange('publicContact.phone')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
     </FormSection>

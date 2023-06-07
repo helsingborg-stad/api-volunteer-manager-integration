@@ -2,23 +2,28 @@ import FormSection from '../form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
-import { AssignmentInput } from '../../../../volunteer-service/VolunteerServiceContext'
+import { FieldGroupProps } from './FieldGroupProps'
 
-interface Props {
-  formState: AssignmentInput
-  handleInputChange: (field: string) => any
-}
-
-export const GeneralFields = ({ formState, handleInputChange }: Props) => {
+export const GeneralFields = ({
+  formState,
+  handleInputChange,
+  isLoading,
+  isSubmitted,
+}: FieldGroupProps) => {
   const { phrase } = useContext(PhraseContext)
 
   return (
     <FormSection
       sectionTitle={phrase('form_section_label_general', 'Register Volunteer Assignment')}
-      sectionDescription={phrase(
-        'form_section_description_general',
-        'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-      )}>
+      isSubSection={isSubmitted}
+      sectionDescription={
+        !isSubmitted
+          ? phrase(
+              'form_section_description_general',
+              'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
+            )
+          : undefined
+      }>
       <div className="o-grid-12">
         <Field
           value={formState.title}
@@ -27,6 +32,8 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           type="text"
           onChange={handleInputChange('title')}
           required
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -38,6 +45,8 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           type="text"
           onChange={handleInputChange('employer.contacts.0.name')}
           required
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -49,6 +58,8 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           type="text"
           onChange={handleInputChange('employer.name')}
           required
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -60,6 +71,8 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           type="email"
           onChange={handleInputChange('employer.contacts.0.email')}
           required
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12 o-grid-6@md">
@@ -70,6 +83,8 @@ export const GeneralFields = ({ formState, handleInputChange }: Props) => {
           type="tel"
           onChange={handleInputChange('employer.contacts.0.phone')}
           required
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
     </FormSection>

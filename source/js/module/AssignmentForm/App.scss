@@ -1,27 +1,28 @@
 .assignment-form-app {
   --c-select-border-color: #cacaca;
 
-  .c-field input,
-  .c-field input[type="color"],
-  .c-field input[type="text"],
-  .c-field input[type="search"],
-  .c-field input[type="tel"],
-  .c-field input[type="time"],
-  .c-field input[type="date"],
-  .c-field input[type="datetime-local"],
-  .c-field input[type="url"],
-  .c-field input[type="week"],
-  .c-field input[type="month"],
-  .c-field input[type="number"],
-  .c-field input[type="password"],
-  .c-field input[type="email"],
-  .c-field textarea,
-  .c-field--textarea textarea {
+  .c-field:not(.c-field--readonly) input,
+  .c-field:not(.c-field--readonly) input[type="color"],
+  .c-field:not(.c-field--readonly) input[type="text"],
+  .c-field:not(.c-field--readonly) input[type="search"],
+  .c-field:not(.c-field--readonly) input[type="tel"],
+  .c-field:not(.c-field--readonly) input[type="time"],
+  .c-field:not(.c-field--readonly) input[type="date"],
+  .c-field:not(.c-field--readonly) input[type="datetime-local"],
+  .c-field:not(.c-field--readonly) input[type="url"],
+  .c-field:not(.c-field--readonly) input[type="week"],
+  .c-field:not(.c-field--readonly) input[type="month"],
+  .c-field:not(.c-field--readonly) input[type="number"],
+  .c-field:not(.c-field--readonly) input[type="password"],
+  .c-field:not(.c-field--readonly) input[type="email"],
+  .c-field:not(.c-field--readonly) textarea,
+  .c-field--textarea:not(.c-field--readonly) textarea {
     border: var(--c-select-border-width, var(--border-width-input, 1px)) solid var(--c-select-border-color, #cacaca);
+
   }
 
   form .o-grid + .o-grid {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--color-light, #a3a3a3) !important;
     margin-top: 56px;
     padding-top: 56px;
   }

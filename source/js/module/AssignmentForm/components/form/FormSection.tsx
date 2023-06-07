@@ -13,9 +13,9 @@ export const FormSection = ({
   children,
   isSubSection = false,
 }: Props) => (
-  <div className="o-grid">
+  <div className="o-grid form-section">
     <div className="o-grid o-grid--form">
-      <div className="o-grid-12">
+      <div className="o-grid-12 u-margin__bottom--2">
         <Typography element={isSubSection ? 'h3' : 'h2'}>{sectionTitle}</Typography>
         {(sectionDescription?.length ?? 0) > 0 ? (
           <div className="u-margin__top--1">

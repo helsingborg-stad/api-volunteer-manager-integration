@@ -88,7 +88,7 @@ export interface AssignmentInput {
 }
 
 export interface Assignment extends AssignmentInput {
-  id: number
+  id: number | null
 }
 
 export interface VolunteerServiceContextType {

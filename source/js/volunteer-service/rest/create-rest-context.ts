@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Assignment, SignUpTypes, VolunteerServiceContextType } from '../VolunteerServiceContext'
+import { SignUpTypes, VolunteerServiceContextType } from '../VolunteerServiceContext'
 
 const post = (uri: string, data: object = {}, headers: object = {}) =>
   axios({
@@ -132,15 +132,36 @@ export const createRestContext = (
               },
             }
           : {}),
-        employer_name: input.employer.name,
-        employer_contacts: input.employer.contacts,
-        employer_website: input.employer.website ?? null,
+        submitted_by_first_name: input.employer.contacts[0].name,
+        submitted_by_email: input.employer.contacts[0].email,
+        submitted_by_phone: input.employer.contacts[0].phone,
       },
       createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
-    ).then(
-      (response): Assignment => ({
-        id: response?.data.assignment_id,
-        ...input,
-      }),
-    ),
+    ).then((response) => {
+      if (response.status !== 200 || !response?.data?.assignment_id) {
+        throw new Error('Something went wrong')
+      }
+
+      const toNullString = (key: string, target?: string | number) =>
+        !target || target === 0 || (typeof target === 'string' && target.length === 0)
+          ? { [key]: '-' }
+          : {}
+
+      return new Promise((res) =>
+        setTimeout(
+          () =>
+            res({
+              ...input,
+              id: response.data.assignment_id,
+              ...toNullString('benefits', input?.benefits),
+              ...toNullString('qualifications', input?.qualifications),
+              ...toNullString('readMoreLink', input?.readMoreLink),
+              ...toNullString('totalSpots', input?.totalSpots),
+              ...toNullString('when', input?.when),
+              ...toNullString('where', input?.where),
+            }),
+          5000,
+        ),
+      )
+    }),
 })

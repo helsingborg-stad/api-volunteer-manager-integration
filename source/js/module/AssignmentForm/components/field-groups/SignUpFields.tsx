@@ -2,23 +2,29 @@ import FormSection from '../form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
-import { AssignmentInput, SignUpTypes } from '../../../../volunteer-service/VolunteerServiceContext'
+import { SignUpTypes } from '../../../../volunteer-service/VolunteerServiceContext'
 
-interface Props {
-  formState: AssignmentInput
-  handleInputChange: (field: string) => any
-}
+import { FieldGroupProps } from './FieldGroupProps'
 
-export const SignUpFields = ({ formState, handleInputChange }: Props) => {
+export const SignUpFields = ({
+  formState,
+  handleInputChange,
+  isLoading,
+  isSubmitted,
+}: FieldGroupProps) => {
   const { phrase } = useContext(PhraseContext)
 
   return (
     <FormSection
       sectionTitle={phrase('form_section_label_signup', 'Sign up information')}
-      sectionDescription={phrase(
-        'form_section_description_signup',
-        'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-      )}
+      sectionDescription={
+        !isSubmitted
+          ? phrase(
+              'form_section_description_signup',
+              'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
+            )
+          : undefined
+      }
       isSubSection>
       <div className="o-grid-12">
         <Select
@@ -31,6 +37,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
           name="signup_type"
           onChange={handleInputChange('signUp.type')}
           required
+          selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -43,6 +51,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
             required
             type="url"
             onChange={handleInputChange('signUp.link')}
+            inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+            readOnly={isSubmitted}
           />
         </div>
       ) : null}
@@ -56,6 +66,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
               name="signup_name"
               type={'text'}
               onChange={handleInputChange('signUp.name')}
+              inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+              readOnly={isSubmitted}
             />
           </div>
           <div className="o-grid-12 o-grid-6@md">
@@ -68,6 +80,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
               }
               type="email"
               onChange={handleInputChange('signUp.email')}
+              inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+              readOnly={isSubmitted}
             />
           </div>
           <div className="o-grid-12 o-grid-6@md">
@@ -80,6 +94,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
               }
               type="tel"
               onChange={handleInputChange('signUp.phone')}
+              inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+              readOnly={isSubmitted}
             />
           </div>
         </div>
@@ -99,6 +115,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
           name="signup_has_due_date"
           onChange={handleInputChange('signUp.hasDeadline')}
           required
+          selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
 
@@ -111,6 +129,8 @@ export const SignUpFields = ({ formState, handleInputChange }: Props) => {
             type="date"
             onChange={handleInputChange('signUp.deadline')}
             required
+            inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+            readOnly={isSubmitted}
           />
         </div>
       ) : null}

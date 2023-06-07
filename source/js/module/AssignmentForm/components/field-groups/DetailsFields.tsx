@@ -2,12 +2,8 @@ import FormSection from '../form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
-import { AssignmentInput } from '../../../../volunteer-service/VolunteerServiceContext'
 
-interface Props {
-  formState: AssignmentInput
-  handleInputChange: (field: string) => any
-}
+import { FieldGroupProps } from './FieldGroupProps'
 
 export const DetailsFields = ({
   formState: {
@@ -20,16 +16,22 @@ export const DetailsFields = ({
     totalSpots,
   },
   handleInputChange,
-}: Props) => {
+  isLoading,
+  isSubmitted,
+}: FieldGroupProps) => {
   const { phrase } = useContext(PhraseContext)
 
   return (
     <FormSection
       sectionTitle={phrase('form_section_label_details', 'Assignment information')}
-      sectionDescription={phrase(
-        'form_section_description_details',
-        'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-      )}
+      sectionDescription={
+        !isSubmitted
+          ? phrase(
+              'form_section_description_details',
+              'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
+            )
+          : undefined
+      }
       isSubSection>
       <div className="o-grid-12">
         <Textarea
@@ -39,6 +41,8 @@ export const DetailsFields = ({
           onChange={handleInputChange('description')}
           rows={10}
           required
+          textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12">
@@ -48,6 +52,8 @@ export const DetailsFields = ({
           name="assignment_benefits"
           onChange={handleInputChange('benefits')}
           rows={1}
+          textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12">
@@ -57,6 +63,8 @@ export const DetailsFields = ({
           name="assignment_qualifications"
           onChange={handleInputChange('qualifications')}
           rows={4}
+          textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12">
@@ -66,6 +74,8 @@ export const DetailsFields = ({
           name="assignment_read_more_link"
           type="url"
           onChange={handleInputChange('readMoreLink')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12">
@@ -75,6 +85,8 @@ export const DetailsFields = ({
           name="assignment_when"
           onChange={handleInputChange('when')}
           rows={4}
+          textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12">
@@ -84,6 +96,8 @@ export const DetailsFields = ({
           name="assignment_where"
           onChange={handleInputChange('where')}
           rows={3}
+          textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
         />
       </div>
       <div className="o-grid-12">
@@ -91,12 +105,18 @@ export const DetailsFields = ({
           value={totalSpots?.toString() ?? ''}
           label={phrase('field_label_spots', 'Total spots')}
           name="assignment_total_spots"
-          type={'number'}
+          type={!isSubmitted ? 'number' : 'text'}
           onChange={handleInputChange('totalSpots')}
-          inputProps={{
-            min: 0,
-            onKeyPress: (e) => !/[0-9]/.test(e.key) && e.preventDefault(),
-          }}
+          inputProps={
+            !isSubmitted
+              ? {
+                  min: 0,
+                  onKeyPress: (e) => !/[0-9]/.test(e.key) && e.preventDefault(),
+                  ...(isLoading ? { disabled: true } : {}),
+                }
+              : { disabled: true }
+          }
+          readOnly={isSubmitted}
         />
       </div>
     </FormSection>

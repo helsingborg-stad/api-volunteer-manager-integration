@@ -3,13 +3,18 @@ import { useState } from 'react'
 type Func<T> = () => Promise<T>
 
 export interface AsyncView<TData, TState, TView> {
-  pending: (state: TState) => TView
+  pending: (state: TState, data: TData) => TView
   resolved: (
     data: TData,
     state: TState,
     update: (p: Promise<TData>, state?: TState) => void,
   ) => TView
-  rejected: (e: Error, state: TState, update: (p: Promise<TData>, state?: TState) => void) => TView
+  rejected: (
+    e: Error,
+    state: TState,
+    update: (p: Promise<TData>, state?: TState) => void,
+    data: TData | undefined,
+  ) => TView
 }
 
 export type AsyncInspect<TData, TState> = <TView>(view: AsyncView<TData, TState, TView>) => TView
@@ -45,12 +50,17 @@ export default function useAsync<TData, TState = any>(
           setPending(p)
         })
       case 'rejected':
-        return view.rejected(error as Error, userState as TState, (p, newState) => {
-          setUserState(newState)
-          setPending(p)
-        })
+        return view.rejected(
+          error as Error,
+          userState as TState,
+          (p, newState) => {
+            setUserState(newState)
+            setPending(p)
+          },
+          (data as TData) ?? undefined,
+        )
       default:
-        return view.pending(userState as TState)
+        return view.pending(userState as TState, data as TData)
     }
   }
 }
