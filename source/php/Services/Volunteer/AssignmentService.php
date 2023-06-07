@@ -34,7 +34,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
             'excerpt'  => $meta['description'] ?? '',
             'created'  => $created,
             'modified' => $modified,
-            'model'    => $this->createModel($meta, $_embedded ?? []),
+            'model'    => $this->createModel($meta ?? [], $_embedded ?? []),
         ]);
     }
 
@@ -78,8 +78,12 @@ class AssignmentService extends PostsAdapter implements VQPosts
         ];
 
         return array_reduce(
-            array_values($contentPieces),
-            fn($str, $i) => $str.$i['title'].$i['content']
+            array_filter(
+                array_values($contentPieces),
+                fn($i) => ! empty($i['content'])
+            ),
+            fn(string $str, array $i) => $str.$i['title'].$i['content'],
+            ''
         );
     }
 
