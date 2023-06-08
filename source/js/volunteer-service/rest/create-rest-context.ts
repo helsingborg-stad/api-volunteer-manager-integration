@@ -152,15 +152,9 @@ export const createRestContext = (
           ? {
               employer_contacts: [
                 {
-                  ...(input.publicContact?.name?.length && input.publicContact?.name?.length > 0
-                    ? { name: input.publicContact.name }
-                    : {}),
-                  ...(input.publicContact?.email?.length && input.publicContact?.email?.length > 0
-                    ? { email: input.publicContact.email }
-                    : {}),
-                  ...(input.publicContact?.phone?.length && input.publicContact?.phone?.length > 0
-                    ? { name: input.publicContact.phone }
-                    : {}),
+                  name: input?.publicContact?.name ?? '',
+                  email: input?.publicContact?.email ?? '',
+                  phone: input?.publicContact?.phone ?? '',
                 },
               ],
             }
