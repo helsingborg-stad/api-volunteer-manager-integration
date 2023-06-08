@@ -105,10 +105,11 @@ class AssignmentService extends PostsAdapter implements VQPosts
             new VolunteerAssignment\Spots(
                 (int) ($meta['number_of_available_spots'] ?? 0)
             ),
-            new VolunteerAssignment\Employee(
+            new VolunteerAssignment\Employer(
                 $meta['employer_name'] ?? '',
                 $meta['employer_website'] ?? '',
-                new Collection($this->parseEmployeeContacts(($meta['employer_contacts'] ?? []) ? $meta['employer_contacts'] : []))
+                new Collection($this->parseEmployeeContacts(is_array($meta['employer_contacts']) ? $meta['employer_contacts'] : [])
+                ),
             ),
             $meta['internal_assignment'] ?? null,
             $meta['description'] ?? null,
@@ -116,7 +117,7 @@ class AssignmentService extends PostsAdapter implements VQPosts
             $meta['schedule'] ?? null,
             $meta['benefits'] ?? null,
             $this->getFeaturedMediaFromEmbedded($embedded),
-            $this->parseEmployeeContacts($meta['public_contact'] ?? [])[0] ?? null,
+            $this->parseEmployeeContacts(is_array($meta['employer_contacts']) ? $meta['employer_contacts'] : [])[0] ?? null,
             $meta['where'] ?? null,
             $meta['when'] ?? null,
             $meta['read_more_link'] ?? null,
@@ -133,15 +134,15 @@ class AssignmentService extends PostsAdapter implements VQPosts
         $contacts = array_values(
             array_filter(
                 $data,
-                fn(array $item) => ! empty($item['name']) && ! empty($item['phone']) && ! empty($item['email'])
+                fn(array $item) => ! empty($item['phone']) || ! empty($item['email'])
             )
         );
 
         return array_map(
             fn(array $contact) => new Contact(
-                $contact['name'],
-                $contact['email'],
-                $contact['phone']
+                $contact['name'] ?? '',
+                $contact['email'] ?? '',
+                $contact['phone'] ?? ''
             ),
             $contacts
         );

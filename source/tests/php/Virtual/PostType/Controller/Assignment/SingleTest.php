@@ -40,7 +40,7 @@ class SingleTest extends PluginTestCase
             'model'      => new VolunteerAssignment(
                 new VolunteerAssignment\SignUp([], '', '', ''),
                 $this->prophesize(VolunteerAssignment\Spots::class)->reveal(),
-                $this->prophesize(VolunteerAssignment\Employee::class)->reveal(),
+                $this->prophesize(VolunteerAssignment\Employer::class)->reveal(),
                 null,
                 '',
                 '',
@@ -76,7 +76,7 @@ class SingleTest extends PluginTestCase
             'model'      => new VolunteerAssignment(
                 new VolunteerAssignment\SignUp([], '', '', ''),
                 $this->prophesize(VolunteerAssignment\Spots::class)->reveal(),
-                $this->prophesize(VolunteerAssignment\Employee::class)->reveal(),
+                $this->prophesize(VolunteerAssignment\Employer::class)->reveal(),
                 null,
                 '',
                 '',

@@ -84,25 +84,18 @@
     </style>
 @stop
 @section('article.content.after')
-
     <div>
         @if (!empty($volunteerAssignmentViewModel['signUp']))
             <div class='u-margin__top--5'>
                 @include('volunteer-assignment.sign-up', ['viewModel' => (object) $volunteerAssignmentViewModel['signUp']])
             </div>
         @endif
-        <div class='u-margin__top--5'>
-            @include('volunteer-assignment.contact', ['viewModel' => (object) [
-                'title' => $volunteerAssignmentLabels['contact_us'],
-                //'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
-                'contact' => [
-                    'person' => 'Leif GW P',
-                    'email' => 'leffe@helsingborg.io',
-                    'phone' => '0700000000'
-                ],
-            ]])
-        </div>
 
+        @if (!empty($volunteerAssignmentViewModel['contact']))
+            <div class='u-margin__top--5'>
+                @include('volunteer-assignment.contact', ['viewModel' => (object) $volunteerAssignmentViewModel['contact']])
+            </div>
+        @endif
     </div>
     </div>
 @stop

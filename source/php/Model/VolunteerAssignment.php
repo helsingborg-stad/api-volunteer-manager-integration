@@ -4,7 +4,7 @@ namespace APIVolunteerManagerIntegration\Model;
 
 use APIVolunteerManagerIntegration\Model\Resource\Image;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Contact;
-use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employee;
+use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Employer;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\SignUp;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment\Spots;
 
@@ -12,7 +12,7 @@ class VolunteerAssignment
 {
     public bool $internal;
     public SignUp $signUp;
-    public Employee $employee;
+    public Employer $employer;
     public Spots $spots;
 
     public ?string $description = null;
@@ -28,7 +28,7 @@ class VolunteerAssignment
     public function __construct(
         SignUp $signUp,
         Spots $spots,
-        Employee $employee,
+        Employer $employer,
         ?bool $internal = null,
         ?string $description = null,
         ?string $qualifications = null,
@@ -42,7 +42,7 @@ class VolunteerAssignment
     ) {
         $this->signUp         = $signUp;
         $this->spots          = $spots;
-        $this->employee       = $employee;
+        $this->employer       = $employer;
         $this->description    = $description;
         $this->qualifications = $qualifications;
         $this->schedule       = $schedule;

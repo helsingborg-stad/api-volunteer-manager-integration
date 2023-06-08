@@ -4,7 +4,7 @@ namespace APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 
 use APIVolunteerManagerIntegration\Model\Generic\Collection;
 
-class Employee
+class Employer
 {
     public string $name;
 

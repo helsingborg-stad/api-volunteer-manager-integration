@@ -62,9 +62,10 @@ class Single extends VQSingleController
         $data['volunteerAssignment'] = $model;
 
         $data['volunteerAssignmentViewModel'] = [
-            'signUp' => $this->extractSignUp($model),
+            'signUp'  => $this->extractSignUp($model),
+            'contact' => $this->extractContact($model),
         ];
-        
+
         return $data;
     }
 
@@ -176,6 +177,41 @@ class Single extends VQSingleController
                         []
                     )
                 )
+            )
+        );
+    }
+
+    function extractContact(VolunteerAssignment $model): array
+    {
+        $maybeWith =
+            fn(bool $condition, Closure $cb) => fn(array $arr): array => $condition
+                ? $cb($arr)
+                : $arr;
+
+        $withContact = fn(array $arr): array => $maybeWith(
+            ! empty($model->employer->contacts) && ! empty($model->employer->contacts[0]),
+            fn(array $arr) => array_merge($arr, [
+                'contact' => array_filter([
+                    'person' => $model->employer->contacts[0]->name,
+                    'email'  => $model->employer->contacts[0]->email,
+                    'phone'  => $model->employer->contacts[0]->phone,
+                ], fn($str) => ! empty($str)),
+            ])
+        )($arr);
+
+        $createContactData = fn(array $arr): array => $maybeWith(
+            ! empty($arr),
+            fn(array $arr) => array_merge($arr, [
+                'title' => __(
+                    'Contact',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                ),
+            ])
+        )($arr);
+
+        return $createContactData(
+            $withContact(
+                []
             )
         );
     }
