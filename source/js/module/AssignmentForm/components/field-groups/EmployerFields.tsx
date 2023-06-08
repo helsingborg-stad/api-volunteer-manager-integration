@@ -6,7 +6,7 @@ import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
 import { FieldGroupProps } from './FieldGroupProps'
 
 export const EmployerFields = ({
-  formState: { publicContact, employer },
+  formState: { employer },
   handleInputChange,
   isLoading,
   isSubmitted,
