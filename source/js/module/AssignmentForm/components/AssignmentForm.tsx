@@ -7,6 +7,7 @@ import DetailsFields from './field-groups/DetailsFields'
 import PublicContactFields from './field-groups/PublicContactFields'
 import SignUpFields from './field-groups/SignUpFields'
 import { CircularProgress } from '@mui/material'
+import EmployerFields from './field-groups/EmployerFields'
 
 interface AssignmentFormProps {
   formState: AssignmentInput
@@ -40,6 +41,7 @@ function AssignmentForm({
         <DetailsFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
         <SignUpFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
         <PublicContactFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
+        <EmployerFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
       </>
     ),
     [formState, isLoading, isSubmitted, handleInputChange],

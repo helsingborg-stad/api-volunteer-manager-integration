@@ -29,8 +29,12 @@ export const SignUpFields = ({
       <div className="o-grid-12">
         <Select
           options={[
-            ['link', phrase('field_option_label_signup_type_link', 'Sign up Link')],
-            ['contact', phrase('field_option_label_signup_contact', 'Sign up Contact')],
+            [SignUpTypes.Link, phrase('field_option_label_signup_type_link', 'Sign up Link')],
+            [SignUpTypes.Contact, phrase('field_option_label_signup_contact', 'Sign up Contact')],
+            [
+              SignUpTypes.Internal,
+              phrase('field_option_label_signup_contact', 'Internal assignment'),
+            ],
           ]}
           value={formState.signUp.type ?? ''}
           label={phrase('field_label_signup_signup_type', 'SignUp Type')}

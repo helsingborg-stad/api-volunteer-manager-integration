@@ -109,6 +109,11 @@ export const createRestContext = (
         benefits: input.benefits ?? null,
         number_of_available_spots: input.totalSpots ?? null,
         signup_methods: [],
+        ...(input.signUp.type === SignUpTypes.Internal
+          ? {
+              internal_assignment: 'true',
+            }
+          : {}),
         ...(input.signUp.type === SignUpTypes.Link
           ? {
               internal_assignment: 'false',
@@ -136,6 +141,30 @@ export const createRestContext = (
         submitted_by_first_name: input.employer.contacts[0].name,
         submitted_by_email: input.employer.contacts[0].email,
         submitted_by_phone: input.employer.contacts[0].phone,
+        employer_name: input.employer.name,
+        ...(input?.employer?.website?.length && input?.employer.website.length > 0
+          ? { employer_website: input.employer.website }
+          : {}),
+        ...(input?.employer?.about?.length && input?.employer.about.length > 0
+          ? { employer_about: input.employer.about }
+          : {}),
+        ...(input?.publicContact && (input.publicContact?.email || input.publicContact?.phone)
+          ? {
+              employer_contacts: [
+                {
+                  ...(input.publicContact?.name?.length && input.publicContact?.name?.length > 0
+                    ? { name: input.publicContact.name }
+                    : {}),
+                  ...(input.publicContact?.email?.length && input.publicContact?.email?.length > 0
+                    ? { email: input.publicContact.email }
+                    : {}),
+                  ...(input.publicContact?.phone?.length && input.publicContact?.phone?.length > 0
+                    ? { name: input.publicContact.phone }
+                    : {}),
+                },
+              ],
+            }
+          : {}),
       },
       createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
     ).then((response) => {

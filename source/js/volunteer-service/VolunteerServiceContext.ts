@@ -19,6 +19,7 @@ export interface Employer {
   website: string
   contacts: [Contact, ...Contact[]]
   location?: Location
+  about?: string
 }
 
 export interface Contact {
@@ -35,9 +36,8 @@ export interface Location {
 
 export enum SignUpTypes {
   Link = 'link',
-  Email = 'email',
-  Phone = 'phone',
   Contact = 'contact',
+  Internal = 'internal',
 }
 
 export type SignUpWithWebsite = {
@@ -56,6 +56,15 @@ export type SignUpWithContact = {
   deadline?: string
 }
 
+export type SignUpIsInternal = {
+  type: SignUpTypes.Internal
+  phone?: ''
+  email?: ''
+  name?: ''
+  hasDeadline?: string
+  deadline?: string
+}
+
 export interface AssignmentInput {
   title: string
   description: string
@@ -70,7 +79,7 @@ export interface AssignmentInput {
         hasDeadline?: 'yes' | 'no' | ''
         deadline?: string
       }
-    | (SignUpWithWebsite | SignUpWithContact)
+    | (SignUpWithWebsite | SignUpWithContact | SignUpIsInternal)
   qualifications?: string
   schedule?: string
   benefits?: string
