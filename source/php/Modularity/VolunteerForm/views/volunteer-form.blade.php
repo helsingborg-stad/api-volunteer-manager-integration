@@ -4,5 +4,6 @@
     }
 </style>
 
-<div class="js-volunteer-form" data-labels='{{ json_encode($labels) }}'
+<div class="js-volunteer-form  o-container o-container--content u-padding--0 u-margin__x--0"
+     data-labels='{{ json_encode($labels) }}'
      data-volunteer-api-uri={{ $volunteerApiUri }}></div>
