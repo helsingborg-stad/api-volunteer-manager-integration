@@ -7,6 +7,9 @@ const post = (uri: string, data: object = {}, headers: object = {}) =>
     url: `${uri}`,
     data,
     headers,
+    validateStatus: function (status) {
+      return status >= 200 && status < 400
+    },
   })
 
 const get = (uri: string, data: object = {}, headers: object = {}) =>
@@ -48,12 +51,12 @@ export const createRestContext = (
         )
 
         return {
-          id: data.meta.first_name,
-          firstName: data.meta.first_name,
-          lastName: data.meta.surname,
-          email: data.meta.email,
-          phone: data.meta.phone_number,
-          status: data.meta['employee-registration-status'],
+          id: data.national_identity_number,
+          firstName: data.first_name,
+          lastName: data.surname,
+          email: data.email,
+          phone: data.phone_number,
+          status: data.status.slug,
         }
       } catch (e) {
         console.log(e)
@@ -73,28 +76,19 @@ export const createRestContext = (
         post(
           `${uri}/employee`,
           {
-            //title: 'employee from insomnia',
-            //status: 'pending',
             email: input.email,
-            //national_identity_number: decoded?.id ?? '',
-            //first_name: decoded?.firstName ?? '',
-            //surname: decoded?.lastName ?? '',
-            ...(input?.phoneNumber && input?.phoneNumber.length > 0
-              ? {
-                  phone_number: input.phoneNumber,
-                }
-              : {}),
+            phone_number: input.phone,
           },
           createAuthorizationHeadersFromToken(token),
         ),
       )
       .then((response) => ({
-        id: response.data.meta.first_name,
-        firstName: response.data.meta.first_name,
-        lastName: response.data.meta.surname,
-        email: response.data.meta.email,
-        phone: response.data.meta.phone_number,
-        status: response.data.meta['employee-registration-status'],
+        id: response.data.national_identity_number ?? input.id,
+        firstName: response.data.first_name ?? input.firstName,
+        lastName: response.data.surname ?? input.lastName,
+        email: response.data.email ?? input.email,
+        phone: response.data.phone_number ?? input.phone,
+        status: response.data.status.slug ?? 'submitted',
       })),
   registerAssignment: (input) =>
     post(

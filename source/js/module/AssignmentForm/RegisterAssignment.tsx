@@ -43,6 +43,7 @@ function RegisterAssignment(): JSX.Element {
   })
 
   const inspect = useAsync<Assignment>(async () => formState, 'loading')
+
   return inspect({
     pending: (state: State, assignment) => (
       <AssignmentForm

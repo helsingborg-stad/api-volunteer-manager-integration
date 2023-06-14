@@ -1,10 +1,5 @@
 import React from 'react'
 
-export interface VolunteerInput {
-  email: string
-  phoneNumber?: string
-}
-
 export interface Volunteer {
   id: string
   firstName: string
@@ -101,7 +96,7 @@ export interface Assignment extends AssignmentInput {
 }
 
 export interface VolunteerServiceContextType {
-  registerVolunteer: (input: VolunteerInput) => Promise<Volunteer>
+  registerVolunteer: (input: Volunteer) => Promise<Volunteer>
   registerAssignment: (input: AssignmentInput) => Promise<Assignment>
   getVolunteer: () => Promise<Volunteer>
 }

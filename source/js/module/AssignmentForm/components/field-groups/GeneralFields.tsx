@@ -1,4 +1,4 @@
-import FormSection from '../form/FormSection'
+import FormSection from '../../../../components/form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
