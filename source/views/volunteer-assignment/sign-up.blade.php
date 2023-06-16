@@ -52,5 +52,19 @@
             </div>
         @endif
 
+
+        @if (empty($viewModel->signUpContact) && !empty($viewModel->signUpButton))
+            <div>
+                @button([
+                'text' => $viewModel->signUpButton['label'],
+                'color' => 'primary',
+                'style' => 'filled',
+                'attributeList' => ['data-open' => $viewModel->signUpButton['modalId']]
+                ])
+                @endbutton
+            </div>
+        @endif
+
     </div>
 </div>
+

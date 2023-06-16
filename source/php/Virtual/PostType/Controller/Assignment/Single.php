@@ -5,11 +5,13 @@ namespace APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment;
 
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFGetField;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeArchiveLink;
 use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeObject;
 use APIVolunteerManagerIntegration\Services\WPService\HomeUrl;
 use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Entity\PostType\Controller\VQSingleController;
 use Closure;
+use WP_Post;
 use WP_Query;
 
 class Single extends VQSingleController
@@ -19,15 +21,18 @@ class Single extends VQSingleController
     private GetPostTypeObject $getPostTypeObject;
     private GetPostTypeArchiveLink $getPostTypeArchiveLink;
     private ACFGetField $acf;
+    private MyPages $myPages;
 
     public function __construct(
         HomeUrl $homeUrl,
         GetPostTypeObject $getPostTypeObject,
-        GetPostTypeArchiveLink $getPostTypeArchiveLink
+        GetPostTypeArchiveLink $getPostTypeArchiveLink,
+        MyPages $myPages
     ) {
         $this->homeUrl                = $homeUrl;
         $this->getPostTypeObject      = $getPostTypeObject;
         $this->getPostTypeArchiveLink = $getPostTypeArchiveLink;
+        $this->myPages                = $myPages;
     }
 
     function single(array $data): array
@@ -62,8 +67,9 @@ class Single extends VQSingleController
         $data['volunteerAssignment'] = $model;
 
         $data['volunteerAssignmentViewModel'] = [
-            'signUp'  => $this->extractSignUp($model),
+            'signUp'  => $this->extractSignUp($model, $data['wpQuery']->posts[0]),
             'contact' => $this->extractContact($model),
+            'modal'   => $this->extractModal($model, $data['wpQuery']->posts[0]),
         ];
 
         return $data;
@@ -110,7 +116,7 @@ class Single extends VQSingleController
         ];
     }
 
-    function extractSignUp(VolunteerAssignment $assignment): array
+    function extractSignUp(VolunteerAssignment $assignment, WP_Post $post): array
     {
         $maybeWith =
             fn(bool $condition, Closure $cb) => fn(array $arr): array => $condition
@@ -149,12 +155,13 @@ class Single extends VQSingleController
             $assignment->internal === true && empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
-                'signUpUrl'    => [
-                    'url'   => '#',
-                    'label' => __(
+                'signUpButton' => [
+                    'modalId' => 'assignment-modal-'.(string) ($post->ID ?? ''),
+                    'label'   => __(
                         'Sign up',
                         API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                     ),
+                    '',
                 ],
             ])
         )($arr);
@@ -214,5 +221,31 @@ class Single extends VQSingleController
                 []
             )
         );
+    }
+
+    private function extractModal(VolunteerAssignment $model, WP_Post $post): array
+    {
+        if (empty($model->internal)) {
+            return [];
+        }
+
+        return [
+            'heading' => __('Sign up for', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).': '.$post->post_title,
+            'id'      => 'assignment-modal-'.(string) ($post->ID ?? ''),
+            'buttons' => [
+                [
+                    'text'  => __('Identify with Bank ID', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'href'  => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['sign_up' => $post->ID])),
+                    'color' => 'primary',
+                    'style' => 'filled',
+                ],
+                [
+                    'text'  => __('Become a volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'href'  => '#',
+                    'color' => 'primary',
+                    'style' => 'outline',
+                ],
+            ],
+        ];
     }
 }

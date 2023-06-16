@@ -3,6 +3,7 @@
 namespace APIVolunteerManagerIntegration\Virtual\PostType;
 
 
+use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\Volunteer\AssignmentService;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment\Archive;
@@ -14,10 +15,12 @@ class Assignment implements VQEntity
 {
     const POST_TYPE = 'volunteer-assignment';
     private WPService $wp;
+    private MyPages $myPages;
 
-    public function __construct(WPService $wp)
+    public function __construct(WPService $wp, MyPages $myPages)
     {
-        $this->wp = $wp;
+        $this->wp      = $wp;
+        $this->myPages = $myPages;
     }
 
     function registerEntity(VQFromSource $virtualQuery): VQFromSource
@@ -27,7 +30,7 @@ class Assignment implements VQEntity
             ->toPostType(self::POST_TYPE)
             ->withSlug('volontaruppdrag')
             ->withLabel(__('Volunteer Assignment', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN))
-            ->withController(new Single($this->wp, $this->wp, $this->wp,))
+            ->withController(new Single($this->wp, $this->wp, $this->wp, $this->myPages))
             ->withController(new Archive($this->wp, $this->wp, $this->wp));
 
         return $virtualQuery;
