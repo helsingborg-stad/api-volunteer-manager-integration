@@ -12,6 +12,8 @@ use APIVolunteerManagerIntegration\Modularity\AssignmentForm\AssignmentForm;
 use APIVolunteerManagerIntegration\Modularity\VolunteerForm\VolunteerForm;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFService;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFServiceFactory;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPagesService;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestClientFactory;
 use APIVolunteerManagerIntegration\Services\WpRest\WpRestFactory;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
@@ -69,6 +71,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
 
         $DI->bind(VQContextFactory::class, new GlobalContextFactory());
         $DI->bind(PluginManager::class, $DI->make(PluginManager::class));
+        $DI->bind(MyPages::class, $DI->make(MyPagesService::class));
 
         $plugin = $DI->resolve(PluginManager::class);
         $plugin->register($this);
