@@ -3,6 +3,7 @@
 namespace APIVolunteerManagerIntegration\Tests\_TestUtils;
 
 use APIVolunteerManagerIntegration\Helper\PluginManager\PluginManager;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
 use Brain\Monkey;
@@ -30,6 +31,10 @@ class PluginTestCase extends TestCase
      * @var ObjectProphecy&WPService wp
      */
     public $wp;
+    /**
+     * @var MyPages|ObjectProphecy
+     */
+    public $myPages;
 
     public function setUp(): void
     {
@@ -45,6 +50,7 @@ class PluginTestCase extends TestCase
             ->returnArg();
 
         $this->wp            = $this->prophesize(WPService::class);
+        $this->myPages       = $this->prophesize(MyPages::class)->reveal();
         $this->pluginManager = new PluginManager($this->wp->reveal());
     }
 

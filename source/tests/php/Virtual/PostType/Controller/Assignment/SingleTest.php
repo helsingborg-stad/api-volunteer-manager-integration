@@ -21,7 +21,7 @@ class SingleTest extends PluginTestCase
         $wpQuery = $this->createFakeWpQuery([], $post);
 
 
-        $controller = new Single($wp, $wp, $wp);
+        $controller = new Single($wp, $wp, $wp, $this->myPages);
         $data       = $controller->single(['wpQuery' => $wpQuery, 'exampleThemeControllerData' => true]);
 
         self::assertArrayHasKey('volunteerAssignment', $data, 'model property exists');
@@ -56,7 +56,7 @@ class SingleTest extends PluginTestCase
 
         $wpQuery = $this->createFakeWpQuery([], $post);
 
-        $data = (new Single($wp, $wp, $wp))->single([
+        $data = (new Single($wp, $wp, $wp, $this->myPages))->single([
             'wpQuery' => $wpQuery, 'exampleThemeControllerData' => true,
         ]);
 
@@ -92,7 +92,7 @@ class SingleTest extends PluginTestCase
 
         $wpQuery = $this->createFakeWpQuery([], $post);
 
-        $data = (new Single($wp, $wp, $wp))->single([
+        $data = (new Single($wp, $wp, $wp, $this->myPages))->single([
             'wpQuery' => $wpQuery, 'exampleThemeControllerData' => true,
         ]);
 
