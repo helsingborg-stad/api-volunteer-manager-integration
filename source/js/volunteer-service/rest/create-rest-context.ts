@@ -23,7 +23,6 @@ const get = (uri: string, data: object = {}, headers: object = {}) =>
 const tryGetAccessToken = async () => window.gdiHost.getAccessToken()
 const getValidAccessToken = async () =>
   tryGetAccessToken().then((r) => {
-    console.log(r)
     if (!r?.token || r.token.length === 0) throw new Error('Invalid access token')
     return r
   })
@@ -43,31 +42,14 @@ export const createRestContext = (
 ): VolunteerServiceContextType => ({
   getVolunteer: () =>
     getValidAccessToken().then(async ({ token, decoded }) => {
-      try {
-        const { data } = await get(
-          `${uri}/employee`,
-          {},
-          createAuthorizationHeadersFromToken(token),
-        )
-
-        return {
-          id: data.national_identity_number,
-          firstName: data.first_name,
-          lastName: data.surname,
-          email: data.email,
-          phone: data.phone_number,
-          status: data.status.slug,
-        }
-      } catch (e) {
-        console.log(e)
-        return {
-          id: decoded?.id ?? '',
-          firstName: decoded?.firstName,
-          lastName: decoded?.lastName,
-          email: '',
-          phone: '',
-          status: '',
-        }
+      const { data } = await get(`${uri}/employee`, {}, createAuthorizationHeadersFromToken(token))
+      return {
+        id: data.national_identity_number,
+        firstName: data.first_name,
+        lastName: data.surname,
+        email: data.email,
+        phone: data.phone_number,
+        status: data.status.slug,
       }
     }),
   registerVolunteer: (input) =>

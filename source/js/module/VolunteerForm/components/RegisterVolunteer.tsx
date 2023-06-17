@@ -1,7 +1,7 @@
 import VolunteerServiceContext, {
   Volunteer,
 } from '../../../volunteer-service/VolunteerServiceContext'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import useAsync from '../../../hooks/UseAsync'
 import VolunteerForm from './volunteer/VolunteerForm'
 import useForm from '../../../hooks/UseForm'
@@ -80,7 +80,27 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
 
 function RegisterVolunteer(): JSX.Element {
   const { getVolunteer, registerVolunteer } = useContext(VolunteerServiceContext)
-  const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
+
+  const getVolunteerWithNullCatch = useCallback(
+    async (): Promise<Volunteer> =>
+      getVolunteer().catch((e) => {
+        const { response } = e
+        if (!response?.data?.message || response.data?.message !== 'Invalid post ID.') {
+          throw e
+        }
+        return window.gdiHost.getAccessToken().then(({ decoded }) => ({
+          id: decoded.id,
+          firstName: decoded.firstName,
+          lastName: decoded.lastName,
+          email: '',
+          phone: '',
+          status: '',
+        }))
+      }),
+    [],
+  )
+
+  const inspect = useAsync<Volunteer, State>(getVolunteerWithNullCatch, 'loading')
 
   return inspect({
     pending: (state) => <span>pending</span>,
