@@ -67,9 +67,10 @@ class Single extends VQSingleController
         $data['volunteerAssignment'] = $model;
 
         $data['volunteerAssignmentViewModel'] = [
-            'signUp'  => $this->extractSignUp($model, $data['wpQuery']->posts[0]),
-            'contact' => $this->extractContact($model),
-            'modal'   => $this->extractModal($model, $data['wpQuery']->posts[0]),
+            'signUp'     => $this->extractSignUp($model, $data['wpQuery']->posts[0]),
+            'contact'    => $this->extractContact($model),
+            'modal'      => $this->extractModal($model, $data['wpQuery']->posts[0]),
+            'signUpForm' => $this->extractSignUpForm($model, $data['wpQuery']->posts[0]),
         ];
 
         return $data;
@@ -243,9 +244,25 @@ class Single extends VQSingleController
                     'text'  => __('Become a volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                     'href'  => '#',
                     'color' => 'primary',
-                    'style' => 'outline',
+                    'style' => 'outlined',
                 ],
             ],
+        ];
+    }
+
+    private function extractSignUpForm(VolunteerAssignment $model, WP_Post $post): array
+    {
+        if (empty($model->internal) || empty($_GET['sign_up']) || (int) $_GET['sign_up'] !== $post->ID) {
+            return [];
+        }
+
+        return [
+            'heading'            => $post->post_title,
+            'id'                 => 'assignment-sign-up-modal-'.(string) ($post->ID ?? ''),
+            'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
+            'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
+            'labels'             => [],
+            'signOutUrl'         => $this->myPages->signOutUrl(),
         ];
     }
 }
