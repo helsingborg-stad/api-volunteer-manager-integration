@@ -50,6 +50,15 @@ export const createRestContext = (
         email: data.email,
         phone: data.phone_number,
         status: data.status.slug,
+        statusLabel: data.status.name,
+        assignments: [...(data?.assignments ?? [])].map(
+          ({ id, title, status: { name, slug } }) => ({
+            assignmentId: id,
+            title: title,
+            status: slug,
+            statusLabel: name,
+          }),
+        ),
       }
     }),
   registerVolunteer: (input) =>
@@ -156,6 +165,18 @@ export const createRestContext = (
         ...toNullString('totalSpots', input?.totalSpots),
         ...toNullString('when', input?.when),
         ...toNullString('where', input?.where),
+      }
+    }),
+  applyToAssignment: (assignmentId) =>
+    getValidAccessToken().then(async ({ token, decoded }) => {
+      const { status, statusText } = await post(
+        `${uri}/application`,
+        { assignment_id: assignmentId },
+        createAuthorizationHeadersFromToken(token),
+      )
+
+      if (status !== 200) {
+        throw new Error(statusText)
       }
     }),
 })

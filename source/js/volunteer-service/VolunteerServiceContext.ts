@@ -7,6 +7,13 @@ export interface Volunteer {
   email?: string
   phone?: string
   status?: string
+  statusLabel?: string
+  assignments?: {
+    assignmentId: number
+    title: string
+    status: string
+    statusLabel: string
+  }[]
 }
 
 export interface Employer {
@@ -99,6 +106,7 @@ export interface VolunteerServiceContextType {
   registerVolunteer: (input: Volunteer) => Promise<Volunteer>
   registerAssignment: (input: AssignmentInput) => Promise<Assignment>
   getVolunteer: () => Promise<Volunteer>
+  applyToAssignment: (assignmentId: number) => Promise<void>
 }
 
 const notImplemented = () => {
@@ -109,6 +117,7 @@ const VolunteerServiceContext = React.createContext<VolunteerServiceContextType>
   getVolunteer: notImplemented,
   registerVolunteer: notImplemented,
   registerAssignment: notImplemented,
+  applyToAssignment: notImplemented,
 })
 
 export default VolunteerServiceContext
