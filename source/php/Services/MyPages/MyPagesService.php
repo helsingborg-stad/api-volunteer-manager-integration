@@ -15,4 +15,9 @@ class MyPagesService implements MyPages
 
         return \ModMyPages\Service\LoginUrlService\LoginUrlServiceFactory::createFromEnv()->buildUrl($redirectUrl);
     }
+
+    public function signOutUrl(): string
+    {
+        return home_url('/signout');
+    }
 }
