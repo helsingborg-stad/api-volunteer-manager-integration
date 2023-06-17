@@ -64,7 +64,13 @@
 
         @if (!empty($volunteerAssignmentViewModel['modal']))
             <div>
-                @include('volunteer-assignment.sign-up-modal', ['viewModel' => (object) $volunteerAssignmentViewModel['modal']])
+                @include('volunteer-assignment.modal.sign-up', ['viewModel' => (object) $volunteerAssignmentViewModel['modal']])
+            </div>
+        @endif
+
+        @if (!empty($volunteerAssignmentViewModel['signUpForm']))
+            <div>
+                @include('volunteer-assignment.modal.sign-up-form', ['viewModel' => (object) $volunteerAssignmentViewModel['signUpForm']])
             </div>
         @endif
     </div>

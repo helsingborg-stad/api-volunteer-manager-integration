@@ -59,7 +59,7 @@
                 'text' => $viewModel->signUpButton['label'],
                 'color' => 'primary',
                 'style' => 'filled',
-                'attributeList' => ['data-open' => $viewModel->signUpButton['modalId']]
+                'attributeList' => ['data-open' => $viewModel->signUpButton['modalId']],
                 ])
                 @endbutton
             </div>
