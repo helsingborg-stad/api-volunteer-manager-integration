@@ -18,8 +18,8 @@ const C2A = (props: { onClick: (e: any) => void; disabled?: boolean }) => (
   </>
 )
 
-export function SignUpToAssignment(): JSX.Element {
-  const { getVolunteer, registerVolunteer } = useContext(VolunteerServiceContext)
+export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): JSX.Element {
+  const { getVolunteer } = useContext(VolunteerServiceContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
 
   return inspect({

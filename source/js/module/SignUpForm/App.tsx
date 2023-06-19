@@ -6,14 +6,15 @@ interface Props {
   volunteerApiUri: string
   volunteerAppSecret: string
   labels?: Record<string, string>
+  assignmentId: string
 }
 
-function App({ volunteerApiUri, volunteerAppSecret, labels }: Props): JSX.Element {
+function App({ volunteerApiUri, volunteerAppSecret, labels, assignmentId }: Props): JSX.Element {
   return (
     <PhraseProvider phrases={labels ?? {}}>
       <VolunteerServiceProvider uri={volunteerApiUri} appSecret={volunteerAppSecret}>
         <div className="assignment-sign-up-app">
-          <SignUpToAssignment />
+          <SignUpToAssignment assignmentId={assignmentId} />
         </div>
       </VolunteerServiceProvider>
     </PhraseProvider>

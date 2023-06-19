@@ -7,18 +7,23 @@ const renderSignUpForm = (elements: HTMLElement[]) => () =>
   [...elements]
     .map((e) => ({
       root: ReactDOM.createRoot(e as HTMLElement),
-      volunteerApiUri: e.getAttribute('data-volunteer-api-uri') ?? '',
-      volunteerAppSecret: e.getAttribute('data-volunteer-app-secret') ?? '',
-      labels: JSON.parse(e.getAttribute('data-labels') ?? '{}'),
+      volunteerApiUri: e.getAttribute('data-volunteer-api-uri') || '',
+      volunteerAppSecret: e.getAttribute('data-volunteer-app-secret') || '',
+      labels: JSON.parse(e.getAttribute('data-labels') || '{}'),
+      assignmentId: new URLSearchParams(window.location.search).get('sign_up') || '',
     }))
     .filter(
-      ({ volunteerApiUri, volunteerAppSecret }) =>
-        volunteerApiUri.length > 0 && volunteerAppSecret.length > 0,
+      ({ volunteerApiUri, volunteerAppSecret, assignmentId }) =>
+        volunteerApiUri.length > 0 && volunteerAppSecret.length > 0 && assignmentId.length > 0,
     )
-    .forEach(({ root, volunteerApiUri, volunteerAppSecret }) => {
+    .forEach(({ root, volunteerApiUri, volunteerAppSecret, assignmentId }) => {
       root.render(
         <React.StrictMode>
-          <App volunteerApiUri={volunteerApiUri} volunteerAppSecret={volunteerAppSecret} />
+          <App
+            assignmentId={assignmentId}
+            volunteerApiUri={volunteerApiUri}
+            volunteerAppSecret={volunteerAppSecret}
+          />
         </React.StrictMode>,
       )
     })
