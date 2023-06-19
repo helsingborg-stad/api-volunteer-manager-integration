@@ -107,6 +107,7 @@ export interface VolunteerServiceContextType {
   registerAssignment: (input: AssignmentInput) => Promise<Assignment>
   getVolunteer: () => Promise<Volunteer>
   applyToAssignment: (assignmentId: number) => Promise<void>
+  getAssignment: (assignmentId: number) => Promise<Assignment>
 }
 
 const notImplemented = () => {
@@ -118,6 +119,7 @@ const VolunteerServiceContext = React.createContext<VolunteerServiceContextType>
   registerVolunteer: notImplemented,
   registerAssignment: notImplemented,
   applyToAssignment: notImplemented,
+  getAssignment: notImplemented,
 })
 
 export default VolunteerServiceContext

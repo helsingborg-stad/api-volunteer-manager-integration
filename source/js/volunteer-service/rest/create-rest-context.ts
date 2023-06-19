@@ -179,4 +179,33 @@ export const createRestContext = (
         throw new Error(statusText)
       }
     }),
+  getAssignment: (assignmentId) =>
+    get(`${uri}/assignment/${assignmentId}`).then(({ data }) => ({
+      id: data.id,
+      title: data.title,
+      description: data.meta.description,
+      qualifications: data.meta.qualifications,
+      schedule: data.meta.schedule,
+      benefits: data.meta.benefits,
+      totalSpots: data.meta.number_of_available_spots,
+      signUp: {
+        type: data.meta.internal_assignment
+          ? SignUpTypes.Internal
+          : data.meta.signup_methods[0] || null,
+        link: data.meta.signup_link,
+        email: data.meta.signup_email,
+        phone: data.meta.signup_phone,
+      },
+      employer: {
+        name: data?.meta?.employer_name || '',
+        website: data?.meta?.employer_website || '',
+        contacts: [
+          {
+            name: '',
+            email: '',
+            phone: '',
+          },
+        ],
+      },
+    })),
 })
