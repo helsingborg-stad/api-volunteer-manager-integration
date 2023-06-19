@@ -19,7 +19,7 @@ const C2A = (props: { onClick: (e: any) => void; disabled?: boolean }) => (
 )
 
 export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): JSX.Element {
-  const { getVolunteer } = useContext(VolunteerServiceContext)
+  const { getVolunteer, applyToAssignment } = useContext(VolunteerServiceContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
 
   return inspect({
@@ -46,11 +46,18 @@ export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): 
         </Button>
       </SignUpForm>
     ),
-    resolved: (volunteer, state, update) => (
-      <SignUpForm volunteer={volunteer} onSubmit={() => update(getVolunteer(), 'saving')}>
-        <C2A onClick={() => update(getVolunteer(), 'saving')} />
-      </SignUpForm>
-    ),
+    resolved: (volunteer, state, update) =>
+      volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) ? (
+        <span>{'Submitted'}</span>
+      ) : (
+        <SignUpForm volunteer={volunteer} onSubmit={() => null}>
+          <C2A
+            onClick={() =>
+              update(applyToAssignment(parseInt(assignmentId)).then(getVolunteer), 'saving')
+            }
+          />
+        </SignUpForm>
+      ),
     rejected: (err, state, update) => <span>rejected</span>,
   })
 }
