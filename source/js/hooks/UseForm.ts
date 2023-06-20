@@ -14,7 +14,19 @@ export function useForm<T>({ initialState, resetState }: FormProps<T>) {
       (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormState((prev) => {
           const newFormState = { ...prev }
-          setNestedObjectValue(newFormState, field, event.target.value)
+
+          if (
+            event.target instanceof HTMLInputElement &&
+            event.target.files &&
+            event.target.files.length > 0
+          ) {
+            // Handle file inputs
+            setNestedObjectValue(newFormState, field, event.target.files)
+          } else {
+            // Handle other inputs
+            setNestedObjectValue(newFormState, field, event.target.value)
+          }
+
           return newFormState as T
         })
       },
