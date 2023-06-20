@@ -5,17 +5,17 @@ import { Field } from '@helsingborg-stad/municipio-react-ui'
 
 interface SignUpFormProps extends PropsWithChildren {
   volunteer: Volunteer
-  onSubmit: () => any
+  onSubmit?: () => any
   isLoading?: boolean
   isSubmitted?: boolean
   hasError?: boolean
   message?: string
 }
 
-function SignUpForm({ volunteer, onSubmit, children }: SignUpFormProps): JSX.Element {
+function SignUpForm({ volunteer, onSubmit = () => {}, children }: SignUpFormProps): JSX.Element {
   const { phrase } = useContext(PhraseContext)
   return (
-    <div className="o-grid o-grid--form">
+    <div className="signup-form o-grid o-grid--form">
       <div className="o-grid-12">
         <Field
           name="volunteer_name"
@@ -34,7 +34,7 @@ function SignUpForm({ volunteer, onSubmit, children }: SignUpFormProps): JSX.Ele
           readOnly
         />
       </div>
-      <div className="o-grid-12">{children}</div>
+      <div className="o-grid-12 u-margin__bottom--4">{children}</div>
     </div>
   )
 }

@@ -2,8 +2,8 @@ import VolunteerServiceContext, { Volunteer } from '../../volunteer-service/Volu
 import useAsync from '../../hooks/UseAsync'
 import { useContext } from 'react'
 import SignUpForm from './SignUpForm'
-import { CircularProgress } from '@mui/material'
-import { Button } from '@helsingborg-stad/municipio-react-ui'
+import { CircularProgress, Stack } from '@mui/material'
+import { Button, Icon } from '@helsingborg-stad/municipio-react-ui'
 
 type State = 'loading' | 'saving'
 
@@ -21,6 +21,8 @@ const C2A = (props: { onClick: (e: any) => void; disabled?: boolean }) => (
 export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): JSX.Element {
   const { getVolunteer, applyToAssignment } = useContext(VolunteerServiceContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
+  const volunteerHasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
+    volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) !== undefined
 
   return inspect({
     pending: (state, data) => (
@@ -41,24 +43,75 @@ export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): 
           className={'u-position--absolute u-color__text--secondary'}
           color="inherit"
         />
-        <Button color={'primary'} disabled>
-          {'Laddar'}
-        </Button>
+        <Stack spacing={4}>
+          <div>
+            <Stack spacing={1} direction={'column'}>
+              <Button disabled color={'primary'}>
+                {'Vänligen vänta...'}
+              </Button>
+              <span></span>
+              <Button disabled color={'secondary'} onClick={console.log}>
+                {'Avbryt'}
+              </Button>
+            </Stack>
+          </div>
+        </Stack>
       </SignUpForm>
     ),
     resolved: (volunteer, state, update) =>
-      volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) ? (
-        <span>{'Submitted'}</span>
-      ) : (
-        <SignUpForm volunteer={volunteer} onSubmit={() => null}>
-          <C2A
-            onClick={() =>
-              update(applyToAssignment(parseInt(assignmentId)).then(getVolunteer), 'saving')
-            }
-          />
-        </SignUpForm>
-      ),
-    rejected: (err, state, update) => <span>rejected</span>,
+      ({
+        saving: (
+          <SignUpForm volunteer={volunteer}>
+            <Stack spacing={3}>
+              <div className={'c-notice c-notice--success'}>
+                <span className="c-notice__icon">
+                  <Icon name={'check'} />
+                </span>
+                <span className="c-notice__message">
+                  {'Tack för ditt intresse! Du kommer att bli kontaktad av uppdragsgivaren.'}
+                </span>
+              </div>
+              <div>
+                <Stack spacing={1} direction={'column'}>
+                  <Button disabled color={'primary'}>
+                    {'Anmäl intresse'}
+                  </Button>
+                  <span></span>
+                  <Button color={'secondary'} onClick={console.log}>
+                    {'Logga ut'}
+                  </Button>
+                </Stack>
+              </div>
+            </Stack>
+          </SignUpForm>
+        ),
+        loading: (
+          <SignUpForm volunteer={volunteer}>
+            <Stack spacing={4}>
+              <div>
+                <Stack spacing={1} direction={'column'}>
+                  <Button
+                    color={'primary'}
+                    onClick={() =>
+                      update(applyToAssignment(parseInt(assignmentId)).then(getVolunteer), 'saving')
+                    }>
+                    {'Anmäl intresse'}
+                  </Button>
+                  <span></span>
+                  <Button color={'secondary'} onClick={console.log}>
+                    {'Logga ut'}
+                  </Button>
+                </Stack>
+              </div>
+            </Stack>
+          </SignUpForm>
+        ),
+      }[`${volunteerHasSubmitted(volunteer, assignmentId) ? 'saving' : state}`]),
+    rejected: (err, state, update) =>
+      ({
+        loading: <span>failed to load</span>,
+        saving: <span>failed to save</span>,
+      }[state]),
   })
 }
 
