@@ -37,6 +37,18 @@ export const GeneralFields = ({
         />
       </div>
 
+      <div className="o-grid-12">
+        <Field
+          label={phrase('field_label_assignment_image', 'Assignment Image')}
+          name="assignment_image"
+          type="file"
+          onChange={handleInputChange('image')}
+          required
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
+        />
+      </div>
+
       <div className="o-grid-12 o-grid-6@md">
         <Field
           value={formState.employer.contacts[0].name}

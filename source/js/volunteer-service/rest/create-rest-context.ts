@@ -1,12 +1,18 @@
 import axios from 'axios'
 import { SignUpTypes, VolunteerServiceContextType } from '../VolunteerServiceContext'
+import { GetAccessTokenResponse } from '../../gdi-host/api'
+import { convertToFormData } from './convertToFormData'
 
-const post = (uri: string, data: object = {}, headers: object = {}) =>
+const post = (uri: string, data: FormData | object = {}, headers: object = {}) =>
   axios({
     method: 'post',
     url: `${uri}`,
     data,
-    headers,
+    headers: {
+      ...{ 'Content-Type': 'application/x-www-form-urlencoded' },
+      ...headers,
+      ...(data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {}),
+    },
     validateStatus: function (status) {
       return status >= 200 && status < 400
     },
@@ -21,18 +27,18 @@ const get = (uri: string, data: object = {}, headers: object = {}) =>
   })
 
 const tryGetAccessToken = async () => window.gdiHost.getAccessToken()
+
 const getValidAccessToken = async () =>
   tryGetAccessToken().then((r) => {
     if (!r?.token || r.token.length === 0) throw new Error('Invalid access token')
     return r
   })
-const createAuthorizationHeadersFromToken = (token: string) => ({
-  'Content-Type': 'application/x-www-form-urlencoded',
+
+const createAuthorizationHeadersFromToken = ({ token }: GetAccessTokenResponse) => ({
   Authorization: `Bearer ${token}`,
 })
 
 const createAuthorizationHeadersFromBase64Secret = (base64Secret: string) => ({
-  'Content-Type': 'application/x-www-form-urlencoded',
   Authorization: `${base64Secret}`,
 })
 
@@ -41,9 +47,10 @@ export const createRestContext = (
   appSecret?: string,
 ): VolunteerServiceContextType => ({
   getVolunteer: () =>
-    getValidAccessToken().then(async ({ token, decoded }) => {
-      const { data } = await get(`${uri}/employee`, {}, createAuthorizationHeadersFromToken(token))
-      return {
+    getValidAccessToken()
+      .then(createAuthorizationHeadersFromToken)
+      .then((headers) => get(`${uri}/employee`, {}, headers))
+      .then(({ data }) => ({
         id: data.national_identity_number,
         firstName: data.first_name,
         lastName: data.surname,
@@ -59,18 +66,18 @@ export const createRestContext = (
             statusLabel: name,
           }),
         ),
-      }
-    }),
+      })),
   registerVolunteer: (input) =>
     getValidAccessToken()
-      .then(({ token, decoded }) =>
+      .then(createAuthorizationHeadersFromToken)
+      .then((headers) =>
         post(
           `${uri}/employee`,
           {
             email: input.email,
             phone_number: input.phone,
           },
-          createAuthorizationHeadersFromToken(token),
+          headers,
         ),
       )
       .then((response) => ({
@@ -84,67 +91,40 @@ export const createRestContext = (
   registerAssignment: (input) =>
     post(
       `${uri}/assignment`,
-      {
+      convertToFormData({
         title: input.title,
         assignment_eligibility: '[]',
         description: input.description,
-        qualifications: input.qualifications ?? null,
+        qualifications: input.qualifications ?? '',
         schedule:
           input.schedule ?? [input.when, input.where].filter((v) => v && v.length > 0).join('\n\n'),
-        benefits: input.benefits ?? null,
-        number_of_available_spots: input.totalSpots ?? null,
+        benefits: input.benefits ?? '',
+        number_of_available_spots: input.totalSpots?.toString() ?? '',
         signup_methods: [],
-        ...(input.signUp.type === SignUpTypes.Internal
-          ? {
-              internal_assignment: 'true',
-            }
-          : {}),
-        ...(input.signUp.type === SignUpTypes.Link
-          ? {
-              internal_assignment: 'false',
-              signup_methods: ['link'],
-              signup_link: input.signUp.link,
-            }
-          : {}),
-        ...(input.signUp.type === SignUpTypes.Contact
-          ? {
-              internal_assignment: 'false',
-              signup_methods: [
-                ...(input.signUp.email && input.signUp.email.length > 0 ? ['email'] : []),
-                ...(input.signUp.phone && input.signUp.phone.length > 0 ? ['phone'] : []),
-              ],
-              ...{
-                ...(input.signUp.email && input.signUp.email.length > 0
-                  ? { signup_email: input.signUp.email }
-                  : {}),
-                ...(input.signUp.phone && input.signUp.phone.length > 0
-                  ? { signup_phone: input.signUp.phone }
-                  : {}),
-              },
-            }
-          : {}),
+        featured_media: input?.image?.item(0) || null,
+        internal_assignment: input.signUp.type === SignUpTypes.Internal ? 'true' : 'false',
+        signup_link: input.signUp.type === SignUpTypes.Link ? input.signUp.link ?? '' : '',
+        signup_email: input.signUp.email ?? '',
+        signup_phone: input.signUp.phone ?? '',
         submitted_by_first_name: input.employer.contacts[0].name,
-        submitted_by_email: input.employer.contacts[0].email,
-        submitted_by_phone: input.employer.contacts[0].phone,
+        submitted_by_email: input.employer.contacts[0].email ?? '',
+        submitted_by_phone: input.employer.contacts[0].phone ?? '',
         employer_name: input.employer.name,
-        ...(input?.employer?.website?.length && input?.employer.website.length > 0
-          ? { employer_website: input.employer.website }
-          : {}),
-        ...(input?.employer?.about?.length && input?.employer.about.length > 0
-          ? { employer_about: input.employer.about }
-          : {}),
-        ...(input?.publicContact && (input.publicContact?.email || input.publicContact?.phone)
-          ? {
-              employer_contacts: [
-                {
-                  name: input?.publicContact?.name ?? '',
-                  email: input?.publicContact?.email ?? '',
-                  phone: input?.publicContact?.phone ?? '',
-                },
-              ],
-            }
-          : {}),
-      },
+        employer_website: input.employer.website ?? '',
+        employer_about: input.employer.about ?? '',
+        employer_contacts: input.publicContact
+          ? [
+              {
+                name: input.publicContact.name,
+                email: input.publicContact.email ?? '',
+                phone: input.publicContact.phone ?? '',
+              },
+            ]
+          : null,
+        shouldBeGone: null,
+        shouldbeUndefined: undefined,
+        emptyArr: [],
+      }),
       createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
     ).then((response) => {
       if (response.status !== 200 || !response?.data?.assignment_id) {
@@ -168,17 +148,14 @@ export const createRestContext = (
       }
     }),
   applyToAssignment: (assignmentId) =>
-    getValidAccessToken().then(async ({ token, decoded }) => {
-      const { status, statusText } = await post(
-        `${uri}/application`,
-        { assignment_id: assignmentId },
-        createAuthorizationHeadersFromToken(token),
-      )
-
-      if (status !== 200) {
-        throw new Error(statusText)
-      }
-    }),
+    getValidAccessToken()
+      .then(createAuthorizationHeadersFromToken)
+      .then((headers) => post(`${uri}/application`, { assignment_id: assignmentId }, headers))
+      .then(({ status, statusText }) => {
+        if (status !== 200) {
+          throw new Error(statusText)
+        }
+      }),
   getAssignment: (assignmentId) =>
     get(`${uri}/assignment/${assignmentId}`).then(({ data }) => ({
       id: data.id,
