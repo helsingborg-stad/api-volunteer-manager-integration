@@ -121,9 +121,6 @@ export const createRestContext = (
               },
             ]
           : null,
-        shouldBeGone: null,
-        shouldbeUndefined: undefined,
-        emptyArr: [],
       }),
       createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
     ).then((response) => {

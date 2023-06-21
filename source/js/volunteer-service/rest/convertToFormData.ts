@@ -1,4 +1,5 @@
 type ValueHandler = (key: string, value: any) => [string, string | Blob][]
+
 const handlers: Record<string, ValueHandler> = {
   FileList: (key, value: FileList) => Array.from(value).map((file, i) => [`${key}[${i}]`, file]),
   File: (key, value: File) => [[key, value]],
@@ -14,6 +15,7 @@ const handlers: Record<string, ValueHandler> = {
   undefined: (key, value: undefined) => [],
   default: (key, value) => [[key, value.toString()]],
 }
+
 export const convertToFormData = (object: { [key: string]: any }): FormData =>
   Object.entries(object)
     .flatMap(([key, value]) => (handlers[value?.constructor?.name] || handlers.default)(key, value))
