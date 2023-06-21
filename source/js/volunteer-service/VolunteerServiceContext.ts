@@ -45,6 +45,8 @@ export enum SignUpTypes {
 export type SignUpWithWebsite = {
   type: SignUpTypes.Link
   link: string
+  phone?: string
+  email?: string
   hasDeadline?: string
   deadline?: string
 }
@@ -95,7 +97,7 @@ export interface AssignmentInput {
     phone?: string
     email?: string
   }
-  image?: File
+  image?: FileList | null
 }
 
 export interface Assignment extends AssignmentInput {
