@@ -7,17 +7,6 @@ import { Button, Icon } from '@helsingborg-stad/municipio-react-ui'
 
 type State = 'loading' | 'saving'
 
-const C2A = (props: { onClick: (e: any) => void; disabled?: boolean }) => (
-  <>
-    <Button color={'primary'} disabled={props.disabled ?? false} onClick={props.onClick}>
-      {'Anmäl intresse'}
-    </Button>
-    <Button color={'secondary'} disabled={props.disabled ?? false} onClick={props.onClick}>
-      {'Avbryt'}
-    </Button>
-  </>
-)
-
 export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): JSX.Element {
   const { getVolunteer, applyToAssignment } = useContext(VolunteerServiceContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')

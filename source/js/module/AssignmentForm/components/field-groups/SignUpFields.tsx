@@ -2,9 +2,19 @@ import FormSection from '../../../../components/form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
-import { SignUpTypes } from '../../../../volunteer-service/VolunteerServiceContext'
+import {
+  SignUpTypes,
+  SignUpWithContact,
+  SignUpWithWebsite,
+} from '../../../../volunteer-service/VolunteerServiceContext'
 
 import { FieldGroupProps } from './FieldGroupProps'
+import Grid from '../../../../components/grid/Grid'
+import ShowIf from '../../../../util/ShowIf'
+
+export function hasProperty<T>(data: any, property: string): data is T {
+  return data && data[property] !== undefined
+}
 
 export const SignUpFields = ({
   formState,
@@ -26,7 +36,7 @@ export const SignUpFields = ({
           : undefined
       }
       isSubSection>
-      <div className="o-grid-12">
+      <Grid>
         <Select
           options={[
             [SignUpTypes.Link, phrase('field_option_label_signup_type_link', 'Sign up Link')],
@@ -44,68 +54,71 @@ export const SignUpFields = ({
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-
-      {formState.signUp.type === SignUpTypes.Link ? (
-        <div className="o-grid-12">
-          <Field
-            value={formState.signUp.link ?? ''}
-            label={phrase('field_label_signup_link', 'Sign up link')}
-            name="signup_link"
-            required
-            type="url"
-            onChange={handleInputChange('signUp.link')}
-            inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-            readOnly={isSubmitted}
-          />
-        </div>
-      ) : null}
-
-      {formState.signUp.type === SignUpTypes.Contact ? (
-        <div className="o-grid o-grid--form">
-          <div className="o-grid-12">
-            <Field
-              value={formState.signUp.name}
-              label={phrase('field_label_signup_name', 'Sign up Contact Name')}
-              name="signup_name"
-              type={'text'}
-              onChange={handleInputChange('signUp.name')}
-              inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-              readOnly={isSubmitted}
-            />
-          </div>
-          <div className="o-grid-12 o-grid-6@md">
-            <Field
-              value={formState.signUp.email}
-              label={phrase('field_label_signup_email', 'Email for Sign up')}
-              name="signup_email"
-              required={
-                formState.signUp.phone && formState.signUp.phone.length > 0 ? undefined : true
-              }
-              type="email"
-              onChange={handleInputChange('signUp.email')}
-              inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-              readOnly={isSubmitted}
-            />
-          </div>
-          <div className="o-grid-12 o-grid-6@md">
-            <Field
-              value={formState.signUp.phone}
-              label={phrase('field_label_signup_phone', 'Phone number for Sign up')}
-              name="signup_phone"
-              required={
-                formState.signUp.email && formState.signUp.email.length > 0 ? undefined : true
-              }
-              type="tel"
-              onChange={handleInputChange('signUp.phone')}
-              inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-              readOnly={isSubmitted}
-            />
-          </div>
-        </div>
-      ) : null}
-
-      <div className="o-grid-12">
+      </Grid>
+      {
+        {
+          [SignUpTypes.Link]: hasProperty<SignUpWithWebsite>(formState.signUp, 'type') && (
+            <Grid>
+              <Field
+                value={formState.signUp.link ?? ''}
+                label={phrase('field_label_signup_link', 'Sign up link')}
+                name="signup_link"
+                required
+                type="url"
+                onChange={handleInputChange('signUp.link')}
+                inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+                readOnly={isSubmitted}
+              />
+            </Grid>
+          ),
+          [SignUpTypes.Contact]: hasProperty<SignUpWithContact>(formState.signUp, 'type') && (
+            <Grid container className="o-grid--form">
+              <Grid>
+                <Field
+                  value={formState.signUp.name}
+                  label={phrase('field_label_signup_name', 'Sign up Contact Name')}
+                  name="signup_name"
+                  type={'text'}
+                  onChange={handleInputChange('signUp.name')}
+                  inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+                  readOnly={isSubmitted}
+                />
+              </Grid>
+              <Grid md={6}>
+                <Field
+                  value={formState.signUp.email}
+                  label={phrase('field_label_signup_email', 'Email for Sign up')}
+                  name="signup_email"
+                  required={
+                    formState.signUp.phone && formState.signUp.phone.length > 0 ? undefined : true
+                  }
+                  type="email"
+                  onChange={handleInputChange('signUp.email')}
+                  inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+                  readOnly={isSubmitted}
+                />
+              </Grid>
+              <Grid md={6}>
+                <Field
+                  value={formState.signUp.phone}
+                  label={phrase('field_label_signup_phone', 'Phone number for Sign up')}
+                  name="signup_phone"
+                  required={
+                    formState.signUp.email && formState.signUp.email.length > 0 ? undefined : true
+                  }
+                  type="tel"
+                  onChange={handleInputChange('signUp.phone')}
+                  inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+                  readOnly={isSubmitted}
+                />
+              </Grid>
+            </Grid>
+          ),
+          [SignUpTypes.Internal]: null,
+          ['null']: null,
+        }[formState.signUp.type ?? 'null']
+      }
+      <Grid>
         <Select
           options={[
             ['no', phrase('field_option_label_signup_has_due_date_no', 'No')],
@@ -122,10 +135,9 @@ export const SignUpFields = ({
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-
-      {formState.signUp.hasDeadline === 'yes' ? (
-        <div className="o-grid-12">
+      </Grid>
+      <ShowIf condition={formState?.signUp?.hasDeadline === 'yes'}>
+        <Grid>
           <Field
             value={formState.signUp.deadline ?? ''}
             label={phrase('field_label_signup_due_date', 'Last date to apply')}
@@ -136,8 +148,8 @@ export const SignUpFields = ({
             inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
             readOnly={isSubmitted}
           />
-        </div>
-      ) : null}
+        </Grid>
+      </ShowIf>
     </FormSection>
   )
 }

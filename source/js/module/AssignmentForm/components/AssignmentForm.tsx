@@ -8,6 +8,7 @@ import PublicContactFields from './field-groups/PublicContactFields'
 import SignUpFields from './field-groups/SignUpFields'
 import { CircularProgress } from '@mui/material'
 import EmployerFields from './field-groups/EmployerFields'
+import Grid from '../../../components/grid/Grid'
 
 interface AssignmentFormProps {
   formState: AssignmentInput
@@ -53,8 +54,8 @@ function AssignmentForm({
         style={{ margin: 'auto', maxWidth: '720px' }}
         className="u-padding--3 u-padding__y--8 u-padding--4@sm u-padding--4@md u-padding--5@lg u-padding--5@xl">
         <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
-          <div className="o-grid">
-            <div className="o-grid-12">
+          <Grid container>
+            <Grid col={12}>
               {isSubmitted || isLoading ? (
                 <div style={{ opacity: isSubmitted ? 1 : 0.5, userSelect: 'none' }}>
                   {renderFields()}
@@ -62,8 +63,8 @@ function AssignmentForm({
               ) : (
                 <>{renderFields()}</>
               )}
-            </div>
-            <div className="o-grid-12 u-margin__top--2">
+            </Grid>
+            <Grid col={12} className="u-margin__top--2">
               {!isSubmitted ? (
                 <Button
                   color="primary"
@@ -106,8 +107,8 @@ function AssignmentForm({
                   <CircularProgress color="inherit" style={{ marginBottom: '-16px' }} />
                 </div>
               ) : null}
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </form>
       </CardBody>
     </Card>
