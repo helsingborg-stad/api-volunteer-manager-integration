@@ -2,6 +2,8 @@ import axios from 'axios'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import { updateURLWith } from '../../util/url-query-params'
+import { getValidAccessToken } from '../../volunteer-service/rest/create-rest-context'
 
 const renderSignUpForm = (elements: HTMLElement[]) => () =>
   [...elements]
@@ -28,53 +30,23 @@ const renderSignUpForm = (elements: HTMLElement[]) => () =>
       )
     })
 
-const reloadPage = () => {
-  const getQueryParams = (url: string): URLSearchParams => new URL(url).searchParams
-  const withQueryParams =
-    (queryParams: Record<string, string>) =>
-    (params: URLSearchParams): URLSearchParams => {
-      Object.entries(queryParams).forEach(([key, value]) => {
-        params.set(key, value)
-      })
-      return params
-    }
-
-  const filterQueryParams =
-    (keyList: string[]) =>
-    (params: URLSearchParams): URLSearchParams => {
-      keyList.forEach((key) => {
-        params.delete(key)
-      })
-      return params
-    }
-  const toQueryString = (params: URLSearchParams): string => `?${params.toString()}`
-
-  window.location.href = [
-    `${window.location.protocol}//`,
-    window.location.host,
-    window.location.pathname,
-    toQueryString(filterQueryParams(['sign_up'])(getQueryParams(window.location.href))),
-  ].join('')
-}
-
 const onCloseDialog = (e: HTMLElement) => (event: any) => {
   event.preventDefault()
-
+  updateURLWith({ remove: ['sign_up'] }, false)
   axios({
     method: 'get',
     url: `${e.getAttribute('data-sign-out-url')}`,
-  }).then(reloadPage)
+  }).then(() => window.location.reload())
 }
 
-const openDialog = () =>
+const showDialog = () =>
   [...document.querySelectorAll<HTMLElement>('.js-press-on-dom-loaded')]
     .map((e) => ({
       element: e,
-      openDialog: () => e?.click && e.click(),
       dialogId: `${e?.dataset?.open}`,
     }))
     .filter(({ dialogId }) => dialogId && dialogId.length > 0)
-    .forEach(({ element, openDialog, dialogId }) => {
+    .forEach(({ element, dialogId }) => {
       const elements = () =>
         [...document.querySelectorAll<HTMLElement>(`#${dialogId} .js-assignment-sign-up`)]
           .filter((e) => e.children.length === 0)
@@ -86,6 +58,11 @@ const openDialog = () =>
 
       element.addEventListener('click', renderSignUpForm(elements()))
       element.click()
+      element.remove()
     })
 
-document.addEventListener('DOMContentLoaded', openDialog)
+document.addEventListener('DOMContentLoaded', () => {
+  getValidAccessToken()
+    .then(showDialog)
+    .catch(() => {}) //TODO: handle not authenticated
+})
