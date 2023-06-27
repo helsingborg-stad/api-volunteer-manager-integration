@@ -1,4 +1,4 @@
-export const setNestedObjectValue = (obj: any, path: string, value: unknown): any => {
+export const setObjectProperty = (obj: any, path: string, value: unknown): any => {
   path
     .split('.')
     .filter((k) => k.length > 0)

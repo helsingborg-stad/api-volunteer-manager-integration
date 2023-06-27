@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SignUpTypes, VolunteerServiceContextType } from '../VolunteerServiceContext'
 import { GetAccessTokenResponse } from '../../gdi-host/api'
-import { convertToFormData } from './convertToFormData'
+import { convertToFormData } from '../../util/convert-to-form-data'
 
 const post = (uri: string, data: FormData | object = {}, headers: object = {}) =>
   axios({
@@ -26,9 +26,9 @@ const get = (uri: string, data: object = {}, headers: object = {}) =>
     headers,
   })
 
-const tryGetAccessToken = async () => window.gdiHost.getAccessToken()
+export const tryGetAccessToken = async () => window.gdiHost.getAccessToken()
 
-const getValidAccessToken = async () =>
+export const getValidAccessToken = async () =>
   tryGetAccessToken().then((r) => {
     if (!r?.token || r.token.length === 0) throw new Error('Invalid access token')
     return r

@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react'
-import { setNestedObjectValue } from '../util/setNestedObjectValue'
+import { setObjectProperty } from '../util/set-object-property'
 
 interface FormProps<T> {
   initialState: T
@@ -21,10 +21,10 @@ export function useForm<T>({ initialState, resetState }: FormProps<T>) {
             event.target.files.length > 0
           ) {
             // Handle file inputs
-            setNestedObjectValue(newFormState, field, event.target.files)
+            setObjectProperty(newFormState, field, event.target.files)
           } else {
             // Handle other inputs
-            setNestedObjectValue(newFormState, field, event.target.value)
+            setObjectProperty(newFormState, field, event.target.value)
           }
 
           return newFormState as T
