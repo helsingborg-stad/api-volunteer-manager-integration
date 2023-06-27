@@ -7,6 +7,8 @@
 namespace APIVolunteerManagerIntegration\Modularity\VolunteerForm;
 
 use APIVolunteerManagerIntegration\Helper\CacheBust;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPagesService;
 
 /**
  * @property string $nameSingular
@@ -18,21 +20,53 @@ class VolunteerForm extends \Modularity\Module
     public $slug = 'mod-volunteer-form';
     public $supports = [];
 
+    private MyPages $myPages;
+
     public function init()
     {
         $this->nameSingular = __('Volunteer Form', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $this->namePlural   = __('Volunteer Forms', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $this->description  = __('Module for Volunteer registration form',
             API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
+
+        $this->myPages = new MyPagesService();
     }
 
 
     public function data(): array
     {
         return [
-            'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
-            'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
-            'labels'             => [],
+            'loginDialog'             => [
+                'heading' => __('Volunteer Registration', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'id'      => 'identification-dialog',
+                'buttons' => [
+                    [
+                        'text'  => __('Identify with Bank ID', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                        'href'  => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['is_authenticated' => 1])),
+                        'color' => 'primary',
+                        'style' => 'filled',
+                    ],
+                    [
+                        'text'  => __('Close', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                        'href'  => '#',
+                        'color' => 'primary',
+                        'style' => 'outlined',
+                    ],
+                ],
+            ],
+            'registerVolunteerDialog' => ! empty($_GET['is_authenticated']) ?
+                [
+                    'heading'               => __('Volunteer Registration',
+                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'id'                    => 'volunteer-registration-dialog',
+                    'registerVolunteerForm' => [
+                        'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
+                        'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
+                        'labels'             => [],
+                        'signOutUrl'         => $this->myPages->signOutUrl(),
+                    ],
+                ]
+                : [],
         ];
     }
 
@@ -46,7 +80,8 @@ class VolunteerForm extends \Modularity\Module
         wp_enqueue_script(
             'register-volunteer-form-js',
             API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/volunteer-form.js'),
-            ['gdi-host']
+            ['gdi-host', 'mod-my-pages-js']
+
         );
 
         wp_enqueue_style(

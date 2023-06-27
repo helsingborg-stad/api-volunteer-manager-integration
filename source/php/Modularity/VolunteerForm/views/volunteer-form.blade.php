@@ -1,9 +1,2 @@
-<style>
-    .c-field input {
-        overflow: hidden;
-    }
-</style>
-
-<div class="js-volunteer-form o-container o-container--content u-padding--0 u-margin__x--0"
-     data-labels='{{ json_encode($labels) }}'
-     data-volunteer-api-uri={{ $volunteerApiUri }}></div>
+@include('modal.sign-in-volunteer', ['viewModel' => (object) $loginDialog])
+@includeWhen(!empty($registerVolunteerDialog), 'modal.register-volunteer', ['viewModel' => (object) $registerVolunteerDialog])
