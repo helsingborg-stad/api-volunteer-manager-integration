@@ -131,7 +131,7 @@ class Single extends VQSingleController
             fn(array $arr): array => $maybeWith(
                 in_array('link', $assignment->signUp->methods) && empty($arr),
                 fn(array $arr) => array_merge($arr, [
-                    'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+                    'instructions' => 'Välkommen med din intresseanmälan, du anmäler dig via länken nedan.',
                     'signUpUrl'    => [
                         'url'   => $assignment->signUp->link,
                         'label' => __(
@@ -146,7 +146,8 @@ class Single extends VQSingleController
             (in_array('email', $assignment->signUp->methods) || in_array('phone',
                     $assignment->signUp->methods)) && empty($arr),
             fn(array $arr) => array_merge($arr, [
-                'instructions'  => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+                'instructions'  => __('Välkommen med din intresseanmälan, du anmäler dig via kontaktuppgifterna nedan.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'signUpContact' => array_filter([
                     'person' => '',
                     'email'  => $assignment->signUp->email,
@@ -158,7 +159,7 @@ class Single extends VQSingleController
         $withInternalUrl = fn(array $arr): array => $maybeWith(
             $assignment->internal === true && empty($arr),
             fn(array $arr) => array_merge($arr, [
-                'instructions' => 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+                'instructions' => 'Välkommen med din intresseanmälan, logga in som volontär för att anmäla dig till detta uppdrag.',
                 'signUpButton' => [
                     'modalId' => 'assignment-modal-'.(string) ($post->ID ?? ''),
                     'label'   => __(
@@ -174,7 +175,7 @@ class Single extends VQSingleController
             ! empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'title'   => __(
-                    'Sign up',
+                    'Anmälan',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                 ),
                 'dueDate' => '',
@@ -199,8 +200,10 @@ class Single extends VQSingleController
                 ? $cb($arr)
                 : $arr;
 
+
         $withContact = fn(array $arr): array => $maybeWith(
-            ! empty($model->employer->contacts) && ! empty($model->employer->contacts[0]),
+            ! empty($model->employer->contacts) && ! empty($model->employer->contacts[0]) && ! in_array('email',
+                $model->signUp->methods) && ! in_array('phone', $model->signUp->methods),
             fn(array $arr) => array_merge($arr, [
                 'contact' => array_filter([
                     'person' => $model->employer->contacts[0]->name,
@@ -234,7 +237,7 @@ class Single extends VQSingleController
         }
 
         return [
-            'heading' => __('Sign up for', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).': '.$post->post_title,
+            'heading' => __('Logga in som volontär', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             'id'      => 'assignment-modal-'.(string) ($post->ID ?? ''),
             'buttons' => [
                 [
