@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection FunctionSpreadingInspection */
 declare(strict_types=1);
 
 namespace APIVolunteerManagerIntegration\Virtual\PostType\Controller\Assignment;
