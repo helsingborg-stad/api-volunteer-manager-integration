@@ -97,7 +97,11 @@ class AssignmentService extends PostsAdapter implements VQPosts
     {
         return new VolunteerAssignment(
             new VolunteerAssignment\SignUp(
-                $meta['signup_methods'] ?? [],
+                empty($meta['internal_assignment']) ? [
+                    ...($meta['signup_link'] ? ['link'] : []),
+                    ...(empty($meta['signup_link']) && ! empty($meta['signup_email']) ? ['email'] : []),
+                    ...(empty($meta['signup_link']) && ! empty(($meta['signup_phone'])) ? ['phone'] : []),
+                ] : [],
                 $meta['signup_email'] ?? '',
                 $meta['signup_link'] ?? '',
                 $meta['signup_phone'] ?? '',
