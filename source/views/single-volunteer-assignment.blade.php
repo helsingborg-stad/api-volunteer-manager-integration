@@ -56,6 +56,12 @@
             </div>
         @endif
 
+        @if (!empty($volunteerAssignmentViewModel['employer']))
+            <div class='u-margin__top--5'>
+                @include('volunteer-assignment.employer', ['viewModel' => (object) $volunteerAssignmentViewModel['employer']])
+            </div>
+        @endif
+
         @if (!empty($volunteerAssignmentViewModel['contact']))
             <div class='u-margin__top--5'>
                 @include('volunteer-assignment.contact', ['viewModel' => (object) $volunteerAssignmentViewModel['contact']])

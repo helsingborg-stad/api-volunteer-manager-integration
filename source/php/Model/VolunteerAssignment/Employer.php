@@ -14,6 +14,7 @@ class Employer
      * @var Collection<Contact>
      */
     public Collection $contacts;
+    public ?string $about;
 
     /**
      * @param  string  $name
@@ -23,10 +24,12 @@ class Employer
     public function __construct(
         string $name,
         string $website,
-        Collection $contacts
+        Collection $contacts,
+        ?string $about = null
     ) {
         $this->name     = $name;
         $this->website  = $website;
         $this->contacts = $contacts;
+        $this->about    = $about;
     }
 }

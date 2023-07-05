@@ -71,6 +71,7 @@ class Single extends VQSingleController
             'contact'    => $this->extractContact($model),
             'modal'      => $this->extractModal($model, $data['wpQuery']->posts[0]),
             'signUpForm' => $this->extractSignUpForm($model, $data['wpQuery']->posts[0]),
+            'employer'   => $this->extractEmployer($model),
         ];
 
         return $data;
