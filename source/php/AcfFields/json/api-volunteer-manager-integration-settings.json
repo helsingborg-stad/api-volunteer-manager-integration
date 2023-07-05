@@ -4,9 +4,28 @@
     "title": "Volunteer Manager Integration Settings",
     "fields": [
       {
+        "key": "field_64a43f780f61f",
+        "label": "API Configuration",
+        "name": "",
+        "aria-label": "",
+        "type": "accordion",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "open": 0,
+        "multi_expand": 1,
+        "endpoint": 0
+      },
+      {
         "key": "field_644ad20162939",
         "label": "API URL",
         "name": "volunteer_manager_integration_api_uri",
+        "aria-label": "",
         "type": "url",
         "instructions": "",
         "required": 0,
@@ -23,6 +42,7 @@
         "key": "field_646773091abc7",
         "label": "App Secret",
         "name": "volunteer_manager_integration_app_secret",
+        "aria-label": "",
         "type": "text",
         "instructions": "base64encoded string \"clientid:clientsecret\"",
         "required": 0,
@@ -37,6 +57,40 @@
         "placeholder": "",
         "prepend": "",
         "append": ""
+      },
+      {
+        "key": "field_64a43f9f0f620",
+        "label": "Volunteer",
+        "name": "",
+        "aria-label": "",
+        "type": "accordion",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "open": 1,
+        "multi_expand": 0,
+        "endpoint": 0
+      },
+      {
+        "key": "field_64a43d5b32c31",
+        "label": "Registration Page",
+        "name": "volunteer_manager_integration_volunteer_registration_page",
+        "aria-label": "",
+        "type": "link",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "array"
       }
     ],
     "location": [
