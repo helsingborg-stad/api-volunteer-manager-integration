@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\Tests\Virtual\PostType\Controller\Assignment;
 
+use APIVolunteerManagerIntegration\Model\Generic\Collection;
 use APIVolunteerManagerIntegration\Model\VolunteerAssignment;
 use APIVolunteerManagerIntegration\Tests\_TestUtils\PluginTestCase;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
@@ -21,7 +22,7 @@ class SingleTest extends PluginTestCase
         $wpQuery = $this->createFakeWpQuery([], $post);
 
 
-        $controller = new Single($wp, $wp, $wp, $this->myPages);
+        $controller = new Single($wp, $wp, $wp, $this->myPages, $this->acf);
         $data       = $controller->single(['wpQuery' => $wpQuery, 'exampleThemeControllerData' => true]);
 
         self::assertArrayHasKey('volunteerAssignment', $data, 'model property exists');
@@ -40,7 +41,12 @@ class SingleTest extends PluginTestCase
             'model'      => new VolunteerAssignment(
                 new VolunteerAssignment\SignUp([], '', '', ''),
                 $this->prophesize(VolunteerAssignment\Spots::class)->reveal(),
-                $this->prophesize(VolunteerAssignment\Employer::class)->reveal(),
+                new VolunteerAssignment\Employer(
+                    'Fake Employer',
+                    '',
+                    new Collection([]),
+                    ''
+                ),
                 null,
                 '',
                 '',
@@ -56,7 +62,7 @@ class SingleTest extends PluginTestCase
 
         $wpQuery = $this->createFakeWpQuery([], $post);
 
-        $data = (new Single($wp, $wp, $wp, $this->myPages))->single([
+        $data = (new Single($wp, $wp, $wp, $this->myPages, $this->acf))->single([
             'wpQuery' => $wpQuery, 'exampleThemeControllerData' => true,
         ]);
 
@@ -76,7 +82,12 @@ class SingleTest extends PluginTestCase
             'model'      => new VolunteerAssignment(
                 new VolunteerAssignment\SignUp([], '', '', ''),
                 $this->prophesize(VolunteerAssignment\Spots::class)->reveal(),
-                $this->prophesize(VolunteerAssignment\Employer::class)->reveal(),
+                new VolunteerAssignment\Employer(
+                    'Fake Employer',
+                    '',
+                    new Collection([]),
+                    ''
+                ),
                 null,
                 '',
                 '',
@@ -92,7 +103,7 @@ class SingleTest extends PluginTestCase
 
         $wpQuery = $this->createFakeWpQuery([], $post);
 
-        $data = (new Single($wp, $wp, $wp, $this->myPages))->single([
+        $data = (new Single($wp, $wp, $wp, $this->myPages, $this->acf))->single([
             'wpQuery' => $wpQuery, 'exampleThemeControllerData' => true,
         ]);
 
