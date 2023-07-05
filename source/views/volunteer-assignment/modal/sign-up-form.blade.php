@@ -7,7 +7,7 @@
 'color' => 'primary',
 'style' => 'filled',
 'attributeList' => ['data-open' => $viewModel->id],
-'classList' => ['js-press-on-dom-loaded', 'u-display--none']
+'classList' => ['js-show-assignment-sign-up-dialog', 'u-display--none']
 ])
 @endbutton
 

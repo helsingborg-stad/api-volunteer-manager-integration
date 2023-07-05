@@ -13,18 +13,21 @@ const renderSignUpForm = (elements: HTMLElement[]) => () =>
       volunteerAppSecret: e.getAttribute('data-volunteer-app-secret') || '',
       labels: JSON.parse(e.getAttribute('data-labels') || '{}'),
       assignmentId: new URLSearchParams(window.location.search).get('sign_up') || '',
+      closeDialogHandler: () =>
+        e.closest('dialog')?.querySelector<HTMLButtonElement>('button.c-modal__close')?.click(),
     }))
     .filter(
       ({ volunteerApiUri, volunteerAppSecret, assignmentId }) =>
         volunteerApiUri.length > 0 && volunteerAppSecret.length > 0 && assignmentId.length > 0,
     )
-    .forEach(({ root, volunteerApiUri, volunteerAppSecret, assignmentId }) => {
+    .forEach(({ root, volunteerApiUri, volunteerAppSecret, assignmentId, closeDialogHandler }) => {
       root.render(
         <React.StrictMode>
           <App
             assignmentId={assignmentId}
             volunteerApiUri={volunteerApiUri}
             volunteerAppSecret={volunteerAppSecret}
+            closeDialog={closeDialogHandler}
           />
         </React.StrictMode>,
       )
@@ -40,7 +43,7 @@ const onCloseDialog = (e: HTMLElement) => (event: any) => {
 }
 
 const showDialog = () =>
-  [...document.querySelectorAll<HTMLElement>('.js-press-on-dom-loaded')]
+  [...document.querySelectorAll<HTMLElement>('.js-show-assignment-sign-up-dialog')]
     .map((e) => ({
       element: e,
       dialogId: `${e?.dataset?.open}`,
