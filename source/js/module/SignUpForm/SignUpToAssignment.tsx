@@ -7,7 +7,13 @@ import { Button, Icon } from '@helsingborg-stad/municipio-react-ui'
 
 type State = 'loading' | 'saving'
 
-export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): JSX.Element {
+export function SignUpToAssignment({
+  assignmentId,
+  closeDialog,
+}: {
+  assignmentId: string
+  closeDialog: () => any
+}): JSX.Element {
   const { getVolunteer, applyToAssignment } = useContext(VolunteerServiceContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
   const volunteerHasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
@@ -39,8 +45,8 @@ export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): 
                 {'Vänligen vänta...'}
               </Button>
               <span></span>
-              <Button disabled color={'secondary'} onClick={console.log}>
-                {'Avbryt'}
+              <Button disabled color={'secondary'} onClick={closeDialog}>
+                {'Logga ut'}
               </Button>
             </Stack>
           </div>
@@ -66,7 +72,7 @@ export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): 
                     {'Anmäl intresse'}
                   </Button>
                   <span></span>
-                  <Button color={'secondary'} onClick={console.log}>
+                  <Button color={'secondary'} onClick={closeDialog}>
                     {'Logga ut'}
                   </Button>
                 </Stack>
@@ -87,7 +93,7 @@ export function SignUpToAssignment({ assignmentId }: { assignmentId: string }): 
                     {'Anmäl intresse'}
                   </Button>
                   <span></span>
-                  <Button color={'secondary'} onClick={console.log}>
+                  <Button color={'secondary'} onClick={closeDialog}>
                     {'Logga ut'}
                   </Button>
                 </Stack>
