@@ -25,7 +25,7 @@ export interface Employer {
 }
 
 export interface Contact {
-  name: string
+  name?: string
   email?: string
   phone?: string
 }

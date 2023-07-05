@@ -4,7 +4,6 @@ import { useContext } from 'react'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
 import {
   SignUpTypes,
-  SignUpWithContact,
   SignUpWithWebsite,
 } from '../../../../volunteer-service/VolunteerServiceContext'
 
@@ -71,49 +70,7 @@ export const SignUpFields = ({
               />
             </Grid>
           ),
-          [SignUpTypes.Contact]: hasProperty<SignUpWithContact>(formState.signUp, 'type') && (
-            <Grid container className="o-grid--form">
-              <Grid>
-                <Field
-                  value={formState.signUp.name}
-                  label={phrase('field_label_signup_name', 'Sign up Contact Name')}
-                  name="signup_name"
-                  type={'text'}
-                  onChange={handleInputChange('signUp.name')}
-                  inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-                  readOnly={isSubmitted}
-                />
-              </Grid>
-              <Grid md={6}>
-                <Field
-                  value={formState.signUp.email}
-                  label={phrase('field_label_signup_email', 'Email for Sign up')}
-                  name="signup_email"
-                  required={
-                    formState.signUp.phone && formState.signUp.phone.length > 0 ? undefined : true
-                  }
-                  type="email"
-                  onChange={handleInputChange('signUp.email')}
-                  inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-                  readOnly={isSubmitted}
-                />
-              </Grid>
-              <Grid md={6}>
-                <Field
-                  value={formState.signUp.phone}
-                  label={phrase('field_label_signup_phone', 'Phone number for Sign up')}
-                  name="signup_phone"
-                  required={
-                    formState.signUp.email && formState.signUp.email.length > 0 ? undefined : true
-                  }
-                  type="tel"
-                  onChange={handleInputChange('signUp.phone')}
-                  inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-                  readOnly={isSubmitted}
-                />
-              </Grid>
-            </Grid>
-          ),
+          [SignUpTypes.Contact]: null,
           [SignUpTypes.Internal]: null,
           ['null']: null,
         }[formState.signUp.type ?? 'null']

@@ -14,6 +14,12 @@ export const DetailsFields = ({
     when = '',
     readMoreLink = '',
     totalSpots,
+    schedule = '',
+    location = {
+      address: '',
+      city: '',
+      postal: '',
+    },
   },
   handleInputChange,
   isLoading,
@@ -68,34 +74,12 @@ export const DetailsFields = ({
         />
       </div>
       <div className="o-grid-12">
-        <Field
-          value={readMoreLink}
-          label={phrase('field_label_read_more_link', 'Read more link')}
-          name="assignment_read_more_link"
-          type="url"
-          onChange={handleInputChange('readMoreLink')}
-          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-          readOnly={isSubmitted}
-        />
-      </div>
-      <div className="o-grid-12">
         <Textarea
-          value={when}
-          label={phrase('field_label_details_when', 'When')}
-          name="assignment_when"
-          onChange={handleInputChange('when')}
+          value={schedule}
+          label={phrase('field_label_details_when_and_where', 'When and where?')}
+          name="assignment_when_and_where"
+          onChange={handleInputChange('schedule')}
           rows={4}
-          textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
-          readOnly={isSubmitted}
-        />
-      </div>
-      <div className="o-grid-12">
-        <Textarea
-          value={where}
-          label={phrase('field_label_details_were', 'Where')}
-          name="assignment_where"
-          onChange={handleInputChange('where')}
-          rows={3}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -116,6 +100,39 @@ export const DetailsFields = ({
                 }
               : { disabled: true }
           }
+          readOnly={isSubmitted}
+        />
+      </div>
+      <div className="o-grid-12">
+        <Field
+          value={location?.address || ''}
+          label={phrase('field_label_assignment_location_address', 'Address')}
+          name="assignment_location_address"
+          type="text"
+          onChange={handleInputChange('location.address')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
+        />
+      </div>
+      <div className="o-grid-12 o-grid-6@md">
+        <Field
+          value={location?.postal || ''}
+          label={phrase('field_label_assignment_location_postal', 'Postal')}
+          name="assignment_location_postal"
+          type="number"
+          onChange={handleInputChange('location.postal')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
+        />
+      </div>
+      <div className="o-grid-12 o-grid-6@md">
+        <Field
+          value={location?.city || ''}
+          label={phrase('field_label_assignment_location_city', 'City')}
+          name="assignment_location_city"
+          type="text"
+          onChange={handleInputChange('location.city')}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
       </div>

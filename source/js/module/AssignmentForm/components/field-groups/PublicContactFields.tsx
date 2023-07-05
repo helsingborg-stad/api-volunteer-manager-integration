@@ -25,18 +25,6 @@ export const PublicContactFields = ({
           : undefined
       }
       isSubSection>
-      <div className="o-grid-12 o-grid-12@md">
-        <Field
-          value={publicContact?.name || ''}
-          label={phrase('field_label_public_contact_name', 'Public Contact Name')}
-          name="assignment_public_contact_name"
-          type="text"
-          onChange={handleInputChange('publicContact.name')}
-          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
-          readOnly={isSubmitted}
-        />
-      </div>
-
       <div className="o-grid-12 o-grid-6@md">
         <Field
           value={publicContact?.email || ''}

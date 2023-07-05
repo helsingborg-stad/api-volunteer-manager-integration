@@ -104,8 +104,10 @@ export const createRestContext = (
         featured_media: input?.image?.item(0) || null,
         internal_assignment: input.signUp.type === SignUpTypes.Internal ? 'true' : 'false',
         signup_link: input.signUp.type === SignUpTypes.Link ? input.signUp.link ?? '' : '',
-        signup_email: input.signUp.email ?? '',
-        signup_phone: input.signUp.phone ?? '',
+        signup_email:
+          input.signUp.type === SignUpTypes.Contact ? input.publicContact?.email ?? '' : '',
+        signup_phone:
+          input.signUp.phone === SignUpTypes.Contact ? input.publicContact?.phone ?? '' : '',
         submitted_by_first_name: input.employer.contacts[0].name,
         submitted_by_email: input.employer.contacts[0].email ?? '',
         submitted_by_phone: input.employer.contacts[0].phone ?? '',
@@ -115,12 +117,15 @@ export const createRestContext = (
         employer_contacts: input.publicContact
           ? [
               {
-                name: input.publicContact.name,
-                email: input.publicContact.email ?? '',
-                phone: input.publicContact.phone ?? '',
+                name: input.publicContact?.name ?? '',
+                email: input.publicContact?.email ?? '',
+                phone: input.publicContact?.phone ?? '',
               },
             ]
           : null,
+        street_address: input.location?.address ?? '',
+        postal_code: input.location?.postal ?? '',
+        city: input.location?.city ?? '',
       }),
       createAuthorizationHeadersFromBase64Secret(appSecret ?? ''),
     ).then((response) => {
