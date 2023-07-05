@@ -27,12 +27,14 @@ class Single extends VQSingleController
         HomeUrl $homeUrl,
         GetPostTypeObject $getPostTypeObject,
         GetPostTypeArchiveLink $getPostTypeArchiveLink,
-        MyPages $myPages
+        MyPages $myPages,
+        ACFGetField $acf
     ) {
         $this->homeUrl                = $homeUrl;
         $this->getPostTypeObject      = $getPostTypeObject;
         $this->getPostTypeArchiveLink = $getPostTypeArchiveLink;
         $this->myPages                = $myPages;
+        $this->acf                    = $acf;
     }
 
     function single(array $data): array
@@ -236,16 +238,19 @@ class Single extends VQSingleController
             'id'      => 'assignment-modal-'.(string) ($post->ID ?? ''),
             'buttons' => [
                 [
-                    'text'  => __('Identify with Bank ID', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                    'href'  => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['sign_up' => $post->ID])),
-                    'color' => 'primary',
-                    'style' => 'filled',
+                    'text'      => __('Logga in som volontär', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'href'      => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['sign_up' => $post->ID])),
+                    'color'     => 'primary',
+                    'style'     => 'filled',
+                    'fullWidth' => true,
                 ],
                 [
-                    'text'  => __('Become a volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                    'href'  => '#',
-                    'color' => 'primary',
-                    'style' => 'outlined',
+                    'text'      => __('Registrera dig som volontär', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'href'      => $this->acf->getField('volunteer_manager_integration_volunteer_registration_page',
+                            'options')['url'] ?? '#',
+                    'color'     => 'primary',
+                    'style'     => 'basic',
+                    'fullWidth' => true,
                 ],
             ],
         ];

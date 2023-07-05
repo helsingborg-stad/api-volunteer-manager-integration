@@ -41,16 +41,11 @@ class VolunteerForm extends \Modularity\Module
                 'id'      => 'identification-dialog',
                 'buttons' => [
                     [
-                        'text'  => __('Identify with Bank ID', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                        'href'  => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['is_authenticated' => 1])),
-                        'color' => 'primary',
-                        'style' => 'filled',
-                    ],
-                    [
-                        'text'  => __('Close', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                        'href'  => '#',
-                        'color' => 'primary',
-                        'style' => 'outlined',
+                        'text'      => __('Identify with Bank ID', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                        'href'      => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['is_authenticated' => 1])),
+                        'color'     => 'primary',
+                        'style'     => 'filled',
+                        'fullWidth' => true,
                     ],
                 ],
             ],

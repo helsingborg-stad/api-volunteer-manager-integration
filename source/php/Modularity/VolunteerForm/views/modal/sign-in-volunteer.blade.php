@@ -18,15 +18,22 @@
 'id' => $viewModel->id,
 'overlay' => 'dark',
 'size' => 'sm',
-'animation' => 'scale-up'
+'animation' => 'scale-up',
+'classList' => ['c-modal--centered', 'c-modal--normalized']
 ])
-This is the content of the modal. It can also be another component.
+<div class='u-text-align--center'>
+    @typography()
+    Logga in för att registrera dig som volontär.
+    @endtypography
+</div>
 
 @slot('bottom')
-    <div>
+    <div class='c-stack' style='max-width:19rem;margin:auto;'>
         @foreach($viewModel->buttons as $props)
-            @button($props)
-            @endbutton
+            <div>
+                @button($props)
+                @endbutton
+            </div>
         @endforeach
     </div>
 @endslot

@@ -4,6 +4,7 @@ namespace APIVolunteerManagerIntegration\Virtual\PostType;
 
 
 use APIVolunteerManagerIntegration\Helper\HttpClient\HttpClientFactory;
+use APIVolunteerManagerIntegration\Services\ACFService\ACFService;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\Volunteer\AssignmentService;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
@@ -18,11 +19,13 @@ class Assignment implements VQEntity
     private WPService $wp;
     private MyPages $myPages;
     private HttpClientFactory $httpClientFactory;
+    private ACFService $acf;
 
-    public function __construct(WPService $wp, MyPages $myPages)
+    public function __construct(WPService $wp, MyPages $myPages, ACFService $acf)
     {
         $this->wp      = $wp;
         $this->myPages = $myPages;
+        $this->acf     = $acf;
     }
 
     function registerEntity(VQFromSource $virtualQuery): VQFromSource
@@ -37,6 +40,7 @@ class Assignment implements VQEntity
                 $this->wp,
                 $this->wp,
                 $this->myPages,
+                $this->acf,
             ))
             ->withController(new Archive($this->wp, $this->wp, $this->wp));
 

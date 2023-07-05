@@ -16,7 +16,8 @@
 'isPanel' => false,
 'id' => $viewModel->id,
 'overlay' => 'dark',
-'size' => 'sm'
+'size' => 'sm',
+'classList' => ['c-modal--centered', 'c-modal--normalized']
 ])
 <div class="js-assignment-sign-up"
      data-labels='{{ json_encode($viewModel->labels) }}'
