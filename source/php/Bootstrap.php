@@ -51,23 +51,21 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     public function bootstrap(
         DIContainer $DI
     ): void {
-
         /**
          * Binds classname/interface, and their extending interface name as key to the DI container.
          *
-         * @param  string  $className  The abstract class or interface (usually)
+         * @param  class-string  $className  The abstract class or interface (usually)
          *
-         * @return array
+         * @return class-string[]
          * @throws ReflectionException
          */
-        $withExtensions = fn(string $className) => [
+        $withExtensions = static fn(string $className): array => [
             $className,
-            ...(new ReflectionClass($className))->getInterfaceNames(),
+            ...((new ReflectionClass($className))->getInterfaceNames() ?: []),
         ];
 
         $DI->bind($withExtensions(WPService::class), WPServiceFactory::create());
         $DI->bind($withExtensions(ACFService::class), ACFServiceFactory::create());
-
         $DI->bind(HttpClientFactory::class, new CurlClientFactory());
         $DI->bind(WpRestClientFactory::class, $DI->make(WpRestFactory::class));
 
@@ -83,11 +81,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     public function registerModules(): void
     {
         foreach (self::modules() as $class) {
-            if (function_exists('modularity_register_module')) {
-                $name = $this->getClassNameWithoutNamespace($class);
-                /** @noinspection PhpFullyQualifiedNameUsageInspection */
-                \modularity_register_module(API_VOLUNTEER_MANAGER_MODULE_PATH.'/'.$name, $name);
-            }
+            $this->registerModule($class);
         }
     }
 
@@ -102,6 +96,22 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
             'mod-volunteer-form' => VolunteerForm::class,
             'mod-v-assign-form'  => AssignmentForm::class,
         ];
+    }
+
+    /**
+     * @param  string  $class
+     *
+     * @return void
+     */
+    public function registerModule(string $class): void
+    {
+        if (function_exists('modularity_register_module')) {
+            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+            modularity_register_module(
+                API_VOLUNTEER_MANAGER_MODULE_PATH.'/'.$this->getClassNameWithoutNamespace($class),
+                $this->getClassNameWithoutNamespace($class)
+            );
+        }
     }
 
     /**
