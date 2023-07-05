@@ -1,0 +1,17 @@
+.c-modal--centered {
+  .c-modal__header {
+    flex-direction: column-reverse;
+  }
+
+  .c-modal__heading {
+    align-self: center;
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+.c-modal--normalized {
+  .c-modal__content *:first-child {
+    margin-top: 0;
+  }
+}
