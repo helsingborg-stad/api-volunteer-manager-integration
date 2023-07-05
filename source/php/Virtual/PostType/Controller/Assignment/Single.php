@@ -266,4 +266,19 @@ class Single extends VQSingleController
             'signOutUrl'         => $this->myPages->signOutUrl(),
         ];
     }
+
+    private function extractEmployer(VolunteerAssignment $model)
+    {
+        return [
+            'title'        => __(
+                'Om uppdragsgivaren',
+                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+            ),
+            'instructions' => $model->employer->about ?? '',
+            'employer'     => array_filter([
+                'name'    => '<b>Förening:</b> '.$model->employer->name,
+                'website' => '<b>Hemsida:</b> '.$model->employer->website,
+            ], fn($str) => ! empty($str)),
+        ];
+    }
 }
