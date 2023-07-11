@@ -46,7 +46,9 @@ add_action('acf/init', function () {
             API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'source/php/AcfFields/'
         );
         $acfExportManager->autoExport([
-            'api-volunteer-manager-integration-settings' => 'group_644ad1b3d7072',
+            'api-volunteer-manager-integration-settings'        => 'group_644ad1b3d7072',
+            'api-volunteer-manager-integration-assignment-form' => 'group_64abba2660644',
+            'api-volunteer-manager-integration-volunteer-form'  => 'group_64abbfd89cb56',
         ]);
         $acfExportManager->import();
     }

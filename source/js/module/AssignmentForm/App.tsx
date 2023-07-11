@@ -10,6 +10,7 @@ interface Props {
 }
 
 function App({ volunteerApiUri, volunteerAppSecret, labels }: Props): JSX.Element {
+  console.log(labels)
   return (
     <PhraseProvider phrases={labels ?? {}}>
       <VolunteerServiceProvider uri={volunteerApiUri} appSecret={volunteerAppSecret}>

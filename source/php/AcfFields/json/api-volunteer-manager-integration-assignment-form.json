@@ -1,0 +1,59 @@
+[
+  {
+    "key": "group_64abba2660644",
+    "title": "Assignment Form Module",
+    "fields": [
+      {
+        "key": "field_64abba26dd63c",
+        "label": "Form Terms",
+        "name": "form_terms",
+        "aria-label": "",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "basic",
+        "media_upload": 0,
+        "delay": 1
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "mod-v-assign-form"
+        }
+      ],
+      [
+        {
+          "param": "block",
+          "operator": "==",
+          "value": "acf\/v-assign-form"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
+  }
+]
+

@@ -22,7 +22,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'id'    => '',
                 ],
                 'open'              => 0,
-                'multi_expand'      => 1,
+                'multi_expand'      => 0,
                 'endpoint'          => 0,
             ],
             1 => [

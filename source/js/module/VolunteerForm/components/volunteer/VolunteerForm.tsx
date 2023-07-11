@@ -74,6 +74,9 @@ function VolunteerForm({
 
       <div className="o-grid form-section">
         <div className="o-grid-12">
+          {!isSubmitted && phrase('form_terms', '').length > 0 ? (
+            <div dangerouslySetInnerHTML={{ __html: phrase('form_terms', '') }}></div>
+          ) : null}
           {!isSubmitted ? (
             <Button
               variant="filled"

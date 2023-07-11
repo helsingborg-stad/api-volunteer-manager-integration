@@ -64,6 +64,13 @@ function AssignmentForm({
                 <>{renderFields()}</>
               )}
             </Grid>
+
+            {phrase('form_terms', '').length > 0 ? (
+              <Grid col={12} className="u-margin__top--2">
+                <div dangerouslySetInnerHTML={{ __html: phrase('form_terms', '') }}></div>
+              </Grid>
+            ) : null}
+
             <Grid col={12} className="u-margin__top--2">
               {!isSubmitted ? (
                 <Button

@@ -12,6 +12,7 @@ use APIVolunteerManagerIntegration\Helper\CacheBust;
  * @property string $description
  * @property string $namePlural
  * @property string $nameSingular
+ * @property int $ID
  */
 class AssignmentForm extends \Modularity\Module
 {
@@ -33,7 +34,7 @@ class AssignmentForm extends \Modularity\Module
             'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
             'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
             'labels'             => [
-
+                'form_terms' => get_field('form_terms', $this->ID) ?: '',
             ],
         ];
     }

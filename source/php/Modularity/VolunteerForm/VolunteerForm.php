@@ -14,6 +14,7 @@ use APIVolunteerManagerIntegration\Services\MyPages\MyPagesService;
  * @property string $nameSingular
  * @property string $namePlural
  * @property string $description
+ * @property int $ID
  */
 class VolunteerForm extends \Modularity\Module
 {
@@ -57,7 +58,9 @@ class VolunteerForm extends \Modularity\Module
                     'registerVolunteerForm' => [
                         'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
                         'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
-                        'labels'             => [],
+                        'labels'             => [
+                            'form_terms' => get_field('form_terms', $this->ID) ?: '',
+                        ],
                         'signOutUrl'         => $this->myPages->signOutUrl(),
                     ],
                 ]
