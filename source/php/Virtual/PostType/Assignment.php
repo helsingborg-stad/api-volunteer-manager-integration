@@ -33,7 +33,7 @@ class Assignment implements VQEntity
         $virtualQuery
             ->fromSource(AssignmentService::class)
             ->toPostType(self::POST_TYPE)
-            ->withSlug('volontaruppdrag')
+            ->withSlug(defined('VOLUNTEER_MANAGER_INTEGRATION_ASSIGNMENT_SLUG') ? VOLUNTEER_MANAGER_INTEGRATION_ASSIGNMENT_SLUG : 'volontaruppdrag')
             ->withLabel(__('Volunteer Assignment', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN))
             ->withController(new Single(
                 $this->wp,

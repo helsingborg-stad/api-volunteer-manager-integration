@@ -22,6 +22,8 @@ class App
             ->register($DI->make(Routes::class))
             ->register($DI->make(OptionsPage::class))
             ->register($DI->make(Scripts::class))
-            ->register($DI->make(Assignment\Scripts::class));
+            ->register($DI->make(Assignment\Scripts::class))
+            ->register($DI->make(Assignment\PreventAlgolia::class))
+            ->register($DI->make(Assignment\PreventRobots::class));
     }
 }
