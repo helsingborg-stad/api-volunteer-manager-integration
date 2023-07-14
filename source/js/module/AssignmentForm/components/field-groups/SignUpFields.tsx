@@ -42,7 +42,7 @@ export const SignUpFields = ({
             [SignUpTypes.Contact, phrase('field_option_label_signup_contact', 'Sign up Contact')],
             [
               SignUpTypes.Internal,
-              phrase('field_option_label_signup_contact', 'Internal assignment'),
+              phrase('field_option_label_signup_internal', 'Internal assignment'),
             ],
           ]}
           value={formState.signUp.type ?? ''}

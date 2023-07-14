@@ -54,7 +54,7 @@ export const DetailsFields = ({
       <div className="o-grid-12">
         <Textarea
           value={benefits}
-          label={phrase('field_label_details_benefits', 'benefits')}
+          label={phrase('field_label_details_benefits', 'Benefits')}
           name="assignment_benefits"
           onChange={handleInputChange('benefits')}
           rows={1}
