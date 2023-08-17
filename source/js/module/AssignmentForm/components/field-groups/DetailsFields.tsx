@@ -10,9 +10,6 @@ export const DetailsFields = ({
     description,
     benefits,
     qualifications,
-    where = '',
-    when = '',
-    readMoreLink = '',
     totalSpots,
     schedule = '',
     location = {

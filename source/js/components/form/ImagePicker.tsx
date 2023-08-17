@@ -44,7 +44,7 @@ const ImagePicker = ({
     if (inputRef.current !== null) {
       inputRef.current.value = ''
     }
-  }, [inputRef])
+  }, [])
   const classNames = [
     'c-field',
     'c-field--image-picker',
