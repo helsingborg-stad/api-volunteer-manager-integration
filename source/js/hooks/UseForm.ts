@@ -33,11 +33,18 @@ export function useForm<T>({ initialState, resetState }: FormProps<T>) {
     [],
   )
 
+  const handleChange = useCallback(
+    (field: string) => (value: any) => {
+      setFormState((prev) => setObjectProperty({ ...prev }, field, value) as T)
+    },
+    [],
+  )
+
   const resetForm = useCallback(() => {
     setFormState(resetState || initialState)
   }, [resetState, initialState])
 
-  return { formState, handleInputChange, resetForm }
+  return { formState, handleInputChange, handleChange, resetForm }
 }
 
 export default useForm
