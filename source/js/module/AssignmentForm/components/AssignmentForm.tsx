@@ -12,11 +12,7 @@ import Grid from '../../../components/grid/Grid'
 
 interface AssignmentFormProps {
   formState: AssignmentInput
-  handleInputChange: (
-    field: string,
-  ) => (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-  ) => void
+  handleChange: (field: string) => any
   onSubmit: (input: AssignmentInput) => any
   initialFormState?: AssignmentInput | null
   isLoading?: boolean
@@ -26,7 +22,7 @@ interface AssignmentFormProps {
 
 function AssignmentForm({
   onSubmit,
-  handleInputChange,
+  handleChange,
   formState,
   isLoading,
   errorMessage,
@@ -38,14 +34,14 @@ function AssignmentForm({
   const renderFields = useCallback(
     () => (
       <>
-        <GeneralFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
-        <DetailsFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
-        <SignUpFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
-        <PublicContactFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
-        <EmployerFields {...{ formState, handleInputChange, isLoading, isSubmitted }} />
+        <GeneralFields {...{ formState, handleChange, isLoading, isSubmitted }} />
+        <DetailsFields {...{ formState, handleChange, isLoading, isSubmitted }} />
+        <SignUpFields {...{ formState, handleChange, isLoading, isSubmitted }} />
+        <PublicContactFields {...{ formState, handleChange, isLoading, isSubmitted }} />
+        <EmployerFields {...{ formState, handleChange, isLoading, isSubmitted }} />
       </>
     ),
-    [formState, isLoading, isSubmitted, handleInputChange],
+    [formState, isLoading, isSubmitted, handleChange],
   )
 
   return (

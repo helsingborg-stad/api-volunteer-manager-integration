@@ -11,7 +11,7 @@ type State = 'loading' | 'saving'
 function RegisterAssignment(): JSX.Element {
   const { registerAssignment } = useContext(VolunteerServiceContext)
 
-  const { formState, handleInputChange } = useForm<Assignment>({
+  const { formState, handleChange } = useForm<Assignment>({
     initialState: {
       id: null,
       title: '',
@@ -48,14 +48,14 @@ function RegisterAssignment(): JSX.Element {
     pending: (state: State, assignment) => (
       <AssignmentForm
         onSubmit={(i) => null}
-        handleInputChange={handleInputChange}
+        handleChange={handleChange}
         formState={formState}
         isLoading={true}
       />
     ),
     resolved: (assignment: Assignment, state, update) => (
       <AssignmentForm
-        handleInputChange={handleInputChange}
+        handleChange={handleChange}
         onSubmit={(input) => update(registerAssignment(input), 'saving')}
         formState={assignment?.id && typeof assignment?.id === 'number' ? assignment : formState}
         isSubmitted={assignment?.id && typeof assignment?.id === 'number' ? true : undefined}
@@ -63,7 +63,7 @@ function RegisterAssignment(): JSX.Element {
     ),
     rejected: (err, state, update, assignment) => (
       <AssignmentForm
-        handleInputChange={handleInputChange}
+        handleChange={handleChange}
         formState={formState}
         onSubmit={(input) => update(registerAssignment(input), 'saving')}
         errorMessage={err.message}

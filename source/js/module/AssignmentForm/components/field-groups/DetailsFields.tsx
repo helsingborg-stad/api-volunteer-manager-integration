@@ -1,8 +1,8 @@
 import FormSection from '../../../../components/form/FormSection'
 import PhraseContext from '../../../../phrase/PhraseContextInterface'
+import { parseValue } from '../../../../util/event'
 import { useContext } from 'react'
 import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
-
 import { FieldGroupProps } from './FieldGroupProps'
 
 export const DetailsFields = ({
@@ -21,7 +21,7 @@ export const DetailsFields = ({
       postal: '',
     },
   },
-  handleInputChange,
+  handleChange,
   isLoading,
   isSubmitted,
 }: FieldGroupProps) => {
@@ -44,7 +44,7 @@ export const DetailsFields = ({
           value={description}
           label={phrase('field_label_details_description', 'Description')}
           name="assignment_description"
-          onChange={handleInputChange('description')}
+          onChange={parseValue(handleChange('description'))}
           rows={10}
           required
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
@@ -56,7 +56,7 @@ export const DetailsFields = ({
           value={benefits}
           label={phrase('field_label_details_benefits', 'Benefits')}
           name="assignment_benefits"
-          onChange={handleInputChange('benefits')}
+          onChange={parseValue(handleChange('benefits'))}
           rows={1}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
@@ -67,7 +67,7 @@ export const DetailsFields = ({
           value={qualifications}
           label={phrase('field_label_details_qualifications', 'Qualifications')}
           name="assignment_qualifications"
-          onChange={handleInputChange('qualifications')}
+          onChange={parseValue(handleChange('qualifications'))}
           rows={4}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
@@ -78,7 +78,7 @@ export const DetailsFields = ({
           value={schedule}
           label={phrase('field_label_details_when_and_where', 'When and where?')}
           name="assignment_when_and_where"
-          onChange={handleInputChange('schedule')}
+          onChange={parseValue(handleChange('schedule'))}
           rows={4}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
@@ -90,7 +90,7 @@ export const DetailsFields = ({
           label={phrase('field_label_spots', 'Total spots')}
           name="assignment_total_spots"
           type={!isSubmitted ? 'number' : 'text'}
-          onChange={handleInputChange('totalSpots')}
+          onChange={parseValue(handleChange('totalSpots'))}
           inputProps={
             !isSubmitted
               ? {
@@ -109,7 +109,7 @@ export const DetailsFields = ({
           label={phrase('field_label_assignment_location_address', 'Address')}
           name="assignment_location_address"
           type="text"
-          onChange={handleInputChange('location.address')}
+          onChange={parseValue(handleChange('location.address'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -120,7 +120,7 @@ export const DetailsFields = ({
           label={phrase('field_label_assignment_location_postal', 'Postal')}
           name="assignment_location_postal"
           type="number"
-          onChange={handleInputChange('location.postal')}
+          onChange={parseValue(handleChange('location.postal'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -131,7 +131,7 @@ export const DetailsFields = ({
           label={phrase('field_label_assignment_location_city', 'City')}
           name="assignment_location_city"
           type="text"
-          onChange={handleInputChange('location.city')}
+          onChange={parseValue(handleChange('location.city'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />

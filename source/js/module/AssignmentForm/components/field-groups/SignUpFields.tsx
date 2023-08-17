@@ -11,13 +11,15 @@ import { FieldGroupProps } from './FieldGroupProps'
 import Grid from '../../../../components/grid/Grid'
 import ShowIf from '../../../../util/ShowIf'
 
+import { parseValue } from '../../../../util/event'
+
 export function hasProperty<T>(data: any, property: string): data is T {
   return data && data[property] !== undefined
 }
 
 export const SignUpFields = ({
   formState,
-  handleInputChange,
+  handleChange,
   isLoading,
   isSubmitted,
 }: FieldGroupProps) => {
@@ -48,7 +50,7 @@ export const SignUpFields = ({
           value={formState.signUp.type ?? ''}
           label={phrase('field_label_signup_signup_type', 'SignUp Type')}
           name="signup_type"
-          onChange={handleInputChange('signUp.type')}
+          onChange={parseValue(handleChange('signUp.type'))}
           required
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
@@ -64,7 +66,7 @@ export const SignUpFields = ({
                 name="signup_link"
                 required
                 type="url"
-                onChange={handleInputChange('signUp.link')}
+                onChange={parseValue(handleChange('signUp.link'))}
                 inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
                 readOnly={isSubmitted}
               />
@@ -87,7 +89,7 @@ export const SignUpFields = ({
             'Is there a specific due date for signing up?',
           )}
           name="signup_has_due_date"
-          onChange={handleInputChange('signUp.hasDeadline')}
+          onChange={parseValue(handleChange('signUp.hasDeadline'))}
           required
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
@@ -100,7 +102,7 @@ export const SignUpFields = ({
             label={phrase('field_label_signup_due_date', 'Last date to apply')}
             name="signup_due_date"
             type="date"
-            onChange={handleInputChange('signUp.deadline')}
+            onChange={parseValue(handleChange('signUp.deadline'))}
             required
             inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
             readOnly={isSubmitted}

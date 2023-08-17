@@ -5,9 +5,11 @@ import { Field } from '@helsingborg-stad/municipio-react-ui'
 
 import { FieldGroupProps } from './FieldGroupProps'
 
+import { parseValue } from '../../../../util/event'
+
 export const PublicContactFields = ({
   formState: { publicContact },
-  handleInputChange,
+  handleChange,
   isLoading,
   isSubmitted,
 }: FieldGroupProps) => {
@@ -31,7 +33,7 @@ export const PublicContactFields = ({
           label={phrase('field_label_public_contact_email', 'Public Contact Email')}
           name="assignment_public_contact_email"
           type="email"
-          onChange={handleInputChange('publicContact.email')}
+          onChange={parseValue(handleChange('publicContact.email'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -43,7 +45,7 @@ export const PublicContactFields = ({
           label={phrase('field_label_public_contact_phone', 'Public Contact Phone')}
           name="assignment_public_contact_phone"
           type="tel"
-          onChange={handleInputChange('publicContact.phone')}
+          onChange={parseValue(handleChange('publicContact.phone'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />

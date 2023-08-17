@@ -5,9 +5,11 @@ import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
 
 import { FieldGroupProps } from './FieldGroupProps'
 
+import { parseValue } from '../../../../util/event'
+
 export const EmployerFields = ({
   formState: { employer },
-  handleInputChange,
+  handleChange,
   isLoading,
   isSubmitted,
 }: FieldGroupProps) => {
@@ -30,7 +32,7 @@ export const EmployerFields = ({
           value={employer?.about || ''}
           label={phrase('field_label_employer_about', 'About the employer')}
           name="assignment_employer_about"
-          onChange={handleInputChange('employer.about')}
+          onChange={parseValue(handleChange('employer.about'))}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -42,7 +44,7 @@ export const EmployerFields = ({
           label={phrase('field_label_employer_website', 'Website')}
           name="assignment_employer_webite"
           type="url"
-          onChange={handleInputChange('employer.website')}
+          onChange={parseValue(handleChange('employer.website'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />

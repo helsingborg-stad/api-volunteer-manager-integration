@@ -2,7 +2,7 @@ import { AssignmentInput } from '../../../../volunteer-service/VolunteerServiceC
 
 export interface FieldGroupProps {
   formState: AssignmentInput
-  handleInputChange: (field: string) => any
+  handleChange: (field: string) => (value: any) => any
   isLoading?: boolean
   isSubmitted?: boolean
 }
