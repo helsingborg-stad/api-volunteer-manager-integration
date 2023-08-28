@@ -73,9 +73,14 @@ const ImagePicker = ({
           aria-label={label}
           aria-required={required ? 'true' : 'false'}
           type="file"
+          accept={'image/png, image/jpeg'}
           {...(readOnly ? { readOnly } : {})}
           {...(required ? { required } : {})}
-          onChange={(e) => e.target.files && onChange && onChange(e.target.files)}
+          onChange={(e) => {
+            e.preventDefault()
+            return e.target.files && onChange && onChange(e.target.files)
+          }}
+          onDrop={console.log}
           name={name}
         />
 
