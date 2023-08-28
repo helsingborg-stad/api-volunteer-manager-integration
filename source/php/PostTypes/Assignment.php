@@ -54,7 +54,7 @@ class Assignment
                 'slug'     => 'volunteer_assignment_category',
                 'singular' => __('Category', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'plural'   => __('Categories', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'args'     => ['hierarchical' => false, 'show_ui' => true],
+                'args'     => ['hierarchical' => false, 'show_ui' => false],
             ],
         ];
     }
