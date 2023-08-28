@@ -6,32 +6,20 @@ use APIVolunteerManagerIntegration\Helper\WP;
 use APIVolunteerManagerIntegration\PostTypes\Assignment;
 use APIVolunteerManagerIntegration\Services\ACFService\ACFGetField;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
-use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeArchiveLink;
-use APIVolunteerManagerIntegration\Services\WPService\GetPostTypeObject;
-use APIVolunteerManagerIntegration\Services\WPService\HomeUrl;
 use Closure;
 
 class Single
 {
     public string $postType = '';
-    private HomeUrl $homeUrl;
-    private GetPostTypeObject $getPostTypeObject;
-    private GetPostTypeArchiveLink $getPostTypeArchiveLink;
     private ACFGetField $acf;
     private MyPages $myPages;
 
     public function __construct(
-        HomeUrl $homeUrl,
-        GetPostTypeObject $getPostTypeObject,
-        GetPostTypeArchiveLink $getPostTypeArchiveLink,
         MyPages $myPages,
         ACFGetField $acf
     ) {
-        $this->homeUrl                = $homeUrl;
-        $this->getPostTypeObject      = $getPostTypeObject;
-        $this->getPostTypeArchiveLink = $getPostTypeArchiveLink;
-        $this->myPages                = $myPages;
-        $this->acf                    = $acf;
+        $this->myPages = $myPages;
+        $this->acf     = $acf;
 
         add_filter("Municipio/Template/{$this->postType()}/single/viewData", [$this, 'controller']);
         add_filter('the_content', [$this, 'replaceContentWithContentPieces'], 10, 1);
