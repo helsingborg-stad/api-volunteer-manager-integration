@@ -76,11 +76,7 @@ const ImagePicker = ({
           accept={'image/png, image/jpeg'}
           {...(readOnly ? { readOnly } : {})}
           {...(required ? { required } : {})}
-          onChange={(e) => {
-            e.preventDefault()
-            return e.target.files && onChange && onChange(e.target.files)
-          }}
-          onDrop={console.log}
+          onChange={(e) => e.target.files && onChange && onChange(e.target.files)}
           name={name}
         />
 
