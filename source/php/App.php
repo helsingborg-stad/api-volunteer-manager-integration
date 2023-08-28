@@ -22,11 +22,15 @@ class App
         new PostTypes\Assignment();
 
         $plugin
-            ->register($DI->make(Routes::class))
+            ->register($DI->make(Routes::class)) //Deprecated
             ->register($DI->make(OptionsPage::class))
             ->register($DI->make(Scripts::class))
-            ->register($DI->make(Assignment\Scripts::class))
-            ->register($DI->make(Assignment\PreventAlgolia::class))
-            ->register($DI->make(Assignment\PreventRobots::class));
+            ->register($DI->make(Assignment\Scripts::class)) //Deprecated
+            ->register($DI->make(Assignment\PreventAlgolia::class)) //Deprecated
+            ->register($DI->make(Assignment\PreventRobots::class)) //Deprecated
+            ->register($DI->make(PostTypes\Assignment\Scripts::class))
+            ->register($DI->make(PostTypes\Assignment\PreventAlgolia::class))
+            ->register($DI->make(PostTypes\Assignment\PreventRobots::class))
+            ->register($DI->make(Controller\Assignment\Single::class));
     }
 }
