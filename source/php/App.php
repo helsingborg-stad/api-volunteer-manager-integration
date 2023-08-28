@@ -18,6 +18,9 @@ class App
 
     public function registerHooks(DIContainer $DI, PluginManager $plugin)
     {
+        new Import\Setup();
+        new PostTypes\Assignment();
+
         $plugin
             ->register($DI->make(Routes::class))
             ->register($DI->make(OptionsPage::class))
