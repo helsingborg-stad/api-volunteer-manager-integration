@@ -34,11 +34,114 @@ class Single
         $this->acf                    = $acf;
 
         add_filter("Municipio/Template/{$this->postType()}/single/viewData", [$this, 'controller']);
+        add_filter('the_content', [$this, 'replaceContentWithContentPieces'], 10, 1);
     }
 
     public function postType(): string
     {
         return Assignment::$postType;
+    }
+
+    public function replaceContentWithContentPieces(string $content): string
+    {
+        if ( ! is_singular($this->postType())) {
+            return $content;
+        }
+
+        $wrapInFn = fn(
+            string $tag,
+            string $str,
+            ?string $attributes = ''
+        ): string => "<$tag $attributes>".$str."</$tag>";
+
+        $contentPieces = [
+            'about'          => [
+                'title'   => $wrapInFn('h2', __(
+                    'About the assignment',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                ), 'class="u-margin__top--0"'),
+                'content' => WP::getPostMeta('description', ''),
+            ],
+            'requirements'   => [
+                'title'   => $wrapInFn('h3', __(
+                    'Requirements',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => WP::getPostMeta('qualifications', ''),
+            ],
+            'benefits'       => [
+                'title'   => $wrapInFn('h3', __(
+                    'Benefits',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => WP::getPostMeta('benefits', ''),
+            ],
+            'where_and_when' => [
+                'title'   => $wrapInFn('h3', __(
+                    'Where and when?',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => WP::getPostMeta('schedule', ''),
+            ],
+        ];
+
+        return wpautop(array_reduce(
+            array_filter(
+                array_values($contentPieces),
+                fn($i) => ! empty($i['content'])
+            ),
+            fn(string $str, array $i) => $str.$i['title'].$i['content'],
+            ''
+        ));
+    }
+
+    public function createPostContent(array $data): string
+    {
+        $wrapInFn = fn(
+            string $tag,
+            string $str,
+            ?string $attributes = ''
+        ): string => "<$tag $attributes>".$str."</$tag>";
+
+        $contentPieces = [
+            'about'          => [
+                'title'   => $wrapInFn('h2', __(
+                    'About the assignment',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                ), 'class="u-margin__top--0"'),
+                'content' => $data['description'] ?? '',
+            ],
+            'requirements'   => [
+                'title'   => $wrapInFn('h3', __(
+                    'Requirements',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => $data['qualifications'] ?? '',
+            ],
+            'benefits'       => [
+                'title'   => $wrapInFn('h3', __(
+                    'Benefits',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => $data['benefits'] ?? '',
+            ],
+            'where_and_when' => [
+                'title'   => $wrapInFn('h3', __(
+                    'Where and when?',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
+                )),
+                'content' => $data['schedule'] ?? '',
+            ],
+        ];
+
+        return array_reduce(
+            array_filter(
+                array_values($contentPieces),
+                fn($i) => ! empty($i['content'])
+            ),
+            fn(string $str, array $i) => $str.$i['title'].$i['content'],
+            ''
+        );
     }
 
     public function controller(array $data): array
