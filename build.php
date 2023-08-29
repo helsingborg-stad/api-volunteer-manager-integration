@@ -9,10 +9,13 @@ if ( php_sapi_name() !== 'cli' ) {
 $buildCommands = [
 	'yarn --frozen-lockfile',
 	'npx browserslist@latest --update-db',
-	'yarn build',
-	'composer install --prefer-dist --no-progress --no-dev',
-	'composer dump-autoload --no-dev --classmap-authoritative',
+	'yarn build'
 ];
+
+//Add composer build, if flag --no-composer is undefined.
+if(is_array($argv) && !in_array('--no-composer', $argv)) {
+    $buildCommands[] = 'composer install --prefer-dist --no-progress --no-dev'; 
+}
 
 // Files and directories not suitable for prod to be removed.
 $removables = [
