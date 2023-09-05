@@ -13,8 +13,13 @@ $buildCommands = [
 ];
 
 //Add composer build, if flag --no-composer is undefined.
-if(is_array($argv) && !in_array('--no-composer', $argv)) {
-    $buildCommands[] = 'composer install --prefer-dist --no-progress --no-dev'; 
+//Dump autloader. 
+//Only if composer.json exists.
+if(file_exists('composer.json')) {
+    if(is_array($argv) && !in_array('--no-composer', $argv)) {
+        $buildCommands[] = 'composer install --prefer-dist --no-progress --no-dev'; 
+    }
+    $buildCommands[] = 'composer dump-autoload';
 }
 
 // Files and directories not suitable for prod to be removed.
