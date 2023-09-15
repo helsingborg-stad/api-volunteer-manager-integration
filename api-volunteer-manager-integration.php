@@ -54,5 +54,17 @@ add_action('acf/init', function () {
     }
 });
 
+if (function_exists('register_activation_hook')) {
+    register_activation_hook(__FILE__, function () {
+        wp_clear_scheduled_hook('import_volunteer_assignments_daily');
+        wp_schedule_event(time(), 'hourly', 'import_volunteer_assignments_daily');
+    });
+}
+
+if (function_exists('register_deactivation_hook')) {
+    register_deactivation_hook(__FILE__, function () {
+        wp_clear_scheduled_hook('import_volunteer_assignments_daily');
+    });
+}
 
 (new APIVolunteerManagerIntegration\App())->init(DIContainerFactory::create());

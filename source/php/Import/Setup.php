@@ -8,24 +8,43 @@ class Setup
     {
         //Add manual import button(s)
         add_action('restrict_manage_posts', [$this, 'addImportButton'], 100);
+        add_action('admin_init', [$this, 'onClickImportButton']);
 
-        add_action('admin_init', [$this, 'importPosts']);
-
-        /* Register cron action */
-        //add_action('import_projects_daily', [$this, 'projectEventsCron']);
+        /* Cron */
+        add_action('plugins_loaded', [$this, 'disableCronJob']);
+        add_action('import_volunteer_assignments_daily', [$this, 'importPosts']);
+        add_filter('acf/update_value/name=volunteer_assignments_daily_import', [$this, 'toggleCronJob'], 10, 1);
 
         /* WP WebHooks */
         //add_filter('wpwhpro/run/actions/custom_action/return_args', [$this, 'triggerImport'], 10, 3);
     }
 
-    public static function addCronJob()
+    public function disableCronJob()
     {
-        wp_schedule_event(time(), 'hourly', 'import_projects_daily');
+        if ( ! get_field('volunteer_assignments_daily_import', 'option')) {
+            self::removeCronJob();
+        }
     }
 
     public static function removeCronJob()
     {
-        wp_clear_scheduled_hook('import_projects_daily');
+        wp_clear_scheduled_hook('import_volunteer_assignments_daily');
+    }
+
+    public function toggleCronJob($value)
+    {
+        if ($value) {
+            self::addCronJob();
+        } else {
+            self::removeCronJob();
+        }
+
+        return $value;
+    }
+
+    public static function addCronJob()
+    {
+        wp_schedule_event(time(), 'hourly', 'import_volunteer_assignments_daily');
     }
 
     public function triggerImport($response, $identifier, $payload)
@@ -74,7 +93,6 @@ class Setup
         $className = apply_filters('APIVolunteerManagerIntegration/Import/Setup::getImporterClassNameByPostType',
             $namespace.ucwords($postType), $postType);
 
-        var_dump($className);
         if (class_exists($className)) {
             return $className;
         }
@@ -82,19 +100,27 @@ class Setup
         return false;
     }
 
-    public function importPosts()
+    public function onClickImportButton()
     {
         if (
             ! isset($_GET['import_assignments'])
             || empty($_GET['post_type'])
+            || $_GET['post_type'] !== \APIVolunteerManagerIntegration\PostTypes\Assignment::$postType
         ) {
             return;
         }
 
+        $this->importPosts();
+    }
 
+    /**
+     * Start cron jobs
+     * @return void
+     */
+    public function importPosts()
+    {
         $baseUrl = get_field('volunteer_manager_integration_api_uri', 'option');
         $url     = $baseUrl.'/assignment';
-
         new Assignment($url);
     }
 
@@ -108,7 +134,7 @@ class Setup
 
         $postType = get_current_screen()->post_type;
 
-        if (empty($postType) || $postType !== 'vol-assignment') {
+        if (empty($postType) || $postType !== \APIVolunteerManagerIntegration\PostTypes\Assignment::$postType) {
             return;
         }
 
@@ -116,16 +142,5 @@ class Setup
         echo '<a href="'.add_query_arg('import_assignments', 'true',
                 $_SERVER['REQUEST_URI']).'" class="button-primary extraspace" style="float: right; margin-right: 10px;">'.__("Import posts",
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).'</a>';
-    }
-
-    /**
-     * Start cron jobs
-     * @return void
-     */
-    public function projectEventsCron()
-    {
-        $url = get_field('volunteer_manager_integration_api_uri', 'option').'/assignment';
-
-        new Assignment($url);
     }
 }
