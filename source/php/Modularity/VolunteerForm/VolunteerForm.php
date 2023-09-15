@@ -75,6 +75,10 @@ class VolunteerForm extends \Modularity\Module
 
     public function script()
     {
+        if ( ! $this->hasModule()) {
+            return;
+        }
+
         wp_enqueue_script(
             'register-volunteer-form-js',
             API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/volunteer-form.js'),

@@ -115,6 +115,10 @@ class AssignmentForm extends \Modularity\Module
 
     public function script()
     {
+        if ( ! $this->hasModule()) {
+            return;
+        }
+
         wp_enqueue_script(
             'register-volunteer-assignment-form-js',
             API_VOLUNTEER_MANAGER_INTEGRATION_URL.'/dist/'.CacheBust::name('js/assignment-form.js'),
