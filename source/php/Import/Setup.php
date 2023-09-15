@@ -31,13 +31,9 @@ class Setup
         wp_clear_scheduled_hook('import_volunteer_assignments_daily');
     }
 
-    public function toggleCronJob($value)
+    public function toggleCronJob(bool $value): bool
     {
-        if ($value) {
-            self::addCronJob();
-        } else {
-            self::removeCronJob();
-        }
+        $value ? self::addCronJob() : self::removeCronJob();
 
         return $value;
     }
