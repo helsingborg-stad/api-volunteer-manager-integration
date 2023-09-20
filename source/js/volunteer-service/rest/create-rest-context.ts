@@ -1,5 +1,9 @@
 import axios from 'axios'
-import { SignUpTypes, VolunteerServiceContextType } from '../VolunteerServiceContext'
+import {
+  SignUpTypes,
+  VOLUNTEER_ERROR,
+  VolunteerServiceContextType,
+} from '../VolunteerServiceContext'
 import { GetAccessTokenResponse } from '../../gdi-host/api'
 import { convertToFormData } from '../../util/convert-to-form-data'
 
@@ -66,7 +70,17 @@ export const createRestContext = (
             statusLabel: name,
           }),
         ),
-      })),
+      }))
+      .catch((err: any) => {
+        if (err?.response?.status && err?.response?.data?.code) {
+          if (err.response.status === 404 && err.response.data.code === 'rest_post_invalid_id') {
+            let error = new Error("Volunteer doesn't exist")
+            error.name = VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST
+            throw error
+          }
+        }
+        throw err
+      }),
   registerVolunteer: (input) =>
     getValidAccessToken()
       .then(createAuthorizationHeadersFromToken)

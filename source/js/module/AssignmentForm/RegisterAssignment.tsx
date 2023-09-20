@@ -2,7 +2,7 @@ import VolunteerServiceContext, {
   Assignment,
 } from '../../volunteer-service/VolunteerServiceContext'
 import { useContext } from 'react'
-import AssignmentForm from './components/AssignmentForm'
+import AssignmentForm from './AssignmentForm'
 import useAsync from '../../hooks/UseAsync'
 import useForm from '../../hooks/UseForm'
 

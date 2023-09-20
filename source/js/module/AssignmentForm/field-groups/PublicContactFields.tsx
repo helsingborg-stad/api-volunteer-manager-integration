@@ -1,11 +1,11 @@
-import FormSection from '../../../../components/form/FormSection'
-import PhraseContext from '../../../../phrase/PhraseContextInterface'
+import FormSection from '../../../components/form/FormSection'
+import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
 
 import { FieldGroupProps } from './FieldGroupProps'
 
-import { parseValue } from '../../../../util/event'
+import { parseValue } from '../../../util/event'
 
 export const PublicContactFields = ({
   formState: { publicContact },

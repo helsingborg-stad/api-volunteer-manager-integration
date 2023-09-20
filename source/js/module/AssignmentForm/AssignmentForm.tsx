@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Icon } from '@helsingborg-stad/municipio-react-ui'
-import { AssignmentInput } from '../../../volunteer-service/VolunteerServiceContext'
-import PhraseContext from '../../../phrase/PhraseContextInterface'
+import { AssignmentInput } from '../../volunteer-service/VolunteerServiceContext'
+import PhraseContext from '../../phrase/PhraseContextInterface'
 import { useCallback, useContext, useRef } from 'react'
 import GeneralFields from './field-groups/GeneralFields'
 import DetailsFields from './field-groups/DetailsFields'
@@ -8,7 +8,7 @@ import PublicContactFields from './field-groups/PublicContactFields'
 import SignUpFields from './field-groups/SignUpFields'
 import { CircularProgress } from '@mui/material'
 import EmployerFields from './field-groups/EmployerFields'
-import Grid from '../../../components/grid/Grid'
+import Grid from '../../components/grid/Grid'
 
 interface AssignmentFormProps {
   formState: AssignmentInput

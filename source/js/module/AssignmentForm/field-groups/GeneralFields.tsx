@@ -1,10 +1,10 @@
-import FormSection from '../../../../components/form/FormSection'
-import PhraseContext from '../../../../phrase/PhraseContextInterface'
+import FormSection from '../../../components/form/FormSection'
+import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
 import { FieldGroupProps } from './FieldGroupProps'
-import ImagePicker from '../../../../components/form/ImagePicker'
-import { parseValue } from '../../../../util/event'
+import ImagePicker from '../../../components/form/ImagePicker'
+import { parseValue } from '../../../util/event'
 
 export const GeneralFields = ({
   formState,

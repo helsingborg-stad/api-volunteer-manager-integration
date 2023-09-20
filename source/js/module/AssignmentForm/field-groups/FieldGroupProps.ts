@@ -1,4 +1,4 @@
-import { AssignmentInput } from '../../../../volunteer-service/VolunteerServiceContext'
+import { AssignmentInput } from '../../../volunteer-service/VolunteerServiceContext'
 
 export interface FieldGroupProps {
   formState: AssignmentInput

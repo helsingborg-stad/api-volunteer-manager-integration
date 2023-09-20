@@ -1,4 +1,7 @@
-import VolunteerServiceContext, { Volunteer } from '../../volunteer-service/VolunteerServiceContext'
+import VolunteerServiceContext, {
+  Volunteer,
+  VOLUNTEER_ERROR,
+} from '../../volunteer-service/VolunteerServiceContext'
 import useAsync from '../../hooks/UseAsync'
 import { useContext } from 'react'
 import SignUpForm from './SignUpForm'
@@ -18,6 +21,8 @@ export function SignUpToAssignment({
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
   const volunteerHasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
     volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) !== undefined
+  const volunteerCanSubmit = (volunteer: Volunteer, pendingStatus: string = 'new') =>
+    volunteer.status && volunteer.status !== pendingStatus
 
   return inspect({
     pending: (state, data) => (
@@ -80,31 +85,44 @@ export function SignUpToAssignment({
             </Stack>
           </SignUpForm>
         ),
-        loading: (
-          <SignUpForm volunteer={volunteer}>
-            <Stack spacing={4}>
-              <div>
-                <Stack spacing={1} direction={'column'}>
-                  <Button
-                    color={'primary'}
-                    onClick={() =>
-                      update(applyToAssignment(parseInt(assignmentId)).then(getVolunteer), 'saving')
-                    }>
-                    {'Anmäl intresse'}
-                  </Button>
-                  <span></span>
-                  <Button color={'secondary'} onClick={closeDialog}>
-                    {'Logga ut'}
-                  </Button>
-                </Stack>
-              </div>
-            </Stack>
-          </SignUpForm>
-        ),
+        loading: {
+          signUp: (
+            <SignUpForm volunteer={volunteer}>
+              <Stack spacing={4}>
+                <div>
+                  <Stack spacing={1} direction={'column'}>
+                    <Button
+                      color={'primary'}
+                      onClick={() =>
+                        update(
+                          applyToAssignment(parseInt(assignmentId)).then(getVolunteer),
+                          'saving',
+                        )
+                      }>
+                      {'Anmäl intresse'}
+                    </Button>
+                    <span></span>
+                    <Button color={'secondary'} onClick={closeDialog}>
+                      {'Logga ut'}
+                    </Button>
+                  </Stack>
+                </div>
+              </Stack>
+            </SignUpForm>
+          ),
+          notApproved: <span>Sorry not approoved :(</span>,
+        }[`${volunteerCanSubmit(volunteer) ? 'signUp' : 'notApproved'}`],
       }[`${volunteerHasSubmitted(volunteer, assignmentId) ? 'saving' : state}`]),
     rejected: (err, state, update) =>
       ({
-        loading: <span>failed to load</span>,
+        loading: {
+          [VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST]: <span>Sorry you must register :(</span>,
+          error: <span>Sorry something is wrong :(</span>,
+        }[
+          err.name === VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST
+            ? VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST
+            : 'error'
+        ],
         saving: <span>failed to save</span>,
       }[state]),
   })

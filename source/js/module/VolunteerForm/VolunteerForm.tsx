@@ -1,9 +1,9 @@
 import { Button, Field, Icon } from '@helsingborg-stad/municipio-react-ui'
-import { Volunteer } from '../../../../volunteer-service/VolunteerServiceContext'
-import PhraseContext from '../../../../phrase/PhraseContextInterface'
+import { Volunteer } from '../../volunteer-service/VolunteerServiceContext'
+import PhraseContext from '../../phrase/PhraseContextInterface'
 import { useContext, useRef } from 'react'
 import { CircularProgress } from '@mui/material'
-import Grid from '../../../../components/grid/Grid'
+import Grid from '../../components/grid/Grid'
 
 interface VolunteerFormProps {
   volunteer: Volunteer

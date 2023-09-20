@@ -1,11 +1,12 @@
 import VolunteerServiceContext, {
   Volunteer,
-} from '../../../volunteer-service/VolunteerServiceContext'
+  VOLUNTEER_ERROR,
+} from '../../volunteer-service/VolunteerServiceContext'
 import { useCallback, useContext } from 'react'
-import useAsync from '../../../hooks/UseAsync'
-import VolunteerForm from './volunteer/VolunteerForm'
-import useForm from '../../../hooks/UseForm'
-import PhraseContext from '../../../phrase/PhraseContextInterface'
+import useAsync from '../../hooks/UseAsync'
+import VolunteerForm from './VolunteerForm'
+import useForm from '../../hooks/UseForm'
+import PhraseContext from '../../phrase/PhraseContextInterface'
 
 type State = 'loading' | 'saving'
 
@@ -84,10 +85,8 @@ function RegisterVolunteer(): JSX.Element {
   const getVolunteerWithNullCatch = useCallback(
     async (): Promise<Volunteer> =>
       getVolunteer().catch((e) => {
-        const { response } = e
-        if (!response?.data?.message || response.data?.message !== 'Invalid post ID.') {
-          throw e
-        }
+        const { name } = e
+        if (!name || name !== VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST) throw e
         return window.gdiHost.getAccessToken().then(({ decoded }) => ({
           id: decoded.id,
           firstName: decoded.firstName,
