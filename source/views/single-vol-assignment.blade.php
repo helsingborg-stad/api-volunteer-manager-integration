@@ -1,9 +1,3 @@
-@php use APIVolunteerManagerIntegration\Model\VolunteerAssignment; @endphp
-@php
-    /** @var  VolunteerAssignment $volunteerAssignment */
-@endphp
-
-
 @extends('templates.single')
 
 @section('article.title.before')
@@ -18,6 +12,7 @@
             width: 100%;
             margin: auto;
         }
+
 
         .c-highlight {
             border-radius: var(--c-card-border-radius, var(--radius-lg, calc(var(--base, 8px) * 1.5)));

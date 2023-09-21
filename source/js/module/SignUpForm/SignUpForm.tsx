@@ -19,7 +19,7 @@ function SignUpForm({ volunteer, onSubmit = () => {}, children }: SignUpFormProp
       <div className="o-grid-12">
         <Field
           name="volunteer_name"
-          label={phrase('volunteer_name', 'Volontär')}
+          label={phrase('volunteer_name_field_label', 'Volunteer')}
           value={volunteer.firstName + ' ' + volunteer.lastName}
           onChange={() => {}}
           readOnly
@@ -27,8 +27,8 @@ function SignUpForm({ volunteer, onSubmit = () => {}, children }: SignUpFormProp
       </div>
       <div className="o-grid-12">
         <Field
-          name="assignment_name"
-          label={phrase('assignment_name', 'Uppdragsgivare')}
+          name="employer_name"
+          label={phrase('employer_name_field_label', 'Employer')}
           value={'Helsingborg Stad'}
           onChange={() => {}}
           readOnly

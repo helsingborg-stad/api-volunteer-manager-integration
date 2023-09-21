@@ -42,6 +42,10 @@ export enum SignUpTypes {
   Internal = 'internal',
 }
 
+export enum VOLUNTEER_ERROR {
+  VOLUNTEER_DOES_NOT_EXIST = 'volunteer_does_not_exist',
+}
+
 export type SignUpWithWebsite = {
   type: SignUpTypes.Link
   link: string

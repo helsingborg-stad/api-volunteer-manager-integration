@@ -16,12 +16,8 @@ use APIVolunteerManagerIntegration\Services\AssetsService\Assets;
 use APIVolunteerManagerIntegration\Services\AssetsService\AssetsService;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPagesService;
-use APIVolunteerManagerIntegration\Services\WpRest\WpRestClientFactory;
-use APIVolunteerManagerIntegration\Services\WpRest\WpRestFactory;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Services\WPService\WPServiceFactory;
-use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\GlobalContextFactory;
-use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\VQContextFactory;
 use ReflectionClass;
 use ReflectionException;
 
@@ -67,9 +63,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
         $DI->bind($withExtensions(WPService::class), WPServiceFactory::create());
         $DI->bind($withExtensions(ACFService::class), ACFServiceFactory::create());
         $DI->bind(HttpClientFactory::class, new CurlClientFactory());
-        $DI->bind(WpRestClientFactory::class, $DI->make(WpRestFactory::class));
 
-        $DI->bind(VQContextFactory::class, new GlobalContextFactory());
         $DI->bind(PluginManager::class, $DI->make(PluginManager::class));
         $DI->bind(MyPages::class, new MyPagesService());
         $DI->bind(AssetsService::class, new Assets());
