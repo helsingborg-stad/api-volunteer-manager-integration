@@ -1,9 +1,3 @@
-@php use APIVolunteerManagerIntegration\Model\VolunteerAssignment; @endphp
-@php
-    /** @var  VolunteerAssignment $volunteerAssignment */
-@endphp
-
-
 @extends('templates.single')
 
 @section('article.title.before')

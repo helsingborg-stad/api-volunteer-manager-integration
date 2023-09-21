@@ -1,6 +1,6 @@
-<?php
+<?php /** @noinspection FunctionSpreadingInspection */
 
-namespace APIVolunteerManagerIntegration\Controller\Assignment;
+namespace APIVolunteerManagerIntegration\PostTypes\Assignment;
 
 use APIVolunteerManagerIntegration\Helper\WP;
 use APIVolunteerManagerIntegration\PostTypes\Assignment;
@@ -242,18 +242,18 @@ class Single
         }
 
         return [
-            'heading' => __('Logga in som volontär', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+            'heading' => __('Volunteer login', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             'id'      => 'assignment-modal-'.(string) (get_queried_object_id()),
             'buttons' => [
                 [
-                    'text'      => __('Logga in som volontär', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'text'      => __('Volunteer login', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                     'href'      => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['sign_up' => WP::getPostMeta('uuid')])),
                     'color'     => 'primary',
                     'style'     => 'filled',
                     'fullWidth' => true,
                 ],
                 [
-                    'text'      => __('Registrera dig som volontär', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'text'      => __('Become a volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                     'href'      => $this->acf->getField('volunteer_manager_integration_volunteer_registration_page',
                             'options')['url'] ?? '#',
                     'color'     => 'primary',
@@ -315,7 +315,23 @@ class Single
             'id'                 => 'assignment-sign-up-modal-'.(string) ($post->ID ?? ''),
             'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
             'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
-            'labels'             => [],
+            'labels'             => [
+                'after_sign_up_text'            => __('Thank you for your registration!',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'sign_up_button_label'          => __('Express Interest',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'logout_button_label'           => __('Log Out', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'volunteer_not_approved_text'   => __('Your volunteer application is pending, please try again later.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'volunteer_not_registered_text' => __('You are not registered as a volunteer.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'loading_text'                  => __('Loading...', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'saving_text'                   => __('Saving...', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'error_text'                    => __('Something went wrong, please try again later.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'volunteer_name_field_label'    => __('Volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'employer_name_field_label'     => __('Employer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+            ],
             'signOutUrl'         => $this->myPages->signOutUrl(),
         ];
     }
@@ -324,13 +340,15 @@ class Single
     {
         return [
             'title'        => __(
-                'Om uppdragsgivaren',
+                'About the employer',
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
             ),
             'instructions' => WP::getPostMeta('employer_about', ''),
             'employer'     => array_filter([
-                'name'    => WP::getPostMeta('employer_name', ''),
-                'website' => WP::getPostMeta('employer_website', ''),
+                'name'          => WP::getPostMeta('employer_name', ''),
+                'name_label'    => __('Organisation', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'website'       => WP::getPostMeta('employer_website', ''),
+                'website_label' => __('Website', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             ], fn($str) => ! empty($str)),
         ];
     }
