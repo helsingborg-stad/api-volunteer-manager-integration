@@ -60,6 +60,10 @@ class VolunteerForm extends \Modularity\Module
                         'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
                         'labels'             => [
                             'form_terms' => get_field('form_terms', $this->ID) ?: '',
+                            'phone'      => __('Phone', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                            'submit'     => __('Submit', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                            'email'      => __('E-mail', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                            'name'       => __('Name', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                         ],
                         'signOutUrl'         => $this->myPages->signOutUrl(),
                     ],
