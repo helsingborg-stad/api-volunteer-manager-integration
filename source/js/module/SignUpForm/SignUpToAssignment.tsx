@@ -7,8 +7,13 @@ import { useContext } from 'react'
 import SignUpForm from './SignUpForm'
 import { CircularProgress, Stack } from '@mui/material'
 import { Button, Icon } from '@helsingborg-stad/municipio-react-ui'
+import PhraseContext from '../../phrase/PhraseContextInterface'
 
 type State = 'loading' | 'saving'
+const volunteerHasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
+  volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) !== undefined
+const volunteerCanSubmit = (volunteer: Volunteer, rejectStatus: string[] = ['new', 'denied']) =>
+  volunteer.status && !rejectStatus.includes(volunteer.status)
 
 export function SignUpToAssignment({
   assignmentId,
@@ -18,12 +23,8 @@ export function SignUpToAssignment({
   closeDialog: () => any
 }): JSX.Element {
   const { getVolunteer, applyToAssignment } = useContext(VolunteerServiceContext)
+  const { phrase } = useContext(PhraseContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
-  const volunteerHasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
-    volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) !== undefined
-  const volunteerCanSubmit = (volunteer: Volunteer, pendingStatus: string = 'new') =>
-    volunteer.status && volunteer.status !== pendingStatus
-
   return inspect({
     pending: (state, data) => (
       <SignUpForm
@@ -47,11 +48,16 @@ export function SignUpToAssignment({
           <div>
             <Stack spacing={1} direction={'column'}>
               <Button disabled color={'primary'}>
-                {'Vänligen vänta...'}
+                {
+                  {
+                    loading: phrase('loading_text', 'Loading...'),
+                    saving: phrase('saving_text', 'Saving...'),
+                  }[state]
+                }
               </Button>
               <span></span>
               <Button disabled color={'secondary'} onClick={closeDialog}>
-                {'Logga ut'}
+                {phrase('logout_button_label', 'Logout')}
               </Button>
             </Stack>
           </div>
@@ -68,17 +74,17 @@ export function SignUpToAssignment({
                   <Icon name={'check'} />
                 </span>
                 <span className="c-notice__message">
-                  {'Tack för ditt intresse! Du kommer att bli kontaktad av uppdragsgivaren.'}
+                  {phrase('after_sign_up_text', 'Thank you for your registration!')}
                 </span>
               </div>
               <div>
                 <Stack spacing={1} direction={'column'}>
                   <Button disabled color={'primary'}>
-                    {'Anmäl intresse'}
+                    {phrase('sign_up_button_label', 'Sign up')}
                   </Button>
                   <span></span>
                   <Button color={'secondary'} onClick={closeDialog}>
-                    {'Logga ut'}
+                    {phrase('logout_button_label', 'Logout')}
                   </Button>
                 </Stack>
               </div>
@@ -99,31 +105,46 @@ export function SignUpToAssignment({
                           'saving',
                         )
                       }>
-                      {'Anmäl intresse'}
+                      {phrase('sign_up_button_label', 'Sign up')}
                     </Button>
                     <span></span>
                     <Button color={'secondary'} onClick={closeDialog}>
-                      {'Logga ut'}
+                      {phrase('logout_button_label', 'Logout')}
                     </Button>
                   </Stack>
                 </div>
               </Stack>
             </SignUpForm>
           ),
-          notApproved: <span>Sorry not approoved :(</span>,
+          notApproved: (
+            <span>
+              {phrase(
+                'volunteer_not_approved_text',
+                'Your volunteer application is pending, please try again later.',
+              )}
+            </span>
+          ),
         }[`${volunteerCanSubmit(volunteer) ? 'signUp' : 'notApproved'}`],
       }[`${volunteerHasSubmitted(volunteer, assignmentId) ? 'saving' : state}`]),
     rejected: (err, state, update) =>
       ({
         loading: {
-          [VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST]: <span>Sorry you must register :(</span>,
-          error: <span>Sorry something is wrong :(</span>,
+          [VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST]: (
+            <span>
+              {phrase('volunteer_not_registered_text', 'You are not registered as a volunteer.')}
+            </span>
+          ),
+          error: (
+            <span>{phrase('error_text', 'Something went wrong, please try again later.')}</span>
+          ),
         }[
           err.name === VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST
             ? VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST
             : 'error'
         ],
-        saving: <span>failed to save</span>,
+        saving: (
+          <span>{phrase('error_text', 'Something went wrong, please try again later.')}</span>
+        ),
       }[state]),
   })
 }
