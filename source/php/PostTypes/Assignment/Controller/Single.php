@@ -173,7 +173,8 @@ class Single
             fn(array $arr): array => $maybeWith(
                 ! empty(WP::getPostMeta('signup_link', '')) && empty($arr),
                 fn(array $arr) => array_merge($arr, [
-                    'instructions' => 'Välkommen med din intresseanmälan, du anmäler dig via länken nedan.',
+                    'instructions' => __('Welcome with your expression of interest, you can apply through the link below.',
+                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                     'signUpUrl'    => [
                         'url'   => WP::getPostMeta('signup_link', ''),
                         'label' => __(
@@ -188,7 +189,7 @@ class Single
             ( ! empty(WP::getPostMeta('signup_email', null)) || ! empty(WP::getPostMeta('signup_phone',
                     null))) && empty($arr),
             fn(array $arr) => array_merge($arr, [
-                'instructions'  => __('Välkommen med din intresseanmälan, du anmäler dig via kontaktuppgifterna nedan.',
+                'instructions'  => __('Welcome with your expression of interest, you can apply using the contact details below.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'signUpContact' => array_filter([
                     'person' => '',
@@ -201,7 +202,8 @@ class Single
         $withInternalUrl = fn(array $arr): array => $maybeWith(
             WP::getPostMeta('internal_assignment', null) && empty($arr),
             fn(array $arr) => array_merge($arr, [
-                'instructions' => 'Välkommen med din intresseanmälan, logga in som volontär för att anmäla dig till detta uppdrag.',
+                'instructions' => __('Welcome with your expression of interest, login or register a volunteer account using the link below.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'signUpButton' => [
                     'modalId' => 'assignment-modal-'.(string) (get_queried_object_id() ?? ''),
                     'label'   => __(
@@ -217,7 +219,7 @@ class Single
             ! empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'title'   => __(
-                    'Anmälan',
+                    'Registration',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                 ),
                 'dueDate' => '',
@@ -253,7 +255,7 @@ class Single
                     'fullWidth' => true,
                 ],
                 [
-                    'text'      => __('Become a volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                    'text'      => __('Volunteer registration', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                     'href'      => $this->acf->getField('volunteer_manager_integration_volunteer_registration_page',
                             'options')['url'] ?? '#',
                     'color'     => 'primary',
@@ -316,14 +318,14 @@ class Single
             'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
             'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
             'labels'             => [
-                'after_sign_up_text'            => __('Thank you for your registration!',
+                'after_sign_up_text'            => __('Thank you for showing interest, we will get back to you as soon as possible.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'sign_up_button_label'          => __('Express Interest',
+                'sign_up_button_label'          => __('Apply to assignment',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'logout_button_label'           => __('Log Out', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'volunteer_not_approved_text'   => __('Your volunteer application is pending, please try again later.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'volunteer_not_registered_text' => __('You are not registered as a volunteer.',
+                'volunteer_not_registered_text' => __('You are not a registered volunteer, please register an account.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'loading_text'                  => __('Loading...', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'saving_text'                   => __('Saving...', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
