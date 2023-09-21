@@ -24,6 +24,6 @@ class App
             ->register($DI->make(PostTypes\Assignment\Scripts::class))
             ->register($DI->make(PostTypes\Assignment\PreventAlgolia::class))
             ->register($DI->make(PostTypes\Assignment\PreventRobots::class))
-            ->register($DI->make(PostTypes\Assignment\Single::class));
+            ->register($DI->make(PostTypes\Assignment\Controller\Single::class));
     }
 }

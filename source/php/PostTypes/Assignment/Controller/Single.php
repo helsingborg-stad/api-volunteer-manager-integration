@@ -1,6 +1,6 @@
 <?php /** @noinspection FunctionSpreadingInspection */
 
-namespace APIVolunteerManagerIntegration\PostTypes\Assignment;
+namespace APIVolunteerManagerIntegration\PostTypes\Assignment\Controller;
 
 use APIVolunteerManagerIntegration\Helper\WP;
 use APIVolunteerManagerIntegration\PostTypes\Assignment;
