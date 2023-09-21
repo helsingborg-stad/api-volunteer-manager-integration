@@ -18,8 +18,6 @@ use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPagesService;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Services\WPService\WPServiceFactory;
-use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\GlobalContextFactory;
-use APIVolunteerManagerIntegration\Virtual\VirtualQuery\Context\VQContextFactory;
 use ReflectionClass;
 use ReflectionException;
 
