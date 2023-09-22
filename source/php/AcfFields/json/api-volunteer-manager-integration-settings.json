@@ -59,6 +59,44 @@
         "append": ""
       },
       {
+        "key": "field_65045f9f5dca2",
+        "label": "Cron",
+        "name": "",
+        "aria-label": "",
+        "type": "accordion",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "open": 0,
+        "multi_expand": 0,
+        "endpoint": 0
+      },
+      {
+        "key": "field_65045eeee86f5",
+        "label": "Daily Import",
+        "name": "volunteer_assignments_daily_import",
+        "aria-label": "",
+        "type": "true_false",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0,
+        "ui_on_text": "Enabled",
+        "ui_off_text": "Disabled",
+        "ui": 1
+      },
+      {
         "key": "field_64a43f9f0f620",
         "label": "Volunteer",
         "name": "",

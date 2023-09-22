@@ -248,8 +248,7 @@ class Importer
 
         $headers = get_headers($url, 1);
 
-        if ( ! isset($url) || strlen($url) === 0 || ! wp_http_validate_url($url) || preg_match('/200 OK/',
-                $headers[0]) === 0) {
+        if (empty($url) || preg_match('/200 OK/', $headers[0]) === 0) {
             return false;
         }
 
