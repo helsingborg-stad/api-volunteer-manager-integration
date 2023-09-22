@@ -86,7 +86,7 @@ const ImagePicker = ({
             paddingTop: `${aspectRatioPaddingTop}%`,
           }}>
           <div className="c-field__dropzone-inner">
-            {value?.length && value.length > 0 ? (
+            {value instanceof File && value.length > 0 ? (
               <img
                 className="c-field__dropzone-image"
                 src={URL.createObjectURL(value[0])}
