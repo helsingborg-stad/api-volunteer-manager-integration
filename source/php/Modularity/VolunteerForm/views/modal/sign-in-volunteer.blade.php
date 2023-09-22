@@ -4,7 +4,7 @@
 
 <div>
     @button([
-    'text' => 'Register as a volunteer',
+    'text' => $viewModel->triggerButtonLabel,
     'color' => 'primary',
     'style' => 'filled',
     'attributeList' => ['data-open' => $viewModel->id]
@@ -23,7 +23,7 @@
 ])
 <div class='u-text-align--center'>
     @typography()
-    Logga in för att registrera dig som volontär.
+    {{$viewModel->text}}
     @endtypography
 </div>
 

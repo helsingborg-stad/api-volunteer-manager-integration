@@ -38,9 +38,11 @@ class VolunteerForm extends \Modularity\Module
     {
         return [
             'loginDialog'             => [
-                'heading' => __('Volunteer Registration', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'id'      => 'identification-dialog',
-                'buttons' => [
+                'heading'            => __('Volunteer Registration', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'id'                 => 'identification-dialog',
+                'text'               => __('Identify with Bank ID to continue.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'buttons'            => [
                     [
                         'text'      => __('Identify with Bank ID', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                         'href'      => $this->myPages->loginUrl(get_permalink().'?'.http_build_query(['is_authenticated' => 1])),
@@ -49,6 +51,7 @@ class VolunteerForm extends \Modularity\Module
                         'fullWidth' => true,
                     ],
                 ],
+                'triggerButtonLabel' => __('Volunteer Registration', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             ],
             'registerVolunteerDialog' => ! empty($_GET['is_authenticated']) ?
                 [

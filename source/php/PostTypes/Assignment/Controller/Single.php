@@ -48,28 +48,28 @@ class Single
                     'About the assignment',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                 ), 'class="u-margin__top--0"'),
-                'content' => WP::getPostMeta('description', ''),
+                'content' => trim(WP::getPostMeta('description', '')),
             ],
             'requirements'   => [
                 'title'   => $wrapInFn('h3', __(
                     'Requirements',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                 )),
-                'content' => WP::getPostMeta('qualifications', ''),
+                'content' => trim(WP::getPostMeta('qualifications', '')),
             ],
             'benefits'       => [
                 'title'   => $wrapInFn('h3', __(
                     'Benefits',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                 )),
-                'content' => WP::getPostMeta('benefits', ''),
+                'content' => trim(WP::getPostMeta('benefits', '')),
             ],
             'where_and_when' => [
                 'title'   => $wrapInFn('h3', __(
                     'Where and when?',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
                 )),
-                'content' => WP::getPostMeta('schedule', ''),
+                'content' => trim(WP::getPostMeta('schedule', '')),
             ],
         ];
 
@@ -81,55 +81,6 @@ class Single
             fn(string $str, array $i) => $str.$i['title'].$i['content'],
             ''
         ));
-    }
-
-    public function createPostContent(array $data): string
-    {
-        $wrapInFn = fn(
-            string $tag,
-            string $str,
-            ?string $attributes = ''
-        ): string => "<$tag $attributes>".$str."</$tag>";
-
-        $contentPieces = [
-            'about'          => [
-                'title'   => $wrapInFn('h2', __(
-                    'About the assignment',
-                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-                ), 'class="u-margin__top--0"'),
-                'content' => $data['description'] ?? '',
-            ],
-            'requirements'   => [
-                'title'   => $wrapInFn('h3', __(
-                    'Requirements',
-                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-                )),
-                'content' => $data['qualifications'] ?? '',
-            ],
-            'benefits'       => [
-                'title'   => $wrapInFn('h3', __(
-                    'Benefits',
-                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-                )),
-                'content' => $data['benefits'] ?? '',
-            ],
-            'where_and_when' => [
-                'title'   => $wrapInFn('h3', __(
-                    'Where and when?',
-                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-                )),
-                'content' => $data['schedule'] ?? '',
-            ],
-        ];
-
-        return array_reduce(
-            array_filter(
-                array_values($contentPieces),
-                fn($i) => ! empty($i['content'])
-            ),
-            fn(string $str, array $i) => $str.$i['title'].$i['content'],
-            ''
-        );
     }
 
     public function controller(array $data): array
@@ -163,7 +114,6 @@ class Single
 
     function extractSignUp(): array
     {
-
         $maybeWith =
             fn(bool $condition, Closure $cb) => fn(array $arr): array => $condition
                 ? $cb($arr)
@@ -308,12 +258,14 @@ class Single
     {
         $post = get_queried_object();
 
-        if (empty(WP::getPostMeta('internal_assignment')) || empty($_GET['sign_up']) || (int) $_GET['sign_up'] !== (int) WP::getPostMeta('uuid')) {
+        if (empty(WP::getPostMeta('internal_assignment'))
+            || empty($_GET['sign_up'])
+            || (int) $_GET['sign_up'] !== (int) WP::getPostMeta('uuid')) {
             return [];
         }
 
         return [
-            'heading'            => $post->post_title,
+            'heading'            => $post->post_title ?? '',
             'id'                 => 'assignment-sign-up-modal-'.(string) ($post->ID ?? ''),
             'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
             'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),
@@ -322,17 +274,22 @@ class Single
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'sign_up_button_label'          => __('Apply to assignment',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'logout_button_label'           => __('Log Out', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'logout_button_label'           => __('Log Out',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'volunteer_not_approved_text'   => __('Your volunteer application is pending, please try again later.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'volunteer_not_registered_text' => __('You are not a registered volunteer, please register an account.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'loading_text'                  => __('Loading...', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'saving_text'                   => __('Saving...', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'loading_text'                  => __('Loading...',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'saving_text'                   => __('Saving...',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'error_text'                    => __('Something went wrong, please try again later.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'volunteer_name_field_label'    => __('Volunteer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'employer_name_field_label'     => __('Employer', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'volunteer_name_field_label'    => __('Volunteer',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'employer_name_field_label'     => __('Employer',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             ],
             'signOutUrl'         => $this->myPages->signOutUrl(),
         ];
@@ -340,18 +297,39 @@ class Single
 
     private function extractEmployer()
     {
+        $toString            = fn(array $arr): string => $arr['value'];
+        $wrapValueWithAnchor = fn(array $arr): array => array_merge($arr, [
+            'value' => filter_var($arr['value'],
+                FILTER_VALIDATE_URL) ? "<a href='{$arr['value']}'>{$arr['value']}</a>" : $arr['value'],
+        ]);
+        $wrapValueWithLabel  = fn(array $arr): array => array_merge($arr, [
+            'value' => ! empty($arr['label']) ? '<span>'.$arr['label'].':</span> '.$arr['value'] : $arr['value'],
+        ]);
+
         return [
             'title'        => __(
                 'About the employer',
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
             ),
             'instructions' => WP::getPostMeta('employer_about', ''),
-            'employer'     => array_filter([
-                'name'          => WP::getPostMeta('employer_name', ''),
-                'name_label'    => __('Organisation', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'website'       => WP::getPostMeta('employer_website', ''),
-                'website_label' => __('Website', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-            ], fn($str) => ! empty($str)),
+            'employer'     =>
+                array_map($toString,
+                    array_map($wrapValueWithLabel,
+                        array_map($wrapValueWithAnchor,
+                            array_filter([
+                                [
+                                    'label' => __('Organisation', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                                    'value' => trim(WP::getPostMeta('employer_name', '')),
+                                ],
+                                [
+                                    'label' => __('Website', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                                    'value' => trim(WP::getPostMeta('employer_website', '')),
+                                ],
+
+                            ], fn($arr) => ! empty($arr['value'])),
+                        ),
+                    ),
+                ),
         ];
     }
 }

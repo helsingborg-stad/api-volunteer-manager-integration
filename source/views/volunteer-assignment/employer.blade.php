@@ -17,7 +17,7 @@
     </div>
     <div>
         @collection([ 'unbox' => true, 'bordered' => true])
-        @foreach($viewModel->employer as $icon => $value)
+        @foreach($viewModel->employer as $value)
             @collection__item([
             ])
             @typography(){!! $value !!}@endtypography
