@@ -306,7 +306,10 @@ class Single
             'value' => ! empty($arr['label']) ? '<span>'.$arr['label'].':</span> '.$arr['value'] : $arr['value'],
         ]);
 
-        return [
+        $maybeReturnEmployerData = fn(array $arr
+        ): array => ! empty($arr['employer']) || ! empty($arr['instructions']) ? $arr['employer'] : [];
+
+        return $maybeReturnEmployerData([
             'title'        => __(
                 'About the employer',
                 API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
@@ -330,6 +333,6 @@ class Single
                         ),
                     ),
                 ),
-        ];
+        ]);
     }
 }
