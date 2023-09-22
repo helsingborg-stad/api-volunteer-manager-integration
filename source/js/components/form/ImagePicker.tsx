@@ -86,7 +86,7 @@ const ImagePicker = ({
             paddingTop: `${aspectRatioPaddingTop}%`,
           }}>
           <div className="c-field__dropzone-inner">
-            {value instanceof File && value.length > 0 ? (
+            {value instanceof FileList && value.length > 0 ? (
               <img
                 className="c-field__dropzone-image"
                 src={URL.createObjectURL(value[0])}
@@ -108,7 +108,7 @@ const ImagePicker = ({
         </div>
       </div>
 
-      {value?.length && value.length > 0 ? (
+      {value instanceof FileList && value.length > 0 ? (
         <div className="c-field__inner u-margin__top--2">
           <Collection className="c-collection--compact u-width--100">
             <CollectionItem>
