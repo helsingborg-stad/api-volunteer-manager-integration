@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection FunctionSpreadingInspection */
 
 /**
  * @deprecated in favor if Municipio\Helper\WP.
@@ -36,13 +36,13 @@ class WP
     {
         $postMeta = self::queryPostMeta($postId);
 
-        $isNull        = fn() => ! in_array($metaKey, array_keys($postMeta)) || $postMeta[$metaKey] === null;
-        $isEmptyString = fn() => is_string($postMeta[$metaKey]) && empty($postMeta[$metaKey]);
-        $isEmptyArray  = fn() => is_array($postMeta[$metaKey]) && empty($postMeta[$metaKey]);
+        $isNull        = static fn() => ! in_array($metaKey, array_keys($postMeta)) || $postMeta[$metaKey] === null;
+        $isEmptyString = static fn() => is_string($postMeta[$metaKey]) && empty($postMeta[$metaKey]);
+        $isEmptyArray  = static fn() => is_array($postMeta[$metaKey]) && empty($postMeta[$metaKey]);
 
-        $caseEmptyArray  = fn() => $isEmptyArray() ? $defaultValue : $postMeta[$metaKey];
-        $caseEmptyString = fn() => $isEmptyString() ? $defaultValue : $caseEmptyArray();
-        $caseNull        = fn() => $isNull() ? $defaultValue : $caseEmptyString();
+        $caseEmptyArray  = static fn() => $isEmptyArray() ? $defaultValue : $postMeta[$metaKey];
+        $caseEmptyString = static fn() => $isEmptyString() ? $defaultValue : $caseEmptyArray();
+        $caseNull        = static fn() => $isNull() ? $defaultValue : $caseEmptyString();
 
         return ! empty($metaKey) ? $caseNull() : $postMeta;
     }
