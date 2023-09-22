@@ -3,13 +3,13 @@
 namespace APIVolunteerManagerIntegration\PostTypes\Assignment\Controller\Model;
 
 use APIVolunteerManagerIntegration\Helper\WP;
-use APIVolunteerManagerIntegration\Services\MyPages\MyPagesService;
+use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 
 class SignUpModal
 {
-    private MyPagesService $myPages;
+    private MyPages $myPages;
 
-    public function __construct(MyPagesService $myPages)
+    public function __construct(MyPages $myPages)
     {
         $this->myPages = $myPages;
     }
