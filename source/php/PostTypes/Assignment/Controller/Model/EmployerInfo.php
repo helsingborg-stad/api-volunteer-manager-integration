@@ -6,7 +6,7 @@ use APIVolunteerManagerIntegration\Helper\WP;
 
 class EmployerInfo
 {
-    public function data()
+    public function data(): array
     {
         $toString            = fn(array $arr): string => $arr['value'];
         $wrapValueWithAnchor = fn(array $arr): array => array_merge($arr, [
