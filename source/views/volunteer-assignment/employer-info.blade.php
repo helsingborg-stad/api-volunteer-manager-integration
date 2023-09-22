@@ -25,9 +25,6 @@
 
         @endforeach
         @endcollection
-
-
     </div>
-
 </div>
 
