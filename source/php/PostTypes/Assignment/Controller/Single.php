@@ -89,21 +89,6 @@ class Single
 
     public function controller(array $data): array
     {
-        $data['volunteerAssignmentLabels'] = [
-            'sign_up'     => __(
-                'Sign up',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-            'sign_up_c2a' => __(
-                'Sign up',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-            'contact_us'  => __(
-                'Contact',
-                API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN
-            ),
-        ];
-
         $data['volunteerAssignmentViewModel'] = [
             'signUpInfo'   => (new SignUpInfo())->data(),
             'signUpModal'  => (new SignUpModal($this->myPages))->data(),
