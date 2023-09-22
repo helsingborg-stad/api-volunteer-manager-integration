@@ -1,33 +1,27 @@
 @php
     /** @var  object $viewModel */
 @endphp
-<div>
-    @modal([
-    'heading' => $viewModel->heading,
-    'isPanel' => false,
-    'id' => $viewModel->id,
-    'overlay' => 'dark',
-    'size' => 'sm',
-    'animation' => 'scale-up',
-    'classList' => ['c-modal--centered', 'c-modal--normalized']
-    ])
 
-    <div class='u-text-align--center'>
-        @typography()
-        Du måste vara registrerad som volontär för att kunna anmäla dig till uppdraget.
-        @endtypography
+@button([
+'text' => 'lol',
+'color' => 'primary',
+'style' => 'filled',
+'attributeList' => ['data-open' => $viewModel->id],
+'classList' => ['js-show-assignment-sign-up-dialog', 'u-display--none']
+])
+@endbutton
 
-    </div>
-
-    @slot('bottom')
-        <div class='c-stack' style='max-width:19rem;margin:auto;'>
-            @foreach($viewModel->buttons as $props)
-                <div>
-                    @button($props)
-                    @endbutton
-                </div>
-            @endforeach
-        </div>
-    @endslot
-    @endmodal
-</div>
+@modal([
+'heading' => $viewModel->heading,
+'isPanel' => false,
+'id' => $viewModel->id,
+'overlay' => 'dark',
+'size' => 'sm',
+'classList' => ['c-modal--centered', 'c-modal--normalized']
+])
+<div class="js-assignment-sign-up"
+     data-labels='{{ json_encode($viewModel->labels) }}'
+     data-volunteer-api-uri='{{ $viewModel->volunteerApiUri }}'
+     data-volunteer-app-secret='{{$viewModel->volunteerAppSecret}}'
+     data-sign-out-url={{$viewModel->signOutUrl}}></div>
+@endmodal

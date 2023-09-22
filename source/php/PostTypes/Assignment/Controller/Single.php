@@ -105,11 +105,11 @@ class Single
         ];
 
         $data['volunteerAssignmentViewModel'] = [
-            'signUp'     => (new SignUpInfo())->data(),
-            'modal'      => (new LoginModal($this->myPages, $this->acf))->data(),
-            'contact'    => (new ContactInfo())->data(),
-            'signUpForm' => (new SignUpModal($this->myPages))->data(),
-            'employer'   => (new EmployerInfo())->data(),
+            'signUpInfo'   => (new SignUpInfo())->data(),
+            'signUpModal'  => (new SignUpModal($this->myPages))->data(),
+            'loginModal'   => (new LoginModal($this->myPages, $this->acf))->data(),
+            'contactInfo'  => (new ContactInfo())->data(),
+            'employerInfo' => (new EmployerInfo())->data(),
         ];
 
         return $data;
