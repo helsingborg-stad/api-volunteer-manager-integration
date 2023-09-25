@@ -33,7 +33,7 @@ export const GeneralFields = ({
           label={phrase('field_label_general_title', 'Name of the assignment')}
           name="assignment_title"
           type="text"
-          onChange={parseValue(handleChange('image'))}
+          onChange={parseValue(handleChange('title'))}
           required
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
