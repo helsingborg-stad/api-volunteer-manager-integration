@@ -103,7 +103,18 @@ class AssignmentForm extends \Modularity\Module
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'field_label_employer_website'               => __('Website',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-
+                'select_placeholder'                         => __('Select an option',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'submit_button_text'                         => __('Submit',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'error_text'                                 => __('Something went wrong, please try again later.',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'success_text'                               => __('Successfully submitted new assignment!',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'loading_text'                               => __('Loading...',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                'saving_text'                                => __('Saving...',
+                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             ],
         ];
     }

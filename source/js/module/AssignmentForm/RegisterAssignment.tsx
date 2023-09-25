@@ -5,11 +5,13 @@ import { useContext } from 'react'
 import AssignmentForm from './AssignmentForm'
 import useAsync from '../../hooks/UseAsync'
 import useForm from '../../hooks/UseForm'
+import PhraseContext from '../../phrase/PhraseContextInterface'
 
 type State = 'loading' | 'saving'
 
 function RegisterAssignment(): JSX.Element {
   const { registerAssignment } = useContext(VolunteerServiceContext)
+  const { phrase } = useContext(PhraseContext)
 
   const { formState, handleChange } = useForm<Assignment>({
     initialState: {
@@ -66,7 +68,7 @@ function RegisterAssignment(): JSX.Element {
         handleChange={handleChange}
         formState={formState}
         onSubmit={(input) => update(registerAssignment(input), 'saving')}
-        errorMessage={err.message}
+        errorMessage={phrase('error_text', 'Something went wrong, please try again later.')}
       />
     ),
   })

@@ -49,6 +49,7 @@ export const SignUpFields = ({
           name="signup_type"
           onChange={parseValue(handleChange('signUp.type'))}
           required
+          placeholder={phrase('select_placeholder', 'Select an option')}
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -88,6 +89,7 @@ export const SignUpFields = ({
           name="signup_has_due_date"
           onChange={parseValue(handleChange('signUp.hasDeadline'))}
           required
+          placeholder={phrase('select_placeholder', 'Select an option')}
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
