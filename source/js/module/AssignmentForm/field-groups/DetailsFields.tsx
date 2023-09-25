@@ -1,9 +1,10 @@
+import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { parseValue } from '../../../util/event'
-import { useContext } from 'react'
 import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
 import { FieldGroupProps } from './FieldGroupProps'
+import Grid from '../../../components/grid/Grid'
 
 export const DetailsFields = ({
   formState: {
@@ -36,7 +37,7 @@ export const DetailsFields = ({
           : undefined
       }
       isSubSection>
-      <div className="o-grid-12">
+      <Grid col={12}>
         <Textarea
           value={description}
           label={phrase('field_label_details_description', 'Description')}
@@ -47,8 +48,8 @@ export const DetailsFields = ({
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12">
+      </Grid>
+      <Grid col={12}>
         <Textarea
           value={benefits}
           label={phrase('field_label_details_benefits', 'Benefits')}
@@ -58,8 +59,8 @@ export const DetailsFields = ({
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12">
+      </Grid>
+      <Grid col={12}>
         <Textarea
           value={qualifications}
           label={phrase('field_label_details_qualifications', 'Qualifications')}
@@ -69,8 +70,8 @@ export const DetailsFields = ({
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12">
+      </Grid>
+      <Grid col={12}>
         <Textarea
           value={schedule}
           label={phrase('field_label_details_when_and_where', 'When and where?')}
@@ -80,8 +81,8 @@ export const DetailsFields = ({
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12">
+      </Grid>
+      <Grid col={12}>
         <Field
           value={totalSpots?.toString() ?? ''}
           label={phrase('field_label_spots', 'Total spots')}
@@ -99,8 +100,8 @@ export const DetailsFields = ({
           }
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12">
+      </Grid>
+      <Grid col={12}>
         <Field
           value={location?.address || ''}
           label={phrase('field_label_assignment_location_address', 'Address')}
@@ -110,8 +111,8 @@ export const DetailsFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12 o-grid-6@md">
+      </Grid>
+      <Grid col={12} md={6}>
         <Field
           value={location?.postal || ''}
           label={phrase('field_label_assignment_location_postal', 'Postal')}
@@ -121,8 +122,8 @@ export const DetailsFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12 o-grid-6@md">
+      </Grid>
+      <Grid col={12} md={6}>
         <Field
           value={location?.city || ''}
           label={phrase('field_label_assignment_location_city', 'City')}
@@ -132,7 +133,7 @@ export const DetailsFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
     </FormSection>
   )
 }

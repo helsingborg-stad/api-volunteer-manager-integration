@@ -1,11 +1,10 @@
+import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
-
-import { FieldGroupProps } from './FieldGroupProps'
-
 import { parseValue } from '../../../util/event'
+import Grid from '../../../components/grid/Grid'
+import { FieldGroupProps } from './FieldGroupProps'
 
 export const PublicContactFields = ({
   formState: { publicContact },
@@ -27,7 +26,7 @@ export const PublicContactFields = ({
           : undefined
       }
       isSubSection>
-      <div className="o-grid-12 o-grid-6@md">
+      <Grid col={12} md={6}>
         <Field
           value={publicContact?.email || ''}
           label={phrase('field_label_public_contact_email', 'Public Contact Email')}
@@ -37,9 +36,9 @@ export const PublicContactFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
 
-      <div className="o-grid-12 o-grid-6@md">
+      <Grid col={12} md={6}>
         <Field
           value={publicContact?.phone || ''}
           label={phrase('field_label_public_contact_phone', 'Public Contact Phone')}
@@ -49,7 +48,7 @@ export const PublicContactFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
     </FormSection>
   )
 }

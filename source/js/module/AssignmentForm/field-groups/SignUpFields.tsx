@@ -1,14 +1,12 @@
+import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { useContext } from 'react'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
 import { SignUpTypes, SignUpWithWebsite } from '../../../volunteer-service/VolunteerServiceContext'
-
-import { FieldGroupProps } from './FieldGroupProps'
+import { parseValue } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import ShowIf from '../../../util/ShowIf'
-
-import { parseValue } from '../../../util/event'
+import { FieldGroupProps } from './FieldGroupProps'
 
 export function hasProperty<T>(data: any, property: string): data is T {
   return data && data[property] !== undefined

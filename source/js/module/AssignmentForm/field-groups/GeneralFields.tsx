@@ -1,10 +1,11 @@
+import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { useContext } from 'react'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
-import { FieldGroupProps } from './FieldGroupProps'
 import ImagePicker from '../../../components/form/ImagePicker'
 import { parseValue } from '../../../util/event'
+import Grid from '../../../components/grid/Grid'
+import { FieldGroupProps } from './FieldGroupProps'
 
 export const GeneralFields = ({
   formState,
@@ -26,7 +27,7 @@ export const GeneralFields = ({
             )
           : undefined
       }>
-      <div className="o-grid-12">
+      <Grid col={12}>
         <Field
           value={formState.title}
           label={phrase('field_label_general_title', 'Name of the assignment')}
@@ -37,9 +38,9 @@ export const GeneralFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
 
-      <div className="o-grid-12">
+      <Grid col={12}>
         <ImagePicker
           label={phrase('field_label_assignment_image', 'Assignment Image')}
           name="assignment_image"
@@ -47,9 +48,9 @@ export const GeneralFields = ({
           value={formState.image}
           required
         />
-      </div>
+      </Grid>
 
-      <div className="o-grid-12 o-grid-6@md">
+      <Grid col={12} md={6}>
         <Field
           value={formState.employer.contacts[0].name}
           label={phrase('field_label_general_contact_name', 'Name')}
@@ -60,9 +61,9 @@ export const GeneralFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
 
-      <div className="o-grid-12 o-grid-6@md">
+      <Grid col={12} md={6}>
         <Field
           value={formState.employer.name}
           label={phrase('field_label_general_organisation', 'Organisation')}
@@ -73,9 +74,9 @@ export const GeneralFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
 
-      <div className="o-grid-12 o-grid-6@md">
+      <Grid col={12} md={6}>
         <Field
           value={formState.employer.contacts[0].email}
           label={phrase('field_label_general_contact_email', 'E-mail')}
@@ -86,8 +87,8 @@ export const GeneralFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
-      <div className="o-grid-12 o-grid-6@md">
+      </Grid>
+      <Grid col={12} md={6}>
         <Field
           value={formState.employer.contacts[0].phone}
           label={phrase('field_label_general_contact_phone', 'Phone')}
@@ -98,7 +99,7 @@ export const GeneralFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
     </FormSection>
   )
 }

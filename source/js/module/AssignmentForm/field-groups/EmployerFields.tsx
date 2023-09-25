@@ -1,11 +1,10 @@
+import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { useContext } from 'react'
 import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
-
-import { FieldGroupProps } from './FieldGroupProps'
-
 import { parseValue } from '../../../util/event'
+import Grid from '../../../components/grid/Grid'
+import { FieldGroupProps } from './FieldGroupProps'
 
 export const EmployerFields = ({
   formState: { employer },
@@ -27,7 +26,7 @@ export const EmployerFields = ({
           : undefined
       }
       isSubSection>
-      <div className="o-grid-12 o-grid-12@md">
+      <Grid col={12}>
         <Textarea
           value={employer?.about || ''}
           label={phrase('field_label_employer_about', 'About the employer')}
@@ -36,9 +35,9 @@ export const EmployerFields = ({
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
 
-      <div className="o-grid-12">
+      <Grid col={12}>
         <Field
           value={employer?.website || ''}
           label={phrase('field_label_employer_website', 'Website')}
@@ -48,7 +47,7 @@ export const EmployerFields = ({
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
-      </div>
+      </Grid>
     </FormSection>
   )
 }
