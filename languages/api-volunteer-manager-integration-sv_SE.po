@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mod My Pages\n"
-"POT-Creation-Date: 2023-09-25 07:59+0200\n"
-"PO-Revision-Date: 2023-09-25 07:59+0200\n"
+"POT-Creation-Date: 2023-10-02 09:38+0200\n"
+"PO-Revision-Date: 2023-10-02 09:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Poedit-WPHeader: api-volunteer-manager-integration.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -66,7 +66,7 @@ msgid "Disabled"
 msgstr "Inaktiv"
 
 #: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:106
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:49
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:56
 msgid "Volunteer"
 msgstr "Volontär"
 
@@ -84,6 +84,7 @@ msgid "Volunteer Integration settings"
 msgstr ""
 
 #: source/php/Admin/OptionsPage.php:27
+#: source/tests/php/Admin/OptionsPageTest.php:39
 msgid "Settings"
 msgstr ""
 
@@ -191,7 +192,7 @@ msgid "Name"
 msgstr "Namn"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:47
-#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:35
+#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:38
 msgid "Organisation"
 msgstr "Förening"
 
@@ -299,12 +300,12 @@ msgid "Employer information"
 msgstr "Om uppdragsgivaren"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:102
-#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:25
+#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:28
 msgid "About the employer"
 msgstr "Om uppdragsgivaren"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:104
-#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:39
+#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:43
 msgid "Website"
 msgstr "Hemsida"
 
@@ -318,7 +319,7 @@ msgid "Submit"
 msgstr "Skicka"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:110
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:47
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:54
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, försök igen senare."
 
@@ -327,12 +328,10 @@ msgid "Successfully submitted new assignment!"
 msgstr "Ditt uppdrag har skickats in!"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:114
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:43
 msgid "Loading..."
 msgstr "Laddar.."
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:116
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:45
 msgid "Saving..."
 msgstr "Sparar…"
 
@@ -375,16 +374,34 @@ msgstr "Kategori"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: source/php/PostTypes/Assignment/Controller/Model/ContactInfo.php:33
+#: source/php/PostTypes/Assignment/Controller/Model/ContactInfo.php:42
 msgid "Contact"
 msgstr "Kontakt"
 
-#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:29
-#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:33
+#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:30
+#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:44
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:29
 msgid "Volunteer login"
 msgstr "Logga in som volontär"
 
+#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:31
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:30
+msgid "Close"
+msgstr "Stäng"
+
+#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:39
+msgid "Identify with Bank-ID/Freja eID"
+msgstr "Identifiera med Bank-ID/Freja eID"
+
 #: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:40
+msgid ""
+"You must be registered and approved as a volunteer to be able to sign up for "
+"the mission."
+msgstr ""
+"Du måste vara registrerad och godkänd som volontär för att kunna anmäla dig "
+"till uppdraget."
+
+#: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:51
 msgid "Volunteer registration"
 msgstr "Registrera som volontär"
 
@@ -419,33 +436,47 @@ msgstr ""
 msgid "Registration"
 msgstr "Anmälan"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:33
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:40
 msgid ""
 "Thank you for showing interest, we will get back to you as soon as possible."
-msgstr "Tack för visat intresse! Vi kommer till dig så snart som möjligt."
+msgstr ""
+"Tack för visat intresse, du kommer bli kontaktad av uppdragsgivaren inom "
+"kort."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:35
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:42
 msgid "Apply to assignment"
 msgstr "Anmäl intresse"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:37
-msgid "Log Out"
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:44
+msgid "Logout"
 msgstr "Logga ut"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:39
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:46
 msgid "Your volunteer application is pending, please try again later."
 msgstr ""
 "Din volontäransökan är under behandling, vänligen försök igen lite senare "
-"eller kontakt oss."
+"eller kontakta oss."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:41
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:48
 msgid "You are not a registered volunteer, please register an account."
 msgstr ""
 "Du är inte registrerad som volontär, vänligen registrera ett konto först."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:51
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:50
+msgid "Loading"
+msgstr "Laddar"
+
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:52
+msgid "Saving"
+msgstr "Sparar"
+
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:58
 msgid "Employer"
 msgstr "Uppdragsgivare"
+
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:60
+msgid "Logged in as"
+msgstr "In loggad som"
 
 #: source/php/PostTypes/Assignment/Controller/Single.php:52
 msgid "About the assignment"
@@ -458,10 +489,6 @@ msgstr "Krav"
 #: source/php/PostTypes/Assignment/Controller/Single.php:73
 msgid "Where and when?"
 msgstr "Var och när?"
-
-#: source/tests/php/Admin/OptionsPageTest.php:39
-msgid "Volunteer Integration"
-msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "API Volunteer Manager Integration"
@@ -483,6 +510,9 @@ msgstr ""
 msgid "https://github.com/helsingborg-stad"
 msgstr ""
 
+#~ msgid "Log Out"
+#~ msgstr "Logga ut"
+
 #~ msgid "Identify yourself with Bank ID to start the registration process."
 #~ msgstr "Identifiera med Bank ID för att fortsätta."
 
@@ -491,9 +521,6 @@ msgstr ""
 
 #~ msgid "Home"
 #~ msgstr "Hem"
-
-#~ msgid "Close"
-#~ msgstr "Stäng"
 
 #~ msgid "My Apps Module"
 #~ msgstr "Mina Appar modul"
@@ -536,9 +563,6 @@ msgstr ""
 
 #~ msgid "My Pages settings"
 #~ msgstr "Inställningar för Mina sidor"
-
-#~ msgid "Logout"
-#~ msgstr "Logga ut"
 
 #~ msgid "My Pages Primary Menu (for logged in users)"
 #~ msgstr "Primär meny för Mina Sidor (för inloggade)"
