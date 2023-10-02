@@ -33,7 +33,10 @@ export const PublicContactFields = ({
           name="assignment_public_contact_email"
           type="email"
           onChange={parseValue(handleChange('publicContact.email'))}
-          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          inputProps={{
+            autoComplete: 'on',
+            ...(isLoading || isSubmitted ? { disabled: true } : {}),
+          }}
           readOnly={isSubmitted}
         />
       </Grid>
@@ -45,7 +48,10 @@ export const PublicContactFields = ({
           name="assignment_public_contact_phone"
           type="tel"
           onChange={parseValue(handleChange('publicContact.phone'))}
-          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          inputProps={{
+            autoComplete: 'on',
+            ...(isLoading || isSubmitted ? { disabled: true } : {}),
+          }}
           readOnly={isSubmitted}
         />
       </Grid>

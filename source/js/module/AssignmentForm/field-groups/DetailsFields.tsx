@@ -55,7 +55,7 @@ export const DetailsFields = ({
           label={phrase('field_label_details_benefits', 'Benefits')}
           name="assignment_benefits"
           onChange={parseValue(handleChange('benefits'))}
-          rows={1}
+          rows={10}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -66,7 +66,7 @@ export const DetailsFields = ({
           label={phrase('field_label_details_qualifications', 'Qualifications')}
           name="assignment_qualifications"
           onChange={parseValue(handleChange('qualifications'))}
-          rows={4}
+          rows={10}
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />

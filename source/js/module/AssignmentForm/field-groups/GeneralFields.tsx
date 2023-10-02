@@ -60,6 +60,7 @@ export const GeneralFields = ({
           required
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
+          helperText={phrase('field_helper_general_contact_phone', '')}
         />
       </Grid>
 
@@ -84,8 +85,12 @@ export const GeneralFields = ({
           type="email"
           onChange={parseValue(handleChange('employer.contacts.0.email'))}
           required
-          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          inputProps={{
+            autoComplete: 'on',
+            ...(isLoading || isSubmitted ? { disabled: true } : {}),
+          }}
           readOnly={isSubmitted}
+          helperText={phrase('field_helper_general_contact_email', '')}
         />
       </Grid>
       <Grid col={12} md={6}>
@@ -96,8 +101,12 @@ export const GeneralFields = ({
           type="tel"
           onChange={parseValue(handleChange('employer.contacts.0.phone'))}
           required
-          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          inputProps={{
+            autoComplete: 'on',
+            ...(isLoading || isSubmitted ? { disabled: true } : {}),
+          }}
           readOnly={isSubmitted}
+          helperText={phrase('field_helper_general_contact_phone', '')}
         />
       </Grid>
     </FormSection>
