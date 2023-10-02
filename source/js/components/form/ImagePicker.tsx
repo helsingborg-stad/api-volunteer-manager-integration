@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   Button,
   Collection,
@@ -20,6 +20,7 @@ export interface ImagePickerProps {
   valid?: boolean
   helperText?: string | JSX.Element
   readOnly?: boolean
+  disabled?: boolean
   required?: boolean
   width?: number
   height?: number
@@ -34,17 +35,23 @@ const ImagePicker = ({
   valid,
   helperText,
   required,
-  readOnly: readOnly,
+  disabled,
+  readOnly,
   width = 1920,
   height = 1080,
   ...props
 }: ImagePickerProps): JSX.Element => {
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const [dismount, setDismount] = useState(false)
+
   const resetInput = useCallback(() => {
-    if (inputRef.current !== null) {
-      inputRef.current.value = ''
-    }
+    setDismount(true)
+    onChange && onChange(null)
   }, [])
+
+  useEffect(() => {
+    dismount && setDismount(false)
+  }, [value])
+
   const classNames = [
     'c-field',
     'c-field--image-picker',
@@ -68,17 +75,20 @@ const ImagePicker = ({
       )}
 
       <div className="c-field__inner c-field__inner--dropzone">
-        <input
-          id={name}
-          aria-label={label}
-          aria-required={required ? 'true' : 'false'}
-          type="file"
-          accept={'image/png, image/jpeg'}
-          {...(readOnly ? { readOnly } : {})}
-          {...(required ? { required } : {})}
-          onChange={(e) => e.target.files && onChange && onChange(e.target.files)}
-          name={name}
-        />
+        {!dismount ? (
+          <input
+            id={name}
+            aria-label={label}
+            aria-required={required ? 'true' : 'false'}
+            type="file"
+            accept={'image/png, image/jpeg'}
+            {...(readOnly ? { readOnly } : {})}
+            {...(disabled ? { disabled } : {})}
+            {...(required ? { required } : {})}
+            onChange={(e) => e.target.files && onChange && onChange(e.target.files)}
+            name={name}
+          />
+        ) : null}
 
         <div
           className="c-field__dropzone"
@@ -121,17 +131,11 @@ const ImagePicker = ({
                 </Typography>
               </CollectionContent>
               <CollectionSecondary className="u-display--flex u-align-items--center u-padding__x--0">
-                <Button
-                  color="primary"
-                  size="sm"
-                  variant="basic"
-                  onClick={() =>
-                    [() => resetInput(), () => (onChange ? onChange(null) : null)].forEach((fn) =>
-                      fn(),
-                    )
-                  }>
-                  <Icon name="close" />
-                </Button>
+                {readOnly ? null : (
+                  <Button color="primary" size="sm" variant="basic" onClick={resetInput}>
+                    <Icon name="close" />
+                  </Button>
+                )}
               </CollectionSecondary>
             </CollectionItem>
           </Collection>

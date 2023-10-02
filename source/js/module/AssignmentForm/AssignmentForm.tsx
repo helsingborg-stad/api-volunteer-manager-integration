@@ -53,7 +53,7 @@ function AssignmentForm({
           <Grid container>
             <Grid col={12}>
               {isSubmitted || isLoading ? (
-                <div style={{ opacity: isSubmitted ? 1 : 0.5, userSelect: 'none' }}>
+                <div style={{ opacity: isSubmitted ? 0.8 : 0.5, userSelect: 'none' }}>
                   {renderFields()}
                 </div>
               ) : (
@@ -61,7 +61,7 @@ function AssignmentForm({
               )}
             </Grid>
 
-            {phrase('form_terms', '').length > 0 ? (
+            {!isSubmitted && phrase('form_terms', '').length > 0 ? (
               <Grid col={12} className="u-margin__top--2">
                 <div dangerouslySetInnerHTML={{ __html: phrase('form_terms', '') }}></div>
               </Grid>
@@ -72,12 +72,12 @@ function AssignmentForm({
                 <Button
                   color="primary"
                   disabled={isLoading ?? false}
-                  onClick={async () => {
+                  onClick={() =>
                     formRef.current?.reportValidity() &&
-                      onSubmit({
-                        ...formState,
-                      })
-                  }}>
+                    onSubmit({
+                      ...formState,
+                    })
+                  }>
                   {!isLoading
                     ? phrase('submit_button_text', 'Submit')
                     : phrase('saving_text', 'Saving...')}

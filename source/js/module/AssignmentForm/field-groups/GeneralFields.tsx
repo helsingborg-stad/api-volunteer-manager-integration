@@ -47,6 +47,8 @@ export const GeneralFields = ({
           onChange={handleChange('image')}
           value={formState.image}
           required
+          readOnly={isSubmitted}
+          disabled={isSubmitted || isLoading}
         />
       </Grid>
 
