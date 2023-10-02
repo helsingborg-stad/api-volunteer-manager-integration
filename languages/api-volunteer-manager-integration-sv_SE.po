@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mod My Pages\n"
-"POT-Creation-Date: 2023-10-02 09:38+0200\n"
-"PO-Revision-Date: 2023-10-02 09:59+0200\n"
+"POT-Creation-Date: 2023-10-02 11:01+0200\n"
+"PO-Revision-Date: 2023-10-02 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -66,7 +66,7 @@ msgid "Disabled"
 msgstr "Inaktiv"
 
 #: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:106
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:56
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:59
 msgid "Volunteer"
 msgstr "Volontär"
 
@@ -192,7 +192,6 @@ msgid "Name"
 msgstr "Namn"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:47
-#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:38
 msgid "Organisation"
 msgstr "Förening"
 
@@ -305,7 +304,6 @@ msgid "About the employer"
 msgstr "Om uppdragsgivaren"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:104
-#: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:43
 msgid "Website"
 msgstr "Hemsida"
 
@@ -319,7 +317,7 @@ msgid "Submit"
 msgstr "Skicka"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:110
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:54
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:57
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, försök igen senare."
 
@@ -380,12 +378,12 @@ msgstr "Kontakt"
 
 #: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:30
 #: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:44
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:29
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:32
 msgid "Volunteer login"
 msgstr "Logga in som volontär"
 
 #: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:31
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:30
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:33
 msgid "Close"
 msgstr "Stäng"
 
@@ -402,6 +400,7 @@ msgstr ""
 "till uppdraget."
 
 #: source/php/PostTypes/Assignment/Controller/Model/LoginModal.php:51
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:65
 msgid "Volunteer registration"
 msgstr "Registrera som volontär"
 
@@ -412,7 +411,7 @@ msgid ""
 msgstr "Välkommen med din intresseanmälan, du anmäler dig via länken nedan."
 
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:26
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:55
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:70
 msgid "Sign up"
 msgstr "Anmäl dig"
 
@@ -424,7 +423,15 @@ msgstr ""
 "Välkommen med din intresseanmälan, du anmäler dig via kontaktuppgifterna "
 "nedan."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:50
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:46
+msgid "Sign up for volunteer assignment"
+msgstr "Intresseanmälan till volontäruppdrag"
+
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:48
+msgid "Hello, I want to get in touch and learn more."
+msgstr "Hej, jag vill bli kontaktad och veta mer."
+
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:65
 msgid ""
 "Welcome with your expression of interest, login or register a volunteer "
 "account using the link below."
@@ -432,49 +439,49 @@ msgstr ""
 "Välkommen med din intresseanmälan, logga in eller registrera dig som "
 "volontär för att anmäla dig till detta uppdrag."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:67
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:82
 msgid "Registration"
 msgstr "Anmälan"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:40
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:43
 msgid ""
 "Thank you for showing interest, we will get back to you as soon as possible."
 msgstr ""
 "Tack för visat intresse, du kommer bli kontaktad av uppdragsgivaren inom "
 "kort."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:42
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:45
 msgid "Apply to assignment"
 msgstr "Anmäl intresse"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:44
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:47
 msgid "Logout"
 msgstr "Logga ut"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:46
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:49
 msgid "Your volunteer application is pending, please try again later."
 msgstr ""
 "Din volontäransökan är under behandling, vänligen försök igen lite senare "
 "eller kontakta oss."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:48
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:51
 msgid "You are not a registered volunteer, please register an account."
 msgstr ""
 "Du är inte registrerad som volontär, vänligen registrera ett konto först."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:50
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:53
 msgid "Loading"
 msgstr "Laddar"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:52
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:55
 msgid "Saving"
 msgstr "Sparar"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:58
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:61
 msgid "Employer"
 msgstr "Uppdragsgivare"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:60
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:63
 msgid "Logged in as"
 msgstr "In loggad som"
 
