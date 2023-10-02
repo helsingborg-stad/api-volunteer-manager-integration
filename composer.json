@@ -1,60 +1,61 @@
 {
-  "name": "helsingborg-stad/api-volunteer-manager-integration",
-  "description": "Frontend integration for api-volunteer-manager.",
-  "type": "wordpress-plugin",
-  "license": "MIT",
-  "scripts": {
-    "test": "./vendor/bin/phpunit --testdox",
-    "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox",
-    "minimal": "./vendor/bin/phpunit"
-  },
-  "authors": [
-    {
-      "name": "Nikolas Ramstedt",
-      "email": "nikolas.ramstedt@helsingborg.se"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "APIVolunteerManagerIntegration\\": "source/php/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "APIVolunteerManagerIntegration\\Tests\\": "source/tests/php"
-    }
-  },
-  "minimum-stability": "stable",
-  "require": {
-    "ext-json": "*",
-    "psr/http-client": "^1.0",
-    "psr/http-factory": "^1.0",
-    "psr/log": "^1.1",
-    "psr/http-client-implementation": "*",
-    "psr/http-factory-implementation": "*",
-    "psr/log-implementation": "*",
-    "php-http/message": "^1.13",
-    "php-http/discovery": "^1.15",
-    "php-http/mock-client": "^1.5",
-    "php-http/curl-client": "^2.2",
-    "http-interop/http-factory-diactoros": "^1.0",
-    "apix/log": "^1.2",
-    "symfony/http-client": "^5.4"
-  },
-  "require-dev": {
-    "brain/monkey": "^2.6",
-    "codedungeon/phpunit-result-printer": "^0.31.0",
-    "phpunit/phpunit": "^9.5",
-    "spatie/phpunit-watcher": "^1.23",
-    "vimeo/psalm": "^5.7",
-    "szepeviktor/phpstan-wordpress": "^1.1",
-    "php-stubs/acf-pro-stubs": "^6.0",
-    "phpspec/prophecy-phpunit": "^2.0",
-    "psalm/plugin-phpunit": "^0.18.4"
-  },
-  "config": {
-    "allow-plugins": {
-      "php-http/discovery": true
-    }
-  }
+    "name": "helsingborg-stad/api-volunteer-manager-integration",
+    "description": "Frontend integration for api-volunteer-manager.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "scripts": {
+        "test": "./vendor/bin/phpunit --testdox",
+        "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox",
+        "minimal": "./vendor/bin/phpunit"
+    },
+    "authors": [
+        {
+            "name": "Nikolas Ramstedt",
+            "email": "nikolas.ramstedt@helsingborg.se"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "APIVolunteerManagerIntegration\\": "source/php/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "APIVolunteerManagerIntegration\\Tests\\": "source/tests/php"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "ext-json": "*",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.0",
+        "psr/log": "^1.1",
+        "psr/http-client-implementation": "*",
+        "psr/http-factory-implementation": "*",
+        "psr/log-implementation": "*",
+        "php-http/message": "^1.13",
+        "php-http/discovery": "^1.15",
+        "php-http/mock-client": "^1.5",
+        "php-http/curl-client": "^2.2",
+        "http-interop/http-factory-diactoros": "^1.0",
+        "apix/log": "^1.2",
+        "symfony/http-client": "^5.4"
+    },
+    "require-dev": {
+        "brain/monkey": "^2.6",
+        "codedungeon/phpunit-result-printer": "^0.31.0",
+        "phpunit/phpunit": "^9.5",
+        "spatie/phpunit-watcher": "^1.23",
+        "vimeo/psalm": "^5.7",
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "php-stubs/acf-pro-stubs": "^6.0",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "psalm/plugin-phpunit": "^0.18.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "version": "2.0.16"
 }

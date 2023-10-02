@@ -3,139 +3,116 @@ import VolunteerServiceContext, {
   VOLUNTEER_ERROR,
 } from '../../volunteer-service/VolunteerServiceContext'
 import useAsync from '../../hooks/UseAsync'
-import { useContext } from 'react'
-import SignUpForm from './SignUpForm'
-import { CircularProgress, Stack } from '@mui/material'
-import { Button, Icon } from '@helsingborg-stad/municipio-react-ui'
+import React, { useContext } from 'react'
 import PhraseContext from '../../phrase/PhraseContextInterface'
+import { GeneralError } from './rejected/GeneralError'
+import { VolunteerNotVerified } from './resolved/VolunteerNotVerified'
+import { VolunteerDoesNotExist } from './rejected/VolunteerDoesNotExist'
+import { VolunteerCanSubmit } from './resolved/VolunteerCanSubmit'
+import { VolunteerHasSubmitted } from './resolved/VolunteerHasSubmitted'
+import { Pending } from './pending/Pending'
+import { LoaderDots } from '../../components/loader-dots/LoaderDots'
 
 type State = 'loading' | 'saving'
-const volunteerHasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
+const hasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
   volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) !== undefined
-const volunteerCanSubmit = (volunteer: Volunteer, rejectStatus: string[] = ['new', 'denied']) =>
+const canSubmit = (volunteer: Volunteer, rejectStatus: string[] = ['new', 'denied']) =>
   volunteer.status && !rejectStatus.includes(volunteer.status)
 
 export function SignUpToAssignment({
   assignmentId,
   closeDialog,
+  registrationUrl,
 }: {
   assignmentId: string
   closeDialog: () => any
+  registrationUrl: string
 }): JSX.Element {
   const { getVolunteer, applyToAssignment } = useContext(VolunteerServiceContext)
   const { phrase } = useContext(PhraseContext)
   const inspect = useAsync<Volunteer, State>(getVolunteer, 'loading')
   return inspect({
     pending: (state, data) => (
-      <SignUpForm
-        volunteer={{
-          ...{
-            firstName: '....',
-            lastName: '',
-            id: '',
-            email: '',
-            phone: '',
-            status: '',
-          },
-          ...(data ?? {}),
-        }}
-        onSubmit={() => console.log('')}>
-        <CircularProgress
-          className={'u-position--absolute u-color__text--secondary'}
-          color="inherit"
-        />
-        <Stack spacing={4}>
-          <div>
-            <Stack spacing={1} direction={'column'}>
-              <Button disabled color={'primary'}>
-                {
-                  {
-                    loading: phrase('loading_text', 'Loading...'),
-                    saving: phrase('saving_text', 'Saving...'),
-                  }[state]
-                }
-              </Button>
-              <span></span>
-              <Button disabled color={'secondary'} onClick={closeDialog}>
-                {phrase('logout_button_label', 'Logout')}
-              </Button>
-            </Stack>
-          </div>
-        </Stack>
-      </SignUpForm>
+      <LoaderDots
+        render={(dots) => (
+          <Pending
+            volunteer={{
+              ...data,
+              ...{
+                firstName: data?.firstName && data.firstName.length > 0 ? data.firstName : dots,
+              },
+            }}
+            disabledButtonLabel={
+              {
+                loading: phrase('loading_text', 'Loading'),
+                saving: phrase('saving_text', 'Saving'),
+              }[state] + dots
+            }
+            onClickClose={closeDialog}
+            logoutButtonLabel={phrase('logout_button_label', 'Logout')}
+          />
+        )}
+      />
     ),
     resolved: (volunteer, state, update) =>
       ({
         saving: (
-          <SignUpForm volunteer={volunteer}>
-            <Stack spacing={3}>
-              <div className={'c-notice c-notice--success'}>
-                <span className="c-notice__icon">
-                  <Icon name={'check'} />
-                </span>
-                <span className="c-notice__message">
-                  {phrase('after_sign_up_text', 'Thank you for your registration!')}
-                </span>
-              </div>
-              <div>
-                <Stack spacing={1} direction={'column'}>
-                  <Button disabled color={'primary'}>
-                    {phrase('sign_up_button_label', 'Sign up')}
-                  </Button>
-                  <span></span>
-                  <Button color={'secondary'} onClick={closeDialog}>
-                    {phrase('logout_button_label', 'Logout')}
-                  </Button>
-                </Stack>
-              </div>
-            </Stack>
-          </SignUpForm>
+          <VolunteerHasSubmitted
+            volunteer={volunteer}
+            signUpButtonLabel={phrase('sign_up_button_label', 'Sign up')}
+            onClick={closeDialog}
+            logoutButtonLabel={phrase('logout_button_label', 'Logout')}
+            noticeText={phrase('after_sign_up_text', 'Thank you for your registration!')}
+          />
         ),
         loading: {
-          signUp: (
-            <SignUpForm volunteer={volunteer}>
-              <Stack spacing={4}>
-                <div>
-                  <Stack spacing={1} direction={'column'}>
-                    <Button
-                      color={'primary'}
-                      onClick={() =>
-                        update(
-                          applyToAssignment(parseInt(assignmentId)).then(getVolunteer),
-                          'saving',
-                        )
-                      }>
-                      {phrase('sign_up_button_label', 'Sign up')}
-                    </Button>
-                    <span></span>
-                    <Button color={'secondary'} onClick={closeDialog}>
-                      {phrase('logout_button_label', 'Logout')}
-                    </Button>
-                  </Stack>
-                </div>
-              </Stack>
-            </SignUpForm>
+          canSubmit: (
+            <VolunteerCanSubmit
+              volunteer={volunteer}
+              onClickSubmit={() =>
+                update(applyToAssignment(parseInt(assignmentId)).then(getVolunteer), 'saving')
+              }
+              signUpButtonLabel={phrase('sign_up_button_label', 'Sign up')}
+              onClickClose={closeDialog}
+              logoutButtonLabel={phrase('logout_button_label', 'Logout')}
+            />
           ),
-          notApproved: (
-            <span>
-              {phrase(
+          notVerified: (
+            <VolunteerNotVerified
+              volunteer={volunteer}
+              signUpButtonLabel={phrase('sign_up_button_label', 'Sign up')}
+              onClickClose={closeDialog}
+              logoutButtonLabel={phrase('logout_button_label', 'Logout')}
+              noticeText={phrase(
                 'volunteer_not_approved_text',
-                'Your volunteer application is pending, please try again later.',
+                'Your volunteer application is pending.',
               )}
-            </span>
+            />
           ),
-        }[`${volunteerCanSubmit(volunteer) ? 'signUp' : 'notApproved'}`],
-      }[`${volunteerHasSubmitted(volunteer, assignmentId) ? 'saving' : state}`]),
+        }[`${canSubmit(volunteer) ? 'canSubmit' : 'notVerified'}`],
+      }[`${hasSubmitted(volunteer, assignmentId) ? 'saving' : state}`]),
     rejected: (err, state, update) =>
       ({
         loading: {
           [VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST]: (
-            <span>
-              {phrase('volunteer_not_registered_text', 'You are not registered as a volunteer.')}
-            </span>
+            <VolunteerDoesNotExist
+              onSubmit={() => {}}
+              onClick={closeDialog}
+              logoutButtonLabel={phrase('logout_button_label', 'Logout')}
+              registerButtonLabel={phrase('registration_button_label', 'Register as a volunteer')}
+              noticeText={phrase(
+                'volunteer_not_registered_text',
+                'You are not registered as a volunteer.',
+              )}
+              registrationUrl={registrationUrl}
+            />
           ),
           error: (
-            <span>{phrase('error_text', 'Something went wrong, please try again later.')}</span>
+            <GeneralError
+              onClickClose={closeDialog}
+              buttonLabel={phrase('close_button_label', 'Close')}
+              noticeText={phrase('error_text', 'Something went wrong, please try again later.')}
+            />
           ),
         }[
           err.name === VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST
@@ -143,7 +120,11 @@ export function SignUpToAssignment({
             : 'error'
         ],
         saving: (
-          <span>{phrase('error_text', 'Something went wrong, please try again later.')}</span>
+          <GeneralError
+            onClickClose={closeDialog}
+            buttonLabel={phrase('close_button_label', 'Close')}
+            noticeText={phrase('error_text', 'Something went wrong, please try again later.')}
+          />
         ),
       }[state]),
   })

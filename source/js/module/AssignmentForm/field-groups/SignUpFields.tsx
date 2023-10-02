@@ -1,14 +1,12 @@
+import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { useContext } from 'react'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
 import { SignUpTypes, SignUpWithWebsite } from '../../../volunteer-service/VolunteerServiceContext'
-
-import { FieldGroupProps } from './FieldGroupProps'
+import { parseValue } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import ShowIf from '../../../util/ShowIf'
-
-import { parseValue } from '../../../util/event'
+import { FieldGroupProps } from './FieldGroupProps'
 
 export function hasProperty<T>(data: any, property: string): data is T {
   return data && data[property] !== undefined
@@ -49,6 +47,7 @@ export const SignUpFields = ({
           name="signup_type"
           onChange={parseValue(handleChange('signUp.type'))}
           required
+          placeholder={phrase('select_placeholder', 'Select an option')}
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
@@ -88,6 +87,7 @@ export const SignUpFields = ({
           name="signup_has_due_date"
           onChange={parseValue(handleChange('signUp.hasDeadline'))}
           required
+          placeholder={phrase('select_placeholder', 'Select an option')}
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />

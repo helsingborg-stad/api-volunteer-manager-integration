@@ -78,7 +78,9 @@ function AssignmentForm({
                         ...formState,
                       })
                   }}>
-                  {!isLoading ? phrase('submit', 'Submit') : phrase('uploading', 'Uploading..')}
+                  {!isLoading
+                    ? phrase('submit_button_text', 'Submit')
+                    : phrase('saving_text', 'Saving...')}
                 </Button>
               ) : null}
 
@@ -99,7 +101,7 @@ function AssignmentForm({
                       <Icon name={'check'} />
                     </span>
                     <span className="c-notice__message">
-                      {'Successfully submitted new assignment!'}
+                      {phrase('success_text', 'Successfully submitted new assignment!')}
                     </span>
                   </div>
                 </div>
