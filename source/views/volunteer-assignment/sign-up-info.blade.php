@@ -27,18 +27,18 @@
         @if (!empty($viewModel->signUpContact))
             <div>
 
-                @collection([ 'unbox' => true, 'bordered' => true])
-                @foreach($viewModel->signUpContact as $icon => $value)
-                    @collection__item([])
-                    @if(!empty($icon))
+                @collection(['bordered' => true, 'classList' => ['c-collection--sign-up']])
+                @foreach($viewModel->signUpContact as $item)
+                    @collection__item(['link' => $item['link'] ?? null])
+                    @if(!empty($item['icon']))
                         @slot('prefix')
                             <div class="c-collection__icon">
-                                @icon(['icon' => $icon, 'size' => 'md'])
+                                @icon(['icon' => $item['icon'], 'size' => 'md'])
                                 @endicon
                             </div>
                         @endslot
                     @endif
-                    @typography(){{$value}}@endtypography
+                    @typography(['variant' => 'subtitle']){{$item['value']}}@endtypography
                     @endcollection__item
                 @endforeach
                 @endcollection

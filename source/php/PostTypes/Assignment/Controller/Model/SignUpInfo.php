@@ -37,9 +37,24 @@ class SignUpInfo
                 'instructions'  => __('Welcome with your expression of interest, you can apply using the contact details below.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'signUpContact' => array_filter([
-                    'person' => '',
-                    'email'  => WP::getPostMeta('signup_email', ''),
-                    'phone'  => WP::getPostMeta('signup_phone', ''),
+                    [
+                        'value' => WP::getPostMeta('signup_email',
+                            ''),
+                        'icon'  => 'email',
+                        'link'  => "mailto:".WP::getPostMeta('signup_email',
+                                '').'?'.http_build_query([
+                                'subject' => __("Sign up for volunteer assignment",
+                                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).': '.get_the_title(),
+                                'body'    => __("Hello, I want to get in touch and learn more.",
+                                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                            ], null,
+                                '&', PHP_QUERY_RFC3986),
+                    ],
+                    [
+                        'value' => WP::getPostMeta('signup_phone', ''),
+                        'icon'  => 'phone',
+                        'link'  => 'tel:'.WP::getPostMeta('signup_phone', ''),
+                    ],
                 ], fn($str) => ! empty($str)),
             ])
         )($arr);
