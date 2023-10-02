@@ -35,12 +35,12 @@ class EmployerInfo
                         array_map($wrapValueWithAnchor,
                             array_filter([
                                 [
-                                    'label' => __('Organisation', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                                    'label' => null,
                                     'value' => trim(WP::getPostMeta('employer_name', '')),
                                     'icon'  => 'volunteer_activism',
                                 ],
                                 [
-                                    'label' => __('Website', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                                    'label' => null,
                                     'value' => trim(WP::getPostMeta('employer_website', '')),
                                     'icon'  => 'link',
                                 ],
