@@ -12,6 +12,7 @@ const renderSignUpForm = (elements: HTMLElement[]) => () =>
       volunteerApiUri: e.getAttribute('data-volunteer-api-uri') || '',
       volunteerAppSecret: e.getAttribute('data-volunteer-app-secret') || '',
       labels: JSON.parse(e.getAttribute('data-labels') || '{}'),
+      registrationUrl: e.getAttribute('data-registration-url') || '',
       assignmentId: new URLSearchParams(window.location.search).get('sign_up') || '',
       closeDialogHandler: () =>
         e.closest('dialog')?.querySelector<HTMLButtonElement>('button.c-modal__close')?.click(),
@@ -20,18 +21,30 @@ const renderSignUpForm = (elements: HTMLElement[]) => () =>
       ({ volunteerApiUri, volunteerAppSecret, assignmentId }) =>
         volunteerApiUri.length > 0 && volunteerAppSecret.length > 0 && assignmentId.length > 0,
     )
-    .forEach(({ root, volunteerApiUri, volunteerAppSecret, assignmentId, closeDialogHandler }) => {
-      root.render(
-        <React.StrictMode>
-          <App
-            assignmentId={assignmentId}
-            volunteerApiUri={volunteerApiUri}
-            volunteerAppSecret={volunteerAppSecret}
-            closeDialog={closeDialogHandler}
-          />
-        </React.StrictMode>,
-      )
-    })
+    .forEach(
+      ({
+        root,
+        volunteerApiUri,
+        volunteerAppSecret,
+        assignmentId,
+        closeDialogHandler,
+        labels,
+        registrationUrl,
+      }) => {
+        root.render(
+          <React.StrictMode>
+            <App
+              assignmentId={assignmentId}
+              volunteerApiUri={volunteerApiUri}
+              volunteerAppSecret={volunteerAppSecret}
+              closeDialog={closeDialogHandler}
+              labels={labels}
+              registrationUrl={registrationUrl}
+            />
+          </React.StrictMode>,
+        )
+      },
+    )
 
 const onCloseDialog = (e: HTMLElement) => (event: any) => {
   event.preventDefault()
