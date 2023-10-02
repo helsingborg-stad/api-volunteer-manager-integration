@@ -20,5 +20,6 @@
          data-labels='{{ json_encode($viewModel->labels) }}'
          data-volunteer-api-uri='{{ $viewModel->volunteerApiUri }}'
          data-volunteer-app-secret='{{$viewModel->volunteerAppSecret}}'
-         data-sign-out-url={{$viewModel->signOutUrl}}></div>
+         data-sign-out-url={{$viewModel->signOutUrl}}
+         data-registration-url={{$viewModel->registrationUrl}}></div>
 @overwrite

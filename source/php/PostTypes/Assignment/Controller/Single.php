@@ -91,7 +91,7 @@ class Single
     {
         $data['volunteerAssignmentViewModel'] = [
             'signUpInfo'   => (new SignUpInfo())->data(),
-            'signUpModal'  => (new SignUpModal($this->myPages))->data(),
+            'signUpModal'  => (new SignUpModal($this->myPages, $this->acf))->data(),
             'loginModal'   => (new LoginModal($this->myPages, $this->acf))->data(),
             'contactInfo'  => (new ContactInfo())->data(),
             'employerInfo' => (new EmployerInfo())->data(),
