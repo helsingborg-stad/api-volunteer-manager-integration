@@ -17,6 +17,10 @@
 }
 
 .c-modal--assignment {
+  background-color: var(--color-complementary-lighter, #fddde5);
+  gap: 0;
+  padding: 0;
+
   .c-modal__content {
     overflow: hidden;
   }
