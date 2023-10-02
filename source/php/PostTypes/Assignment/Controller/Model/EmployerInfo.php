@@ -37,7 +37,7 @@ class EmployerInfo
                                 [
                                     'label' => null,
                                     'value' => trim(WP::getPostMeta('employer_name', '')),
-                                    'icon'  => 'volunteer_activism',
+                                    'icon'  => 'business',
                                 ],
                                 [
                                     'label' => null,

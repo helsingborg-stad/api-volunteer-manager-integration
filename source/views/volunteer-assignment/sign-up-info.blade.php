@@ -38,7 +38,7 @@
                             </div>
                         @endslot
                     @endif
-                    @typography(['variant' => 'subtitle']){{$item['value']}}@endtypography
+                    @typography(){{$item['value']}}@endtypography
                     @endcollection__item
                 @endforeach
                 @endcollection
