@@ -19,10 +19,19 @@ class ContactInfo
             ! empty($contacts),
             static fn(array $arr) => array_merge($arr, [
                 'contact' => array_filter([
-                    'person' => $contacts[0]['name'],
-                    'email'  => $contacts[0]['email'],
-                    'phone'  => $contacts[0]['phone'],
-                ], static fn($str) => ! empty($str)),
+                    [
+                        'value' => $contacts[0]['name'],
+                        'icon'  => 'person',
+                    ],
+                    [
+                        'value' => $contacts[0]['email'],
+                        'icon'  => 'email',
+                    ],
+                    [
+                        'value' => $contacts[0]['phone'],
+                        'icon'  => 'phone',
+                    ],
+                ], static fn($str) => ! empty($str['value'])),
             ])
         )($arr);
 

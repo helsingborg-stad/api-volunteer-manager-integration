@@ -4,6 +4,7 @@ namespace APIVolunteerManagerIntegration\PostTypes\Assignment\Controller\Model;
 
 use APIVolunteerManagerIntegration\Helper\WP;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
+use Municipio\Helper\Post;
 
 class SignUpModal
 {
@@ -25,7 +26,13 @@ class SignUpModal
         }
 
         return [
-            'heading'            => $post->post_title ?? '',
+            'heading'            => __('Volunteer login', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+            'closeButtonText'    => __('Close', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+            'assignment'         => (object) [
+                'title'    => get_the_title(),
+                'employer' => WP::getPostMeta('employer_name', null),
+                'image'    => Post::getFeaturedImage(get_queried_object_id(), 'large'),
+            ],
             'id'                 => 'assignment-sign-up-modal-'.(string) ($post->ID ?? ''),
             'volunteerApiUri'    => get_field('volunteer_manager_integration_api_uri', 'options'),
             'volunteerAppSecret' => get_field('volunteer_manager_integration_app_secret', 'options'),

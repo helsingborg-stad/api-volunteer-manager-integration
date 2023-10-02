@@ -20,7 +20,18 @@
         @foreach($viewModel->employer as $value)
             @collection__item([
             ])
-            @typography(){!! $value !!}@endtypography
+
+            @if(!empty($value['icon']))
+                @slot('prefix')
+                    <div class="c-collection__icon">
+                        @icon(['icon' => $value['icon'], 'size' => 'md'])
+                        @endicon
+                    </div>
+                @endslot
+            @endif
+
+
+            @typography(){!! $value['value'] !!}@endtypography
             @endcollection__item
 
         @endforeach

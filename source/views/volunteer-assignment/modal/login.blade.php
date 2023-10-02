@@ -1,33 +1,31 @@
 @php
     /** @var  object $viewModel */
 @endphp
-<div>
-    @modal([
-    'heading' => $viewModel->heading,
-    'isPanel' => false,
-    'id' => $viewModel->id,
-    'overlay' => 'dark',
-    'size' => 'sm',
-    'animation' => 'scale-up',
-    'classList' => ['c-modal--centered', 'c-modal--normalized']
-    ])
 
-    <div class='u-text-align--center'>
-        @typography()
-        Du måste vara registrerad som volontär för att kunna anmäla dig till uppdraget.
-        @endtypography
+@extends('volunteer-assignment.modal.template.assignment')
 
-    </div>
+@section('modal-bottom')
+    <div class='o-stack--3'>
+        <div class='o-stack--1 u-text-align--center'>
+            <div>
+                @typography(['classList' => ['u-margin__top--0'], 'element' => 'h2'])
+                {{ $viewModel->footer->heading }}
+                @endtypography
+            </div>
 
-    @slot('bottom')
-        <div class='c-stack' style='max-width:19rem;margin:auto;'>
-            @foreach($viewModel->buttons as $props)
+            <div>
+                @typography(['classList' => ['u-margin__top--0'], 'element' => 'p'])
+                {{ $viewModel->footer->text }}
+                @endtypography
+            </div>
+        </div>
+        <div class='c-stack--1 u-text-align--center'>
+            @foreach($viewModel->footer->buttons as $props)
                 <div>
                     @button($props)
                     @endbutton
                 </div>
             @endforeach
         </div>
-    @endslot
-    @endmodal
-</div>
+    </div>
+@overwrite

@@ -29,9 +29,15 @@
 
                 @collection([ 'unbox' => true, 'bordered' => true])
                 @foreach($viewModel->signUpContact as $icon => $value)
-                    @collection__item([
-                    'icon' => $icon
-                    ])
+                    @collection__item([])
+                    @if(!empty($icon))
+                        @slot('prefix')
+                            <div class="c-collection__icon">
+                                @icon(['icon' => $icon, 'size' => 'md'])
+                                @endicon
+                            </div>
+                        @endslot
+                    @endif
                     @typography(){{$value}}@endtypography
                     @endcollection__item
                 @endforeach
