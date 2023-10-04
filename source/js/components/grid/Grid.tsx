@@ -9,6 +9,7 @@ interface GridProps extends PropsWithChildren {
   xs?: ColumnSize
   md?: ColumnSize
   lg?: ColumnSize
+  xl?: ColumnSize
 }
 
 interface GridContainerProps extends GridProps {
@@ -17,6 +18,7 @@ interface GridContainerProps extends GridProps {
   xs?: undefined
   md?: undefined
   lg?: undefined
+  xl?: undefined
 }
 
 interface GridColumnProps extends GridProps {
@@ -25,11 +27,12 @@ interface GridColumnProps extends GridProps {
   xs?: ColumnSize
   md?: ColumnSize
   lg?: ColumnSize
+  xl?: ColumnSize
 }
 
 export type Props = GridContainerProps | GridColumnProps
 
-export const Grid = ({ children, className, container, col, xs, md, lg, ...props }: Props) => (
+export const Grid = ({ children, className, container, col, xs, md, lg, xl, ...props }: Props) => (
   <div
     className={[
       ...(container
@@ -39,6 +42,7 @@ export const Grid = ({ children, className, container, col, xs, md, lg, ...props
             xs ? `o-grid-${xs}@xs` : '',
             md ? `o-grid-${md}@md` : '',
             lg ? `o-grid-${lg}@lg` : '',
+            xl ? `o-grid-${xl}@xl` : '',
           ]),
       className ?? '',
     ]
