@@ -7,6 +7,7 @@ import useAsync from '../../hooks/UseAsync'
 import VolunteerForm from './VolunteerForm'
 import useForm from '../../hooks/UseForm'
 import PhraseContext from '../../phrase/PhraseContextInterface'
+import { capitalizeName } from '../../util/capitalize'
 
 type State = 'loading' | 'saving'
 
@@ -89,8 +90,8 @@ function RegisterVolunteer(): JSX.Element {
         if (!name || name !== VOLUNTEER_ERROR.VOLUNTEER_DOES_NOT_EXIST) throw e
         return window.gdiHost.getAccessToken().then(({ decoded }) => ({
           id: decoded.id,
-          firstName: decoded.firstName,
-          lastName: decoded.lastName,
+          firstName: capitalizeName(decoded.firstName),
+          lastName: capitalizeName(decoded.lastName),
           email: '',
           phone: '',
           status: '',
