@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\PostTypes\Assignment\Controller\Model;
 
+use APIVolunteerManagerIntegration\Helper\PhoneNumber;
 use APIVolunteerManagerIntegration\Helper\WP;
 
 class ContactInfo
@@ -25,10 +26,12 @@ class ContactInfo
                     ],
                     [
                         'value' => $contacts[0]['email'],
+                        'link'  => "mailto:{$contacts[0]['email']}",
                         'icon'  => 'email',
                     ],
                     [
-                        'value' => $contacts[0]['phone'],
+                        'value' => (new PhoneNumber($contacts[0]['phone']))->toHumanReadable(),
+                        'link'  => (new PhoneNumber($contacts[0]['phone']))->toUri(),
                         'icon'  => 'phone',
                     ],
                 ], static fn($str) => ! empty($str['value'])),
