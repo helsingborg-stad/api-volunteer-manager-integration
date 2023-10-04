@@ -17,19 +17,19 @@
     </div>
     <div>
         @collection([ 'unbox' => true, 'bordered' => true])
-        @foreach($viewModel->contact as $value)
-            @collection__item([])
+        @foreach($viewModel->contact as $item)
+            @collection__item(['link' => $item['link'] ?? null])
 
-            @if(!empty($value['icon']))
+            @if(!empty($item['icon']))
                 @slot('prefix')
                     <div class="c-collection__icon">
-                        @icon(['icon' => $value['icon'], 'size' => 'md'])
+                        @icon(['icon' => $item['icon'], 'size' => 'md'])
                         @endicon
                     </div>
                 @endslot
             @endif
 
-            @typography(){{$value['value']}}@endtypography
+            @typography(){{$item['value']}}@endtypography
             @endcollection__item
 
         @endforeach

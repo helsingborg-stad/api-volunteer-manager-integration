@@ -2,6 +2,7 @@
 
 namespace APIVolunteerManagerIntegration\PostTypes\Assignment\Controller\Model;
 
+use APIVolunteerManagerIntegration\Helper\PhoneNumber;
 use APIVolunteerManagerIntegration\Helper\WP;
 use Closure;
 
@@ -29,7 +30,6 @@ class SignUpInfo
                     ],
                 ]))($arr);
 
-
         $withContact = fn(array $arr): array => $maybeWith(
             ( ! empty(WP::getPostMeta('signup_email', null)) || ! empty(WP::getPostMeta('signup_phone',
                     null))) && empty($arr),
@@ -51,9 +51,9 @@ class SignUpInfo
                                 '&', PHP_QUERY_RFC3986),
                     ],
                     [
-                        'value' => WP::getPostMeta('signup_phone', ''),
+                        'value' => (new PhoneNumber(WP::getPostMeta('signup_phone', '')))->toHumanReadable(),
                         'icon'  => 'phone',
-                        'link'  => 'tel:'.WP::getPostMeta('signup_phone', ''),
+                        'link'  => (new PhoneNumber(WP::getPostMeta('signup_phone', '')))->toUri(),
                     ],
                 ], fn($str) => ! empty($str)),
             ])
@@ -96,4 +96,6 @@ class SignUpInfo
             )
         );
     }
+
+
 }
