@@ -94,6 +94,7 @@ export const GeneralFields = ({
           }}
           readOnly={isSubmitted}
           helperText={phrase('field_helper_general_contact_email', '')}
+          placeholder={phrase('field_placeholder_general_contact_email', 'example@email.com')}
         />
       </Grid>
       <Grid col={12} md={6}>
@@ -112,6 +113,7 @@ export const GeneralFields = ({
           }}
           readOnly={isSubmitted}
           helperText={phrase('field_helper_general_contact_phone', '')}
+          placeholder={phrase('field_placeholder_general_contact_phone', '042-XX XX XX')}
         />
       </Grid>
     </FormSection>

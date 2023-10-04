@@ -38,6 +38,7 @@ export const PublicContactFields = ({
             ...(isLoading || isSubmitted ? { disabled: true } : {}),
           }}
           readOnly={isSubmitted}
+          placeholder={phrase('field_placeholder_public_contact_email', 'example@email.com')}
         />
       </Grid>
 
@@ -55,6 +56,7 @@ export const PublicContactFields = ({
             ...(isLoading || isSubmitted ? { disabled: true } : {}),
           }}
           readOnly={isSubmitted}
+          placeholder={phrase('field_placeholder_public_contact_phone', '042-XX XX XX')}
         />
       </Grid>
     </FormSection>

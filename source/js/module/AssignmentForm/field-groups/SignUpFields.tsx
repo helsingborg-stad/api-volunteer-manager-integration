@@ -74,6 +74,7 @@ export const SignUpFields = ({
                 }
                 inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
                 readOnly={isSubmitted}
+                placeholder={phrase('field_placeholder_signup_link', 'https://')}
               />
             </Grid>
           ),

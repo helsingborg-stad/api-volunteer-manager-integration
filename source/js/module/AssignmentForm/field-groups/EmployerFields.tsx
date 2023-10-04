@@ -48,6 +48,7 @@ export const EmployerFields = ({
           onBlur={() => maybeNormalizeUrl(employer?.website, handleChange('employer.website'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
+          placeholder={phrase('field_placeholder_employer_website', 'https://')}
         />
       </Grid>
     </FormSection>
