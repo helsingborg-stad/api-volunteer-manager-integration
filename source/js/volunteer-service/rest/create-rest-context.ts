@@ -6,6 +6,7 @@ import {
 } from '../VolunteerServiceContext'
 import { GetAccessTokenResponse } from '../../gdi-host/api'
 import { convertToFormData } from '../../util/convert-to-form-data'
+import { capitalizeName } from '../../util/capitalize'
 
 const post = (uri: string, data: FormData | object = {}, headers: object = {}) =>
   axios({
@@ -16,9 +17,6 @@ const post = (uri: string, data: FormData | object = {}, headers: object = {}) =
       ...{ 'Content-Type': 'application/x-www-form-urlencoded' },
       ...headers,
       ...(data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {}),
-    },
-    validateStatus: function (status) {
-      return status >= 200 && status < 400
     },
   })
 
@@ -56,8 +54,8 @@ export const createRestContext = (
       .then((headers) => get(`${uri}/employee`, {}, headers))
       .then(({ data }) => ({
         id: data.national_identity_number,
-        firstName: data.first_name,
-        lastName: data.surname,
+        firstName: capitalizeName(data.first_name),
+        lastName: capitalizeName(data.surname),
         email: data.email,
         phone: data.phone_number,
         status: data.status.slug,
@@ -96,8 +94,8 @@ export const createRestContext = (
       )
       .then((response) => ({
         id: response.data.national_identity_number ?? input.id,
-        firstName: response.data.first_name ?? input.firstName,
-        lastName: response.data.surname ?? input.lastName,
+        firstName: capitalizeName(response.data.first_name ?? input.firstName),
+        lastName: capitalizeName(response.data.surname ?? input.lastName),
         email: response.data.email ?? input.email,
         phone: response.data.phone_number ?? input.phone,
         status: response.data.status.slug ?? 'submitted',

@@ -5,6 +5,7 @@ import { Field } from '@helsingborg-stad/municipio-react-ui'
 import { parseValue } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import { FieldGroupProps } from './FieldGroupProps'
+import { maybeNormalizePhoneNumber } from '../../../util/phone'
 
 export const PublicContactFields = ({
   formState: { publicContact },
@@ -13,7 +14,6 @@ export const PublicContactFields = ({
   isSubmitted,
 }: FieldGroupProps) => {
   const { phrase } = useContext(PhraseContext)
-
   return (
     <FormSection
       sectionTitle={phrase('form_section_label_public_contact', 'Public Contact information')}
@@ -38,6 +38,7 @@ export const PublicContactFields = ({
             ...(isLoading || isSubmitted ? { disabled: true } : {}),
           }}
           readOnly={isSubmitted}
+          placeholder={phrase('field_placeholder_public_contact_email', 'example@email.com')}
         />
       </Grid>
 
@@ -47,12 +48,15 @@ export const PublicContactFields = ({
           label={phrase('field_label_public_contact_phone', 'Public Contact Phone')}
           name="assignment_public_contact_phone"
           type="tel"
-          onChange={parseValue(handleChange('publicContact.phone'))}
+          onChange={parseValue((v) =>
+            maybeNormalizePhoneNumber(v, handleChange('publicContact.phone')),
+          )}
           inputProps={{
             autoComplete: 'on',
             ...(isLoading || isSubmitted ? { disabled: true } : {}),
           }}
           readOnly={isSubmitted}
+          placeholder={phrase('field_placeholder_public_contact_phone', '042-XX XX XX')}
         />
       </Grid>
     </FormSection>

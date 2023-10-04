@@ -6,6 +6,7 @@ import ImagePicker from '../../../components/form/ImagePicker'
 import { parseValue } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import { FieldGroupProps } from './FieldGroupProps'
+import { maybeNormalizePhoneNumber } from '../../../util/phone'
 
 export const GeneralFields = ({
   formState,
@@ -47,6 +48,8 @@ export const GeneralFields = ({
           onChange={handleChange('image')}
           value={formState.image}
           required
+          readOnly={isSubmitted}
+          disabled={isSubmitted || isLoading}
         />
       </Grid>
 
@@ -91,6 +94,7 @@ export const GeneralFields = ({
           }}
           readOnly={isSubmitted}
           helperText={phrase('field_helper_general_contact_email', '')}
+          placeholder={phrase('field_placeholder_general_contact_email', 'example@email.com')}
         />
       </Grid>
       <Grid col={12} md={6}>
@@ -99,7 +103,9 @@ export const GeneralFields = ({
           label={phrase('field_label_general_contact_phone', 'Phone')}
           name="contact_phone"
           type="tel"
-          onChange={parseValue(handleChange('employer.contacts.0.phone'))}
+          onChange={parseValue((v) =>
+            maybeNormalizePhoneNumber(v, handleChange('employer.contacts.0.phone')),
+          )}
           required
           inputProps={{
             autoComplete: 'on',
@@ -107,6 +113,7 @@ export const GeneralFields = ({
           }}
           readOnly={isSubmitted}
           helperText={phrase('field_helper_general_contact_phone', '')}
+          placeholder={phrase('field_placeholder_general_contact_phone', '042-XX XX XX')}
         />
       </Grid>
     </FormSection>

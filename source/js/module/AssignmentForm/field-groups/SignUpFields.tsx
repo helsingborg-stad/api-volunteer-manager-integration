@@ -7,6 +7,7 @@ import { parseValue } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import ShowIf from '../../../util/ShowIf'
 import { FieldGroupProps } from './FieldGroupProps'
+import { maybeNormalizeUrl } from '../../../util/url'
 
 export function hasProperty<T>(data: any, property: string): data is T {
   return data && data[property] !== undefined
@@ -63,8 +64,17 @@ export const SignUpFields = ({
                 required
                 type="url"
                 onChange={parseValue(handleChange('signUp.link'))}
+                onBlur={() =>
+                  maybeNormalizeUrl(
+                    hasProperty<SignUpWithWebsite>(formState.signUp, 'type')
+                      ? formState?.signUp?.link
+                      : '',
+                    handleChange('signUp.link'),
+                  )
+                }
                 inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
                 readOnly={isSubmitted}
+                placeholder={phrase('field_placeholder_signup_link', 'https://')}
               />
             </Grid>
           ),

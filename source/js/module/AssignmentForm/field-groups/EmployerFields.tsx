@@ -3,6 +3,7 @@ import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
 import { parseValue } from '../../../util/event'
+import { maybeNormalizeUrl } from '../../../util/url'
 import Grid from '../../../components/grid/Grid'
 import { FieldGroupProps } from './FieldGroupProps'
 
@@ -44,8 +45,10 @@ export const EmployerFields = ({
           name="assignment_employer_webite"
           type="url"
           onChange={parseValue(handleChange('employer.website'))}
+          onBlur={() => maybeNormalizeUrl(employer?.website, handleChange('employer.website'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
+          placeholder={phrase('field_placeholder_employer_website', 'https://')}
         />
       </Grid>
     </FormSection>
