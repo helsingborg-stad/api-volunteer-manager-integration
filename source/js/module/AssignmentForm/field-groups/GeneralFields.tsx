@@ -6,6 +6,7 @@ import ImagePicker from '../../../components/form/ImagePicker'
 import { parseValue } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import { FieldGroupProps } from './FieldGroupProps'
+import { maybeNormalizePhoneNumber } from '../../../util/phone'
 
 export const GeneralFields = ({
   formState,
@@ -101,7 +102,9 @@ export const GeneralFields = ({
           label={phrase('field_label_general_contact_phone', 'Phone')}
           name="contact_phone"
           type="tel"
-          onChange={parseValue(handleChange('employer.contacts.0.phone'))}
+          onChange={parseValue((v) =>
+            maybeNormalizePhoneNumber(v, handleChange('employer.contacts.0.phone')),
+          )}
           required
           inputProps={{
             autoComplete: 'on',
