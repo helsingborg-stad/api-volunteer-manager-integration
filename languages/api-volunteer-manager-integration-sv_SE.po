@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mod My Pages\n"
-"POT-Creation-Date: 2023-10-02 12:29+0200\n"
-"PO-Revision-Date: 2023-10-04 12:57+0200\n"
+"POT-Creation-Date: 2023-10-04 16:59+0200\n"
+"PO-Revision-Date: 2023-10-04 17:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -195,8 +195,8 @@ msgid "Your name (not publicly visible)"
 msgstr "Ditt namn (visas inte publikt)"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:51
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:59
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:65
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:61
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:69
 msgid "Only used by us for contact purposes"
 msgstr "Används enbart av oss i kontaktsyften"
 
@@ -208,135 +208,150 @@ msgstr "Namn på verksamheten"
 msgid "E-mail (not publicly visible)"
 msgstr "E-Post (visas inte publikt)"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:62
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:58
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:118
+msgid "example@email.com"
+msgstr "exempel@mail.com"
+
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:64
 msgid "Phone (not publicly visible)"
 msgstr "Telefon (visas inte publikt)"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:68
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:66
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:122
+msgid "042-XX XX XX"
+msgstr "042-XX XX XX"
+
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:72
 msgid "Assignment information"
 msgstr "Information om uppdraget"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:71
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:75
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:73
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:77
 #: source/php/PostTypes/Assignment/Controller/Single.php:66
 msgid "Benefits"
 msgstr "Förmåner"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:75
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:79
 msgid "Qualifications"
 msgstr "Krav"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:77
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:81
 msgid "When and where?"
 msgstr "När och var?"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:79
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:83
 msgid "Total spots"
 msgstr "Antal platser"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:81
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:85
 msgid "Address"
 msgstr "Adress"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:83
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:87
 msgid "Postal"
 msgstr "Postnummer"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:85
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:89
 msgid "City"
 msgstr "Ort"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:87
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:91
 msgid "Sign up information"
 msgstr "Uppgifter för anmälan"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:90
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:94
 msgid "Sign up Link"
 msgstr "Registreringslänk"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:92
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:96
 msgid "Sign up Contact"
 msgstr "Anmäl via kontaktuppgifter"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:94
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:98
 msgid "Internal assignment"
 msgstr "Internt uppdrag"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:96
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:100
 msgid "SignUp Type"
 msgstr "Metod för anmälan"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:98
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:102
 msgid "Sign up link"
 msgstr "Anmäl via extern länk"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:100
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:104
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:131
+msgid "https://www.website.com"
+msgstr "https://"
+
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:106
 msgid "No"
 msgstr "Nej"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:101
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:107
 msgid "Yes"
 msgstr "Ja"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:103
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:109
 msgid "Is there a specific due date for signing up?"
 msgstr "Finns det ett förfallodatum för att anmäla sig?"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:105
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:111
 msgid "Last date to apply"
 msgstr "Sista ansökningsdag"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:107
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:113
 msgid "Public Contact information"
 msgstr "Kontaktuppgifter"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:110
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:116
 msgid "Public E-Mail"
 msgstr "Publik e-post"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:112
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:120
 msgid "Public Phone"
 msgstr "Publik telefon"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:114
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:124
 msgid "Employer information"
 msgstr "Om uppdragsgivaren"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:117
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:127
 #: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:28
 msgid "About the employer"
 msgstr "Om uppdragsgivaren"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:119
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:129
 msgid "Website"
 msgstr "Hemsida"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:121
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:133
 msgid "Select an option"
 msgstr "Välj ett alternativ"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:123
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:135
 #: source/php/Modularity/VolunteerForm/VolunteerForm.php:67
 msgid "Submit"
 msgstr "Skicka"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:125
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:137
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:57
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, försök igen senare."
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:127
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:139
 msgid "Successfully submitted new assignment!"
 msgstr "Ditt uppdrag har skickats in!"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:129
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:141
 msgid "Loading..."
 msgstr "Laddar.."
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:131
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:143
 msgid "Saving..."
 msgstr "Sparar…"
 
