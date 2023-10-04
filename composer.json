@@ -39,7 +39,8 @@
         "php-http/curl-client": "^2.2",
         "http-interop/http-factory-diactoros": "^1.0",
         "apix/log": "^1.2",
-        "symfony/http-client": "^5.4"
+        "symfony/http-client": "^5.4",
+        "giggsey/libphonenumber-for-php": "^8.13"
     },
     "require-dev": {
         "brain/monkey": "^2.6",
