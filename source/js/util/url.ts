@@ -14,7 +14,7 @@ export const isValidUrl = (url: string) => urlPattern.test(url)
 export const normalizeUrlProtocol = (url: string): string =>
   !url ? '' : url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
 export const normalizeUrl = (url: string): string => normalizeUrlProtocol(url)
-export const maybeNormalizeUrl = (currentUrl: string, changeHandler: (url: string) => void) =>
+export const tryNormalizeUrl = (changeHandler: (url: string) => void, currentUrl?: string | null) =>
   currentUrl &&
   currentUrl.length > 0 &&
   normalizeUrl(currentUrl) !== currentUrl &&
