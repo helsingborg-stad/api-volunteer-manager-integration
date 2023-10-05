@@ -2,10 +2,10 @@ import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { Field } from '@helsingborg-stad/municipio-react-ui'
-import { parseValue } from '../../../util/event'
+import { composeEventFns, parseValue, reportValidity, setValidity } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import { FieldGroupProps } from './FieldGroupProps'
-import { maybeNormalizePhoneNumber } from '../../../util/phone'
+import { tryFormatPhoneNumber, validatePhoneNumber } from '../../../util/phone'
 
 export const PublicContactFields = ({
   formState: { publicContact },
@@ -33,6 +33,7 @@ export const PublicContactFields = ({
           name="assignment_public_contact_email"
           type="email"
           onChange={parseValue(handleChange('publicContact.email'))}
+          onBlur={reportValidity}
           inputProps={{
             autoComplete: 'on',
             ...(isLoading || isSubmitted ? { disabled: true } : {}),
@@ -48,9 +49,11 @@ export const PublicContactFields = ({
           label={phrase('field_label_public_contact_phone', 'Public Contact Phone')}
           name="assignment_public_contact_phone"
           type="tel"
-          onChange={parseValue((v) =>
-            maybeNormalizePhoneNumber(v, handleChange('publicContact.phone')),
-          )}
+          onChange={composeEventFns([
+            setValidity(validatePhoneNumber),
+            parseValue(tryFormatPhoneNumber(handleChange('publicContact.phone'))),
+          ])}
+          onBlur={reportValidity}
           inputProps={{
             autoComplete: 'on',
             ...(isLoading || isSubmitted ? { disabled: true } : {}),

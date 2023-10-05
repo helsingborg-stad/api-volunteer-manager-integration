@@ -3,11 +3,11 @@ import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
 import { Field, Select } from '@helsingborg-stad/municipio-react-ui'
 import { SignUpTypes, SignUpWithWebsite } from '../../../volunteer-service/VolunteerServiceContext'
-import { parseValue } from '../../../util/event'
+import { parseValue, reportValidity } from '../../../util/event'
 import Grid from '../../../components/grid/Grid'
 import ShowIf from '../../../util/ShowIf'
 import { FieldGroupProps } from './FieldGroupProps'
-import { maybeNormalizeUrl } from '../../../util/url'
+import { tryNormalizeUrl } from '../../../util/url'
 
 export function hasProperty<T>(data: any, property: string): data is T {
   return data && data[property] !== undefined
@@ -47,6 +47,7 @@ export const SignUpFields = ({
           label={phrase('field_label_signup_signup_type', 'SignUp Type')}
           name="signup_type"
           onChange={parseValue(handleChange('signUp.type'))}
+          onBlur={reportValidity}
           required
           placeholder={phrase('select_placeholder', 'Select an option')}
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
@@ -64,15 +65,19 @@ export const SignUpFields = ({
                 required
                 type="url"
                 onChange={parseValue(handleChange('signUp.link'))}
-                onBlur={() =>
-                  maybeNormalizeUrl(
-                    hasProperty<SignUpWithWebsite>(formState.signUp, 'type')
-                      ? formState?.signUp?.link
-                      : '',
-                    handleChange('signUp.link'),
-                  )
-                }
-                inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+                onBlur={reportValidity}
+                inputProps={{
+                  ...(isLoading || isSubmitted ? { disabled: true } : {}),
+                  ...{
+                    onBlurCapture: () =>
+                      tryNormalizeUrl(
+                        handleChange('signUp.link'),
+                        formState?.signUp?.type === SignUpTypes.Link && formState.signUp.link
+                          ? formState.signUp.link
+                          : '',
+                      ),
+                  },
+                }}
                 readOnly={isSubmitted}
                 placeholder={phrase('field_placeholder_signup_link', 'https://')}
               />
@@ -96,6 +101,7 @@ export const SignUpFields = ({
           )}
           name="signup_has_due_date"
           onChange={parseValue(handleChange('signUp.hasDeadline'))}
+          onBlur={reportValidity}
           required
           placeholder={phrase('select_placeholder', 'Select an option')}
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
@@ -110,6 +116,7 @@ export const SignUpFields = ({
             name="signup_due_date"
             type="date"
             onChange={parseValue(handleChange('signUp.deadline'))}
+            onBlur={reportValidity}
             required
             inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
             readOnly={isSubmitted}

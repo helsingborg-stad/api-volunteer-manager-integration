@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import FormSection from '../../../components/form/FormSection'
 import PhraseContext from '../../../phrase/PhraseContextInterface'
-import { parseValue } from '../../../util/event'
+import { parseValue, reportValidity } from '../../../util/event'
 import { Field, Textarea } from '@helsingborg-stad/municipio-react-ui'
 import { FieldGroupProps } from './FieldGroupProps'
 import Grid from '../../../components/grid/Grid'
@@ -43,6 +43,7 @@ export const DetailsFields = ({
           label={phrase('field_label_details_description', 'Description')}
           name="assignment_description"
           onChange={parseValue(handleChange('description'))}
+          onBlur={reportValidity}
           rows={10}
           required
           textareaProps={isLoading || isSubmitted ? { disabled: true } : {}}
