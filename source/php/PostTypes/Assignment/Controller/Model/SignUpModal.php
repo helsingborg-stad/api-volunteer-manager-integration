@@ -3,16 +3,16 @@
 namespace APIVolunteerManagerIntegration\PostTypes\Assignment\Controller\Model;
 
 use APIVolunteerManagerIntegration\Helper\WP;
-use APIVolunteerManagerIntegration\Services\ACFService\ACFService;
+use APIVolunteerManagerIntegration\Services\ACFService\ACFGetField;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use Municipio\Helper\Post;
 
 class SignUpModal
 {
     private MyPages $myPages;
-    private ACFService $acf;
+    private ACFGetField $acf;
 
-    public function __construct(MyPages $myPages, ACFService $acf)
+    public function __construct(MyPages $myPages, ACFGetField $acf)
     {
         $this->myPages = $myPages;
         $this->acf     = $acf;
