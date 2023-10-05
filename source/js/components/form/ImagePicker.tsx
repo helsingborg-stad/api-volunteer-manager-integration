@@ -16,6 +16,7 @@ export interface ImagePickerProps {
   value?: FileList | null
   label?: string
   onChange?: (value: FileList | null) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any
   error?: boolean
   valid?: boolean
   helperText?: string | JSX.Element
@@ -37,6 +38,7 @@ const ImagePicker = ({
   required,
   disabled,
   readOnly,
+  onBlur,
   width = 1920,
   height = 1080,
   ...props
@@ -85,6 +87,7 @@ const ImagePicker = ({
             {...(readOnly ? { readOnly } : {})}
             {...(disabled ? { disabled } : {})}
             {...(required ? { required } : {})}
+            {...(onBlur ? { onBlur } : {})}
             onChange={(e) => e.target.files && onChange && onChange(e.target.files)}
             name={name}
           />
