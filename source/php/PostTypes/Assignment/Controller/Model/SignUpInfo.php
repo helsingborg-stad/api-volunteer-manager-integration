@@ -31,8 +31,7 @@ class SignUpInfo
                 ]))($arr);
 
         $withContact = fn(array $arr): array => $maybeWith(
-            ( ! empty(WP::getPostMeta('signup_email', null)) || ! empty(WP::getPostMeta('signup_phone',
-                    null))) && empty($arr),
+            empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'instructions'  => __('Welcome with your expression of interest, you can apply using the contact details below.',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
@@ -41,14 +40,22 @@ class SignUpInfo
                         'value' => WP::getPostMeta('signup_email',
                             ''),
                         'icon'  => 'email',
-                        'link'  => "mailto:".WP::getPostMeta('signup_email',
-                                '').'?'.http_build_query([
-                                'subject' => __("Sign up for volunteer assignment",
-                                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).': '.get_the_title(),
-                                'body'    => __("Hello, I want to get in touch and learn more.",
-                                    API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                            ], null,
-                                '&', PHP_QUERY_RFC3986),
+                        'link'  => implode('', [
+                            "mailto:",
+                            WP::getPostMeta('signup_email', ''),
+                            '?',
+                            http_build_query(
+                                [
+                                    'subject' => __("Sign up for volunteer assignment",
+                                            API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).': '.get_the_title(),
+                                    'body'    => __("Hello, I want to get in touch and learn more.",
+                                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
+                                ],
+                                null,
+                                '&',
+                                PHP_QUERY_RFC3986
+                            ),
+                        ]),
                     ],
                     [
                         'value' => (new PhoneNumber(WP::getPostMeta('signup_phone', '')))->toHumanReadable(),
