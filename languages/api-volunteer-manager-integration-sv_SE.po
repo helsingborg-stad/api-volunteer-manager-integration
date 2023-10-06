@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mod My Pages\n"
 "POT-Creation-Date: 2023-10-04 16:59+0200\n"
-"PO-Revision-Date: 2023-10-04 17:05+0200\n"
+"PO-Revision-Date: 2023-10-06 13:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -92,27 +92,27 @@ msgstr ""
 #: source/php/Helper/PostType.php:195
 #, php-format
 msgid "Add new %s"
-msgstr ""
+msgstr "Lägg till nytt %s"
 
 #: source/php/Helper/PostType.php:49 source/php/Helper/PostType.php:191
 #, php-format
 msgid "Edit %s"
-msgstr ""
+msgstr "Redigera %s"
 
 #: source/php/Helper/PostType.php:51
 #, php-format
 msgid "New %s"
-msgstr ""
+msgstr "Nytt %s"
 
 #: source/php/Helper/PostType.php:53
 #, php-format
 msgid "View %s"
-msgstr ""
+msgstr "Visa %s"
 
 #: source/php/Helper/PostType.php:55 source/php/Helper/PostType.php:183
 #, php-format
 msgid "Search %s"
-msgstr ""
+msgstr "Sök %s"
 
 #: source/php/Helper/PostType.php:57
 #, php-format
