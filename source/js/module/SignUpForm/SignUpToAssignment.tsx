@@ -16,7 +16,7 @@ import { LoaderDots } from '../../components/loader-dots/LoaderDots'
 type State = 'loading' | 'saving'
 const hasSubmitted = (volunteer: Volunteer, assignmentId: string) =>
   volunteer.assignments?.find((a) => a.assignmentId === parseInt(assignmentId)) !== undefined
-const canSubmit = (volunteer: Volunteer, rejectStatus: string[] = ['new', 'denied']) =>
+const canSubmit = (volunteer: Volunteer, rejectStatus: string[] = ['new', 'denied', 'pending']) =>
   volunteer.status && !rejectStatus.includes(volunteer.status)
 
 export function SignUpToAssignment({
