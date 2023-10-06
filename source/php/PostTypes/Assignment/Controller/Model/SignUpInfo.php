@@ -30,7 +30,7 @@ class SignUpInfo
                     ],
                 ]))($arr);
 
-        $withContact = fn(array $arr): array => $maybeWith(
+        $withContact = fn(array $arr): array => self::maybeWith(
             empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'instructions'  => __('Welcome with your expression of interest, you can apply using the contact details below.',
@@ -62,11 +62,11 @@ class SignUpInfo
                         'icon'  => 'phone',
                         'link'  => (new PhoneNumber(WP::getPostMeta('signup_phone', '')))->toUri(),
                     ],
-                ], fn($str) => ! empty($str)),
+                ], fn($str) => ! empty(trim($str['value']))),
             ])
         )($arr);
 
-        $withInternalUrl = fn(array $arr): array => $maybeWith(
+        $withInternalUrl = fn(array $arr): array => self::maybeWith(
             WP::getPostMeta('internal_assignment', null) && empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'instructions' => __('Welcome with your expression of interest, login or register a volunteer account using the link below.',
@@ -82,7 +82,7 @@ class SignUpInfo
             ])
         )($arr);
 
-        $createSignUpData = fn(array $arr): array => $maybeWith(
+        $createSignUpData = fn(array $arr): array => self::maybeWith(
             ! empty($arr),
             fn(array $arr) => array_merge($arr, [
                 'title'   => __(
