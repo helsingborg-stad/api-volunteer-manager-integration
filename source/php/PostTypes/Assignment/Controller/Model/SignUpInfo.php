@@ -8,15 +8,11 @@ use Closure;
 
 class SignUpInfo
 {
+
     public function data(): array
     {
-        $maybeWith =
-            fn(bool $condition, Closure $cb) => fn(array $arr): array => $condition
-                ? $cb($arr)
-                : $arr;
-
         $withLink =
-            fn(array $arr): array => $maybeWith(
+            fn(array $arr): array => self::maybeWith(
                 ! empty(WP::getPostMeta('signup_link', '')) && empty($arr),
                 fn(array $arr) => array_merge($arr, [
                     'instructions' => __('Welcome with your expression of interest, you can apply through the link below.',
@@ -104,5 +100,11 @@ class SignUpInfo
         );
     }
 
+    private static function maybeWith(bool $condition, Closure $cb)
+    {
+        return fn(array $arr): array => $condition
+            ? $cb($arr)
+            : $arr;
+    }
 
 }
