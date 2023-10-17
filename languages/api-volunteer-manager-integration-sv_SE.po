@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mod My Pages\n"
 "POT-Creation-Date: 2023-10-04 16:59+0200\n"
-"PO-Revision-Date: 2023-10-06 13:44+0200\n"
+"PO-Revision-Date: 2023-10-17 12:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -117,33 +117,33 @@ msgstr "Sök %s"
 #: source/php/Helper/PostType.php:57
 #, php-format
 msgid "No %s found"
-msgstr ""
+msgstr "Sök %s"
 
 #: source/php/Helper/PostType.php:59
 #, php-format
 msgid "No %s found in trash"
-msgstr ""
+msgstr "Lägg till nytt %s"
 
 #: source/php/Helper/PostType.php:62 source/php/Helper/PostType.php:187
 #: source/php/Helper/PostType.php:189
 #, php-format
 msgid "Parent %s:"
-msgstr ""
+msgstr "Överordnad %s"
 
 #: source/php/Helper/PostType.php:185
 #, php-format
 msgid "All %s"
-msgstr ""
+msgstr "Alla %s"
 
 #: source/php/Helper/PostType.php:193
 #, php-format
 msgid "Update %s"
-msgstr ""
+msgstr "Uppdatera %s"
 
 #: source/php/Helper/PostType.php:197
 #, php-format
 msgid "New %s Name"
-msgstr ""
+msgstr "Lägg till nytt %s"
 
 #: source/php/Helper/Request.php:36
 msgid "API request failed."
