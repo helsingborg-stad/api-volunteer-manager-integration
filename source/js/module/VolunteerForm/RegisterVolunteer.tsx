@@ -23,8 +23,8 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
   const inspect = useAsync<Volunteer, State>(async () => volunteer, 'loading')
 
   const {
-    formState: { phone, email },
-    handleInputChange,
+    formState: { phone, email, newsletter },
+    handleChange,
   } = useForm<Volunteer>({
     initialState: volunteer,
   })
@@ -35,8 +35,8 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
         loading: () => <span>Loading</span>,
         saving: () => (
           <VolunteerForm
-            handleInputChange={handleInputChange}
-            volunteer={{ ...volunteer, ...{ phone, email } }}
+            handleChange={handleChange}
+            volunteer={{ ...volunteer, ...{ phone, email, newsletter } }}
             onSubmit={(input) => null}
             isLoading
           />
@@ -46,15 +46,15 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
       ({
         showForm: () => (
           <VolunteerForm
-            handleInputChange={handleInputChange}
-            volunteer={{ ...volunteerData, ...{ phone, email } }}
+            handleChange={handleChange}
+            volunteer={{ ...volunteerData, ...{ phone, email, newsletter } }}
             onSubmit={(input) => update(register(input), 'saving')}
           />
         ),
         isSubmitted: () => (
           <VolunteerForm
-            handleInputChange={handleInputChange}
-            volunteer={{ ...volunteerData, ...{ phone, email } }}
+            handleChange={handleChange}
+            volunteer={{ ...volunteerData, ...{ phone, email, newsletter } }}
             onSubmit={(input) => update(register(input), 'saving')}
             isSubmitted
             message={phrase(
@@ -70,8 +70,8 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
       ]()),
     rejected: (err, state, update) => (
       <VolunteerForm
-        handleInputChange={handleInputChange}
-        volunteer={{ ...volunteer, ...{ phone, email } }}
+        handleChange={handleChange}
+        volunteer={{ ...volunteer, ...{ phone, email, newsletter } }}
         onSubmit={(input) => update(register(input), 'saving')}
         hasError
         message={err.message}
@@ -95,6 +95,7 @@ function RegisterVolunteer(): JSX.Element {
           email: '',
           phone: '',
           status: '',
+          newsletter: undefined,
         }))
       }),
     [],
