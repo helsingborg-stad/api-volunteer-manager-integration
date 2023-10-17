@@ -8,6 +8,7 @@ export interface Volunteer {
   phone?: string
   status?: string
   statusLabel?: string
+  newsletter?: boolean
   assignments?: {
     assignmentId: number
     title: string
