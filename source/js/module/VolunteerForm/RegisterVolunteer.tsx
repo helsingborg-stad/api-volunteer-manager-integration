@@ -37,7 +37,7 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
           <VolunteerForm
             handleChange={handleChange}
             volunteer={{ ...volunteer, ...{ phone, email, newsletter } }}
-            onSubmit={(input) => null}
+            onSubmit={(_) => null}
             isLoading
           />
         ),
@@ -81,7 +81,7 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
 }
 
 function RegisterVolunteer(): JSX.Element {
-  const { getVolunteer, registerVolunteer } = useContext(VolunteerServiceContext)
+  const { getVolunteer } = useContext(VolunteerServiceContext)
 
   const getVolunteerWithNullCatch = useCallback(
     async (): Promise<Volunteer> =>
@@ -104,9 +104,9 @@ function RegisterVolunteer(): JSX.Element {
   const inspect = useAsync<Volunteer, State>(getVolunteerWithNullCatch, 'loading')
 
   return inspect({
-    pending: (state) => <span>pending</span>,
-    resolved: (volunteer, state, update) => <AsyncForm volunteer={volunteer} />,
-    rejected: (err, state, update) => <span>rejected</span>,
+    pending: (_state) => <span>pending</span>,
+    resolved: (volunteer, state, _update) => <AsyncForm volunteer={volunteer} />,
+    rejected: (_err, _state, _update) => <span>rejected</span>,
   })
 }
 

@@ -26,7 +26,7 @@ function VolunteerForm({
   message,
   handleChange,
 }: VolunteerFormProps): JSX.Element {
-  const { firstName, lastName, id } = volunteer || { firstName: '', lastName: '', id: '' }
+  const { firstName, lastName } = volunteer || { firstName: '', lastName: '', id: '' }
   const { phrase } = useContext(PhraseContext)
   const formRef = useRef<HTMLFormElement>(null)
 
