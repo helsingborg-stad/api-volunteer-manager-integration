@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mod My Pages\n"
-"POT-Creation-Date: 2023-10-04 16:59+0200\n"
-"PO-Revision-Date: 2023-10-06 13:44+0200\n"
+"POT-Creation-Date: 2023-10-18 11:01+0200\n"
+"PO-Revision-Date: 2023-10-18 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -117,33 +117,33 @@ msgstr "Sök %s"
 #: source/php/Helper/PostType.php:57
 #, php-format
 msgid "No %s found"
-msgstr ""
+msgstr "Sök %s"
 
 #: source/php/Helper/PostType.php:59
 #, php-format
 msgid "No %s found in trash"
-msgstr ""
+msgstr "Lägg till nytt %s"
 
 #: source/php/Helper/PostType.php:62 source/php/Helper/PostType.php:187
 #: source/php/Helper/PostType.php:189
 #, php-format
 msgid "Parent %s:"
-msgstr ""
+msgstr "Överordnad %s"
 
 #: source/php/Helper/PostType.php:185
 #, php-format
 msgid "All %s"
-msgstr ""
+msgstr "Alla %s"
 
 #: source/php/Helper/PostType.php:193
 #, php-format
 msgid "Update %s"
-msgstr ""
+msgstr "Uppdatera %s"
 
 #: source/php/Helper/PostType.php:197
 #, php-format
 msgid "New %s Name"
-msgstr ""
+msgstr "Lägg till nytt %s"
 
 #: source/php/Helper/Request.php:36
 msgid "API request failed."
@@ -330,15 +330,17 @@ msgid "Website"
 msgstr "Hemsida"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:133
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:84
 msgid "Select an option"
 msgstr "Välj ett alternativ"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:135
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:67
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:68
 msgid "Submit"
 msgstr "Skicka"
 
 #: source/php/Modularity/AssignmentForm/AssignmentForm.php:137
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:80
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:57
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, försök igen senare."
@@ -381,13 +383,43 @@ msgstr "Identifiera dig med bank-id"
 msgid "Phone"
 msgstr "Telefonnummer"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:68
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:70
 msgid "E-mail"
 msgstr "E-post"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:69
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:72
 msgid "Name"
 msgstr "Namn"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:74
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:53
+msgid "Loading"
+msgstr "Laddar"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:76
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:55
+msgid "Saving"
+msgstr "Sparar"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:78
+msgid "Sending"
+msgstr "Skickar"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:82
+msgid "Thank you! We will get in touch with you as soon as possible"
+msgstr "Tack! Vi kommer att kontakta dig så snart som möjligt"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:86
+msgid "Newsletter"
+msgstr "Nyhetsbrev"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:88
+msgid "Yes I want to receive the newsletter"
+msgstr "Ja, jag vill få nyheter om volontäruppdrag på mail"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:90
+msgid "No, I do not want to receive the newsletter"
+msgstr "Nej tack, jag vill inte få nyheter om volontäruppdrag på mail"
 
 #: source/php/PostTypes/Assignment.php:20
 #: source/tests/php/_TestUtils/PluginTestCase.php:130
@@ -406,7 +438,7 @@ msgstr "Kategori"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: source/php/PostTypes/Assignment/Controller/Model/ContactInfo.php:42
+#: source/php/PostTypes/Assignment/Controller/Model/ContactInfo.php:45
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -438,18 +470,18 @@ msgstr ""
 msgid "Volunteer registration"
 msgstr "Registrera som volontär"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:21
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:18
 msgid ""
 "Welcome with your expression of interest, you can apply through the link "
 "below."
 msgstr "Välkommen med din intresseanmälan, du anmäler dig via länken nedan."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:26
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:70
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:23
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:73
 msgid "Sign up"
 msgstr "Anmäl dig"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:37
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:32
 msgid ""
 "Welcome with your expression of interest, you can apply using the contact "
 "details below."
@@ -457,15 +489,15 @@ msgstr ""
 "Välkommen med din intresseanmälan, du anmäler dig via kontaktuppgifterna "
 "nedan."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:46
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:45
 msgid "Sign up for volunteer assignment"
 msgstr "Intresseanmälan till volontäruppdrag"
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:48
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:47
 msgid "Hello, I want to get in touch and learn more."
 msgstr "Hej, jag vill bli kontaktad och veta mer."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:65
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:68
 msgid ""
 "Welcome with your expression of interest, login or register a volunteer "
 "account using the link below."
@@ -473,7 +505,7 @@ msgstr ""
 "Välkommen med din intresseanmälan, logga in eller registrera dig som "
 "volontär för att anmäla dig till detta uppdrag."
 
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:82
+#: source/php/PostTypes/Assignment/Controller/Model/SignUpInfo.php:85
 msgid "Registration"
 msgstr "Anmälan"
 
@@ -502,14 +534,6 @@ msgstr ""
 msgid "You are not a registered volunteer, please register an account."
 msgstr ""
 "Du är inte registrerad som volontär, vänligen registrera ett konto först."
-
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:53
-msgid "Loading"
-msgstr "Laddar"
-
-#: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:55
-msgid "Saving"
-msgstr "Sparar"
 
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:61
 msgid "Employer"

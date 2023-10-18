@@ -23,8 +23,8 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
   const inspect = useAsync<Volunteer, State>(async () => volunteer, 'loading')
 
   const {
-    formState: { phone, email },
-    handleInputChange,
+    formState: { phone, email, newsletter },
+    handleChange,
   } = useForm<Volunteer>({
     initialState: volunteer,
   })
@@ -35,9 +35,9 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
         loading: () => <span>Loading</span>,
         saving: () => (
           <VolunteerForm
-            handleInputChange={handleInputChange}
-            volunteer={{ ...volunteer, ...{ phone, email } }}
-            onSubmit={(input) => null}
+            handleChange={handleChange}
+            volunteer={{ ...volunteer, ...{ phone, email, newsletter } }}
+            onSubmit={(_) => null}
             isLoading
           />
         ),
@@ -46,20 +46,20 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
       ({
         showForm: () => (
           <VolunteerForm
-            handleInputChange={handleInputChange}
-            volunteer={{ ...volunteerData, ...{ phone, email } }}
+            handleChange={handleChange}
+            volunteer={{ ...volunteerData, ...{ phone, email, newsletter } }}
             onSubmit={(input) => update(register(input), 'saving')}
           />
         ),
         isSubmitted: () => (
           <VolunteerForm
-            handleInputChange={handleInputChange}
-            volunteer={{ ...volunteerData, ...{ phone, email } }}
+            handleChange={handleChange}
+            volunteer={{ ...volunteerData, ...{ phone, email, newsletter } }}
             onSubmit={(input) => update(register(input), 'saving')}
             isSubmitted
             message={phrase(
-              'successful_submission_message',
-              'Successfully submitted new volunteer!',
+              'success_text',
+              'Thank you! We will get in touch with you as soon as possible',
             )}
           />
         ),
@@ -70,8 +70,8 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
       ]()),
     rejected: (err, state, update) => (
       <VolunteerForm
-        handleInputChange={handleInputChange}
-        volunteer={{ ...volunteer, ...{ phone, email } }}
+        handleChange={handleChange}
+        volunteer={{ ...volunteer, ...{ phone, email, newsletter } }}
         onSubmit={(input) => update(register(input), 'saving')}
         hasError
         message={err.message}
@@ -81,7 +81,7 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
 }
 
 function RegisterVolunteer(): JSX.Element {
-  const { getVolunteer, registerVolunteer } = useContext(VolunteerServiceContext)
+  const { getVolunteer } = useContext(VolunteerServiceContext)
 
   const getVolunteerWithNullCatch = useCallback(
     async (): Promise<Volunteer> =>
@@ -95,6 +95,7 @@ function RegisterVolunteer(): JSX.Element {
           email: '',
           phone: '',
           status: '',
+          newsletter: undefined,
         }))
       }),
     [],
@@ -103,9 +104,9 @@ function RegisterVolunteer(): JSX.Element {
   const inspect = useAsync<Volunteer, State>(getVolunteerWithNullCatch, 'loading')
 
   return inspect({
-    pending: (state) => <span>pending</span>,
-    resolved: (volunteer, state, update) => <AsyncForm volunteer={volunteer} />,
-    rejected: (err, state, update) => <span>rejected</span>,
+    pending: (_state) => <span>pending</span>,
+    resolved: (volunteer, state, _update) => <AsyncForm volunteer={volunteer} />,
+    rejected: (_err, _state, _update) => <span>rejected</span>,
   })
 }
 

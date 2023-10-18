@@ -68,6 +68,7 @@ export const createRestContext = (
             statusLabel: name,
           }),
         ),
+        newsletter: data.newsletter,
       }))
       .catch((err: any) => {
         if (err?.response?.status && err?.response?.data?.code) {
@@ -88,6 +89,7 @@ export const createRestContext = (
           {
             email: input.email,
             phone_number: input.phone,
+            newsletter: input.newsletter ? true : null,
           },
           headers,
         ),
@@ -98,6 +100,7 @@ export const createRestContext = (
         lastName: capitalizeName(response.data.surname ?? input.lastName),
         email: response.data.email ?? input.email,
         phone: response.data.phone_number ?? input.phone,
+        newsletter: response.data.newsletter ?? input.newsletter,
         status: response.data.status.slug ?? 'submitted',
       })),
   registerAssignment: (input) =>

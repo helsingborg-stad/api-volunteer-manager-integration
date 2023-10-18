@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react'
+import ShowIf from '../../util/ShowIf'
 
 export interface Props extends PropsWithChildren {
   className?: string
@@ -22,9 +23,11 @@ export const Stack = ({
       className={[...['o-stack'], className ?? ''].filter((s) => s && s.length > 0).join(' ')}
       {...props}>
       {React.Children.map(children, (child, index) => (
-        <div style={{ marginTop: index === 0 ? '0' : computedMargin }} key={index}>
-          {child}
-        </div>
+        <ShowIf condition={child !== null}>
+          <div style={{ marginTop: index === 0 ? '0' : computedMargin }} key={index}>
+            {child}
+          </div>
+        </ShowIf>
       ))}
     </div>
   )
