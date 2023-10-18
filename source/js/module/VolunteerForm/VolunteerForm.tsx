@@ -79,7 +79,7 @@ function VolunteerForm({
               false.toString(),
               phrase(
                 'field_option_label_volunteer_newsletter_false',
-                'No i do not want to receive the newsletter',
+                'No, I do not want to receive the newsletter',
               ),
             ],
           ]}
@@ -105,7 +105,9 @@ function VolunteerForm({
             color="primary"
             disabled={(isLoading || isSubmitted) ?? false}
             onClick={() => formRef.current?.reportValidity() && onSubmit(volunteer)}>
-            {!isLoading ? phrase('submit', 'Submit') : phrase('submitting', 'Submitting..')}
+            {!isLoading
+              ? phrase('button_label_submit', 'Submit')
+              : phrase('sending_text', 'Submitting..')}
           </Button>
         ) : null}
         {message && message.length > 0 ? (

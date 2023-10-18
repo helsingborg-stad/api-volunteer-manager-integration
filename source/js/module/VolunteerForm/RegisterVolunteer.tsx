@@ -58,8 +58,8 @@ const AsyncForm = ({ volunteer }: { volunteer: Volunteer }) => {
             onSubmit={(input) => update(register(input), 'saving')}
             isSubmitted
             message={phrase(
-              'successful_submission_message',
-              'Successfully submitted new volunteer!',
+              'success_text',
+              'Thank you! We will get in touch with you as soon as possible',
             )}
           />
         ),
