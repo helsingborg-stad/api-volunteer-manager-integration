@@ -25,6 +25,7 @@ class AssignmentForm extends \Modularity\Module
         $this->namePlural   = __('Assignment Forms', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $this->description  = __('Module for Volunteer registration form',
             API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
+        $this->ttl          = false;
     }
 
 

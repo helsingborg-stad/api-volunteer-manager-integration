@@ -29,8 +29,8 @@ class VolunteerForm extends \Modularity\Module
         $this->namePlural   = __('Volunteer Forms', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $this->description  = __('Module for Volunteer registration form',
             API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
-
-        $this->myPages = new MyPagesService();
+        $this->ttl          = false;
+        $this->myPages      = new MyPagesService();
     }
 
 
