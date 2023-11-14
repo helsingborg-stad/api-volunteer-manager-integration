@@ -1,6 +1,6 @@
 {
     "name": "api-volunteer-manager-integration",
-    "version": "2.2.10",
+    "version": "2.2.11",
     "description": "Frontend integration for api-volunteer-manager.",
     "main": "",
     "repository": {
