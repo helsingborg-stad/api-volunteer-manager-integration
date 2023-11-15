@@ -5,6 +5,12 @@ import App from './App'
 import { updateURLWith } from '../../util/url-query-params'
 import { getValidAccessToken } from '../../volunteer-service/rest/create-rest-context'
 
+const isAuthenticated = (): boolean => {
+  const params = new URLSearchParams(window.location.search)
+  const isAuth = params.get('is_authenticated')
+  return isAuth === '1'
+}
+
 const renderVolunteerForm = (elements: HTMLElement[]) => () =>
   [...elements]
     .map((e) => ({
@@ -31,7 +37,7 @@ const onCloseDialog = (el: HTMLElement) => (e: any) => {
 }
 
 const showDialog = () =>
-  [...document.querySelectorAll<HTMLElement>('.js-press-on-dom-loaded')]
+  [...document.querySelectorAll<HTMLElement>('.js-press-on-dom-loaded-is-authenticated')]
     .map((e) => ({
       element: e,
       dialogId: `${e?.dataset?.open}`,
@@ -54,6 +60,10 @@ const showDialog = () =>
 
 document.addEventListener('DOMContentLoaded', () => {
   getValidAccessToken()
-    .then(showDialog)
+    .then(() => {
+      if (isAuthenticated()) {
+        showDialog()
+      }
+    })
     .catch(() => {}) //TODO: handle not authenticated
 })

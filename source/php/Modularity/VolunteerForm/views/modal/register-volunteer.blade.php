@@ -7,7 +7,7 @@
 'color' => 'primary',
 'style' => 'filled',
 'attributeList' => ['data-open' => $viewModel->id],
-'classList' => ['js-press-on-dom-loaded', 'u-display--none']
+'classList' => ['js-press-on-dom-loaded-is-authenticated', 'u-display--none']
 ])
 @endbutton
 
