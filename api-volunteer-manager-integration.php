@@ -3,7 +3,7 @@
  * Plugin Name: API Volunteer Manager Integration
  * Plugin URI: https://github.com/helsingborg-stad/api-volunteer-manager-integration
  * Description: Frontend integration for api-volunteer-manager.
- * Version: 2.2.15
+ * Version: 2.2.16
  * Author: Nikolas Ramstedt
  * Author URI: https://github.com/helsingborg-stad
  * License: MIT
