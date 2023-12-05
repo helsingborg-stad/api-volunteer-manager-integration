@@ -75,6 +75,7 @@ jobs:
         if: ${{ hashFiles('composer.json') != '' }}
         with:
           tools: composer
+          php-version: '7.4'
       
       - name: Build PHP
         if: ${{ hashFiles('composer.json') != '' }}
