@@ -98,7 +98,7 @@ class AssignmentForm extends \Modularity\Module
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'field_option_label_signup_internal'         => __('Internal assignment',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
-                'field_label_signup_signup_type'             => __('SignUp Type',
+                'field_label_signup_signup_type'             => __('How to sign up?',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'field_label_signup_link'                    => __('Sign up link',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),

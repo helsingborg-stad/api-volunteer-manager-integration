@@ -1,7 +1,7 @@
 import { Button, Field, Icon, Select } from '@helsingborg-stad/municipio-react-ui'
 import { Volunteer } from '../../volunteer-service/VolunteerServiceContext'
 import PhraseContext from '../../phrase/PhraseContextInterface'
-import { useContext, useRef } from 'react'
+import {useContext, useRef, useState} from 'react'
 import { CircularProgress } from '@mui/material'
 import Stack from '../../components/stack/Stack'
 import { composeEventFns, parseValue, reportValidity, setValidity } from '../../util/event'
@@ -29,7 +29,8 @@ function VolunteerForm({
   const { firstName, lastName } = volunteer || { firstName: '', lastName: '', id: '' }
   const { phrase } = useContext(PhraseContext)
   const formRef = useRef<HTMLFormElement>(null)
-
+  const [acceptVolunteerTerms, setAcceptVolunteerTerms] = useState('')
+  console.log(phrase('field_label_volunteer_terms', 'Volunteer Terms'))
   return (
     <form ref={formRef} onSubmit={(e) => e.preventDefault()}>
       <Stack spacing={4}>
@@ -95,6 +96,35 @@ function VolunteerForm({
           selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
+          {
+              phrase('field_helper_text_volunteer_terms', '').length > 0 ? (
+                  <Select
+                      options={[
+                          [
+                              true.toString(),
+                              phrase(
+                                  'field_option_label_volunteer_terms_accept',
+                                  'I have read and agree to the terms and conditions for being a volunteer.',
+                              ),
+                          ],
+                      ]}
+                      value={isLoading || isSubmitted ? 'yes' : (acceptVolunteerTerms ?? '')}
+                      label={phrase('field_label_volunteer_terms', 'Volunteer Terms')}
+                      name="volunteer_terms"
+                      onChange={parseValue((v) => {
+                        setAcceptVolunteerTerms(String(v).toLowerCase())
+                      })}
+                      helperText={<div dangerouslySetInnerHTML={{__html: phrase('field_helper_text_volunteer_terms', '')}}/>}
+                      onBlur={reportValidity}
+                      required
+                      placeholder={phrase('select_placeholder', 'Select an option')}
+                      selectProps={isLoading || isSubmitted ? { disabled: true } : {}}
+                      readOnly={isSubmitted}
+
+                  />
+              ): null
+          }
+
 
         {!isSubmitted && phrase('form_terms', '').length > 0 ? (
           <div dangerouslySetInnerHTML={{ __html: phrase('form_terms', '') }}></div>
