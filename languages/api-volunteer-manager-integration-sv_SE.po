@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Mod My Pages\n"
-"POT-Creation-Date: 2023-10-18 11:01+0200\n"
-"PO-Revision-Date: 2023-10-18 11:01+0200\n"
+"Project-Id-Version: API Volunteer Manager Integration\n"
+"POT-Creation-Date: 2023-12-13 02:27+0100\n"
+"PO-Revision-Date: 2023-12-13 02:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,63 +20,88 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-assignment-form.php:8
+#: source/php/AcfFields/php/api-volunteer-manager-integration-assignment-form.php:6
 msgid "Assignment Form Module"
 msgstr "Registreringsformulär för Volontäruppdrag"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-assignment-form.php:12
-#: source/php/AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:12
+#: source/php/AcfFields/php/api-volunteer-manager-integration-assignment-form.php:10
+#: source/php/AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:10
 msgid "Form Terms"
 msgstr "Formulärsvillkor"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:8
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:6
 msgid "Volunteer Manager Integration Settings"
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:12
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:10
 msgid "API Configuration"
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:30
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:28
 msgid "API URL"
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:47
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:45
 msgid "App Secret"
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:51
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:49
 msgid "base64encoded string \"clientid:clientsecret\""
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:68
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:65
 msgid "Cron"
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:86
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:83
 msgid "Daily Import"
 msgstr ""
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:100
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:97
 msgid "Enabled"
 msgstr "Aktiv"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:101
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:98
 msgid "Disabled"
 msgstr "Inaktiv"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:106
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:103
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:59
 msgid "Volunteer"
 msgstr "Volontär"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:124
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:121
 msgid "Registration Page"
 msgstr "Registreringssida"
 
-#: source/php/AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:8
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:137
+msgid "Phrase strings"
+msgstr "Fras strängar"
+
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:155
+msgid "Phrases"
+msgstr "Fraser"
+
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:172
+msgid "Add Row"
+msgstr ""
+
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:177
+msgid "Key"
+msgstr ""
+
+#: source/php/AcfFields/php/api-volunteer-manager-integration-settings.php:198
+msgid "Value"
+msgstr ""
+
+#: source/php/AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:6
 msgid "Volunteer Form Module"
 msgstr "Registreringsformulär för Volontärer"
+
+#: source/php/AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:30
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:91
+msgid "Volunteer Terms"
+msgstr "Volontär villkor"
 
 #: source/php/Admin/OptionsPage.php:26
 #: source/tests/php/Admin/OptionsPageTest.php:37
@@ -174,186 +199,186 @@ msgstr "Volontäruppdrag formulär"
 msgid "Module for Volunteer registration form"
 msgstr "Formulärs modul för att bli volontär"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:33
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:34
 msgid "optional"
 msgstr "valfri"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:41
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:42
 msgid "Register Volunteer Assignment"
 msgstr "Registrera Volontäruppdrag"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:44
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:45
 msgid "Name of the assignment"
 msgstr "Ange ett namn för uppdraget"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:46
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:47
 msgid "Assignment Image"
 msgstr "Ladda upp en bild för uppdraget"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:48
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:49
 msgid "Your name (not publicly visible)"
 msgstr "Ditt namn (visas inte publikt)"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:51
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:61
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:69
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:52
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:62
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:70
 msgid "Only used by us for contact purposes"
 msgstr "Används enbart av oss i kontaktsyften"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:54
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:55
 msgid "Name of organisation"
 msgstr "Namn på verksamheten"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:56
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:57
 msgid "E-mail (not publicly visible)"
 msgstr "E-Post (visas inte publikt)"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:58
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:118
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:59
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:119
 msgid "example@email.com"
 msgstr "exempel@mail.com"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:64
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:65
 msgid "Phone (not publicly visible)"
 msgstr "Telefon (visas inte publikt)"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:66
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:122
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:67
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:123
 msgid "042-XX XX XX"
 msgstr "042-XX XX XX"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:72
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:73
 msgid "Assignment information"
 msgstr "Information om uppdraget"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:75
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:76
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:77
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:78
 #: source/php/PostTypes/Assignment/Controller/Single.php:66
 msgid "Benefits"
 msgstr "Förmåner"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:79
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:80
 msgid "Qualifications"
 msgstr "Krav"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:81
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:82
 msgid "When and where?"
 msgstr "När och var?"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:83
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:84
 msgid "Total spots"
 msgstr "Antal platser"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:85
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:86
 msgid "Address"
 msgstr "Adress"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:87
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:88
 msgid "Postal"
 msgstr "Postnummer"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:89
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:90
 msgid "City"
 msgstr "Ort"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:91
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:92
 msgid "Sign up information"
 msgstr "Uppgifter för anmälan"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:94
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:95
 msgid "Sign up Link"
 msgstr "Registreringslänk"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:96
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:97
 msgid "Sign up Contact"
 msgstr "Anmäl via kontaktuppgifter"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:98
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:99
 msgid "Internal assignment"
-msgstr "Internt uppdrag"
+msgstr "Via Engagemang Helsingborg"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:100
-msgid "SignUp Type"
-msgstr "Metod för anmälan"
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:101
+msgid "How to sign up?"
+msgstr "Hur anmäler man sig?"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:102
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:103
 msgid "Sign up link"
 msgstr "Anmäl via extern länk"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:104
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:131
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:105
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:132
 msgid "https://www.website.com"
 msgstr "https://"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:106
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:107
 msgid "No"
 msgstr "Nej"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:107
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:108
 msgid "Yes"
 msgstr "Ja"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:109
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:110
 msgid "Is there a specific due date for signing up?"
 msgstr "Finns det ett förfallodatum för att anmäla sig?"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:111
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:112
 msgid "Last date to apply"
 msgstr "Sista ansökningsdag"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:113
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:114
 msgid "Public Contact information"
 msgstr "Kontaktuppgifter"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:116
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:117
 msgid "Public E-Mail"
 msgstr "Publik e-post"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:120
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:121
 msgid "Public Phone"
 msgstr "Publik telefon"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:124
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:125
 msgid "Employer information"
 msgstr "Om uppdragsgivaren"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:127
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:128
 #: source/php/PostTypes/Assignment/Controller/Model/EmployerInfo.php:28
 msgid "About the employer"
 msgstr "Om uppdragsgivaren"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:129
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:130
 msgid "Website"
 msgstr "Hemsida"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:133
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:84
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:134
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:83
 msgid "Select an option"
 msgstr "Välj ett alternativ"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:135
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:68
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:136
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:67
 msgid "Submit"
 msgstr "Skicka"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:137
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:80
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:138
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:79
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:57
 msgid "Something went wrong, please try again later."
 msgstr "Något gick fel, försök igen senare."
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:139
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:140
 msgid "Successfully submitted new assignment!"
 msgstr "Ditt uppdrag har skickats in!"
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:141
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:142
 msgid "Loading..."
 msgstr "Laddar.."
 
-#: source/php/Modularity/AssignmentForm/AssignmentForm.php:143
+#: source/php/Modularity/AssignmentForm/AssignmentForm.php:144
 msgid "Saving..."
 msgstr "Sparar…"
 
@@ -367,9 +392,9 @@ msgstr "Volontär Formulär"
 
 #: source/php/Modularity/VolunteerForm/VolunteerForm.php:41
 #: source/php/Modularity/VolunteerForm/VolunteerForm.php:54
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:58
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:57
 msgid "Volunteer Registration"
-msgstr "Registrering för volontärtjänst"
+msgstr "Registrera dig för att bli volontär"
 
 #: source/php/Modularity/VolunteerForm/VolunteerForm.php:43
 msgid "Identify with Bank ID to continue."
@@ -379,47 +404,51 @@ msgstr "Identifiera dig med bank-id för att fortsätta."
 msgid "Identify with Bank ID"
 msgstr "Identifiera dig med bank-id"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:66
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:65
 msgid "Phone"
 msgstr "Telefonnummer"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:70
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:69
 msgid "E-mail"
 msgstr "E-post"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:72
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:71
 msgid "Name"
 msgstr "Namn"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:74
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:73
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:53
 msgid "Loading"
 msgstr "Laddar"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:76
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:75
 #: source/php/PostTypes/Assignment/Controller/Model/SignUpModal.php:55
 msgid "Saving"
 msgstr "Sparar"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:78
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:77
 msgid "Sending"
 msgstr "Skickar"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:82
-msgid "Thank you! We will get in touch with you as soon as possible"
-msgstr "Tack! Vi kommer att kontakta dig så snart som möjligt"
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:81
+msgid "Thank you! We will get in touch with you as soon as possible."
+msgstr "Tack! Din anmälan är mottagen. Se bekräftelsemejl för mer information."
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:86
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:85
 msgid "Newsletter"
 msgstr "Nyhetsbrev"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:88
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:87
 msgid "Yes I want to receive the newsletter"
 msgstr "Ja, jag vill få nyheter om volontäruppdrag på mail"
 
-#: source/php/Modularity/VolunteerForm/VolunteerForm.php:90
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:89
 msgid "No, I do not want to receive the newsletter"
 msgstr "Nej tack, jag vill inte få nyheter om volontäruppdrag på mail"
+
+#: source/php/Modularity/VolunteerForm/VolunteerForm.php:93
+msgid "I have read and agree to the terms and conditions for being a volunteer"
+msgstr "Jag har läst och godkänner villkoren för att vara volontär"
 
 #: source/php/PostTypes/Assignment.php:20
 #: source/tests/php/_TestUtils/PluginTestCase.php:130
@@ -575,6 +604,9 @@ msgstr ""
 msgid "https://github.com/helsingborg-stad"
 msgstr ""
 
+#~ msgid "SignUp Type"
+#~ msgstr "Hur anmäler man sig?"
+
 #~ msgid "E-Mail (public)"
 #~ msgstr "E-Post (publik)"
 
@@ -637,9 +669,6 @@ msgstr ""
 
 #~ msgid "Back to homepage"
 #~ msgstr "Tillbaka till startsidan"
-
-#~ msgid "My Pages settings"
-#~ msgstr "Inställningar för Mina sidor"
 
 #~ msgid "My Pages Primary Menu (for logged in users)"
 #~ msgstr "Primär meny för Mina Sidor (för inloggade)"
