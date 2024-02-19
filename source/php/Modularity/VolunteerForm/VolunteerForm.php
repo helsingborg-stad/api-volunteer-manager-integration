@@ -20,7 +20,8 @@ class VolunteerForm extends \Modularity\Module
 {
     public $slug = 'mod-volunteer-form';
     public $supports = [];
-
+    
+    private $ttl;
     private MyPages $myPages;
 
     public function init()
