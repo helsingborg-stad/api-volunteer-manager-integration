@@ -18,6 +18,7 @@ class AssignmentForm extends \Modularity\Module
 {
     public $slug = 'mod-v-assign-form';
     public $supports = [];
+    private $ttl;
 
     public function init()
     {
