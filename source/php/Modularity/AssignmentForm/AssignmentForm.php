@@ -18,7 +18,6 @@ class AssignmentForm extends \Modularity\Module
 {
     public $slug = 'mod-v-assign-form';
     public $supports = [];
-    private $ttl;
 
     public function init()
     {
@@ -26,7 +25,7 @@ class AssignmentForm extends \Modularity\Module
         $this->namePlural   = __('Assignment Forms', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $this->description  = __('Module for Volunteer registration form',
             API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
-        $this->ttl          = false;
+        $this->cacheTtl          = false;
     }
 
 

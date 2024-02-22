@@ -20,8 +20,7 @@ class VolunteerForm extends \Modularity\Module
 {
     public $slug = 'mod-volunteer-form';
     public $supports = [];
-    
-    private $ttl;
+
     private MyPages $myPages;
 
     public function init()
@@ -30,7 +29,7 @@ class VolunteerForm extends \Modularity\Module
         $this->namePlural   = __('Volunteer Forms', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
         $this->description  = __('Module for Volunteer registration form',
             API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN);
-        $this->ttl          = false;
+        $this->cacheTtl     = false;
         $this->myPages      = new MyPagesService();
     }
 
