@@ -47,7 +47,7 @@ class SignUpInfo
                                     'body'    => __("Hello, I want to get in touch and learn more.",
                                         API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                                 ],
-                                null,
+                                "",
                                 '&',
                                 PHP_QUERY_RFC3986
                             ),
