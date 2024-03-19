@@ -27,7 +27,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
     public static function addFilters(): array
     {
         return [
-            ['Municipio/blade/view_paths', 'setBladeTemplatePaths', 5],
+            ['Municipio/viewPaths', 'setBladeTemplatePaths', 5],
             ['/Modularity/externalViewPath', 'registerViewPaths', 1, 3],
         ];
     }
