@@ -1,5 +1,5 @@
 {
-    "name": "api-volunteer-manager-integration",
+    "name": "@helsingborg-stad/api-volunteer-manager-integration",
     "version": "3.0.3",
     "description": "Frontend integration for api-volunteer-manager.",
     "main": "",
@@ -12,6 +12,9 @@
     "bugs": {
         "url": "https://github.com/helsingborg-stad/api-volunteer-manager-integration/issues"
     },
+    "files": [
+        "dist/"
+    ],
     "homepage": "https://github.com/helsingborg-stad/api-volunteer-manager-integration",
     "devDependencies": {
         "@babel/core": "^7.18.10",
