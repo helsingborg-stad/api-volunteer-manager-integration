@@ -78,6 +78,7 @@ export interface AssignmentInput {
   title: string
   description: string
   employer: Employer
+  endDate?: string
   signUp:
     | {
         type?: SignUpTypes
