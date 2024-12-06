@@ -111,6 +111,7 @@ export const createRestContext = (
         assignment_eligibility: '[]',
         description: input.description,
         qualifications: input.qualifications ?? '',
+        end_date: input.endDate ?? '',
         schedule:
           input.schedule ?? [input.when, input.where].filter((v) => v && v.length > 0).join('\n\n'),
         benefits: input.benefits ?? '',

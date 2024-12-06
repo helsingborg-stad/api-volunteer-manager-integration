@@ -13,6 +13,7 @@ export const DetailsFields = ({
     qualifications,
     totalSpots,
     schedule = '',
+    endDate = '',
     location = {
       address: '',
       city: '',
@@ -131,6 +132,17 @@ export const DetailsFields = ({
           name="assignment_location_city"
           type="text"
           onChange={parseValue(handleChange('location.city'))}
+          inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
+          readOnly={isSubmitted}
+        />
+      </Grid>
+      <Grid col={12} >
+        <Field
+          value={endDate || ''}
+          label={phrase('field_label_assignment_end_date', 'End date')}
+          name="assignment_end_date"
+          type="date"
+          onChange={parseValue(handleChange('endDate'))}
           inputProps={isLoading || isSubmitted ? { disabled: true } : {}}
           readOnly={isSubmitted}
         />
