@@ -36,7 +36,7 @@ class BootstrapTest extends PluginTestCase
             ->shouldBeCalled();
 
         $this->wp
-            ->addFilter('Municipio/blade/view_paths', [$this->bootstrap, 'setBladeTemplatePaths'],
+            ->addFilter('Municipio/viewPaths', [$this->bootstrap, 'setBladeTemplatePaths'],
                 5, 1)
             ->shouldBeCalled();
 
