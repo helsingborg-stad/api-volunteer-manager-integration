@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/api-volunteer-manager-integration",
-    "version": "3.0.4",
+    "version": "3.1.0",
     "description": "Frontend integration for api-volunteer-manager.",
     "main": "",
     "repository": {
