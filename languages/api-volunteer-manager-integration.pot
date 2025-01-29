@@ -1,32 +1,24 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: API Volunteer Manager Integration\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-12-13 02:27+0100\n"
-"PO-Revision-Date: 2024-01-23 15:37+0100\n"
-"Language: sv_SE\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-WPHeader: api-volunteer-manager-integration.php\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"POT-Creation-Date: 2024-12-12T09:20:50+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
 
 #: AcfFields/php/api-volunteer-manager-integration-assignment-form.php:8
 msgid "Assignment Form Module"
-msgstr "Registreringsformulär för Volontäruppdrag"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-assignment-form.php:12
 #: AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:12
 msgid "Form Terms"
-msgstr "Formulärsvillkor"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-settings.php:8
 msgid "Volunteer Manager Integration Settings"
@@ -58,29 +50,29 @@ msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-settings.php:100
 msgid "Enabled"
-msgstr "Aktiv"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-settings.php:101
 msgid "Disabled"
-msgstr "Inaktiv"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-settings.php:106
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:59
 msgid "Volunteer"
-msgstr "Volontär"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-settings.php:124
 msgid "Registration Page"
-msgstr "Registreringssida"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:8
 msgid "Volunteer Form Module"
-msgstr "Registreringsformulär för Volontärer"
+msgstr ""
 
 #: AcfFields/php/api-volunteer-manager-integration-volunteer-form.php:32
 #: Modularity/VolunteerForm/VolunteerForm.php:91
 msgid "Volunteer Terms"
-msgstr "Volontär villkor"
+msgstr ""
 
 #: Admin/OptionsPage.php:26
 msgid "Volunteer Integration settings"
@@ -93,63 +85,52 @@ msgstr ""
 #: Helper/PostType.php:45
 #: Helper/PostType.php:47
 #: Helper/PostType.php:195
-#, php-format
 msgid "Add new %s"
-msgstr "Lägg till nytt %s"
+msgstr ""
 
 #: Helper/PostType.php:49
 #: Helper/PostType.php:191
-#, php-format
 msgid "Edit %s"
-msgstr "Redigera %s"
+msgstr ""
 
 #: Helper/PostType.php:51
-#, php-format
 msgid "New %s"
-msgstr "Nytt %s"
+msgstr ""
 
 #: Helper/PostType.php:53
-#, php-format
 msgid "View %s"
-msgstr "Visa %s"
+msgstr ""
 
 #: Helper/PostType.php:55
 #: Helper/PostType.php:183
-#, php-format
 msgid "Search %s"
-msgstr "Sök %s"
+msgstr ""
 
 #: Helper/PostType.php:57
-#, php-format
 msgid "No %s found"
-msgstr "Sök %s"
+msgstr ""
 
 #: Helper/PostType.php:59
-#, php-format
 msgid "No %s found in trash"
-msgstr "Lägg till nytt %s"
+msgstr ""
 
 #: Helper/PostType.php:62
 #: Helper/PostType.php:187
 #: Helper/PostType.php:189
-#, php-format
 msgid "Parent %s:"
-msgstr "Överordnad %s"
+msgstr ""
 
 #: Helper/PostType.php:185
-#, php-format
 msgid "All %s"
-msgstr "Alla %s"
+msgstr ""
 
 #: Helper/PostType.php:193
-#, php-format
 msgid "Update %s"
-msgstr "Uppdatera %s"
+msgstr ""
 
 #: Helper/PostType.php:197
-#, php-format
 msgid "New %s Name"
-msgstr "Lägg till nytt %s"
+msgstr ""
 
 #: Helper/Request.php:36
 msgid "API request failed."
@@ -169,381 +150,381 @@ msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:24
 msgid "Assignment Form"
-msgstr "Volontäruppdrag formulär"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:25
 msgid "Assignment Forms"
-msgstr "Volontäruppdrag formulär"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:26
 #: Modularity/VolunteerForm/VolunteerForm.php:30
 msgid "Module for Volunteer registration form"
-msgstr "Formulärs modul för att bli volontär"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:34
 msgid "optional"
-msgstr "valfri"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:42
 msgid "Register Volunteer Assignment"
-msgstr "Registrera Volontäruppdrag"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:45
 msgid "Name of the assignment"
-msgstr "Ange ett namn för uppdraget"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:47
 msgid "Assignment Image"
-msgstr "Ladda upp en bild för uppdraget"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:49
 msgid "Your name (not publicly visible)"
-msgstr "Ditt namn (visas inte publikt)"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:51
 #: Modularity/AssignmentForm/AssignmentForm.php:61
 #: Modularity/AssignmentForm/AssignmentForm.php:69
 msgid "Only used by us for contact purposes"
-msgstr "Används enbart av oss i kontaktsyften"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:55
 msgid "Name of organisation"
-msgstr "Namn på verksamheten"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:57
 msgid "E-mail (not publicly visible)"
-msgstr "E-Post (visas inte publikt)"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:59
 #: Modularity/AssignmentForm/AssignmentForm.php:121
 msgid "example@email.com"
-msgstr "exempel@mail.com"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:65
 msgid "Phone (not publicly visible)"
-msgstr "Telefon (visas inte publikt)"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:67
 #: Modularity/AssignmentForm/AssignmentForm.php:125
 msgid "042-XX XX XX"
-msgstr "042-XX XX XX"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:73
 msgid "Assignment information"
-msgstr "Information om uppdraget"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:76
 msgid "Description"
-msgstr "Beskrivning"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:78
 #: PostTypes/Assignment/Controller/Single.php:65
 msgid "Benefits"
-msgstr "Förmåner"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:80
 msgid "Qualifications"
-msgstr "Krav"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:82
 msgid "When and where?"
-msgstr "När och var?"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:84
 msgid "Total spots"
-msgstr "Antal platser"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:86
 msgid "Address"
-msgstr "Adress"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:88
 msgid "Postal"
-msgstr "Postnummer"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:90
 msgid "City"
-msgstr "Ort"
+msgstr ""
+
+#: Modularity/AssignmentForm/AssignmentForm.php:92
+msgid "End date"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:94
 msgid "Sign up information"
-msgstr "Uppgifter för anmälan"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:97
 msgid "Sign up Link"
-msgstr "Registreringslänk"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:99
 msgid "Sign up Contact"
-msgstr "Anmäl via kontaktuppgifter"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:101
 msgid "Internal assignment"
-msgstr "Via Engagemang Helsingborg"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:103
 msgid "How to sign up?"
-msgstr "Hur anmäler man sig?"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:105
 msgid "Sign up link"
-msgstr "Anmäl via extern länk"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:107
 #: Modularity/AssignmentForm/AssignmentForm.php:134
 msgid "https://www.website.com"
-msgstr "https://"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:109
 msgid "No"
-msgstr "Nej"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:110
 msgid "Yes"
-msgstr "Ja"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:112
 msgid "Is there a specific due date for signing up?"
-msgstr "Finns det ett förfallodatum för att anmäla sig?"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:114
 msgid "Last date to apply"
-msgstr "Sista ansökningsdag"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:116
 msgid "Public Contact information"
-msgstr "Kontaktuppgifter"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:119
 msgid "Public E-Mail"
-msgstr "Publik e-post"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:123
 msgid "Public Phone"
-msgstr "Publik telefon"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:127
 msgid "Employer information"
-msgstr "Om uppdragsgivaren"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:130
 #: PostTypes/Assignment/Controller/Model/EmployerInfo.php:27
 msgid "About the employer"
-msgstr "Om uppdragsgivaren"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:132
 msgid "Website"
-msgstr "Hemsida"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:136
 #: Modularity/VolunteerForm/VolunteerForm.php:83
 msgid "Select an option"
-msgstr "Välj ett alternativ"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:138
 #: Modularity/VolunteerForm/VolunteerForm.php:67
 msgid "Submit"
-msgstr "Skicka"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:140
 #: Modularity/VolunteerForm/VolunteerForm.php:79
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:57
 msgid "Something went wrong, please try again later."
-msgstr "Något gick fel, försök igen senare."
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:142
 msgid "Successfully submitted new assignment!"
-msgstr "Ditt uppdrag har skickats in!"
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:144
 msgid "Loading..."
-msgstr "Laddar.."
+msgstr ""
 
 #: Modularity/AssignmentForm/AssignmentForm.php:146
 msgid "Saving..."
-msgstr "Sparar…"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:28
 msgid "Volunteer Form"
-msgstr "Volontär Formulär"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:29
 msgid "Volunteer Forms"
-msgstr "Volontär Formulär"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:41
 #: Modularity/VolunteerForm/VolunteerForm.php:54
 #: Modularity/VolunteerForm/VolunteerForm.php:57
 msgid "Volunteer Registration"
-msgstr "Registrera dig för att bli volontär"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:43
 msgid "Identify with Bank ID to continue."
-msgstr "Identifiera dig med bank-id för att fortsätta."
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:47
 msgid "Identify with Bank ID"
-msgstr "Identifiera dig med bank-id"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:65
 msgid "Phone"
-msgstr "Telefonnummer"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:69
 msgid "E-mail"
-msgstr "E-post"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:71
 msgid "Name"
-msgstr "Namn"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:73
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:53
 msgid "Loading"
-msgstr "Laddar"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:75
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:55
 msgid "Saving"
-msgstr "Sparar"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:77
 msgid "Sending"
-msgstr "Skickar"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:81
 msgid "Thank you! We will get in touch with you as soon as possible."
-msgstr "Tack! Din anmälan är mottagen. Se bekräftelsemejl för mer information."
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:85
 msgid "Newsletter"
-msgstr "Nyhetsbrev"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:87
 msgid "Yes I want to receive the newsletter"
-msgstr "Ja, jag vill få nyheter om volontäruppdrag på mail"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:89
 msgid "No, I do not want to receive the newsletter"
-msgstr "Nej tack, jag vill inte få nyheter om volontäruppdrag på mail"
+msgstr ""
 
 #: Modularity/VolunteerForm/VolunteerForm.php:93
 msgid "I have read and agree to the terms and conditions for being a volunteer"
-msgstr "Jag har läst och godkänner villkoren för att vara volontär"
+msgstr ""
 
 #: PostTypes/Assignment.php:20
 msgid "Volunteer Assignment"
-msgstr "Volontäruppdrag"
+msgstr ""
 
 #: PostTypes/Assignment.php:21
 msgid "Volunteer Assignments"
-msgstr "Volontäruppdrag"
+msgstr ""
 
 #: PostTypes/Assignment.php:55
 msgid "Category"
-msgstr "Kategori"
+msgstr ""
 
 #: PostTypes/Assignment.php:56
 msgid "Categories"
-msgstr "Kategorier"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/ContactInfo.php:44
 msgid "Contact"
-msgstr "Kontakt"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/LoginModal.php:30
 #: PostTypes/Assignment/Controller/Model/LoginModal.php:44
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:32
 msgid "Volunteer login"
-msgstr "Logga in som volontär"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/LoginModal.php:31
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:33
 msgid "Close"
-msgstr "Stäng"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/LoginModal.php:39
 msgid "Identify with Bank-ID/Freja eID"
-msgstr "Identifiera med Bank-ID/Freja eID"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/LoginModal.php:40
 msgid "You must be registered and approved as a volunteer to be able to sign up for the mission."
-msgstr "Du måste vara registrerad och godkänd som volontär för att kunna anmäla dig till uppdraget."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/LoginModal.php:51
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:65
 msgid "Volunteer registration"
-msgstr "Registrera som volontär"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:18
 msgid "Welcome with your expression of interest, you can apply through the link below."
-msgstr "Välkommen med din intresseanmälan, du anmäler dig via länken nedan."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:22
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:72
 msgid "Sign up"
-msgstr "Anmäl dig"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:32
 msgid "Welcome with your expression of interest, you can apply using the contact details below."
-msgstr "Välkommen med din intresseanmälan, du anmäler dig via kontaktuppgifterna nedan."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:45
 msgid "Sign up for volunteer assignment"
-msgstr "Intresseanmälan till volontäruppdrag"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:47
 msgid "Hello, I want to get in touch and learn more."
-msgstr "Hej, jag vill bli kontaktad och veta mer."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:68
 msgid "Welcome with your expression of interest, login or register a volunteer account using the link below."
-msgstr "Välkommen med din intresseanmälan, logga in eller registrera dig som volontär för att anmäla dig till detta uppdrag."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpInfo.php:84
 msgid "Registration"
-msgstr "Anmälan"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:43
 msgid "Thank you for showing interest, we will get back to you as soon as possible."
-msgstr "Tack för visat intresse, du kommer bli kontaktad av uppdragsgivaren inom kort."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:45
 msgid "Apply to assignment"
-msgstr "Anmäl intresse"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:47
 msgid "Logout"
-msgstr "Logga ut"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:49
 msgid "Your volunteer application is pending, please try again later."
-msgstr "Din volontäransökan är under behandling, vänligen försök igen lite senare eller kontakta oss."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:51
 msgid "You are not a registered volunteer, please register an account."
-msgstr "Du är inte registrerad som volontär, vänligen registrera ett konto först."
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:61
 msgid "Employer"
-msgstr "Uppdragsgivare"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Model/SignUpModal.php:63
 msgid "Logged in as"
-msgstr "Inloggad som"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Single.php:51
 msgid "About the assignment"
-msgstr "Om uppdraget"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Single.php:58
 msgid "Requirements"
-msgstr "Krav"
+msgstr ""
 
 #: PostTypes/Assignment/Controller/Single.php:72
 msgid "Where and when?"
-msgstr "Var och när?"
-
-#: Modularity/AssignmentForm/AssignmentForm.php:92
-msgid "End date"
-msgstr "Slutdatum"
+msgstr ""

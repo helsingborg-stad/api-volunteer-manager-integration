@@ -89,6 +89,8 @@ class AssignmentForm extends \Modularity\Module
                         API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).$optionalFieldLabel,
                 'field_label_assignment_location_city'       => __('City',
                         API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).$optionalFieldLabel,
+                'field_label_assignment_end_date'       => __('End date',
+                        API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN).$optionalFieldLabel,
                 'form_section_label_signup'                  => __('Sign up information',
                     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
                 'form_section_description_signup'            => '',
