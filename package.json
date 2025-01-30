@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/api-volunteer-manager-integration",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "description": "Frontend integration for api-volunteer-manager.",
     "main": "",
     "repository": {
@@ -76,7 +76,7 @@
         "react-scripts": "5.0.1",
         "web-vitals": "^2.1.4"
     },
-    "dependencies": {},
+    "dependencies": [],
     "scripts": {
         "test": "jest",
         "watch": "cross-env NODE_ENV=development webpack --watch",
