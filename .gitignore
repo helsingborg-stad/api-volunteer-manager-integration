@@ -62,4 +62,8 @@ local.json
 !.editorconfig
 !.github
 
+# -------------------------
+# Whitelist Dist Files
+# -------------------------
+!/dist/
 
