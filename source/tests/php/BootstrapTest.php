@@ -32,7 +32,7 @@ class BootstrapTest extends PluginTestCase
     public function testRegisterFilters(): void
     {
         $this->wp
-            ->addAction('plugins_loaded', [$this->bootstrap, 'registerModules'], 1, 1)
+            ->addAction('init', [$this->bootstrap, 'registerModules'], 1, 1)
             ->shouldBeCalled();
 
         $this->wp
