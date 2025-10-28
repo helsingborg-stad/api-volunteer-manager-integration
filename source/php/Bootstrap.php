@@ -34,7 +34,7 @@ class Bootstrap implements FilterHookSubscriber, ActionHookSubscriber
 
     public static function addActions(): array
     {
-        return [['plugins_loaded', 'registerModules', 1]];
+        return [['init', 'registerModules', 1]];
     }
 
     public function setBladeTemplatePaths(array $paths): array
