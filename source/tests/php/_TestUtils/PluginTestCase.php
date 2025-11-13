@@ -7,7 +7,6 @@ use APIVolunteerManagerIntegration\Services\ACFService\ACFService;
 use APIVolunteerManagerIntegration\Services\MyPages\MyPages;
 use APIVolunteerManagerIntegration\Services\WPService\WPService;
 use APIVolunteerManagerIntegration\Virtual\PostType\Assignment;
-use Brain\Monkey;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +15,6 @@ use Prophecy\Prophecy\ObjectProphecy;
 use WP_Post;
 use WP_Post_Type;
 use WP_Query;
-use function Brain\Monkey;
 
 class PluginTestCase extends TestCase
 {
@@ -45,15 +43,6 @@ class PluginTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        Monkey\setUp();
-        // A few common pass through
-        // 1. WordPress i18n functions.
-        Monkey\Functions\when('__')
-            ->returnArg();
-        Monkey\Functions\when('_e')
-            ->returnArg();
-        Monkey\Functions\when('_n')
-            ->returnArg();
 
         $this->wp            = $this->prophesize(WPService::class);
         $this->myPages       = $this->prophesize(MyPages::class)->reveal();
@@ -68,7 +57,6 @@ class PluginTestCase extends TestCase
      */
     public function tearDown(): void
     {
-        Monkey\tearDown();
         parent::tearDown();
     }
 
