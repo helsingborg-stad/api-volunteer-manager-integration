@@ -17,7 +17,7 @@ class ACFServiceFactory
                 return get_field($selector, 'options');
             }
 
-            public function acfAddOPtionsSubPage(?array $settings = [])
+            public function acfAddOptionsSubPage(?array $settings = [])
             {
                 if (function_exists('acf_add_options_sub_page')) {
                     acf_add_options_sub_page($settings);

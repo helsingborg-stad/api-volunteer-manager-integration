@@ -22,7 +22,7 @@ class OptionsPage implements ActionHookSubscriber
 
     public function registerOptionsPage(): void
     {
-        $this->acf->acfAddOPtionsSubPage([
+    $this->acf->acfAddOptionsSubPage([
             'page_title'  => __('Volunteer Integration settings', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             'menu_title'  => __('Settings', API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN),
             'menu_slug'   => 'volunteer-integration-settings',

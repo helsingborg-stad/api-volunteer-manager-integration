@@ -12,5 +12,5 @@ interface ACFAddOptionsSubPage
      *
      * @return void
      */
-    public function acfAddOPtionsSubPage(?array $settings = []);
+    public function acfAddOptionsSubPage(?array $settings = []);
 }
