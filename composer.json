@@ -34,14 +34,14 @@
         "psr/http-client-implementation": "*",
         "psr/http-factory-implementation": "*",
         "psr/log-implementation": "*",
-        "php-http/message": "^1.13",
-        "php-http/discovery": "^1.15",
-        "php-http/mock-client": "^1.5",
-        "php-http/curl-client": "^2.2",
-        "http-interop/http-factory-diactoros": "^1.0",
+        "php-http/message": "^1.16.2",
+        "php-http/discovery": "^1.20",
+        "php-http/mock-client": "^1.6.1",
+        "php-http/curl-client": "^2.3.3",
         "apix/log": "^1.2",
-        "symfony/http-client": "^5.4",
-        "giggsey/libphonenumber-for-php": "^8.13"
+        "symfony/http-client": "^7.3.6",
+        "giggsey/libphonenumber-for-php": "^8.13",
+        "nyholm/psr7": "^1.8"
     },
     "require-dev": {
         "brain/monkey": "^2.6",
