@@ -28,7 +28,9 @@ define('API_VOLUNTEER_MANAGER_MODULE_PATH', API_VOLUNTEER_MANAGER_INTEGRATION_PA
 require_once API_VOLUNTEER_MANAGER_INTEGRATION_PATH.'Public.php';
 
 // Register the autoloader
-require __DIR__.'/vendor/autoload.php';
+if (file_exists(__DIR__.'/vendor/autoload.php')) {
+    require __DIR__.'/vendor/autoload.php';
+}
 
 load_plugin_textdomain(
     API_VOLUNTEER_MANAGER_INTEGRATION_TEXT_DOMAIN,
