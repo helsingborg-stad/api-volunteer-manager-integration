@@ -11,7 +11,7 @@ class Setup
         add_action('admin_init', [$this, 'onClickImportButton']);
 
         /* Cron */
-        add_action('plugins_loaded', [$this, 'disableCronJob']);
+        add_action('acf/init', [$this, 'disableCronJob']);
         add_action('import_volunteer_assignments_daily', [$this, 'importPosts']);
         add_filter('acf/update_value/name=volunteer_assignments_daily_import', [$this, 'toggleCronJob'], 10, 1);
 
