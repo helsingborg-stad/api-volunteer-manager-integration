@@ -10,7 +10,7 @@ class PhoneNumber
 {
     private string $numberInput;
     private ?\libphonenumber\PhoneNumber $phoneNumber;
-    private int $humanReadableFormat = PhoneNumberFormat::NATIONAL;
+    private PhoneNumberFormat $humanReadableFormat = PhoneNumberFormat::NATIONAL;
 
     public function __construct(string $number)
     {

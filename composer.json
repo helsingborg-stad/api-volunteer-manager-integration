@@ -32,7 +32,7 @@
         "psr/http-client-implementation": "*",
         "psr/http-factory-implementation": "*",
         "php-http/curl-client": "^2.3.3",
-        "giggsey/libphonenumber-for-php-lite": "^8.13",
+        "giggsey/libphonenumber-for-php-lite": "^9.0",
         "nyholm/psr7": "^1.8"
     },
     "require-dev": {
