@@ -17,7 +17,7 @@
 @card([
 'image' => $viewModel->assignment->image,
 'heading' => $viewModel->assignment->title,
-'meta' => $viewModel->assignment->employer,
+'meta' => $viewModel->assignment->employer ?? '',
 'metaFirst' => true,
 'context' => ['archive', 'archive.list', 'archive.list.card'],
 'containerAware' => true,

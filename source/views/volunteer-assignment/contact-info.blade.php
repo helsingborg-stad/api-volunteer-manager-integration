@@ -18,7 +18,7 @@
     <div>
         @collection([ 'unbox' => true, 'bordered' => true])
         @foreach($viewModel->contact as $item)
-            @collection__item(['link' => $item['link'] ?? null])
+            @collection__item(['link' => $item['link'] ?? ''])
 
             @if(!empty($item['icon']))
                 @slot('prefix')
