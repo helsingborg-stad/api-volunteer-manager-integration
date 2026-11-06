@@ -29,7 +29,7 @@
 
                 @collection(['bordered' => true, 'classList' => ['c-collection--sign-up']])
                 @foreach($viewModel->signUpContact as $item)
-                    @collection__item(['link' => $item['link'] ?? null])
+                    @collection__item(['link' => $item['link'] ?? ''])
                     @if(!empty($item['icon']))
                         @slot('prefix')
                             <div class="c-collection__icon">
